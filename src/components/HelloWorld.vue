@@ -1,31 +1,74 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-  </div>
+    <div class="hello" id="editor">
+        <h1>{{ msg }}</h1>
+        <textarea :value="input"></textarea> <a @click="update"></a>
+        <div v-html="compiledMarkdown"></div>
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+    import {Component, Prop, Vue} from 'vue-property-decorator';
 
-@Component
-export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
-}
+    @Component
+    export default class HelloWorld extends Vue {
+        @Prop() private msg
+    !:
+        string;
+
+        @Prop() private input
+    !:
+        string = "initial input";
+
+        get compiledMarkdown() {
+            return '<h4>compiled</h4>';
+        }
+
+        update(this:HelloWorld) {
+            this.input = "new value";
+        }
+    }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-h3
-  margin 40px 0 0
+    h3
+        margin 40px 0 0
 
-ul
-  list-style-type none
-  padding 0
+    ul
+        list-style-type none
+        padding 0
 
-li
-  display inline-block
-  margin 0 10px
+    li
+        display inline-block
+        margin 0 10px
 
-a
-  color #42b983
+    a
+        color #42b983
+
+    #editor
+    margin 0
+    height 100%
+    font-family 'Helvetica Neue', Arial, sans-serif
+    color #333
+
+    textarea, #editor div
+        display inline-block
+        width 49%
+        height 100%
+        vertical-align top
+        box-sizing border-box
+        padding 0 20px
+
+    textarea
+        border none
+        border-right 1px solid #ccc
+        resize none
+        outline none
+        background-color #f6f6f6
+        font-size 14px
+        font-family 'Monaco', courier, monospace
+        padding 20px
+
+    code
+        color #f66
 </style>
