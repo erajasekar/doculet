@@ -9,6 +9,9 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import { Marked } from 'marked-ts';
     import { debounce } from 'typescript-debounce-decorator';
+    import { AsciiDoc } from '../asciidoc';
+
+    const asciidoc = new AsciiDoc();
 
     @Component
     export default class HelloWorld extends Vue {
@@ -17,8 +20,7 @@
         private input = '# hello test';
 
         get compiledMarkdown() {
-            const asciidoctor = require('asciidoctor.js')();
-            return asciidoctor.convert(this.input);
+           return asciidoc.convert(this.input);
         }
 
         @debounce(1000, { leading: false })
