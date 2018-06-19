@@ -17,7 +17,8 @@
         private input = '# hello test';
 
         get compiledMarkdown() {
-            return Marked.parse(this.input);
+            const asciidoctor = require('asciidoctor.js')();
+            return asciidoctor.convert(this.input);
         }
 
         @debounce(1000, { leading: false })
