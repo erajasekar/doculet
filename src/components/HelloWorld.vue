@@ -1,30 +1,28 @@
 <template>
     <div class="hello" id="editor">
-        <h1>{{ msg }}</h1>
-        <textarea :value="input"></textarea> <a @click="update"></a>
-        <div v-html="compiledMarkdown"></div>
+         <textarea :value="input" @input="update"></textarea>
+         <div v-html="compiledMarkdown"></div>
     </div>
 </template>
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
+    import { Marked } from 'marked-ts';
+    import { debounce } from 'typescript-debounce-decorator';
 
     @Component
     export default class HelloWorld extends Vue {
-        @Prop() private msg
-    !:
-        string;
+        @Prop() private msg!: string;
 
-        @Prop() private input
-    !:
-        string = "initial input";
+        private input = '# hello test';
 
         get compiledMarkdown() {
-            return '<h4>compiled</h4>';
+            return Marked.parse(this.input);
         }
 
-        update(this:HelloWorld) {
-            this.input = "new value";
+        @debounce(1000, { leading: false })
+        private update(e: any) {
+            this.input = e.target.value;
         }
     }
 </script>
@@ -46,10 +44,10 @@
         color #42b983
 
     #editor
-    margin 0
-    height 100%
-    font-family 'Helvetica Neue', Arial, sans-serif
-    color #333
+        margin 0
+        height 100%
+        font-family 'Helvetica Neue', Arial, sans-serif
+        color #333
 
     textarea, #editor div
         display inline-block
