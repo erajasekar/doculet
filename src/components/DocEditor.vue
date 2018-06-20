@@ -6,8 +6,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
-    import { Marked } from 'marked-ts';
+    import {Component, Vue} from 'vue-property-decorator';
     import { debounce } from 'typescript-debounce-decorator';
     import { AsciiDoc } from '../asciidoc';
 
@@ -15,15 +14,14 @@
 
     @Component
     export default class HelloWorld extends Vue {
-        @Prop() private msg!: string;
 
-        private input = '# hello test';
+        private input = '';
 
         get compiledMarkdown() {
            return asciidoc.convert(this.input);
         }
 
-        @debounce(1000, { leading: false })
+        @debounce(300, { leading: true })
         private update(e: any) {
             this.input = e.target.value;
         }

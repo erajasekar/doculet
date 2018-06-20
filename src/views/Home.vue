@@ -1,7 +1,6 @@
 <template>
-    <div class="home" id="editor">
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-
+    <div class="home" >
+        <doc-editor/>
     </div>
 
 
@@ -9,11 +8,11 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-    import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+    import DocEditor from '@/components/DocEditor.vue'; // @ is an alias to /src
 
     @Component({
         components: {
-            HelloWorld,
+            DocEditor,
         },
     })
     export default class Home extends Vue {
