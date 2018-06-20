@@ -18,3 +18,9 @@
     export default class Home extends Vue {
     }
 </script>
+
+<style scoped lang="stylus">
+    .home
+        height 100%
+        width 100%
+</style>

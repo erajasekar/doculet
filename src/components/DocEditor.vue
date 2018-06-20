@@ -1,10 +1,10 @@
 <template>
-    <div class="hello" id="editor">
-        <div >
-            <textarea :value="input" @input="update" class="split left"/>
+    <div class="editor-container" id="editor">
+        <div class="editor-pane" >
+            <textarea :value="input" @input="update" />
         </div>
 
-        <div class="split right" v-html="compiledMarkdown"></div>
+        <div class="preview-pane" v-html="compiledMarkdown"></div>
     </div>
 </template>
 
@@ -74,25 +74,33 @@
     code
         color #f66*/
 
-    .split
+    textarea
+        width 100%
         height 100%
-        width 50%
-        position fixed
-        z-index 1
-        top 0
-        overflow-x hidden
-        padding-top 20px
 
-    .left
-        left 0
+    .editor-container
+        display: flex
+        flex-direction: row
+        overflow: hidden
+        height : 100%
+        .editor-pane
+            flex: 0 0 auto
+            width: 50%
+            border-style: solid
+            border-width: medium
+            height :100%
+        .resize-handle
+            flex: 0 0 auto
+            width: 7px
+            background: $gray-lighter
+            cursor: col-resize
+        .preview-pane
+            flex: 1 1 auto;
+            width: 50%;
+            padding: 10px;
+            overflow-y: auto
+            word-break: break-word
+            border-style: solid;
+            border-width: medium;
 
-    .right
-        right 0
-
-    .centered
-        position absolute
-        top 50%
-        left 50%
-        transform translate(-50%, -50%)
-        text-align center
 </style>
