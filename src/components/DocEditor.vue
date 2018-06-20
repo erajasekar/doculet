@@ -74,6 +74,7 @@
     code
         color #f66*/
 
+
     textarea
         width 100%
         height 100%
@@ -102,5 +103,12 @@
             word-break: break-word
             border-style: solid;
             border-width: medium;
+            table
+            background: #fff
+            margin-bottom: 1.25em
+            border: solid 1px #dedede
+
+            &h2
+                color green
 
 </style>
