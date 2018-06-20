@@ -1,7 +1,10 @@
 <template>
     <div class="hello" id="editor">
-         <textarea :value="input" @input="update"></textarea>
-         <div v-html="compiledMarkdown"></div>
+        <div >
+            <textarea :value="input" @input="update" class="split left"/>
+        </div>
+
+        <div class="split right" v-html="compiledMarkdown"></div>
     </div>
 </template>
 
@@ -30,7 +33,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-    h3
+    /*h3
         margin 40px 0 0
 
     ul
@@ -69,5 +72,27 @@
         padding 20px
 
     code
-        color #f66
+        color #f66*/
+
+    .split
+        height 100%
+        width 50%
+        position fixed
+        z-index 1
+        top 0
+        overflow-x hidden
+        padding-top 20px
+
+    .left
+        left 0
+
+    .right
+        right 0
+
+    .centered
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        text-align center
 </style>
