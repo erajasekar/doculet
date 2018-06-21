@@ -21,7 +21,9 @@
         private input = '';
 
         get compiledMarkdown() {
-           return asciidoc.convert(this.input);
+            let result = asciidoc.convert(this.input);
+            console.log(result)
+            return result;
         }
 
         @debounce(300, { leading: true })
@@ -32,7 +34,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="stylus">
+<style scoped lang="stylus">
     /*h3
         margin 40px 0 0
 
@@ -75,7 +77,7 @@
         color #f66*/
 
 
-    @import "../assets/css/asciidoctor.styl"
+    @import "../assets/css/colony.css"
 
     textarea
         width 100%

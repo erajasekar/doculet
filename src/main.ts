@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
 
 // Tell Vue.js to use vue-highlightjs
-Vue.directive('highlightjs', {
+/*Vue.directive('highlightjs', {
     //deep: true,
     bind: function (el : any, binding : any) {
         // on first bind, highlight all targets
@@ -29,7 +29,7 @@ Vue.directive('highlightjs', {
         })
     }
 })
-
+*/
 
 Vue.config.productionTip = false;
 
