@@ -32,7 +32,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="stylus">
+<style lang="stylus">
     /*h3
         margin 40px 0 0
 
@@ -75,6 +75,8 @@
         color #f66*/
 
 
+    @import "../assets/css/asciidoctor.styl"
+
     textarea
         width 100%
         height 100%
@@ -107,8 +109,5 @@
             background: #fff
             margin-bottom: 1.25em
             border: solid 1px #dedede
-
-            &h2
-                color green
 
 </style>
