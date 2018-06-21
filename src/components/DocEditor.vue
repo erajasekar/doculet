@@ -4,7 +4,13 @@
             <textarea :value="input" @input="update" />
         </div>
 
-        <div class="preview-pane" v-html="compiledMarkdown"></div>
+       <!-- <div class="preview-pane" v-html="compiledMarkdown"></div>-->
+        <div class="preview-pane">
+             <pre v-highlightjs class="highlight"><code class="language-ruby" data-lang="ruby">require 'sinatra'
+      get '/hi' do <b class="conum">(1)</b>
+       "Hello World!"
+      end</code></pre>
+        </div>
     </div>
 </template>
 
@@ -35,6 +41,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
+    @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
+
     /*h3
         margin 40px 0 0
 
