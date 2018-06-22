@@ -4,30 +4,9 @@
             <textarea :value="input" @input="update"/>
         </div>
 
-        <div class="preview-pane" v-highlightjs="compiledMarkdown"> </div>
+        <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
 
-       <!-- <div v-highlightjs><div class="preview-pane"  v-html="compiledMarkdown"></div></div>-->
-       <!-- <div class="preview-pane">
-            <div v-highlightjs>
-                <div class="listingblock">
-                    <div class="title">app.rb</div>
-                    <div class="content">
-      <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'sinatra'
-      get '/hi' do <i class="conum" data-value="1"></i><b>(1)</b>
-       "Hello World!"
-      end</code></pre>
-                    </div>
-                </div>
-                <div class="colist arabic">
-                    <table>
-                        <tr>
-                            <td><i class="conum" data-value="1"></i><b>1</b></td>
-                            <td>test comment</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>-->
+
     </div>
 </template>
 
@@ -41,11 +20,19 @@
     @Component
     export default class HelloWorld extends Vue {
 
-        private input = '';
+        /*private input = '[source,ruby]\n' +
+            '.app.rb\n' +
+            '----\n' +
+            'require \'sinatra\'\n' +
+            'get \'/hi\' do\n' +
+            ' "Hello World!"\n' +
+            'end\n' +
+            '----';*/
+        private input= '';
 
         get compiledMarkdown() {
             let result = asciidoc.convert(this.input);
-         /*   result = " <div v-highlightjs>\n" +
+          /*  result = " <div v-highlightjs>\n" +
                 "                <div class=\"listingblock\">\n" +
                 "                    <div class=\"title\">app.rb</div>\n" +
                 "                    <div class=\"content\">\n" +
@@ -65,7 +52,7 @@
                 "                </div>\n" +
                 "            </div>\n" +
                 "        </div>";
-           // console.log(result)*/
+           // console.log(result);*/
             return result;
         }
 
@@ -80,49 +67,7 @@
 <style scoped lang="stylus">
   //  @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
   @import "../assets/css/highlightjs/idea.css"
-
-    /*h3
-        margin 40px 0 0
-
-    ul
-        list-style-type none
-        padding 0
-
-    li
-        display inline-block
-        margin 0 10px
-
-    a
-        color #42b983
-
-    #editor
-        margin 0
-        height 100%
-        font-family 'Helvetica Neue', Arial, sans-serif
-        color #333
-
-    textarea, #editor div
-        display inline-block
-        width 49%
-        height 100%
-        vertical-align top
-        box-sizing border-box
-        padding 0 20px
-
-    textarea
-        border none
-        border-right 1px solid #ccc
-        resize none
-        outline none
-        background-color #f6f6f6
-        font-size 14px
-        font-family 'Monaco', courier, monospace
-        padding 20px
-
-    code
-        color #f66*/
-
-    @import "../assets/css/colony.css"
+  @import "../assets/css/colony.css"
 
     textarea
         width 100%
