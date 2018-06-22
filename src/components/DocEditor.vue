@@ -1,23 +1,40 @@
 <template>
     <div class="editor-container" id="editor">
-        <div class="editor-pane" >
-            <textarea :value="input" @input="update" />
+        <div class="editor-pane">
+            <textarea :value="input" @input="update"/>
         </div>
 
-       <!-- <div class="preview-pane" v-html="compiledMarkdown"></div>-->
-        <div class="preview-pane">
-             <pre v-highlightjs class="highlight"><code class="language-ruby" data-lang="ruby">require 'sinatra'
-      get '/hi' do <b class="conum">(1)</b>
+        <div class="preview-pane" v-highlightjs v-html="compiledMarkdown"></div>
+
+       <!-- <div v-highlightjs><div class="preview-pane"  v-html="compiledMarkdown"></div></div>-->
+       <!-- <div class="preview-pane">
+            <div v-highlightjs>
+                <div class="listingblock">
+                    <div class="title">app.rb</div>
+                    <div class="content">
+      <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'sinatra'
+      get '/hi' do <i class="conum" data-value="1"></i><b>(1)</b>
        "Hello World!"
       end</code></pre>
-        </div>
+                    </div>
+                </div>
+                <div class="colist arabic">
+                    <table>
+                        <tr>
+                            <td><i class="conum" data-value="1"></i><b>1</b></td>
+                            <td>test comment</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>-->
     </div>
 </template>
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-    import { debounce } from 'typescript-debounce-decorator';
-    import { AsciiDoc } from '../asciidoc';
+    import {debounce} from 'typescript-debounce-decorator';
+    import {AsciiDoc} from '../asciidoc';
 
     const asciidoc = new AsciiDoc();
 
@@ -28,11 +45,31 @@
 
         get compiledMarkdown() {
             let result = asciidoc.convert(this.input);
+            result = " <div v-highlightjs>\n" +
+                "                <div class=\"listingblock\">\n" +
+                "                    <div class=\"title\">app.rb</div>\n" +
+                "                    <div class=\"content\">\n" +
+                "      <pre class=\"highlightjs highlight\"><code class=\"language-ruby hljs\" data-lang=\"ruby\">require 'sinatra'\n" +
+                "      get '/hi' do <i class=\"conum\" data-value=\"1\"></i><b>(1)</b>\n" +
+                "       \"Hello World!\"\n" +
+                "      end</code></pre>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "                <div class=\"colist arabic\">\n" +
+                "                    <table>\n" +
+                "                        <tr>\n" +
+                "                            <td><i class=\"conum\" data-value=\"1\"></i><b>1</b></td>\n" +
+                "                            <td>test comment</td>\n" +
+                "                        </tr>\n" +
+                "                    </table>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </div>";
             console.log(result)
             return result;
         }
 
-        @debounce(300, { leading: true })
+        @debounce(300, {leading: true})
         private update(e: any) {
             this.input = e.target.value;
         }
@@ -84,7 +121,6 @@
     code
         color #f66*/
 
-
     @import "../assets/css/colony.css"
 
     textarea
@@ -95,13 +131,13 @@
         display: flex
         flex-direction: row
         overflow: hidden
-        height : 100%
+        height: 100%
         .editor-pane
             flex: 0 0 auto
             width: 50%
             border-style: solid
             border-width: medium
-            height :100%
+            height: 100%
         .resize-handle
             flex: 0 0 auto
             width: 7px
