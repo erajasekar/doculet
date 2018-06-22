@@ -4,7 +4,7 @@
             <textarea :value="input" @input="update"/>
         </div>
 
-        <div class="preview-pane" v-highlightjs v-html="compiledMarkdown"></div>
+        <div class="preview-pane" v-highlightjs="compiledMarkdown"> </div>
 
        <!-- <div v-highlightjs><div class="preview-pane"  v-html="compiledMarkdown"></div></div>-->
        <!-- <div class="preview-pane">
@@ -45,7 +45,7 @@
 
         get compiledMarkdown() {
             let result = asciidoc.convert(this.input);
-            result = " <div v-highlightjs>\n" +
+         /*   result = " <div v-highlightjs>\n" +
                 "                <div class=\"listingblock\">\n" +
                 "                    <div class=\"title\">app.rb</div>\n" +
                 "                    <div class=\"content\">\n" +
@@ -65,7 +65,7 @@
                 "                </div>\n" +
                 "            </div>\n" +
                 "        </div>";
-            console.log(result)
+           // console.log(result)*/
             return result;
         }
 
@@ -78,7 +78,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-    @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
+  //  @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
+  @import "../assets/css/highlightjs/idea.css"
 
     /*h3
         margin 40px 0 0
