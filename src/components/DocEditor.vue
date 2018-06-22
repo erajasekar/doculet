@@ -15,20 +15,21 @@
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
 
-    const asciidoc = new AsciiDoc();
 
+    const asciidoc = new AsciiDoc();
+    // fix class name
     @Component
     export default class HelloWorld extends Vue {
 
-        /*private input = '[source,ruby]\n' +
+        private input = '[source,ruby]\n' +
             '.app.rb\n' +
             '----\n' +
             'require \'sinatra\'\n' +
             'get \'/hi\' do\n' +
             ' "Hello World!"\n' +
             'end\n' +
-            '----';*/
-        private input= '';
+            '----';
+       // private input= '';
 
         get compiledMarkdown() {
             let result = asciidoc.convert(this.input);
