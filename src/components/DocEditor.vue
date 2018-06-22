@@ -1,8 +1,10 @@
 <template>
     <div class="editor-container" id="editor">
-        <div class="editor-pane">
+       <!-- <div class="editor-pane">
             <textarea :value="input" @input="update"/>
-        </div>
+        </div>-->
+
+        <editor class="editor-pane" v-model="input" @init="editorInit" lang="html" theme="chrome" width="50%"></editor>
 
         <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
 
@@ -15,10 +17,24 @@
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
 
+    const editor = require('vue2-ace-editor');
+
+
+   /* import * as ace from 'brace';
+    import 'brace/mode/javascript';
+    import 'brace/theme/monokai';
+
+    const editor = ace.edit('asciidoc-editor');
+    editor.getSession().setMode('ace/mode/javascript');
+    editor.setTheme('ace/theme/monokai');*/
 
     const asciidoc = new AsciiDoc();
     // fix class name
-    @Component
+    @Component({
+        components: {
+            editor,
+        },
+    })
     export default class HelloWorld extends Vue {
 
         private input = '[source,ruby]\n' +
@@ -55,6 +71,15 @@
                 "        </div>";
            // console.log(result);*/
             return result;
+        }
+
+
+        private editorInit() {
+            require('brace/ext/language_tools'); // language extension prerequsite...
+            require('brace/mode/asciidoc') ;   // language
+            require('brace/theme/chrome');
+            require('brace/snippets/javascript');
+            require('brace/snippets/asciidoc');
         }
 
         @debounce(300, {leading: true})

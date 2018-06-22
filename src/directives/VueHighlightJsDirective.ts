@@ -1,5 +1,5 @@
 import hljs from 'highlight.js';
-import {VNodeDirective} from "vue";
+import {VNodeDirective} from 'vue';
 
 export const VueHighlightJsDirective = {
     bind(el: Element, binding: VNodeDirective) {

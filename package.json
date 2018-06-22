@@ -12,6 +12,7 @@
     "@types/highlight.js": "^9.12.3",
     "@types/requirejs": "^2.1.31",
     "asciidoctor.js": "^1.5.7-beta.1",
+    "brace": "^0.11.1",
     "highlight.js": "^9.12.0",
     "marked-ts": "^1.0.0-beta.4",
     "requirejs": "^2.3.5",
@@ -33,7 +34,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-jest": "^22.4.6",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "vue2-ace-editor": "0.0.11"
   },
   "postcss": {
     "plugins": {
