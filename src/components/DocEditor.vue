@@ -4,7 +4,7 @@
             <textarea :value="input" @input="update"/>
         </div>-->
 
-        <editor class="editor-pane" v-model="input" @init="editorInit" lang="html" theme="chrome" width="50%"></editor>
+        <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="html" theme="chrome" width="50%"></editor>
 
         <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
 
@@ -37,7 +37,19 @@
     })
     export default class HelloWorld extends Vue {
 
-        private input = '[source,ruby]\n' +
+        private input = 'Welcome to AsciiDocLIVE!\n' +
+            '------------------------\n' +
+            '\n' +
+            'AsciiDocLIVE is a *free online http://www.methods.co.nz/asciidoc/[AsciiDoc^]\n' +
+            'editor*.\n' +
+            '\n' +
+            '* Just type AsciiDoc source text into the *left* pane,\n' +
+            '* ...and the live preview appears in the *right* pane!\n' +
+            '\n' +
+            'What\'s AsciiDoc?\n' +
+            '~~~~~~~~~~~~~~~~~\n' +
+            '\n' +
+            '[source,ruby]\n' +
             '.app.rb\n' +
             '----\n' +
             'require \'sinatra\'\n' +
@@ -45,6 +57,7 @@
             ' "Hello World!"\n' +
             'end\n' +
             '----';
+
        // private input= '';
 
         get compiledMarkdown() {
@@ -84,7 +97,8 @@
 
         @debounce(300, {leading: true})
         private update(e: any) {
-            this.input = e.target.value;
+            console.log(e);
+            this.input = e;
         }
     }
 </script>
