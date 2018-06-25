@@ -17,13 +17,13 @@
     const editor = require('vue2-ace-editor');
 
     const asciidoc = new AsciiDoc();
-    // fix class name
+
     @Component({
         components: {
             editor,
         },
     })
-    export default class HelloWorld extends Vue {
+    export default class DocEditor extends Vue {
 
         private input = 'Welcome to AsciiDocLIVE!\n' +
             '------------------------\n' +
@@ -82,8 +82,6 @@
         .editor-pane
             flex: 0 0 auto
             width: 50%
-            border-style: solid
-            border-width: medium
             height: 100%
         .resize-handle
             flex: 0 0 auto
@@ -96,11 +94,5 @@
             padding: 10px;
             overflow-y: auto
             word-break: break-word
-            border-style: solid;
-            border-width: medium;
-            table
-            background: #fff
-            margin-bottom: 1.25em
-            border: solid 1px #dedede
 
 </style>
