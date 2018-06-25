@@ -1,10 +1,7 @@
 <template>
     <div class="editor-container" id="editor">
-       <!-- <div class="editor-pane">
-            <textarea :value="input" @input="update"/>
-        </div>-->
 
-        <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="html" theme="chrome" width="50%"></editor>
+        <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
 
         <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
 
@@ -18,15 +15,6 @@
     import {AsciiDoc} from '../asciidoc';
 
     const editor = require('vue2-ace-editor');
-
-
-   /* import * as ace from 'brace';
-    import 'brace/mode/javascript';
-    import 'brace/theme/monokai';
-
-    const editor = ace.edit('asciidoc-editor');
-    editor.getSession().setMode('ace/mode/javascript');
-    editor.setTheme('ace/theme/monokai');*/
 
     const asciidoc = new AsciiDoc();
     // fix class name
@@ -62,40 +50,15 @@
 
         get compiledMarkdown() {
             let result = asciidoc.convert(this.input);
-          /*  result = " <div v-highlightjs>\n" +
-                "                <div class=\"listingblock\">\n" +
-                "                    <div class=\"title\">app.rb</div>\n" +
-                "                    <div class=\"content\">\n" +
-                "      <pre class=\"highlightjs highlight\"><code class=\"language-ruby hljs\" data-lang=\"ruby\">require 'sinatra'\n" +
-                "      get '/hi' do <i class=\"conum\" data-value=\"1\"></i><b>(1)</b>\n" +
-                "       \"Hello World!\"\n" +
-                "      end</code></pre>\n" +
-                "                    </div>\n" +
-                "                </div>\n" +
-                "                <div class=\"colist arabic\">\n" +
-                "                    <table>\n" +
-                "                        <tr>\n" +
-                "                            <td><i class=\"conum\" data-value=\"1\"></i><b>1</b></td>\n" +
-                "                            <td>test comment</td>\n" +
-                "                        </tr>\n" +
-                "                    </table>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "        </div>";
-           // console.log(result);*/
+
             return result;
         }
 
 
         private editorInit() {
             require('brace/ext/language_tools'); // language extension prerequsite...
-            require('brace/mode/javascript') ;   // language
-            require('brace/mode/ruby') ;   // language
-            require('brace/mode/html') ;   // language
             require('brace/mode/asciidoc') ;   // language
             require('brace/theme/chrome');
-            require('brace/snippets/javascript');
-            require('brace/snippets/asciidoc');
         }
 
         @debounce(300, {leading: true})
@@ -110,10 +73,6 @@
   //  @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
   @import "../assets/css/highlightjs/idea.css"
   @import "../assets/css/colony.css"
-
-    textarea
-        width 100%
-        height 100%
 
     .editor-container
         display: flex
