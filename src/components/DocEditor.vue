@@ -89,6 +89,9 @@
 
         private editorInit() {
             require('brace/ext/language_tools'); // language extension prerequsite...
+            require('brace/mode/javascript') ;   // language
+            require('brace/mode/ruby') ;   // language
+            require('brace/mode/html') ;   // language
             require('brace/mode/asciidoc') ;   // language
             require('brace/theme/chrome');
             require('brace/snippets/javascript');
@@ -97,7 +100,6 @@
 
         @debounce(300, {leading: true})
         private update(e: any) {
-            console.log(e);
             this.input = e;
         }
     }
