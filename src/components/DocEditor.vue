@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts">
+    // TODO clean up unused dependencies
     import {Component, Vue} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
@@ -49,7 +50,7 @@
        // private input= '';
 
         get compiledMarkdown() {
-            let result = asciidoc.convert(this.input);
+            const result = asciidoc.convert(this.input);
 
             return result;
         }
