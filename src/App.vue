@@ -5,7 +5,7 @@
           <router-link to="/">Home</router-link> |
           <router-link to="/about">About</router-link>
         </div>-->
-        <b-navbar toggleable="md" type="dark" variant="primary">
+        <b-navbar toggleable="md" type="dark" class="navbar-custom">
 
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -35,20 +35,26 @@
     </div>
 </template>
 
-<style lang="stylus">
-    //@import 'assets/scss/app.scss';
-    @import '~bootstrap/dist/css/bootstrap.css'
-    @import '~bootstrap-vue/dist/bootstrap-vue.css'
+<style lang="scss">
+    @import 'assets/scss/app.scss';
 
-    #app
+  //  @import '~bootstrap/dist/css/bootstrap.css'
+  //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
+
+    #app {
+        height :100%;
+    }
     /*    font-family 'Avenir', Helvetica, Arial, sans-serif
         -webkit-font-smoothing antialiased
         -moz-osx-font-smoothing grayscale
         color #2c3e50*/
-        height 100%
 
-    html, body
-        height: 100%
+
+    html, body {
+        height: 100%;
         width: 100%;
+    }
+
+
 
 </style>
