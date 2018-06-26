@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import hljs from 'highlight.js';
 import {VueHighlightJsDirective} from './directives/VueHighlightJsDirective';
+import BootstrapVue from 'bootstrap-vue';
+
+Vue.use(BootstrapVue);
 
 // Tell Vue.js to use vue-highlightjs
 Vue.directive('highlightjs', VueHighlightJsDirective);
