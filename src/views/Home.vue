@@ -19,9 +19,7 @@
     }
 </script>
 
-<style scoped lang="sass">
-    @import '../assets/scss/app.scss'
-
+<style scoped lang="stylus">
     .home
         height: 100%
         width: 100%
