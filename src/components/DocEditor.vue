@@ -80,6 +80,7 @@
         flex-direction: row
         overflow: hidden
         height: 100%
+        padding-top: 20px;
         .editor-pane
             flex: 0 0 auto
             width: 50%
