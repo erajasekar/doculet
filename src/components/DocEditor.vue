@@ -74,6 +74,7 @@
   //  @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
   @import "../assets/css/highlightjs/idea.css"
   @import "../assets/css/colony.css"
+  borderColor = #e9ecef
 
     .editor-container
         display: flex
@@ -81,15 +82,12 @@
         overflow: hidden
         height: 100%
         padding-top: 20px;
+        border-top 2px solid borderColor //todo
         .editor-pane
             flex: 0 0 auto
             width: 50%
             height: 100%
-        .resize-handle
-            flex: 0 0 auto
-            width: 7px
-            background: $gray-lighter
-            cursor: col-resize
+            border-right 2px solid borderColor
         .preview-pane
             flex: 1 1 auto;
             width: 50%;
