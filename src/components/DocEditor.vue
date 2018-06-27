@@ -82,7 +82,7 @@
         overflow: hidden
         height: 100%
         padding-top: 20px;
-        border-top 2px solid borderColor //todo
+        border-top 5px solid #4ACE78 //todo
         .editor-pane
             flex: 0 0 auto
             width: 50%
