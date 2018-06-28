@@ -4,6 +4,8 @@ import router from './router';
 import {VueHighlightJsDirective} from './directives/VueHighlightJsDirective';
 import BootstrapVue from 'bootstrap-vue';
 
+import './vue-awesome-config';
+
 Vue.use(BootstrapVue);
 
 // Tell Vue.js to use vue-highlightjs

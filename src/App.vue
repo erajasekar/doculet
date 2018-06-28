@@ -13,20 +13,18 @@
 
             <b-collapse is-nav id="nav_collapse">
 
-                <b-navbar-nav>
-                    <b-nav-item><router-link to="/about">About</router-link></b-nav-item>
+                <b-navbar-nav >
+
+                    <b-dropdown text="Open" variant="success">
+                        <b-dropdown-item to="/"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- FIX background for router link, works for href -->
+                        <b-dropdown-item href="#"><icon name="brands/github-square"></icon> Import From Github</b-dropdown-item>
+                    </b-dropdown>
+
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
-
-                    <b-nav-item-dropdown text="Lang" right>
-                        <b-dropdown-item href="#">EN</b-dropdown-item>
-                        <b-dropdown-item href="#">ES</b-dropdown-item>
-                        <b-dropdown-item href="#">RU</b-dropdown-item>
-                        <b-dropdown-item href="#">FA</b-dropdown-item>
-                    </b-nav-item-dropdown>
-
+                    <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
                 </b-navbar-nav>
 
             </b-collapse>
