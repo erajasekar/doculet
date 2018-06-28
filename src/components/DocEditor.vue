@@ -1,7 +1,11 @@
 <template>
     <div class="editor-container" id="editor">
 
-        <div class="doc-title">Getting Started</div>
+        <div class="editor-header">
+            <b-form-input id="doc-name-input" v-model="docName"
+                          type="text">
+            </b-form-input>
+        </div>
         <div class="editor-main">
             <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
 
@@ -28,6 +32,8 @@
         },
     })
     export default class DocEditor extends Vue {
+
+        private docName = 'Getting Started.adoc';
 
         private input = 'Welcome to AsciiDocLIVE!\n' +
             '------------------------\n' +
@@ -74,10 +80,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-  //  @import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"
-  @import "../assets/css/highlightjs/idea.css"
-  @import "../assets/css/colony.css"
-  borderColor = #e9ecef
+
+    @import "../assets/css/highlightjs/idea.css"
+    @import "../assets/css/colony.css"
+    borderColor = #e9ecef
 
     .editor-container
         display: flex
@@ -86,9 +92,12 @@
         height: 100%
        // border-top 5px solid grey //todo
 
-        .doc-title
-            padding 10px
-            border 2px solid black
+        .editor-header
+            border-bottom 1px solid borderColor
+
+            input
+                border none
+                font-family Consolas, "Liberation Mono", Courier, monospace
 
         .editor-main
             display flex
@@ -100,12 +109,20 @@
             flex: 0 0 auto
             width: 50%
             height: 100%
-            border-right 2px solid borderColor
+            border-right 3px solid borderColor
+
+            .ace_content
+                border 5px solid black
+                padding-top  50px
+
         .preview-pane
             flex: 0 0 auto;
             width: 50%;
             padding: 10px;
             overflow-y: auto
             word-break: break-word
+
+    div.ace_content
+        padding-top  50px
 
 </style>
