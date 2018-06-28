@@ -5,7 +5,7 @@
           <router-link to="/">Home</router-link> |
           <router-link to="/about">About</router-link>
         </div>-->
-        <b-navbar toggleable="md" type="dark" class="navbar-custom">
+        <b-navbar toggleable="md" type="dark" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
 
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -15,9 +15,23 @@
 
                 <b-navbar-nav >
 
-                    <b-dropdown text="Open" variant="success">
-                        <b-dropdown-item to="/"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- FIX background for router link, works for href -->
+                    <b-dropdown variant="info">
+                        <template slot="button-content">
+                            <icon name="folder-open"></icon>
+                        </template>
+                        <b-dropdown-item to="/"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- TODO: Active links get white background -->
                         <b-dropdown-item href="#"><icon name="brands/github-square"></icon> Import From Github</b-dropdown-item>
+                    </b-dropdown>
+
+                </b-navbar-nav>
+
+                <b-navbar-nav >
+
+                    <b-dropdown variant="info">
+                        <template slot="button-content">
+                            <icon name="save"></icon>
+                        </template>
+                        <b-dropdown-item href="#"><icon name="brands/github-square"></icon> Save to Github</b-dropdown-item>
                     </b-dropdown>
 
                 </b-navbar-nav>
