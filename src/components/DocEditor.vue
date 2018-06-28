@@ -1,9 +1,12 @@
 <template>
     <div class="editor-container" id="editor">
 
-        <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
+        <div class="doc-title">Getting Started</div>
+        <div class="editor-main">
+            <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
 
-        <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
+            <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
+        </div>
 
 
     </div>
@@ -78,18 +81,28 @@
 
     .editor-container
         display: flex
-        flex-direction: row
+        flex-direction: column
         overflow: hidden
         height: 100%
-        padding-top: 20px;
-       // border-top 5px solid #4ACE78 //todo
+       // border-top 5px solid grey //todo
+
+        .doc-title
+            padding 10px
+            border 2px solid black
+
+        .editor-main
+            display flex
+            flex-direction : row
+            flex: 1
+            width: 100%
+
         .editor-pane
             flex: 0 0 auto
             width: 50%
             height: 100%
             border-right 2px solid borderColor
         .preview-pane
-            flex: 1 1 auto;
+            flex: 0 0 auto;
             width: 50%;
             padding: 10px;
             overflow-y: auto
