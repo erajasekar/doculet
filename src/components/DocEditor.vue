@@ -7,7 +7,7 @@
             </b-form-input>
         </div>
         <div class="editor-main">
-            <editor class="editor-pane" :value="input" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
+            <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
 
             <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
         </div>
@@ -18,7 +18,7 @@
 
 <script lang="ts">
     // TODO clean up unused dependencies
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
 
@@ -33,9 +33,10 @@
     })
     export default class DocEditor extends Vue {
 
-        private docName = 'Getting Started.adoc';
+        @Prop()
+        private docName: string = 'Getting Started.adoc';
 
-        private input = 'Welcome to AsciiDocLIVE!\n' +
+        private content = 'Welcome to AsciiDocLIVE!\n' +
             '------------------------\n' +
             '\n' +
             'AsciiDocLIVE is a *free online http://www.methods.co.nz/asciidoc/[AsciiDoc^]\n' +
@@ -59,7 +60,7 @@
        // private input= '';
 
         get compiledMarkdown() {
-            const result = asciidoc.convert(this.input);
+            const result = asciidoc.convert(this.content);
 
             return result;
         }
@@ -73,7 +74,7 @@
 
         @debounce(300, {leading: true})
         private update(e: string) {
-            this.input = e;
+            this.content = e;
         }
     }
 </script>

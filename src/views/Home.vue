@@ -1,6 +1,6 @@
 <template>
     <div class="home" >
-        <doc-editor/>
+        <doc-editor docName='Test 2'/>
     </div>
 
 

@@ -44,12 +44,13 @@
 
 <script lang="ts">
     import {GitHubService} from '../services/GitHubService';
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Vue} from 'vue-property-decorator';
 
     export default class NavHeader extends Vue {
         private importGist() {
-            GitHubService.importGist().then((resp) => {
-                console.log(resp);
+            GitHubService.importGist().then((gistFile) => {
+                console.log(gistFile.filename);
+                console.log(gistFile.content);
             });
         }
     }
