@@ -12,14 +12,16 @@
 
 <script lang="ts">
 
-    import NavHeader from '@/components/NavHeader.vue'; // @ is an alias to /src
+    import NavHeader from '@/components/NavHeader.vue';
+    import {Component, Vue} from 'vue-property-decorator';
 
-    export default {
-        name: 'app',
+    @Component({
         components: {
             NavHeader,
         },
-    };
+    })
+    export default class App extends Vue {
+    }
 </script>
 
 <style lang="scss">
