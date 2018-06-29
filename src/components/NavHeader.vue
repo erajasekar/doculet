@@ -43,23 +43,14 @@
 </template>
 
 <script lang="ts">
-    import {GitHubService} from "../services/GitHubService";
+    import {GitHubService} from '../services/GitHubService';
     import {Component, Vue} from 'vue-property-decorator';
 
-    /*  const bDropdownItem = require('bootstrap-vue/es/components/dropdown/dropdown-item');
-
-      console.log(bDropdownItem);
-
-      Vue.component('b-dropdown-item', bDropdownItem);
-
-      @Component({
-          components: {
-              bDropdownItem,
-          },
-      })*/
     export default class NavHeader extends Vue {
-        private importGist(e: any){
-            console.log(e);
+        private importGist() {
+            GitHubService.importGist().then((resp) => {
+                console.log(resp);
+            });
         }
     }
 </script>

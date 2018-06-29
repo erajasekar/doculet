@@ -72,7 +72,7 @@
         }
 
         @debounce(300, {leading: true})
-        private update(e: any) {
+        private update(e: string) {
             this.input = e;
         }
     }
