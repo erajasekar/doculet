@@ -14,7 +14,7 @@
                     <template slot="button-content">
                         <icon name="folder-open"></icon>
                     </template>
-                    <b-dropdown-item to="/"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- TODO: Active links get white background -->
+                    <b-dropdown-item to="/gist/096f94513f6201d3f308ccdf295b9557"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- TODO: Active links get white background -->
                     <b-dropdown-item @click="importGist"><icon name="brands/github-square"></icon> Import From Github</b-dropdown-item>
                 </b-dropdown>
 
@@ -34,27 +34,21 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
-                <b-nav-item right><router-link to="/gist/myGist">Import</router-link></b-nav-item>
             </b-navbar-nav>
 
         </b-collapse>
     </b-navbar>
-    <!--<input :input="importGist" type="text" value="BUTTON">-->
 
 </template>
 
 <script lang="ts">
-    import {GitHubService} from '../services/GitHubService';
     import {Component, Prop, Vue} from 'vue-property-decorator';
 
     @Component
     export default class NavHeader extends Vue {
         private importGist() {
-            /* GitHubService.importGist().then((gistFile) => {
-                console.log(gistFile.filename);
-                console.log(gistFile.content);
-            });*/
-            this.$router.push('/gist/newGist');
+
+            this.$router.push('/gist/b2e7c4bdedf6e9da27fef0faa3efad0e');
         }
     }
 </script>

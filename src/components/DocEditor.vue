@@ -2,11 +2,9 @@
     <div class="editor-container" id="editor">
 
         <div class="editor-header">
-           <!-- <b-form-input id="doc-name-input" v-model="docName"
+           <b-form-input id="doc-name-input" v-model="docName"
                           type="text">
-            </b-form-input> -->
-            <div > Gist {{gistId}} </div>
-
+           </b-form-input>
         </div>
         <div class="editor-main">
             <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
@@ -20,9 +18,11 @@
 
 <script lang="ts">
     // TODO clean up unused dependencies
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
+    import {GitHubService} from '../services/GitHubService';
+
 
     const editor = require('vue2-ace-editor');
 
@@ -67,7 +67,6 @@
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);
-
             return result;
         }
 
@@ -81,6 +80,15 @@
         @debounce(300, {leading: true})
         private update(e: string) {
             this.content = e;
+        }
+
+        @Watch('gistId')
+        private importGist(gistId: string, oldValue: string) {
+
+            GitHubService.importGist(gistId).then((gistFile) => {
+                this.docName = gistFile.filename;
+                this.update(gistFile.content);
+           });
         }
     }
 </script>
