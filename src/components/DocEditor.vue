@@ -83,13 +83,17 @@
         @Watch('gistId')
         private importGist(gistId: string, oldValue: string) {
 
+            // TODO: content doesn't refresh if we import same gist again.
             GitHubService.importGist(gistId).then((gistFile) => {
 
                 this.docName = gistFile.filename;
                 const language = gistFile.language.toLowerCase();
                 this.update(this.enrichSourceType(gistFile.content, language));
 
-           });
+           }).catch((error) => {
+                this.docName = 'Not Found.adoc'; // Define const strings
+                this.update(this.createErrorMessage(gistId, error.message));
+            });
         }
 
         private enrichSourceType(content: string, language: string) {
@@ -102,6 +106,10 @@
                 return content;
             }
 
+        }
+
+        private createErrorMessage(gistId: string, errorMessage: string) {
+            return `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${errorMessage}`;
         }
     }
 </script>
