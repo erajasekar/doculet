@@ -14,7 +14,7 @@
                     <template slot="button-content">
                         <icon name="folder-open"></icon>
                     </template>
-                    <b-dropdown-item to="/gist/096f94513f6201d3f308ccdf295b9557"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- TODO: Active links get white background -->
+                    <b-dropdown-item to="/gist/bc5886868012a678eed572c4aa19a2b8"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- TODO: Active links get white background -->
                     <b-dropdown-item @click="importGist"><icon name="brands/github-square"></icon> Import From Github</b-dropdown-item>
                 </b-dropdown>
 

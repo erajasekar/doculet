@@ -86,19 +86,22 @@
             GitHubService.importGist(gistId).then((gistFile) => {
 
                 this.docName = gistFile.filename;
-                // TODO: For non-ascii doc add source type
                 const language = gistFile.language.toLowerCase();
-                let enriched = gistFile.content;
-
-                if(language != 'asciidoc') {
-                    enriched = '[source,' + language + ']\n' +
-                        '----\n' + gistFile.content +
-                        '----\n';
-                }
-                this.update(enriched);
-                console.log(gistFile);
+                this.update(this.enrichSourceType(gistFile.content, language));
 
            });
+        }
+
+        private enrichSourceType(content: string, language: string) {
+
+            if (language !== 'asciidoc') {
+                return '[source,' + language + ']\n' +
+                    '----\n' + content +
+                    '\n----\n';
+            } else {
+                return content;
+            }
+
         }
     }
 </script>
