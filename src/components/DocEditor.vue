@@ -38,9 +38,7 @@
     })
     export default class DocEditor extends Vue {
 
-      //  @Prop({default: 'Example'})
-       // private gistId: string;
-
+        // TODO: Avoid duplicate getting started in gist and in code.
         private docName: string = 'Getting Started.adoc';
 
         private content = 'Welcome to AsciiDocLIVE!\n' +
@@ -86,8 +84,20 @@
         private importGist(gistId: string, oldValue: string) {
 
             GitHubService.importGist(gistId).then((gistFile) => {
+
                 this.docName = gistFile.filename;
-                this.update(gistFile.content);
+                // TODO: For non-ascii doc add source type
+                const language = gistFile.language.toLowerCase();
+                let enriched = gistFile.content;
+
+                if(language != 'asciidoc') {
+                    enriched = '[source,' + language + ']\n' +
+                        '----\n' + gistFile.content +
+                        '----\n';
+                }
+                this.update(enriched);
+                console.log(gistFile);
+
            });
         }
     }
