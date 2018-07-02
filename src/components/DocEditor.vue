@@ -2,9 +2,11 @@
     <div class="editor-container" id="editor">
 
         <div class="editor-header">
-            <b-form-input id="doc-name-input" v-model="docName"
+           <!-- <b-form-input id="doc-name-input" v-model="docName"
                           type="text">
-            </b-form-input>
+            </b-form-input> -->
+            <div > Gist {{gistId}} </div>
+
         </div>
         <div class="editor-main">
             <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
@@ -30,10 +32,15 @@
         components: {
             editor,
         },
+        props: {
+            gistId: String,
+        },
     })
     export default class DocEditor extends Vue {
 
-        @Prop()
+      //  @Prop({default: 'Example'})
+       // private gistId: string;
+
         private docName: string = 'Getting Started.adoc';
 
         private content = 'Welcome to AsciiDocLIVE!\n' +
@@ -57,7 +64,6 @@
             'end\n' +
             '----';
 
-       // private input= '';
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);

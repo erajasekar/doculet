@@ -34,6 +34,7 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
+                <b-nav-item right><router-link to="/gist/myGist">Import</router-link></b-nav-item>
             </b-navbar-nav>
 
         </b-collapse>
@@ -44,14 +45,16 @@
 
 <script lang="ts">
     import {GitHubService} from '../services/GitHubService';
-    import {Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue} from 'vue-property-decorator';
 
+    @Component
     export default class NavHeader extends Vue {
         private importGist() {
-            GitHubService.importGist().then((gistFile) => {
+            /* GitHubService.importGist().then((gistFile) => {
                 console.log(gistFile.filename);
                 console.log(gistFile.content);
-            });
+            });*/
+            this.$router.push('/gist/newGist');
         }
     }
 </script>

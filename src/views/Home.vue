@@ -1,12 +1,13 @@
 <template>
     <div class="home" >
-        <doc-editor docName='Test 2'/>
+        <doc-editor/>
     </div>
 
 
 </template>
 
 <script lang="ts">
+    // TODO remove this if not needed
     import {Component, Vue} from 'vue-property-decorator';
     import DocEditor from '@/components/DocEditor.vue'; // @ is an alias to /src
 
