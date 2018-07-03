@@ -10,17 +10,24 @@
 
             <b-navbar-nav >
 
-                <b-dropdown variant="info">
-                    <template slot="button-content">
-                        <icon name="folder-open"></icon>
-                    </template>
-                    <b-dropdown-item to="/gist/bc5886868012a678eed572c4aa19a2b8"><icon name="file-alt"></icon> New Document </b-dropdown-item> <!-- TODO: Active links get white background -->
-                    <b-dropdown-item @click="importGist"><icon name="brands/github-square"></icon> Import From Github</b-dropdown-item>
-                </b-dropdown>
+                <div>
+                    <b-input-group >
+                        <b-input-group-prepend>
+                            <b-btn><icon name="link"></icon></b-btn>
+                        </b-input-group-prepend>
 
+                        <b-form-input type="url" placeholder="GitHub Gist URL" v-model="importUrl"></b-form-input>
+
+                        <b-input-group-append>
+                            <b-btn @click="importGist" v-b-tooltip.hover title="Import from GitHub"><icon name="download"></icon></b-btn>
+                        </b-input-group-append>
+                    </b-input-group>
+                </div>
             </b-navbar-nav>
 
-            <b-navbar-nav >
+            <b-navbar-nav>
+
+                <b-btn to="/gist/bc5886868012a678eed572c4aa19a2b8" variant="info" v-b-tooltip.hover title="New Document"><icon name="file-alt"></icon></b-btn>
 
                 <b-dropdown variant="info">
                     <template slot="button-content">
@@ -43,12 +50,21 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
+    import ghs from '../services/GitHubService';
 
     @Component
     export default class NavHeader extends Vue {
+
+        private importUrl: string = '';
+
         private importGist() {
 
-            this.$router.push('/gist/b2e7c4bdedf6e9da27fef0faa3efad0e');
+            const gistId = ghs.parseUrl(this.importUrl);
+
+            if (gistId != null) {
+                this.$router.push('/gist/' + gistId);
+            }
+
         }
     }
 </script>

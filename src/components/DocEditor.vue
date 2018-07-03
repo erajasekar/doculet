@@ -21,7 +21,7 @@
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
-    import {GitHubService} from '../services/GitHubService';
+    import ghs from '../services/GitHubService';
 
 
     const editor = require('vue2-ace-editor');
@@ -84,28 +84,16 @@
         private importGist(gistId: string, oldValue: string) {
 
             // TODO: content doesn't refresh if we import same gist again.
-            GitHubService.importGist(gistId).then((gistFile) => {
+            ghs.importGist(gistId).then((gistFile) => {
 
                 this.docName = gistFile.filename;
                 const language = gistFile.language.toLowerCase();
-                this.update(this.enrichSourceType(gistFile.content, language));
+                this.update(ghs.enrichSourceType(gistFile.content, language));
 
            }).catch((error) => {
                 this.docName = 'Not Found.adoc'; // Define const strings
                 this.update(this.createErrorMessage(gistId, error.message));
             });
-        }
-
-        private enrichSourceType(content: string, language: string) {
-
-            if (language !== 'asciidoc') {
-                return '[source,' + language + ']\n' +
-                    '----\n' + content +
-                    '\n----\n';
-            } else {
-                return content;
-            }
-
         }
 
         private createErrorMessage(gistId: string, errorMessage: string) {
