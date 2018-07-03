@@ -12,10 +12,17 @@
 //  background-color: #085456;
   //background-color: #47B784;
  // background-color: #328F94;
-  background-color: #24656B;
+  //background-color: #24656B;
+  background-color: #5FA0B7;
+
+  .btn-light{
+    border-color: $gray-500;
+  }
+
 
 }
-/*!* change the brand and text color *!
+/*
+!* change the brand and text color *!
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
   color: rgba(255,255,255,.8);

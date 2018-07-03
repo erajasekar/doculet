@@ -11,7 +11,14 @@ export default class GitHubService {
     public static parseUrl(url: string) {
         // TODO handle other format of gist ids like raw url, github url etc
 
-        return url.substr(url.lastIndexOf('/') + 1);
+        const index = url.lastIndexOf('/');
+        if (index > 0) {
+            return url.substr( index + 1);
+        } else {
+            // Assuming URL to be a valid gistId
+            return url;
+        }
+
     }
 
     public static enrichSourceType(content: string, language: string) {
