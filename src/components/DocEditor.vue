@@ -21,10 +21,8 @@
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
     import {AsciiDoc} from '../asciidoc';
+    import editor from 'vue2-ace-editor';
     import ghs from '../services/GitHubService';
-
-
-    const editor = require('vue2-ace-editor');
 
     const asciidoc = new AsciiDoc();
 
