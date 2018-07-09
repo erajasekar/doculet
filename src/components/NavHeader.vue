@@ -11,15 +11,15 @@
             <b-navbar-nav >
 
                 <div>
-                    <b-input-group >
-                        <b-input-group-prepend>
+                    <b-input-group prepend="Import" >
+                       <!-- <b-input-group-prepend>
                             <b-btn  variant="light"><icon name="link"></icon></b-btn>
-                        </b-input-group-prepend>
+                        </b-input-group-prepend>-->
 
                         <b-form-input type="url" placeholder="GitHub Gist Id or URL" v-model="importUrl" @keyup.enter.native="importGist"></b-form-input>
 
                         <b-input-group-append>
-                            <b-btn @click="importGist" v-b-tooltip.hover title="Import from GitHub"><icon name="download"></icon></b-btn>
+                            <b-btn @click="importGist" v-b-tooltip.hover title="Import from GitHub"><icon name="link"></icon></b-btn>
                         </b-input-group-append>
                     </b-input-group>
                 </div>
