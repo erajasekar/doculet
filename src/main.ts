@@ -12,16 +12,9 @@ Vue.use(BootstrapVue);
 // Tell Vue.js to use vue-highlightjs
 Vue.directive('highlightjs', VueHighlightJsDirective);
 
-// TODO move to separate file
-const config = {
-    apiKey: 'AIzaSyAjJ_Y5PmEQq_W5RFYoP9AhlVRZT1pcvos',
-    authDomain: 'doculet-cbd63.firebaseapp.com',
-    databaseURL: 'https://doculet-cbd63.firebaseio.com',
-    projectId: 'doculet-cbd63',
-    storageBucket: 'doculet-cbd63.appspot.com',
-    messagingSenderId: '274170082980',
-};
-firebase.initializeApp(config);
+const config = require('./config/config.js').get(process.env.NODE_ENV);
+
+firebase.initializeApp(config.firebase);
 
 Vue.config.productionTip = false;
 

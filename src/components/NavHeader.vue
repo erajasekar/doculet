@@ -70,16 +70,16 @@
 
         }
 
-        private login(){
-            var provider = new firebase.auth.GithubAuthProvider();
-            firebase.auth().signInWithPopup(provider).then(function(result) {
-                // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        private login() {
+            const provider = new firebase.auth.GithubAuthProvider();
+            firebase.auth().signInWithPopup(provider).then((result) => {
+                // TODO can't access token property
                 const token = result.credential;
                 console.log(token);
                 // The signed-in user info.
                 const user = result.user;
                 // ...
-            }).catch(function(error) {
+            }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -91,11 +91,11 @@
             });
         }
 
-        private logout(){
-            firebase.auth().signOut().then(function() {
+        private logout() {
+            firebase.auth().signOut().then(() => {
                 // Sign-out successful.
                 console.log("Logout successful");
-            }).catch(function(error) {
+            }).catch((error) => {
                 // An error happened.
                 console.log("logout error" + error);
             });
