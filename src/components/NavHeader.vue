@@ -41,6 +41,7 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
+                 <b-btn @click="login" v-b-tooltip.hover title="Login">Login</b-btn>
             </b-navbar-nav>
 
         </b-collapse>
@@ -51,6 +52,7 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import ghs from '../services/GitHubService';
+    import firebase from 'firebase';
 
     @Component
     export default class NavHeader extends Vue {
@@ -65,6 +67,18 @@
                 this.$router.push('/gist/' + gistId);
             }
 
+        }
+
+        private login(){
+            firebase.auth().createUserWithEmailAndPassword("raja@test.com", "test1234").then(
+                (user) => {
+                    console.log(user);
+                    this.$router.replace('about');
+                },
+                (err) => {
+                    alert('Oops. ' + err.message);
+                }
+            );
         }
     }
 </script>
