@@ -42,6 +42,7 @@
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
                  <b-btn @click="login" v-b-tooltip.hover title="Login">Login</b-btn>
+                <b-btn @click="logout" v-b-tooltip.hover title="logout">Logout</b-btn>
             </b-navbar-nav>
 
         </b-collapse>
@@ -70,15 +71,34 @@
         }
 
         private login(){
-            firebase.auth().createUserWithEmailAndPassword("raja@test.com", "test1234").then(
-                (user) => {
-                    console.log(user);
-                    this.$router.replace('about');
-                },
-                (err) => {
-                    alert('Oops. ' + err.message);
-                }
-            );
+            var provider = new firebase.auth.GithubAuthProvider();
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+                const token = result.credential;
+                console.log(token);
+                // The signed-in user info.
+                const user = result.user;
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                const credential = error.credential;
+                // ...
+            });
+        }
+
+        private logout(){
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+                console.log("Logout successful");
+            }).catch(function(error) {
+                // An error happened.
+                console.log("logout error" + error);
+            });
         }
     }
 </script>
