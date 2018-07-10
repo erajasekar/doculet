@@ -12,7 +12,9 @@ Vue.use(BootstrapVue);
 // Tell Vue.js to use vue-highlightjs
 Vue.directive('highlightjs', VueHighlightJsDirective);
 
-const config = require('./config/config.js').get(process.env.NODE_ENV);
+import {config} from './config/config';
+
+console.log(config.firebase);
 
 firebase.initializeApp(config.firebase);
 

@@ -94,10 +94,10 @@
         private logout() {
             firebase.auth().signOut().then(() => {
                 // Sign-out successful.
-                console.log("Logout successful");
+                console.log('Logout successful');
             }).catch((error) => {
                 // An error happened.
-                console.log("logout error" + error);
+                console.log('logout error' + error);
             });
         }
     }
