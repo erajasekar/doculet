@@ -33,7 +33,7 @@
                     <template slot="button-content">
                         <icon name="save"></icon>
                     </template>
-                    <b-dropdown-item href="#"><icon name="brands/github-square"></icon> Save to Github</b-dropdown-item>
+                    <b-dropdown-item @click="saveGist"><icon name="brands/github-square"></icon> Save to Github</b-dropdown-item>
                 </b-dropdown>
 
             </b-navbar-nav>
@@ -52,8 +52,10 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    import ghs from '../services/GitHubService';
+    import ghs, {default as GitHubService} from '../services/GitHubService';
     import firebase from 'firebase';
+
+    const gitService = new GitHubService();
 
     @Component
     export default class NavHeader extends Vue {
@@ -68,6 +70,11 @@
                 this.$router.push('/gist/' + gistId);
             }
 
+        }
+
+        private saveGist() {
+            console.log("save gist");
+            gitService.saveGist('2daf6314f1037f5bc4f1782ac5433cdda19a83aa');
         }
 
         private login() {

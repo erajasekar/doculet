@@ -1,6 +1,9 @@
 import axios, {AxiosPromise, AxiosResponse} from 'axios';
+import GistClient from 'gist-client';
 
 export default class GitHubService {
+
+    private gistClient = new GistClient();
 
     public static async  importGist(gistId: string) {
         const resp: AxiosResponse = await axios.get('https://api.github.com/gists/' + gistId);
@@ -30,7 +33,15 @@ export default class GitHubService {
         } else {
             return content;
         }
+    }
 
+    public saveGist(token: string){
+        this.gistClient.setToken(token).getOneById('096f94513f6201d3f308ccdf295b9557')
+            .then((response: any) => {
+                console.log(response)
+            }).catch((err: any) => {
+            console.log(err)
+        })
     }
 }
 
