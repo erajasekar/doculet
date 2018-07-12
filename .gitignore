@@ -20,6 +20,5 @@ yarn-error.log*
 *.sln
 *.sw*
 *.iml
-src/config/config.ts
 .env
 
