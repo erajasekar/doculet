@@ -14,8 +14,6 @@ Vue.directive('highlightjs', VueHighlightJsDirective);
 
 import {config} from './config/config';
 
-console.log(config.firebase);
-
 firebase.initializeApp(config.firebase);
 
 Vue.config.productionTip = false;

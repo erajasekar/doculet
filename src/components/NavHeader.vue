@@ -73,7 +73,6 @@
         }
 
         private saveGist() {
-            console.log("save gist");
             gitService.saveGist('2daf6314f1037f5bc4f1782ac5433cdda19a83aa');
         }
 
@@ -82,7 +81,7 @@
             firebase.auth().signInWithPopup(provider).then((result) => {
                 // TODO can't access token property
                 const token = result.credential;
-                console.log(token);
+                // TODO
                 // The signed-in user info.
                 const user = result.user;
                 // ...
@@ -101,10 +100,10 @@
         private logout() {
             firebase.auth().signOut().then(() => {
                 // Sign-out successful.
-                console.log('Logout successful');
+                // TODO
             }).catch((error) => {
                 // An error happened.
-                console.log('logout error' + error);
+                // TODO
             });
         }
     }
