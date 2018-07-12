@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import {VueHighlightJsDirective} from './directives/VueHighlightJsDirective';
 import BootstrapVue from 'bootstrap-vue';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import './vue-awesome-config';
 
@@ -14,7 +14,7 @@ Vue.directive('highlightjs', VueHighlightJsDirective);
 
 import {config} from './config/config';
 
-firebase.initializeApp(config.firebase);
+const fbApp: firebase.app.App = firebase.initializeApp(config.firebase);
 
 Vue.config.productionTip = false;
 

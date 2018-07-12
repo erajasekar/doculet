@@ -53,7 +53,8 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import ghs, {default as GitHubService} from '../services/GitHubService';
-    import firebase from 'firebase';
+    import firebase from 'firebase/app';
+    import 'firebase/auth';
 
     const gitService = new GitHubService();
 
