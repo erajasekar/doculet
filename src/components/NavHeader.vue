@@ -4,7 +4,12 @@
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-        <b-navbar-brand to="/"><b>{{count}}</b></b-navbar-brand>
+        <b-navbar-brand to="/">
+            <div v-if="user">
+                {{  user.name  }}
+            </div>
+            <b>DOCULET</b>
+        </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
 
@@ -68,9 +73,9 @@
     @Component
     export default class NavHeader extends Vue {
 
-        @Getter('count') private count!: number;
-        @Action('inc') private inc: any;
-        @Action('dec') private dec: any;
+        @Getter('user') private user!: any;
+        @Action('signUserInGithub') private signUserInGithub: any;
+        @Action('logout') private logout: any;
 
         private importUrl: string = '';
 
@@ -89,7 +94,7 @@
         }
 
         private login() {
-            this.inc();
+            this.signUserInGithub();
             const provider = new firebase.auth.GithubAuthProvider();
             firebase.auth().signInWithPopup(provider).then((result) => {
                 // TODO can't access token property
@@ -110,8 +115,8 @@
             });
         }
 
-        private logout() {
-            this.dec();
+        /* private logout() {
+            this.logout();
             firebase.auth().signOut().then(() => {
                 // Sign-out successful.
                 // TODO
@@ -119,7 +124,7 @@
                 // An error happened.
                 // TODO
             });
-        }
+        }*/
     }
 </script>
 
