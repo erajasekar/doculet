@@ -4,6 +4,7 @@ import router from './router';
 import {VueHighlightJsDirective} from './directives/VueHighlightJsDirective';
 import BootstrapVue from 'bootstrap-vue';
 import firebase from 'firebase/app';
+import store from './store/index';
 
 import './vue-awesome-config';
 
@@ -20,5 +21,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app');

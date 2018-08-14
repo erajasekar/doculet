@@ -4,7 +4,7 @@
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-        <b-navbar-brand to="/"><b>DOCULET</b></b-navbar-brand>
+        <b-navbar-brand to="/"><b>{{count}}</b></b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
 
@@ -55,11 +55,22 @@
     import ghs, {default as GitHubService} from '../services/GitHubService';
     import firebase from 'firebase/app';
     import 'firebase/auth';
+    import {
+        State,
+        Getter,
+        Action,
+        Mutation,
+        namespace,
+    } from 'vuex-class';
 
     const gitService = new GitHubService();
 
     @Component
     export default class NavHeader extends Vue {
+
+        @Getter('count') private count!: number;
+        @Action('inc') private inc: any;
+        @Action('dec') private dec: any;
 
         private importUrl: string = '';
 
@@ -78,6 +89,7 @@
         }
 
         private login() {
+            this.inc();
             const provider = new firebase.auth.GithubAuthProvider();
             firebase.auth().signInWithPopup(provider).then((result) => {
                 // TODO can't access token property
@@ -99,6 +111,7 @@
         }
 
         private logout() {
+            this.dec();
             firebase.auth().signOut().then(() => {
                 // Sign-out successful.
                 // TODO
