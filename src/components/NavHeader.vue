@@ -5,10 +5,10 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand to="/">
-            <div v-if="user">
-                {{  user.name  }}
+            <div v-if="userIsAuthenticated">
+                {{ loggedUser }}
             </div>
-            <b>DOCULET</b>
+            <b> {{userIsAuthenticated}} DOCULET</b>
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
@@ -47,7 +47,7 @@
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
                  <b-btn @click="signUserInGithub" v-b-tooltip.hover title="Login">Login</b-btn>
-                <b-btn @click="logout" v-b-tooltip.hover title="logout">Logout</b-btn>
+                <b-btn @click="inc" v-b-tooltip.hover title="logout">Logout</b-btn>
             </b-navbar-nav>
 
         </b-collapse>
@@ -72,7 +72,9 @@
     @Component
     export default class NavHeader extends Vue {
 
-        @Getter('user') private user!: any;
+        @Getter('count') private count!: any;
+        @Action('inc') private inc: any;
+        @Getter('loggedUser') private loggedUser!: any;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
 
@@ -90,6 +92,12 @@
 
         private saveGist() {
             gitService.saveGist('2daf6314f1037f5bc4f1782ac5433cdda19a83aa');
+        }
+
+        get userIsAuthenticated() {
+            //return true;
+           //  return this.$store.getters.loggedUser !=null && this.$store.getters.loggedUser !== undefined;
+            return this.loggedUser != null && this.loggedUser !== undefined ;
         }
 
     }

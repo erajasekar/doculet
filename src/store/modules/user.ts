@@ -8,8 +8,7 @@ export class State {
 }
 
 const getters =  {
-    user(state: State): any {
-        console.log(state.user); // TODO
+    loggedUser(state: State): any {
         return state.user;
     },
 } as GetterTree<State, any>;
@@ -57,7 +56,7 @@ const actions =  {
     },
 } as ActionTree<State, any>;
 
-export const user = {
+export const userStore = {
     state: new State(),
     getters,
     mutations,
