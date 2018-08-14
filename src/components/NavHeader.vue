@@ -46,7 +46,7 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
-                 <b-btn @click="login" v-b-tooltip.hover title="Login">Login</b-btn>
+                 <b-btn @click="signUserInGithub" v-b-tooltip.hover title="Login">Login</b-btn>
                 <b-btn @click="logout" v-b-tooltip.hover title="logout">Logout</b-btn>
             </b-navbar-nav>
 
@@ -58,8 +58,7 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import ghs, {default as GitHubService} from '../services/GitHubService';
-    import firebase from 'firebase/app';
-    import 'firebase/auth';
+
     import {
         State,
         Getter,
@@ -93,38 +92,6 @@
             gitService.saveGist('2daf6314f1037f5bc4f1782ac5433cdda19a83aa');
         }
 
-        private login() {
-            this.signUserInGithub();
-            const provider = new firebase.auth.GithubAuthProvider();
-            firebase.auth().signInWithPopup(provider).then((result) => {
-                // TODO can't access token property
-                const token = result.credential;
-                // TODO
-                // The signed-in user info.
-                const user = result.user;
-                // ...
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                const credential = error.credential;
-                // ...
-            });
-        }
-
-        /* private logout() {
-            this.logout();
-            firebase.auth().signOut().then(() => {
-                // Sign-out successful.
-                // TODO
-            }).catch((error) => {
-                // An error happened.
-                // TODO
-            });
-        }*/
     }
 </script>
 
