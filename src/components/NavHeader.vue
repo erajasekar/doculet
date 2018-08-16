@@ -6,9 +6,9 @@
 
         <b-navbar-brand to="/">
             <div v-if="userIsAuthenticated">
-                {{ loggedUser }}
+                {{ user.name }}
             </div>
-            <b> {{userIsAuthenticated}} DOCULET</b>
+            <b>DOCULET</b>
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
@@ -74,7 +74,7 @@
 
         @Getter('count') private count!: any;
         @Action('inc') private inc: any;
-        @Getter('loggedUser') private loggedUser!: any;
+        @Getter('user') private user!: any;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
 
@@ -91,19 +91,17 @@
         }
 
         private saveGist() {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem('accessToken');
             if (token) {
                 gitService.saveGist(token);
-            }else{
+            } else {
                 // TODO should redirect to login
             }
 
         }
 
         get userIsAuthenticated() {
-            //return true;
-           //  return this.$store.getters.loggedUser !=null && this.$store.getters.loggedUser !== undefined;
-            return this.loggedUser != null && this.loggedUser !== undefined ;
+            return this.user != null && this.user !== undefined ;
         }
 
     }

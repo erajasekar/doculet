@@ -40,9 +40,7 @@ export default class GitHubService {
     public saveGist(token: string) {
         this.gistClient.setToken(token).getOneById('096f94513f6201d3f308ccdf295b9557')
             .then((response: any) => {
-
-                console.log(response);
-                // todo;
+              // todo;
             }).catch((err: any) => {
             // todo;
         });

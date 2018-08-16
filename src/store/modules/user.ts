@@ -3,12 +3,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 
+
 export class State {
-    public user: any; // todo
+    public user: any = null; // todo
 }
 
 const getters =  {
-    loggedUser(state: State): any {
+    user(state: State): any {
         return state.user;
     },
 } as GetterTree<State, any>;
@@ -16,7 +17,6 @@ const getters =  {
 const mutations =  {
     setUser(state: State, payload: any) {
         state.user = payload;
-        console.log(state.user);
     },
 } as MutationTree<State>;
 
@@ -27,13 +27,13 @@ const actions =  {
         firebase.auth().signInWithPopup(provider).then((result) => {
 
 
-            console.log(result);
-
             const ACCESS_TOKEN_PROPERTY = 'accessToken'; // Move to separate Constants file.
-            if (result.credential && result.credential.hasOwnProperty(ACCESS_TOKEN_PROPERTY)){
-                // Store token in local storage
-                const token  =  (<any> result.credential)[ACCESS_TOKEN_PROPERTY];
-                localStorage.setItem("token", token);
+
+            // Store token in local storage
+            if (result.credential && result.credential.hasOwnProperty(ACCESS_TOKEN_PROPERTY)) {
+
+                const token  =  (result.credential as any)[ACCESS_TOKEN_PROPERTY];
+                localStorage.setItem(ACCESS_TOKEN_PROPERTY, token);
             }
 
             const user = result.user;
