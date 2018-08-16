@@ -25,8 +25,17 @@ const actions =  {
 
         const provider = new firebase.auth.GithubAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
-            //todo STORE TOKEN
-            const token = result.credential;
+
+
+            console.log(result);
+
+            const ACCESS_TOKEN_PROPERTY = 'accessToken'; // Move to separate Constants file.
+            if (result.credential && result.credential.hasOwnProperty(ACCESS_TOKEN_PROPERTY)){
+                // Store token in local storage
+                const token  =  (<any> result.credential)[ACCESS_TOKEN_PROPERTY];
+                localStorage.setItem("token", token);
+            }
+
             const user = result.user;
             const newUser = {
                 id: user!.uid,

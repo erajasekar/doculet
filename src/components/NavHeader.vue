@@ -91,7 +91,13 @@
         }
 
         private saveGist() {
-            gitService.saveGist('2daf6314f1037f5bc4f1782ac5433cdda19a83aa');
+            const token = localStorage.getItem("token");
+            if (token) {
+                gitService.saveGist(token);
+            }else{
+                // TODO should redirect to login
+            }
+
         }
 
         get userIsAuthenticated() {
