@@ -43,10 +43,20 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                 <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
+                <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
+
                 <div v-if="userIsAuthenticated">
-                    {{ user.name }}
+                    <b-nav-item-dropdown right>
+                        <!-- Using button-content slot -->
+                        <template slot="button-content">
+                            <b-img rounded="circle" width="30" height="30" src="https://avatars0.githubusercontent.com/u/629276?v=4" fluid alt="Profile pic"></b-img>
+                        </template>
+                        <b-dropdown-header>{{ user.name }}</b-dropdown-header>
+                        <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+                    </b-nav-item-dropdown>
+
                 </div>
+
                 <div v-else>
                     <b-btn @click="signUserInGithub" v-b-tooltip.hover title="Login">Login</b-btn>
                 </div>
