@@ -5,9 +5,7 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand to="/">
-            <div v-if="userIsAuthenticated">
-                {{ user.name }}
-            </div>
+
             <b>DOCULET</b>
         </b-navbar-brand>
 
@@ -46,8 +44,13 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
                  <b-nav-item right><router-link to="/about">About</router-link></b-nav-item>
-                 <b-btn @click="signUserInGithub" v-b-tooltip.hover title="Login">Login</b-btn>
-                <b-btn @click="inc" v-b-tooltip.hover title="logout">Logout</b-btn>
+                <div v-if="userIsAuthenticated">
+                    {{ user.name }}
+                </div>
+                <div v-else>
+                    <b-btn @click="signUserInGithub" v-b-tooltip.hover title="Login">Login</b-btn>
+                </div>
+
             </b-navbar-nav>
 
         </b-collapse>
@@ -72,8 +75,6 @@
     @Component
     export default class NavHeader extends Vue {
 
-        @Getter('count') private count!: any;
-        @Action('inc') private inc: any;
         @Getter('user') private user!: any;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
