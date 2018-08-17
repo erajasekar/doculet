@@ -57,6 +57,15 @@ const actions =  {
 
 
     },
+    autoSignIn(store: ActionContext<State, any>, payload: any) {
+
+        store.commit('setUser', {
+            id: payload.uid,
+            name: payload.displayName,
+            email: payload.email,
+            photoUrl: payload.photoURL,
+        });
+    },
     logout(store: ActionContext<State, any>) {
 
         firebase.auth().signOut().then(() => {
