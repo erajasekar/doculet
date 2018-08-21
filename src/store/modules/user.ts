@@ -26,7 +26,6 @@ const actions =  {
         const provider = new firebase.auth.GithubAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
 
-
             const ACCESS_TOKEN_PROPERTY = 'accessToken'; // Move to separate Constants file.
 
             // Store token in local storage

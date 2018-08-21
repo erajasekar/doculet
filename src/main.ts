@@ -15,8 +15,6 @@ Vue.directive('highlightjs', VueHighlightJsDirective);
 
 import {config} from './config/config';
 
-//const fbApp: firebase.app.App = firebase.initializeApp(config.firebase);
-
 Vue.config.productionTip = false;
 
 new Vue({
@@ -27,11 +25,9 @@ new Vue({
     firebase.initializeApp(config.firebase);
 
     firebase.auth().onAuthStateChanged((user) => {
-      console.log("Auto sign in");
-      console.log(user);
-        if (user) {
-            this.$store.dispatch('autoSignIn', user)
-        }
-    })
+      if (user) {
+          this.$store.dispatch('autoSignIn', user);
+      }
+    });
   },
 }).$mount('#app');
