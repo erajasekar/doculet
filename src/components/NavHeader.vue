@@ -113,6 +113,7 @@
 
         // TODO refreshing page clears user store, need to use local store.
         get userIsAuthenticated() {
+            // TODO Should also check for expiration of FB accessToken
             return this.user != null && this.user !== undefined && localStorage.getItem('accessToken') ;
         }
 
