@@ -1,15 +1,21 @@
 import {GetterTree, MutationTree, ActionTree, ActionContext} from 'vuex';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import Constants from '../../utils/constants';
 
-
+interface IUser {
+    id: string;
+    name: string;
+    email: string;
+    photoUrl: string;
+}
 
 export class State {
-    public user: any = null; // todo
+    public user: IUser | null = null; // todo
 }
 
 const getters =  {
-    user(state: State): any {
+    user(state: State): IUser | null {
         return state.user;
     },
 } as GetterTree<State, any>;
@@ -26,13 +32,11 @@ const actions =  {
         const provider = new firebase.auth.GithubAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
 
-            const ACCESS_TOKEN_PROPERTY = 'accessToken'; // Move to separate Constants file.
-
             // Store token in local storage
-            if (result.credential && result.credential.hasOwnProperty(ACCESS_TOKEN_PROPERTY)) {
+            if (result.credential && result.credential.hasOwnProperty(Constants.ACCESS_TOKEN_PROPERTY)) {
 
-                const token  =  (result.credential as any)[ACCESS_TOKEN_PROPERTY];
-                localStorage.setItem(ACCESS_TOKEN_PROPERTY, token);
+                const token  =  (result.credential as any)[Constants.ACCESS_TOKEN_PROPERTY];
+                localStorage.setItem(Constants.ACCESS_TOKEN_PROPERTY, token);
             }
 
             const user = result.user;
