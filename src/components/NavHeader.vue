@@ -71,6 +71,7 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import ghs, {default as GitHubService} from '../services/GitHubService';
+    import Constants from '../utils/constants';
 
     import {
         State,
@@ -102,7 +103,7 @@
         }
 
         private saveGist() {
-            const token = localStorage.getItem('accessToken');
+            const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (token) {
                 gitService.saveGist(token);
             } else {
@@ -114,7 +115,9 @@
         // TODO refreshing page clears user store, need to use local store.
         get userIsAuthenticated() {
             // TODO Should also check for expiration of FB accessToken
-            return this.user != null && this.user !== undefined && localStorage.getItem('accessToken') ;
+            return this.user != null &&
+                this.user !== undefined &&
+                localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
         }
 
     }
