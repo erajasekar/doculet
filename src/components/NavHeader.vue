@@ -72,6 +72,7 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import ghs, {default as GitHubService} from '../services/GitHubService';
     import Constants from '../utils/constants';
+    import * as User from '../store/modules/user';
 
     import {
         State,
@@ -86,7 +87,7 @@
     @Component
     export default class NavHeader extends Vue {
 
-        @Getter('user') private user!: any;
+        @Getter('user') private user!: User.UserType;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
 

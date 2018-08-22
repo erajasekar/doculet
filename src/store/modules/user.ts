@@ -10,24 +10,26 @@ interface IUser {
     photoUrl: string;
 }
 
+export type UserType = IUser | null;
+
 export class State {
-    public user: IUser | null = null; // todo
+    public user: UserType = null;
 }
 
 const getters =  {
-    user(state: State): IUser | null {
+    user(state: State): UserType {
         return state.user;
     },
-} as GetterTree<State, any>;
+} as GetterTree<State, UserType>;
 
 const mutations =  {
-    setUser(state: State, payload: any) {
+    setUser(state: State, payload: UserType) {
         state.user = payload;
     },
 } as MutationTree<State>;
 
 const actions =  {
-    signUserInGithub(store: ActionContext<State, any>) {
+    signUserInGithub(store: ActionContext<State, UserType>) {
 
         const provider = new firebase.auth.GithubAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
@@ -60,7 +62,7 @@ const actions =  {
 
 
     },
-    autoSignIn(store: ActionContext<State, any>, payload: any) {
+    autoSignIn(store: ActionContext<State, firebase.User>, payload: firebase.User) {
 
         store.commit('setUser', {
             id: payload.uid,
