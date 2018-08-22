@@ -1,11 +1,15 @@
 import {GetterTree, MutationTree, ActionTree, ActionContext} from 'vuex';
 
+export interface DoculetDoc {
+    docName: string;
+}
+
 export class State {
-    public doc: any = null; // todo
+    public doc: DoculetDoc = {docName: 'Getting Started.adoc'}; // todo
 }
 
 const getters =  {
-    doc(state: State): any {
+    doc(state: State): DoculetDoc {
         return state.doc;
     },
 } as GetterTree<State, any>;
