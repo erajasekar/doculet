@@ -3,7 +3,7 @@
 
         <div class="editor-header">
            <b-form-input id="doc-name-input"
-                          type="text" :value="doc.docName" @change="updateDocName">
+                          type="text" :value="docName" @change="updateDocName">
            </b-form-input>
         </div>
         <div class="editor-main">
@@ -41,31 +41,12 @@
     })
     export default class DocEditor extends Vue {
 
-        @Getter('doc') private doc!: DoculetDoc;
+        @Getter('docName') private docName!: string;
 
-        private content = 'Welcome to AsciiDocLIVE!\n' +
-            '------------------------\n' +
-            '\n' +
-            'AsciiDocLIVE is a *free online http://www.methods.co.nz/asciidoc/[AsciiDoc^]\n' +
-            'editor*.\n' +
-            '\n' +
-            '* Just type AsciiDoc source text into the *left* pane,\n' +
-            '* ...and the live preview appears in the *right* pane!\n' +
-            '\n' +
-            'What\'s AsciiDoc?\n' +
-            '~~~~~~~~~~~~~~~~~\n' +
-            '\n' +
-            '[source,ruby]\n' +
-            '.app.rb\n' +
-            '----\n' +
-            'require \'sinatra\'\n' +
-            'get \'/hi\' do\n' +
-            ' "Hello World!"\n' +
-            'end\n' +
-            '----';
-
+        @Getter('content') private content!: string;
 
         @Action('updateDocName') private updateDocName: any;
+        @Action('updateDocContent') private updateDocContent: any;
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);
@@ -79,9 +60,9 @@
             require('brace/theme/chrome');
         }
 
-        @debounce(300, {leading: true})
+        @debounce(100, {leading: true})
         private update(e: string) {
-            this.content = e;
+            this.updateDocContent(e);
         }
 
         @Watch('gistId')
