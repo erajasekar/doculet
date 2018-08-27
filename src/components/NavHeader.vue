@@ -75,11 +75,8 @@
     import * as User from '../store/modules/user';
 
     import {
-        State,
         Getter,
         Action,
-        Mutation,
-        namespace,
     } from 'vuex-class';
 
     const gitService = new GitHubService();

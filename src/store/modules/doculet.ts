@@ -17,6 +17,7 @@ const getters =  {
 const mutations =  {
     updateDocName(state: State, docName: string) {
         state.doc.docName = docName;
+        console.log(state.doc.docName);
     },
 } as MutationTree<State>;
 

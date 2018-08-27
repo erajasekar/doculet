@@ -2,8 +2,8 @@
     <div class="editor-container" id="editor">
 
         <div class="editor-header">
-           <b-form-input id="doc-name-input" v-model="docName"
-                          type="text">
+           <b-form-input id="doc-name-input"
+                          type="text" :value="doc.docName" @change="updateDocName">
            </b-form-input>
         </div>
         <div class="editor-main">
@@ -23,6 +23,11 @@
     import {AsciiDoc} from '../asciidoc';
     import editor from 'vue2-ace-editor';
     import ghs from '../services/GitHubService';
+    import {
+        Getter,
+        Action,
+    } from 'vuex-class';
+    import {DoculetDoc} from '../store/modules/doculet';
 
     const asciidoc = new AsciiDoc();
 
@@ -36,8 +41,7 @@
     })
     export default class DocEditor extends Vue {
 
-        // TODO: Avoid duplicate getting started in gist and in code.
-        private docName: string = 'Getting Started.adoc';
+        @Getter('doc') private doc!: DoculetDoc;
 
         private content = 'Welcome to AsciiDocLIVE!\n' +
             '------------------------\n' +
@@ -60,6 +64,8 @@
             'end\n' +
             '----';
 
+
+        @Action('updateDocName') private updateDocName: any;
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);
@@ -84,12 +90,12 @@
             // TODO: content doesn't refresh if we import same gist again.
             ghs.importGist(gistId).then((gistFile) => {
 
-                this.docName = gistFile.filename;
+                this.updateDocName( gistFile.filename);
                 const language = gistFile.language.toLowerCase();
                 this.update(ghs.enrichSourceType(gistFile.content, language));
 
            }).catch((error) => {
-                this.docName = 'Not Found.adoc'; // Define const strings
+                this.updateDocName('Not Found.adoc');
                 this.update(this.createErrorMessage(gistId, error.message));
             });
         }
