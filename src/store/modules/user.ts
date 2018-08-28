@@ -32,6 +32,7 @@ const actions =  {
     signUserInGithub(store: ActionContext<State, UserType>) {
 
         const provider = new firebase.auth.GithubAuthProvider();
+        provider.addScope('gist');
         firebase.auth().signInWithPopup(provider).then((result) => {
 
             // Store token in local storage

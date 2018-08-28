@@ -2,9 +2,6 @@ import axios, {AxiosPromise, AxiosResponse} from 'axios';
 import GistClient from 'gist-client';
 
 export default class GitHubService {
-
-
-
     public static async  importGist(gistId: string) {
         const resp: AxiosResponse = await axios.get('https://api.github.com/gists/' + gistId);
         const firstFileKey = Object.keys(resp.data.files)[0];
@@ -37,13 +34,33 @@ export default class GitHubService {
 
     private gistClient = new GistClient();
 
-    public saveGist(token: string) {
-        this.gistClient.setToken(token).getOneById('096f94513f6201d3f308ccdf295b9557')
-            .then((response: any) => {
-              // todo;
-            }).catch((err: any) => {
-            // todo;
-        });
+    public async saveGist(token: string, fileName: string, content: string) {
+
+      /*  this.gistClient.setToken(token)
+            .create({
+                files: {
+                    [fileName]: {
+                        content: content,
+                    },
+                },
+                description: 'Created from doculet',
+                public: true,
+                })
+            .then((newGist: any) => {
+                console.log(newGist);
+            // TODO should return gistId or async function itself
+        });*/
+
+        return this.gistClient.setToken(token)
+            .create({
+                files: {
+                    [fileName]: {
+                        content: content,
+                    },
+                },
+                description: 'Created from doculet',
+                public: true,
+                });
     }
 }
 

@@ -78,16 +78,18 @@
         Getter,
         Action,
     } from 'vuex-class';
-
+    
     const gitService = new GitHubService();
 
     @Component
     export default class NavHeader extends Vue {
 
         @Getter('user') private user!: User.UserType;
+        @Getter('docName') private docName!: string;
+        @Getter('content') private content!: string;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
-
+        
         private importUrl: string = '';
 
         private importGist() {
@@ -103,7 +105,11 @@
         private saveGist() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (token) {
-                gitService.saveGist(token);
+                gitService.saveGist(token, this.docName, this.content)
+                    .then((newGist: any) => {
+                        // Save GIST TO firebase.
+                         console.log(newGist.id);
+                    });
             } else {
                 // TODO should redirect to login
             }
