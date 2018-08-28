@@ -117,7 +117,7 @@
         }
 
         private saveGist() {
-            const docs = db.collection('doculets');
+            const docs = db.collection('doculets').add({name:'new name', id:'new id'});
             console.log(docs);
 
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
