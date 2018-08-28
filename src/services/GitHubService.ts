@@ -55,7 +55,7 @@ export default class GitHubService {
             .create({
                 files: {
                     [fileName]: {
-                        content: content,
+                        content,
                     },
                 },
                 description: 'Created from doculet',

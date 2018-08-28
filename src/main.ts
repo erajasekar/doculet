@@ -4,11 +4,14 @@ import router from './router';
 import {VueHighlightJsDirective} from './directives/VueHighlightJsDirective';
 import BootstrapVue from 'bootstrap-vue';
 import firebase from 'firebase/app';
+import '@firebase/firestore';
 import store from './store/index';
+import VueFirestore from 'vue-firestore';
 
 import './vue-awesome-config';
 
 Vue.use(BootstrapVue);
+Vue.use(VueFirestore);
 
 // Tell Vue.js to use vue-highlightjs
 Vue.directive('highlightjs', VueHighlightJsDirective);
@@ -31,3 +34,6 @@ new Vue({
     });
   },
 }).$mount('#app');
+
+export const db = firebase.firestore();
+db.settings({timestampsInSnapshots: true});
