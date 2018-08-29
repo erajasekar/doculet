@@ -29,6 +29,7 @@
                         </b-input-group-append>
                     </b-input-group>
                 </div>
+
             </b-navbar-nav>
 
             <b-navbar-nav>
@@ -116,9 +117,20 @@
 
         }
 
+        firestore() {
+            return {
+                persons: firebase.firestore().collection("persons")
+            }
+        }
+
         private saveGist() {
             const docs = db.collection('doculets').add({name:'new name', id:'new id'});
             console.log(docs);
+
+           /* this.firestore().persons.add(this.person)
+                .then(()=>{
+                    this.person.name = ""
+                })*/
 
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             /*   if (token) {
