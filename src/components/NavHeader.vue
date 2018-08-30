@@ -104,6 +104,7 @@
         @Getter('content') private content!: string;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
+        private doculets! : firebase.firestore.CollectionReference ;
 
         private importUrl: string = '';
 
@@ -117,21 +118,19 @@
 
         }
 
-        firestore() {
-            return {
-                persons: firebase.firestore().collection("persons")
-            }
+        mounted(){
+            const doculets : firebase.firestore.CollectionReference = db.collection('doculets');
+            doculets.get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log(`${doc.id} => ${doc.data()}`);
+                });
+            });
+            console.log(doculets);
+
+            doculets.doc('36euBUZbUhGdIf2EUOrl').set({name :'update name' , id: 'updated id'});
         }
-
         private saveGist() {
-            const docs = db.collection('doculets').add({name:'new name', id:'new id'});
-            console.log(docs);
-
-           /* this.firestore().persons.add(this.person)
-                .then(()=>{
-                    this.person.name = ""
-                })*/
-
+            console.log(db);
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             /*   if (token) {
                    gitService.saveGist(token, this.docName, this.content)

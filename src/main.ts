@@ -6,12 +6,10 @@ import BootstrapVue from 'bootstrap-vue';
 import firebase from 'firebase/app';
 import '@firebase/firestore';
 import store from './store/index';
-import VueFirestore from 'vue-firestore';
 
 import './vue-awesome-config';
 
 Vue.use(BootstrapVue);
-Vue.use(VueFirestore);
 
 // Tell Vue.js to use vue-highlightjs
 Vue.directive('highlightjs', VueHighlightJsDirective);
@@ -20,13 +18,16 @@ import {config} from './config/config';
 
 Vue.config.productionTip = false;
 
+// todo move to separate file
+firebase.initializeApp(config.firebase);
+export const db = firebase.firestore();
+db.settings({timestampsInSnapshots: true});
+
 new Vue({
   router,
   store,
   render: (h) => h(App),
   created() {
-    firebase.initializeApp(config.firebase);
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
           this.$store.dispatch('autoSignIn', user);
@@ -34,6 +35,3 @@ new Vue({
     });
   },
 }).$mount('#app');
-
-export const db = firebase.firestore();
-db.settings({timestampsInSnapshots: true});
