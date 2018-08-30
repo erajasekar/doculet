@@ -100,11 +100,15 @@
     export default class NavHeader extends Vue {
 
         @Getter('user') private user!: User.UserType;
+
         @Getter('docName') private docName!: string;
+
         @Getter('content') private content!: string;
+
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
-        private doculets! : firebase.firestore.CollectionReference ;
+
+        private doculets!: firebase.firestore.CollectionReference;
 
         private importUrl: string = '';
 
@@ -118,29 +122,43 @@
 
         }
 
-        mounted(){
-            const doculets : firebase.firestore.CollectionReference = db.collection('doculets');
-            doculets.get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    console.log(`${doc.id} => ${doc.data()}`);
-                });
-            });
-            console.log(doculets);
+        private mounted() {
+            this.doculets = db.collection('doculets'); // TODO CONSTANTS
+            /*  doculets.get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                      console.log(`${doc.id} => ${doc.data()}`);
+                  });
+              });
+              console.log(doculets);
 
-            doculets.doc('36euBUZbUhGdIf2EUOrl').set({name :'update name' , id: 'updated id'});
+              doculets.doc('36euBUZbUhGdIf2EUOrl').set({name :'update name' , id: 'updated id'});*/
         }
+
         private saveGist() {
-            console.log(db);
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-            /*   if (token) {
-                   gitService.saveGist(token, this.docName, this.content)
-                       .then((newGist: any) => {
-                           // Save GIST TO firebase.
-                            console.log(newGist.id);
-                       });
-               } else {
-                   // TODO should redirect to login
-               }*/
+            if (token) {
+                gitService.saveGist(token, this.docName, this.content)
+                    .then((newGist: any) => {
+                        // Save GIST TO firebase.
+                        const gistId = newGist.id;
+                        if (this.user) {
+                            this.doculets.add({
+                                name: this.docName,
+                                id: newGist.id,
+                                userId: this.user.email,
+                            }).then((docRef) => {
+                                console.log('Document written with ID: ', docRef.id);
+                            }).catch((error) => {
+                                console.error('Error adding document: ', error);
+                            });
+                        } else {
+                            // TODO should redirect to login
+                        }
+
+                    });
+            } else {
+                // TODO should redirect to login
+            }
 
         }
 
