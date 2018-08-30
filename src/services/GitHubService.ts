@@ -36,21 +36,6 @@ export default class GitHubService {
 
     public async saveGist(token: string, fileName: string, content: string) {
 
-      /*  this.gistClient.setToken(token)
-            .create({
-                files: {
-                    [fileName]: {
-                        content: content,
-                    },
-                },
-                description: 'Created from doculet',
-                public: true,
-                })
-            .then((newGist: any) => {
-                console.log(newGist);
-            // TODO should return gistId or async function itself
-        });*/
-
         return this.gistClient.setToken(token)
             .create({
                 files: {
@@ -61,6 +46,19 @@ export default class GitHubService {
                 description: 'Created from doculet',
                 public: true,
                 });
+    }
+
+    public async updateGist(token: string, gistId: string, fileName: string, content: string) {
+
+        return this.gistClient.setToken(token)
+            .update(gistId, {
+                files: {
+                    [fileName]: {
+                        content,
+                    },
+                },
+                description: 'Updated from doculet',
+            });
     }
 }
 

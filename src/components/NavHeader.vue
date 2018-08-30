@@ -124,6 +124,8 @@
 
         private mounted() {
             this.doculets = db.collection('doculets'); // TODO CONSTANTS
+
+
             /*  doculets.get().then((querySnapshot) => {
                   querySnapshot.forEach((doc) => {
                       console.log(`${doc.id} => ${doc.data()}`);
@@ -135,7 +137,25 @@
         }
 
         private saveGist() {
-            const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+
+            if (this.user && this.docName){
+                const results = this.doculets
+                    .where('userId', '==', this.user.email)
+                    .where('name', '==', this.docName)
+                    .get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        const gistId = doc.data().id;
+                        const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+                        if (token) {
+                            gitService.updateGist(token, gistId, this.docName, this.content).then((newGist: any) => {
+                                console.log('Gist updated');
+                            });
+                        }
+                        console.log(doc.data());
+                    });
+                });
+            }
+           /* const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (token) {
                 gitService.saveGist(token, this.docName, this.content)
                     .then((newGist: any) => {
@@ -158,7 +178,7 @@
                     });
             } else {
                 // TODO should redirect to login
-            }
+            }*/
 
         }
 
