@@ -102,8 +102,9 @@
         @Getter('user') private user!: User.UserType;
 
         @Getter('docName') private docName!: string;
-
+        @Getter('docId') private docId!: string;
         @Getter('content') private content!: string;
+        @Action('updateDocId') private updateDocId: any;
 
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
@@ -138,13 +139,16 @@
 
         private saveGist() {
 
-            if (this.user && this.docName){
+            console.log("Raja " + this.docId);
+
+            if (this.user && this.docName) {
                 const results = this.doculets
                     .where('userId', '==', this.user.email)
                     .where('name', '==', this.docName)
                     .get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         const gistId = doc.data().id;
+                        this.updateDocId(gistId);
                         const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
                         if (token) {
                             gitService.updateGist(token, gistId, this.docName, this.content).then((newGist: any) => {

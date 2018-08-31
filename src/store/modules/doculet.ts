@@ -4,11 +4,15 @@ import Constants from '../../utils/constants';
 export interface DoculetDoc {
     docName: string;
     content: string;
+    docId: string | null;
 }
 
 export class State {
-    public doc: DoculetDoc = {docName: Constants.ON_LOAD_DOC_NAME,
-        content: Constants.ON_LOAD_DOC_CONTENT};
+    public doc: DoculetDoc = {
+        docName: Constants.ON_LOAD_DOC_NAME,
+        content: Constants.ON_LOAD_DOC_CONTENT,
+        docId: null,
+    };
 }
 
 const getters =  {
@@ -21,6 +25,10 @@ const getters =  {
         return state.doc.docName;
     },
 
+    docId(state: State): string | null {
+        return state.doc.docId;
+    },
+
     content(state: State): string {
         return state.doc.content;
     },
@@ -31,6 +39,10 @@ const mutations =  {
         state.doc.docName = docName;
     },
 
+    updateDocId(state: State, docId: string) {
+        state.doc.docId = docId;
+    },
+
     updateDocContent(state: State, content: string) {
         state.doc.content = content;
     },
@@ -39,6 +51,9 @@ const mutations =  {
 const actions =  {
     updateDocName(store: ActionContext<State, any>, docName: string) {
         store.commit('updateDocName', docName);
+    },
+    updateDocId(store: ActionContext<State, any>, docId: string) {
+        store.commit('updateDocId', docId);
     },
     updateDocContent(store: ActionContext<State, any>, content: string) {
         store.commit('updateDocContent', content);
