@@ -1,5 +1,6 @@
 export default class Constants {
     public static readonly ACCESS_TOKEN_PROPERTY = 'accessToken';
+    public static readonly DB_COLLECTION_DOCULENTS = 'doculets';
     public static readonly ON_LOAD_DOC_NAME = 'Getting Started.adoc';
     public static readonly ON_LOAD_DOC_CONTENT = 'Welcome to AsciiDocLIVE!\n' +
         '------------------------\n' +

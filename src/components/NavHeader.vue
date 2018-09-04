@@ -87,16 +87,15 @@
     import ghs, {default as GitHubService} from '../services/GitHubService';
     import Constants from '../utils/constants';
     import * as User from '../store/modules/user';
-    import {db} from '../main';
-    import {FireStoreService} from '../utils/FireStoreUtils';
+
+    import {FireStoreService} from '../services/FireStoreService';
 
     import {
         Getter,
         Action,
     } from 'vuex-class';
-
     const gitService = new GitHubService();
-   
+
     @Component
     export default class NavHeader extends Vue {
 
@@ -125,42 +124,41 @@
         }
 
         private mounted() {
-            //TODO get rid of doculets local variable if not needed.
-          //  this.doculets = ; // TODO CONSTANTS
-            this.dbService = new FireStoreService(db.collection('doculets'))
-
-            /*  doculets.get().then((querySnapshot) => {
-                  querySnapshot.forEach((doc) => {
-                      console.log(`${doc.id} => ${doc.data()}`);
-                  });
-              });
-              console.log(doculets);
-
-              doculets.doc('36euBUZbUhGdIf2EUOrl').set({name :'update name' , id: 'updated id'});*/
+            this.dbService = new FireStoreService();
         }
 
         private saveGist() {
 
-            console.log("Raja " + this.docId);
+            console.log('Raja ' + this.docId);
 
             if (this.user && this.docName) {
-                const results = dbService.findDocIdByUserAndName(this.user.email, this.docName)
-                    .then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
 
-                        const gistId = doc.data().id;
-                        this.updateDocId(gistId);
-                        console.log('Found ' + gistId);
-                        
-                      /*  const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-                        if (token) {
-                            gitService.updateGist(token, gistId, this.docName, this.content).then((newGist: any) => {
+                if (!this.docId) {
+                    const results = this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
+                        .then((querySnapshot) => {
+
+                            if (querySnapshot.size > 0) {
+                                querySnapshot.forEach((doc) => {
+
+                                    const gistId = doc.data().id;
+                                    this.updateDocId(gistId);
+                                    console.log('Found ' + gistId);
+                                });
+                            } else {
+                                // Create gist and save in firestore.
+                            }
+
+                        });
+                } else { // TODO refactor to smaller methods
+                    const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+                    if (token) {
+                        gitService.updateGist(token, this.docId, this.docName, this.content)
+                            .then((newGist: any) => {
                                 console.log('Gist updated');
-                            });
-                        }
-                        console.log(doc.data());*/
-                    });
-                });
+                        });
+                    }
+                }
+
             }
            /* const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (token) {
