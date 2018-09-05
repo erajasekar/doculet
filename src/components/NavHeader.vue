@@ -116,7 +116,8 @@
         private importGist() {
 
             const gistId = ghs.parseUrl(this.importUrl);
-
+            // TODO if doc is adoc, we should automatically save it to firestore.
+        
             if (gistId != null) {
                 this.$router.push('/gist/' + gistId);
             }
@@ -130,64 +131,42 @@
         private saveGist() {
 
             console.log('Raja ' + this.docId);
-
-            if (this.user && this.docName) {
-
+            const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+                
+            if (this.user && this.docName && token) {
                 if (!this.docId) {
                     const results = this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
 
                             if (querySnapshot.size > 0) {
                                 querySnapshot.forEach((doc) => {
-
                                     const gistId = doc.data().id;
                                     this.updateDocId(gistId);
-                                    console.log('Found ' + gistId);
+                                    console.log('Found gist in FireStore');
+                                    gitService.updateGist(token, this.docId, this.docName, this.content);
                                 });
                             } else {
                                 // Create gist and save in firestore.
-                            }
+                                gitService.saveGist(token, this.docName, this.content)
+                                    .then((newGist: any) => {
 
+                                        const gistId = newGist.id;
+                                        this.dbService.saveDoc(gistId, this.docName, this.user!!.email)
+                                            .then( (docRef) => {
+                                                console.log('Saved gist in FireStore: ', gistId);
+                                            });
+                                    });
+                            }
                         });
                 } else { // TODO refactor to smaller methods
-                    const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-                    if (token) {
-                        gitService.updateGist(token, this.docId, this.docName, this.content)
-                            .then((newGist: any) => {
-                                console.log('Gist updated');
-                        });
-                    }
+                    gitService.updateGist(token, this.docId, this.docName, this.content);
                 }
-
-            }
-           /* const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-            if (token) {
-                gitService.saveGist(token, this.docName, this.content)
-                    .then((newGist: any) => {
-                        // Save GIST TO firebase.
-                        const gistId = newGist.id;
-                        if (this.user) {
-                            this.doculets.add({
-                                name: this.docName,
-                                id: newGist.id,
-                                userId: this.user.email,
-                            }).then((docRef) => {
-                                console.log('Document written with ID: ', docRef.id);
-                            }).catch((error) => {
-                                console.error('Error adding document: ', error);
-                            });
-                        } else {
-                            // TODO should redirect to login
-                        }
-
-                    });
             } else {
-                // TODO should redirect to login
-            }*/
-
+                // TODO disable save button for this case.
+                console.log('THIS SHOULD NOT HAPPEN');
+            }
         }
 
-        // TODO refreshing page clears user store, need to use local store.
         get userIsAuthenticated() {
             // TODO Should also check for expiration of FB accessToken
             return this.user != null &&

@@ -48,7 +48,7 @@ export default class GitHubService {
                 });
     }
 
-    public async updateGist(token: string, gistId: string, fileName: string, content: string) {
+    public updateGist(token: string, gistId: string, fileName: string, content: string) {
 
         return this.gistClient.setToken(token)
             .update(gistId, {
@@ -58,6 +58,8 @@ export default class GitHubService {
                     },
                 },
                 description: 'Updated from doculet',
+            }).then((newGist: any) => {
+                console.log('Gist updated : ' + gistId);
             });
     }
 }

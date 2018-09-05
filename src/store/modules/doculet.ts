@@ -51,6 +51,7 @@ const mutations =  {
 const actions =  {
     updateDocName(store: ActionContext<State, any>, docName: string) {
         store.commit('updateDocName', docName);
+        store.commit('updateDocId', null); // Whenever docName changes, reset docId.
     },
     updateDocId(store: ActionContext<State, any>, docId: string) {
         store.commit('updateDocId', docId);
