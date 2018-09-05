@@ -134,7 +134,7 @@
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
                 if (!this.docId) {
-                    const results = this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
+                    this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
                             if (querySnapshot.size > 0) {
                                 this.updateExistingGistInDB(querySnapshot, token);
@@ -153,11 +153,25 @@
 
         private deleteDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-            if (this.docId && token) {
-                this.dbService.deleteDoc(this.docId);
-                gitService.deleteGist(token, this.docId);
-                logInfo(`Gist : ${this.docId} is deleted`);
+            if (this.user && this.docName && token) {
+
+                if (!this.docId) {
+                    this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
+                        .then((querySnapshot) => {
+                            querySnapshot.forEach((doc) => {
+                                this.deleteGistAndFromDB(doc.id, token);
+                            });
+                        });
+                } else {
+                    this.deleteGistAndFromDB(this.docId, token);
+                }
             }
+        }
+
+        private deleteGistAndFromDB(docId: string, token: string) {
+            this.dbService.deleteDoc(docId);
+            gitService.deleteGist(token, docId);
+
         }
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {

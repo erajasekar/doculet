@@ -67,8 +67,9 @@ export default class GitHubService {
 
     public deleteGist(token: string, gistId: string) {
 
-        return this.gistClient.setToken(token)
+        const result = this.gistClient.setToken(token)
             .delete(gistId);
+        logInfo(`Gist : ${gistId} is deleted`);
     }
 }
 
