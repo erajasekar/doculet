@@ -59,7 +59,9 @@ export default class GitHubService {
                 },
                 description: 'Updated from doculet',
             }).then((newGist: any) => {
+                /* tslint:disable: no-console */
                 console.log('Gist updated : ' + gistId);
+                /* tslint:enable: no-console */
             });
     }
 }

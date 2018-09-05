@@ -117,7 +117,6 @@
 
             const gistId = ghs.parseUrl(this.importUrl);
             // TODO if doc is adoc, we should automatically save it to firestore.
-        
             if (gistId != null) {
                 this.$router.push('/gist/' + gistId);
             }
@@ -129,42 +128,47 @@
         }
 
         private saveGist() {
-
+            /* tslint:disable: no-console */
             console.log('Raja ' + this.docId);
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-                
             if (this.user && this.docName && token) {
                 if (!this.docId) {
                     const results = this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
-
                             if (querySnapshot.size > 0) {
-                                querySnapshot.forEach((doc) => {
-                                    const gistId = doc.data().id;
-                                    this.updateDocId(gistId);
-                                    console.log('Found gist in FireStore');
-                                    gitService.updateGist(token, this.docId, this.docName, this.content);
-                                });
+                                this.updateExistingGistInDB(querySnapshot, token);
                             } else {
-                                // Create gist and save in firestore.
-                                gitService.saveGist(token, this.docName, this.content)
-                                    .then((newGist: any) => {
-
-                                        const gistId = newGist.id;
-                                        this.dbService.saveDoc(gistId, this.docName, this.user!!.email)
-                                            .then( (docRef) => {
-                                                console.log('Saved gist in FireStore: ', gistId);
-                                            });
-                                    });
+                                this.createGistAndAddToDB(token);
                             }
                         });
-                } else { // TODO refactor to smaller methods
+                } else {
                     gitService.updateGist(token, this.docId, this.docName, this.content);
                 }
             } else {
                 // TODO disable save button for this case.
                 console.log('THIS SHOULD NOT HAPPEN');
             }
+        }
+
+        private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
+            querySnapshot.forEach((doc) => {
+                const gistId = doc.data().id;
+                this.updateDocId(gistId);
+                console.log('Found gist in FireStore');
+                gitService.updateGist(token, this.docId, this.docName, this.content);
+            });
+        }
+
+        private createGistAndAddToDB(token: string) {
+            // Create gist and save in firestore.
+            gitService.saveGist(token, this.docName, this.content)
+                .then((newGist: any) => {
+                    const gistId = newGist.id;
+                    this.dbService.saveDoc(gistId, this.docName, this.user!!.email)
+                        .then( (docRef) => {
+                            console.log('Saved gist in FireStore: ', gistId);
+                        });
+                });
         }
 
         get userIsAuthenticated() {
