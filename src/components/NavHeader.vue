@@ -14,19 +14,20 @@
             <b-navbar-nav>
 
                 <div>
-                    <b-input-group prepend="Import">
-                        <!-- <b-input-group-prepend>
+                    <b-input-group>
+                         <b-input-group-prepend>
                              <b-btn  variant="light"><icon name="link"></icon></b-btn>
-                         </b-input-group-prepend>-->
+                         </b-input-group-prepend>
 
                         <b-form-input type="url" placeholder="GitHub Gist Id or URL" v-model="importUrl"
                                       @keyup.enter.native="importGist"></b-form-input>
 
                         <b-input-group-append>
                             <b-btn @click="importGist" v-b-tooltip.hover title="Import from GitHub">
-                                <icon name="link"></icon>
+                                <icon name="folder-open"></icon>
                             </b-btn>
                         </b-input-group-append>
+
                     </b-input-group>
                 </div>
 
@@ -39,15 +40,16 @@
                     <icon name="file-alt"></icon>
                 </b-btn>
 
-                <b-dropdown variant="info">
-                    <template slot="button-content">
-                        <icon name="save"></icon>
-                    </template>
-                    <b-dropdown-item @click="saveGist">
-                        <icon name="brands/github-square"></icon>
-                        Save to Github
-                    </b-dropdown-item>
-                </b-dropdown>
+                <b-btn @click="saveDoculet" variant="info" v-b-tooltip.hover
+                       title="Save to Github">
+                    <icon name="save"></icon>
+                </b-btn>
+
+                <!-- TODO add confirmation before delete -->
+                <b-btn @click="deleteDoculet" variant="info" v-b-tooltip.hover
+                       title="Delete Document">
+                    <icon name="trash"></icon>
+                </b-btn>
 
             </b-navbar-nav>
 
@@ -89,7 +91,7 @@
     import * as User from '../store/modules/user';
 
     import {FireStoreService} from '../services/FireStoreService';
-    import log from '../utils/logger';
+    import {logInfo, logError} from '../utils/logger';
 
     import {
         Getter,
@@ -128,7 +130,7 @@
             this.dbService = new FireStoreService();
         }
 
-        private saveGist() {
+        private saveDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
                 if (!this.docId) {
@@ -145,7 +147,16 @@
                 }
             } else {
                 // TODO disable save button for this case.
-                log('THIS SHOULD NOT HAPPEN');
+                logError('User or docName or token is null');
+            }
+        }
+
+        private deleteDoculet() {
+            const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+            if (this.docId && token) {
+                this.dbService.deleteDoc(this.docId);
+                gitService.deleteGist(token, this.docId);
+                logInfo(`Gist : ${this.docId} is deleted`);
             }
         }
 
@@ -154,7 +165,7 @@
 
                 const gistId = doc.id;
                 this.updateDocId(gistId);
-                log(`Found gist in FireStore : ${gistId}`);
+                logInfo(`Found gist in FireStore : ${gistId}`);
                 gitService.updateGist(token, gistId, this.docName, this.content);
             });
         }
@@ -166,7 +177,7 @@
                     const gistId = newGist.id;
                     this.dbService.saveDoc(gistId, this.docName, this.user!!.email)
                         .then( (docRef) => {
-                            log(`Saved gist in FireStore : ${gistId}`);
+                            logInfo(`Saved gist in FireStore : ${gistId}`);
                         });
                 });
         }

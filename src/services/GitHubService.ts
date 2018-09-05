@@ -1,5 +1,5 @@
 import axios, {AxiosPromise, AxiosResponse} from 'axios';
-import log from '../utils/logger';
+import {logInfo} from '../utils/logger';
 
 import GistClient from 'gist-client';
 
@@ -61,7 +61,7 @@ export default class GitHubService {
                 },
                 description: 'Updated from doculet',
             }).then((newGist: any) => {
-                log('Gist updated : ' + gistId);
+                logInfo('Gist updated : ' + gistId);
             });
     }
 
