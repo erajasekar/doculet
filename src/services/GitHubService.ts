@@ -1,4 +1,6 @@
 import axios, {AxiosPromise, AxiosResponse} from 'axios';
+import log from '../utils/logger';
+
 import GistClient from 'gist-client';
 
 export default class GitHubService {
@@ -59,10 +61,14 @@ export default class GitHubService {
                 },
                 description: 'Updated from doculet',
             }).then((newGist: any) => {
-                /* tslint:disable: no-console */
-                console.log('Gist updated : ' + gistId);
-                /* tslint:enable: no-console */
+                log('Gist updated : ' + gistId);
             });
+    }
+
+    public deleteGist(token: string, gistId: string) {
+
+        return this.gistClient.setToken(token)
+            .delete(gistId);
     }
 }
 

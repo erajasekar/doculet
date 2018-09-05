@@ -1,5 +1,6 @@
 import {db} from '../main';
 import Constants from '../utils/constants';
+import log from '../utils/logger';
 
 export class FireStoreService {
     private doculets: firebase.firestore.CollectionReference;
@@ -18,7 +19,12 @@ export class FireStoreService {
     }
 
     public async saveDoc(id: string, docName: string, userId: string) {
-        return this.doculets.add({id, name: docName, userId});
+        return this.doculets.doc(id).set({name: docName, userId});
+    }
+
+    public deleteDoc(id: string) {
+        return this.doculets.doc(id).delete().then( () => log(`Document '${id}' is deleted` ));
     }
 }
+
 

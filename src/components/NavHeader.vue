@@ -89,6 +89,7 @@
     import * as User from '../store/modules/user';
 
     import {FireStoreService} from '../services/FireStoreService';
+    import log from '../utils/logger';
 
     import {
         Getter,
@@ -128,8 +129,6 @@
         }
 
         private saveGist() {
-            /* tslint:disable: no-console */
-            console.log('Raja ' + this.docId);
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
                 if (!this.docId) {
@@ -146,16 +145,17 @@
                 }
             } else {
                 // TODO disable save button for this case.
-                console.log('THIS SHOULD NOT HAPPEN');
+                log('THIS SHOULD NOT HAPPEN');
             }
         }
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
             querySnapshot.forEach((doc) => {
-                const gistId = doc.data().id;
+
+                const gistId = doc.id;
                 this.updateDocId(gistId);
-                console.log('Found gist in FireStore');
-                gitService.updateGist(token, this.docId, this.docName, this.content);
+                log(`Found gist in FireStore : ${gistId}`);
+                gitService.updateGist(token, gistId, this.docName, this.content);
             });
         }
 
@@ -166,7 +166,7 @@
                     const gistId = newGist.id;
                     this.dbService.saveDoc(gistId, this.docName, this.user!!.email)
                         .then( (docRef) => {
-                            console.log('Saved gist in FireStore: ', gistId);
+                            log(`Saved gist in FireStore : ${gistId}`);
                         });
                 });
         }
