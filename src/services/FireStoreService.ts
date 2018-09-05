@@ -5,6 +5,7 @@ import {logInfo} from '../utils/logger';
 export class FireStoreService {
     private doculets: firebase.firestore.CollectionReference;
 
+    // TODO think about making it as singleton
     constructor() {
         this.doculets = db.collection(Constants.DB_COLLECTION_DOCULENTS);
     }
@@ -19,7 +20,9 @@ export class FireStoreService {
     }
 
     public async saveDoc(id: string, docName: string, userId: string) {
-        return this.doculets.doc(id).set({name: docName, userId});
+        return this.doculets.doc(id).set({name: docName, userId}).then( (docRef) => {
+            logInfo(`Saved gist in FireStore : ${id}`);
+        });
     }
 
     public deleteDoc(id: string) {

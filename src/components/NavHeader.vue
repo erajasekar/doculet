@@ -189,10 +189,7 @@
             gitService.saveGist(token, this.docName, this.content)
                 .then((newGist: any) => {
                     const gistId = newGist.id;
-                    this.dbService.saveDoc(gistId, this.docName, this.user!!.email)
-                        .then( (docRef) => {
-                            logInfo(`Saved gist in FireStore : ${gistId}`);
-                        });
+                    this.dbService.saveDoc(gistId, this.docName, this.user!!.email);
                 });
         }
 

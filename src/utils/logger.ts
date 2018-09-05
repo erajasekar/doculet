@@ -16,3 +16,11 @@ export function logError(message: string) {
         /* tslint:enable: no-console */
     }
 }
+
+export function logWarn(message: string) {
+    if (debug) {
+        /* tslint:disable: no-console */
+        console.warn(message);
+        /* tslint:enable: no-console */
+    }
+}

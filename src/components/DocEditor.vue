@@ -28,6 +28,9 @@
         Action,
     } from 'vuex-class';
     import {DoculetDoc} from '../store/modules/doculet';
+    import {FireStoreService} from '../services/FireStoreService';
+    import * as User from '../store/modules/user';
+    import {logWarn} from '../utils/logger';
 
     const asciidoc = new AsciiDoc();
 
@@ -41,12 +44,20 @@
     })
     export default class DocEditor extends Vue {
 
+        @Getter('user') private user!: User.UserType;
+
         @Getter('docName') private docName!: string;
 
         @Getter('content') private content!: string;
 
         @Action('updateDocName') private updateDocName: any;
         @Action('updateDocContent') private updateDocContent: any;
+
+        private dbService!: FireStoreService;
+
+        private mounted() {
+            this.dbService = new FireStoreService();
+        }
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);
@@ -73,7 +84,22 @@
 
                 this.updateDocName( gistFile.filename);
                 const language = gistFile.language.toLowerCase();
-                this.update(ghs.enrichSourceType(gistFile.content, language));
+                let content;
+                if (ghs.isAsciiDoc(language)) {
+                    content = gistFile.content;
+                    if (this.user) {
+                        this.dbService.saveDoc(gistId, this.docName, this.user.email);
+                    } else {
+                        logWarn('Anonymous user. Saving aciidoc will duplicate gist');
+                    }
+
+                } else {
+                    content = ghs.enrichSourceType(gistFile.content, language);
+                }
+
+                this.update(content);
+
+
 
            }).catch((error) => {
                 this.updateDocName('Not Found.adoc');

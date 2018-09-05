@@ -24,14 +24,13 @@ export default class GitHubService {
     }
 
     public static enrichSourceType(content: string, language: string) {
+        return '[source,' + language + ']\n' +
+            '----\n' + content +
+            '\n----\n';
+    }
 
-        if (language !== 'asciidoc') {
-            return '[source,' + language + ']\n' +
-                '----\n' + content +
-                '\n----\n';
-        } else {
-            return content;
-        }
+    public static isAsciiDoc(language: string) {
+        return language === 'asciidoc';
     }
 
     private gistClient = new GistClient();
