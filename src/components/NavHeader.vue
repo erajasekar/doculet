@@ -23,7 +23,8 @@
                                       @keyup.enter.native="importGist"></b-form-input>
 
                         <b-input-group-append>
-                            <b-btn @click="importGist" v-b-tooltip.hover title="Import from GitHub">
+                            <b-btn @click="importGist" v-b-tooltip.hover 
+                                    title="Import from GitHub">
                                 <icon name="folder-open"></icon>
                             </b-btn>
                         </b-input-group-append>
@@ -41,13 +42,15 @@
                 </b-btn>
 
                 <b-btn @click="saveDoculet" variant="info" v-b-tooltip.hover
-                       title="Save to Github">
+                        :disabled="isDocActionsDisabled"
+                        title="Save to Github">
                     <icon name="save"></icon>
                 </b-btn>
 
                 <!-- TODO add confirmation before delete -->
                 <b-btn @click="deleteDoculet" variant="info" v-b-tooltip.hover
-                       title="Delete Document">
+                        :disabled="isDocActionsDisabled"
+                        title="Delete Document">
                     <icon name="trash"></icon>
                 </b-btn>
 
@@ -152,6 +155,8 @@
         }
 
         private deleteDoculet() {
+
+            // todo update document afte delete.
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
 
@@ -198,6 +203,10 @@
             return this.user != null &&
                 this.user !== undefined &&
                 localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+        }
+
+        get isDocActionsDisabled() {
+            return !this.userIsAuthenticated || this.docName === null;
         }
 
     }

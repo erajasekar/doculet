@@ -81,26 +81,24 @@
 
             // TODO: content doesn't refresh if we import same gist again.
             ghs.importGist(gistId).then((gistFile) => {
-
-                this.updateDocName( gistFile.filename);
                 const language = gistFile.language.toLowerCase();
                 let content;
+                let filename;
                 if (ghs.isAsciiDoc(language)) {
                     content = gistFile.content;
+                    filename = gistFile.filename;
                     if (this.user) {
-                        this.dbService.saveDoc(gistId, this.docName, this.user.email);
+                        this.dbService.saveDoc(gistId, filename, this.user.email);
                     } else {
                         logWarn('Anonymous user. Saving aciidoc will duplicate gist');
                     }
 
                 } else {
                     content = ghs.enrichSourceType(gistFile.content, language);
+                    filename = ghs.updateExtenstionToAsciiDoc(gistFile.filename);
                 }
-
+                this.updateDocName(filename);
                 this.update(content);
-
-
-
            }).catch((error) => {
                 this.updateDocName('Not Found.adoc');
                 this.update(this.createErrorMessage(gistId, error.message));

@@ -24,11 +24,16 @@ export default class GitHubService {
     }
 
     public static enrichSourceType(content: string, language: string) {
+        // TODO use template interpolation.
         return '[source,' + language + ']\n' +
             '----\n' + content +
             '\n----\n';
     }
 
+    public static updateExtenstionToAsciiDoc(filename: string) {
+        const pos = filename.lastIndexOf('.');
+        return filename.substr(0, pos < 0 ? filename.length : pos) + '.adoc';
+    }
     public static isAsciiDoc(language: string) {
         return language === 'asciidoc';
     }
@@ -45,7 +50,7 @@ export default class GitHubService {
                     },
                 },
                 description: 'Created from doculet',
-                public: true,
+                public: false,
                 });
     }
 
