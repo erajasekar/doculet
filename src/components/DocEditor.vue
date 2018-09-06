@@ -7,7 +7,7 @@
            </b-form-input>
         </div>
         <div class="editor-main">
-            <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
+            <editor class="editor-pane" v-model="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
 
             <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
         </div>
@@ -61,9 +61,13 @@
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);
+            console.log(result);
             return result;
         }
 
+        set content(v: string){
+            this.content = v;
+        }
 
         private editorInit() {
             require('brace/ext/language_tools'); // language extension prerequsite...

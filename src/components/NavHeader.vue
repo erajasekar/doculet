@@ -36,7 +36,7 @@
 
             <b-navbar-nav>
 
-                <b-btn to="/gist/bc5886868012a678eed572c4aa19a2b8" variant="info" v-b-tooltip.hover
+                <b-btn to="/gist/e322756b428595516bc471c81c2081bf" variant="info" v-b-tooltip.hover
                        title="New Document">
                     <icon name="file-alt"></icon>
                 </b-btn>
@@ -111,6 +111,7 @@
         @Getter('docId') private docId!: string;
         @Getter('content') private content!: string;
         @Action('updateDocId') private updateDocId: any;
+        @Action('loadHomeDoc') private loadHomeDoc: any;
 
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
@@ -122,6 +123,7 @@
         private importGist() {
 
             const gistId = ghs.parseUrl(this.importUrl);
+            console.log(gistId);
             // TODO if doc is adoc, we should automatically save it to firestore.
             if (gistId != null) {
                 this.$router.push('/gist/' + gistId);
@@ -149,7 +151,6 @@
                     gitService.updateGist(token, this.docId, this.docName, this.content);
                 }
             } else {
-                // TODO disable save button for this case.
                 logError('User or docName or token is null');
             }
         }
@@ -157,7 +158,7 @@
         private deleteDoculet() {
 
             // todo update document afte delete.
-            const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+         /*   const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
 
                 if (!this.docId) {
@@ -170,7 +171,11 @@
                 } else {
                     this.deleteGistAndFromDB(this.docId, token);
                 }
-            }
+            } else {
+                logError('User or docName or token is null');
+            }*/
+            this.loadHomeDoc();
+
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {

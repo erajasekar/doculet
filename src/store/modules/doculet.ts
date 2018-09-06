@@ -7,8 +7,14 @@ export interface DoculetDoc {
     docId: string | null;
 }
 
+const homeDoc = {
+    docName: Constants.ON_LOAD_DOC_NAME,
+    content: Constants.ON_LOAD_DOC_CONTENT,
+    docId: null,
+};
+
 export class State {
-    public doc: DoculetDoc = {
+    public doc: DoculetDoc =  {
         docName: Constants.ON_LOAD_DOC_NAME,
         content: Constants.ON_LOAD_DOC_CONTENT,
         docId: null,
@@ -16,7 +22,6 @@ export class State {
 }
 
 const getters =  {
-    // TODO getter for individual field
     doc(state: State): DoculetDoc {
         return state.doc;
     },
@@ -44,7 +49,15 @@ const mutations =  {
     },
 
     updateDocContent(state: State, content: string) {
+
         state.doc.content = content;
+        console.log(state.doc.content);
+    },
+
+    updateDoc(state: State, doc: DoculetDoc) {
+        console.log('Loading ');
+        console.log(doc)
+
     },
 } as MutationTree<State>;
 
@@ -58,6 +71,11 @@ const actions =  {
     },
     updateDocContent(store: ActionContext<State, any>, content: string) {
         store.commit('updateDocContent', content);
+    },
+    loadHomeDoc(store: ActionContext<State, any>) {
+        store.commit('updateDocName', "new name");
+        store.commit('updateDocContent', "`new content`");
+        store.commit('updateDocId', homeDoc.docId);
     },
 } as ActionTree<State, any>;
 
