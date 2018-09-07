@@ -36,7 +36,7 @@
 
             <b-navbar-nav>
 
-                <b-btn to="/gist/e322756b428595516bc471c81c2081bf" variant="info" v-b-tooltip.hover
+                <b-btn @click="openNewDocument" variant="info" v-b-tooltip.hover
                        title="New Document">
                     <icon name="file-alt"></icon>
                 </b-btn>
@@ -123,12 +123,10 @@
         private importGist() {
 
             const gistId = ghs.parseUrl(this.importUrl);
-            console.log(gistId);
             // TODO if doc is adoc, we should automatically save it to firestore.
             if (gistId != null) {
                 this.$router.push('/gist/' + gistId);
             }
-
         }
 
         private mounted() {
@@ -174,8 +172,12 @@
             } else {
                 logError('User or docName or token is null');
             }*/
-            this.loadHomeDoc();
+           // this.loadHomeDoc();
+           this.openNewDocument();
+        }
 
+        private openNewDocument() {
+            this.$router.push(`/gist/${Constants.NEW_DOC_GIST_ID}`);
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {
@@ -186,7 +188,6 @@
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
             querySnapshot.forEach((doc) => {
-
                 const gistId = doc.id;
                 this.updateDocId(gistId);
                 logInfo(`Found gist in FireStore : ${gistId}`);

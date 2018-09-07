@@ -7,7 +7,9 @@
            </b-form-input>
         </div>
         <div class="editor-main">
-            <editor class="editor-pane" v-model="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
+            <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
+            <!-- TODO load home on delete works greate with textarea but not with editor -->
+            <!-- TODO remove <textarea class="editor-pane" :value="content" @input="update" width="50%"></textarea> -->
 
             <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
         </div>
@@ -30,7 +32,7 @@
     import {DoculetDoc} from '../store/modules/doculet';
     import {FireStoreService} from '../services/FireStoreService';
     import * as User from '../store/modules/user';
-    import {logWarn} from '../utils/logger';
+    import {logWarn, logInfo} from '../utils/logger';
 
     const asciidoc = new AsciiDoc();
 
@@ -61,12 +63,7 @@
 
         get compiledMarkdown() {
             const result = asciidoc.convert(this.content);
-            console.log(result);
             return result;
-        }
-
-        set content(v: string){
-            this.content = v;
         }
 
         private editorInit() {
@@ -83,6 +80,7 @@
         @Watch('gistId')
         private importGist(gistId: string, oldValue: string) {
 
+            logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
             // TODO: content doesn't refresh if we import same gist again.
             ghs.importGist(gistId).then((gistFile) => {
                 const language = gistFile.language.toLowerCase();

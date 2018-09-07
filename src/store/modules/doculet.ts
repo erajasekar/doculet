@@ -14,11 +14,7 @@ const homeDoc = {
 };
 
 export class State {
-    public doc: DoculetDoc =  {
-        docName: Constants.ON_LOAD_DOC_NAME,
-        content: Constants.ON_LOAD_DOC_CONTENT,
-        docId: null,
-    };
+    public doc: DoculetDoc =  homeDoc;
 }
 
 const getters =  {
@@ -49,15 +45,7 @@ const mutations =  {
     },
 
     updateDocContent(state: State, content: string) {
-
-        state.doc.content = content;
-        console.log(state.doc.content);
-    },
-
-    updateDoc(state: State, doc: DoculetDoc) {
-        console.log('Loading ');
-        console.log(doc)
-
+       state.doc.content = content;
     },
 } as MutationTree<State>;
 
@@ -72,11 +60,12 @@ const actions =  {
     updateDocContent(store: ActionContext<State, any>, content: string) {
         store.commit('updateDocContent', content);
     },
+    /* TODO remove if not used
     loadHomeDoc(store: ActionContext<State, any>) {
         store.commit('updateDocName', "new name");
         store.commit('updateDocContent', "`new content`");
         store.commit('updateDocId', homeDoc.docId);
-    },
+    },*/
 } as ActionTree<State, any>;
 
 export const docStore = {

@@ -22,4 +22,5 @@ export default class Constants {
         ' "Hello World!"\n' +
         'end\n' +
         '----';
+    public static readonly NEW_DOC_GIST_ID = 'e322756b428595516bc471c81c2081bf';
 }
