@@ -111,8 +111,6 @@
         @Getter('docId') private docId!: string;
         @Getter('content') private content!: string;
         @Action('updateDocId') private updateDocId: any;
-        @Action('loadHomeDoc') private loadHomeDoc: any;
-
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
 
@@ -125,7 +123,7 @@
             const gistId = ghs.parseUrl(this.importUrl);
             // TODO if doc is adoc, we should automatically save it to firestore.
             if (gistId != null) {
-                this.$router.push('/gist/' + gistId);
+                this.openDocument(gistId);
             }
         }
 
@@ -155,10 +153,8 @@
 
         private deleteDoculet() {
 
-            // todo update document afte delete.
-         /*   const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+            const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
-
                 if (!this.docId) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
@@ -171,13 +167,16 @@
                 }
             } else {
                 logError('User or docName or token is null');
-            }*/
-           // this.loadHomeDoc();
-           this.openNewDocument();
+            }
+            this.openNewDocument();
+        }
+
+        private openDocument(gistId: string) {
+            this.$router.push(`/edit/${gistId}`);
         }
 
         private openNewDocument() {
-            this.$router.push(`/gist/${Constants.NEW_DOC_GIST_ID}`);
+            this.openDocument(Constants.NEW_DOC_GIST_ID);
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {

@@ -14,7 +14,7 @@ export default new Router({
             component: DocEditor,
         },
         {
-            path: '/gist/:gistId',
+            path: '/edit/:gistId',
             name: 'home-gist-import',
             component: DocEditor ,
             props: true,
