@@ -33,6 +33,7 @@
     import {FireStoreService} from '../services/FireStoreService';
     import * as User from '../store/modules/user';
     import {logWarn, logInfo} from '../utils/logger';
+    import Constants from '@/utils/constants';
 
     const asciidoc = new AsciiDoc();
 
@@ -89,12 +90,10 @@
                 if (ghs.isAsciiDoc(language)) {
                     content = gistFile.content;
                     filename = gistFile.filename;
-                    if (this.user) {
-                        this.dbService.saveDoc(gistId, filename, this.user.email);
-                    } else {
-                        logWarn('Anonymous user. Saving aciidoc will duplicate gist');
-                    }
 
+                    if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
+                        this.saveDocInDB(gistId, filename);
+                    }
                 } else {
                     content = ghs.enrichSourceType(gistFile.content, language);
                     filename = ghs.updateExtenstionToAsciiDoc(gistFile.filename);
@@ -105,6 +104,14 @@
                 this.updateDocName('Not Found.adoc');
                 this.update(this.createErrorMessage(gistId, error.message));
             });
+        }
+
+        private saveDocInDB(gistId: string, filename: string) {
+            if (this.user) {
+                this.dbService.saveDoc(gistId, filename, this.user.email);
+            } else {
+                logWarn('Anonymous user. Saving aciidoc will duplicate gist');
+            }
         }
 
         private createErrorMessage(gistId: string, errorMessage: string) {

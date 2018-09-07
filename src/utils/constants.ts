@@ -23,4 +23,5 @@ export default class Constants {
         'end\n' +
         '----';
     public static readonly NEW_DOC_GIST_ID = 'e322756b428595516bc471c81c2081bf';
+    public static readonly GETTING_STARTED_DOC_GIST_ID = '15d05096e7076183d74469ed32ba234f';
 }

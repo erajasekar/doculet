@@ -168,7 +168,7 @@
             } else {
                 logError('User or docName or token is null');
             }
-            this.openNewDocument();
+            this.openDocument(Constants.GETTING_STARTED_DOC_GIST_ID);
         }
 
         private openDocument(gistId: string) {
