@@ -2,14 +2,17 @@
 
     <div id="app">
         <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen" >
-             <nav id="menu">
+            <nav id="menu">
                 <div>Menu</div>
             </nav>
+           
             <nav-header></nav-header>
-             <main id="panel">
+            <main id="panel">
                 <router-view/>
             </main>
-         </Slideout>
+        </Slideout>
+       <!--  <nav-header></nav-header>
+         <router-view/>-->
     </div>
 </template>
 
@@ -41,6 +44,11 @@
 
     #app {
         height :100%;
+    }
+    #panel {
+        height :100%;
+        width :100%;
+        border: 5px solid blue;
     }
     /*    font-family 'Avenir', Helvetica, Arial, sans-serif
         -webkit-font-smoothing antialiased

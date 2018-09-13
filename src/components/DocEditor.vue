@@ -127,12 +127,17 @@
     @import "../assets/css/colony.css"
     borderColor = #e9ecef
 
+    #editor 
+        height 100%
+        width 100%
+        border 5px solid green
+
     .editor-container
         display: flex
         flex-direction: column
         overflow: hidden
         height: 100%
-       // border-top 5px solid grey //todo
+        border 5px solid black //todo
 
         .editor-header
             border-bottom 1px solid borderColor
@@ -146,12 +151,15 @@
             flex-direction : row
             flex: 1
             width: 100%
+            height: 100%
+            border 5px solid red
 
         .editor-pane
             flex: 0 0 auto
             width: 50%
             height: 100%
-            border-right 3px solid borderColor
+            //border-right 3px solid borderColor
+            border 5px solid grey
 
             .ace_content
                 border 5px solid black
