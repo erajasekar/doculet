@@ -1,73 +1,70 @@
 <template>
 
     <div id="app">
-         <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen" >
-             <nav id="menu">
-                 <div>Menu</div>
+        <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen">
+            <side-nav></side-nav>
+            <nav-header></nav-header>
+            <main id="panel">
+                <router-view/>
+            </main>
+        </Slideout>
 
-             </nav>
+    </div>
+</template>
+<script lang="ts">
 
-             <nav-header></nav-header>
-             <main id="panel">
-                 <router-view/>
-             </main>
-         </Slideout>
-        <!-- <div>
-          <nav-header></nav-header>
-           <main id="panel">
+    import NavHeader from '@/components/NavHeader.vue';
+    import SideNav from '@/components/SideNav.vue';
+    import {Component, Vue} from 'vue-property-decorator';
+    import Slideout from 'vue-slideout';
 
-              <router-view/>
-           </main>
-         </div> -->
-     </div>
- </template>
+    @Component({
+        components: {
+            NavHeader,
+            Slideout,
+            SideNav,
+        },
+    })
+    export default class App extends Vue {
+        private onSideMenuOpen() {
+            // console.log("open event");
+        }
+    }
+</script>
 
- <script lang="ts">
+<style lang="scss">
 
-     import NavHeader from '@/components/NavHeader.vue';
-     import {Component, Vue} from 'vue-property-decorator';
-     import Slideout from 'vue-slideout';
+    @import 'assets/scss/app.scss';
+    @import 'assets/css/slideout.css';
 
-     @Component({
-         components: {
-             NavHeader,
-             Slideout,
-         },
-     })
-     export default class App extends Vue {
-         private onSideMenuOpen() {
-             // console.log("open event");
-         }
-     }
- </script>
+    //  @import '~bootstrap/dist/css/bootstrap.css'
+    //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
 
- <style lang="scss">
-     @import 'assets/scss/app.scss';
-     @import 'assets/css/slideout.css';
+    #app {
+        height: 100%;
+        > div {
+            height: 100%;
+            width: 100%;
+        }
+    }
 
-   //  @import '~bootstrap/dist/css/bootstrap.css'
-   //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
+    #panel {
+        height: 100%;
+        width: 100%;
+    }
 
-     #app {
-         height :100%;
-         > div {
-             height: 100%;
-             width: 100%;
-         }
-     }
-     #panel {
-         height :100%;
-         width :100%;
-     }
+    #menu {
+        padding-top: 100px;
+    }
+
     /*    font-family 'Avenir', Helvetica, Arial, sans-serif
          -webkit-font-smoothing antialiased
          -moz-osx-font-smoothing grayscale
          color #2c3e50*/
 
+    html, body {
+        height: 100%;
+        width: 100%;
+    }
+</style>
 
-     html, body {
-         height: 100%;
-         width: 100%;
-     }
-
- </style>
