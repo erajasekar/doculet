@@ -3,6 +3,7 @@
     <b-navbar toggleable="md" type="dark" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+        <div><button class="toggle-button">☰</button></div>
 
         <b-navbar-brand to="/">
 

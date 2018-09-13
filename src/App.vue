@@ -1,12 +1,15 @@
 <template>
 
     <div id="app">
-        <!--<div id="nav">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link>
-        </div>-->
-        <nav-header></nav-header>
-        <router-view/>
+        <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen" >
+             <nav id="menu">
+                <div>Menu</div>
+            </nav>
+            <nav-header></nav-header>
+             <main id="panel">
+                <router-view/>
+            </main>
+         </Slideout>
     </div>
 </template>
 
@@ -14,18 +17,24 @@
 
     import NavHeader from '@/components/NavHeader.vue';
     import {Component, Vue} from 'vue-property-decorator';
+    import Slideout from 'vue-slideout';
 
     @Component({
         components: {
             NavHeader,
+            Slideout,
         },
     })
     export default class App extends Vue {
+        private onSideMenuOpen() {
+            // console.log("open event");
+        }
     }
 </script>
 
 <style lang="scss">
     @import 'assets/scss/app.scss';
+    @import 'assets/css/slideout.css';
 
   //  @import '~bootstrap/dist/css/bootstrap.css'
   //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
