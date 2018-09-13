@@ -18,9 +18,14 @@
   .btn-light{
     border-color: $gray-500;
   }
-
-
 }
+
+.toggle-button {
+  background-color: $info;
+  border-width: 0px;
+  margin-right: 10px;
+}
+
 /*
 !* change the brand and text color *!
 .navbar-custom .navbar-brand,
