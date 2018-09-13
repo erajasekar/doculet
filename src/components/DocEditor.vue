@@ -168,6 +168,7 @@
             padding: 10px;
             overflow-y: auto
             word-break: break-word
+            color :black
 
     div.ace_content
         padding-top  50px
