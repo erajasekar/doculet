@@ -1,12 +1,11 @@
 <template>
     <nav id="menu">
-        <ul>
-            <li>Getting Started.doc</li>
-            <li>Getting Started1.doc</li>
-            <li>Getting Started2.doc</li>
-            <li>Getting Started3.doc</li>
-            <li>Getting Started4.doc</li>
-        </ul>
+        <b-list-group>
+            <b-list-group-item href="#some-link">Awesome link</b-list-group-item>
+            <b-list-group-item href="#" active>Link with active state</b-list-group-item>
+            <b-list-group-item href="#">Action links are easy</b-list-group-item>
+            <b-list-group-item href="#foobar" disabled>Disabled link</b-list-group-item>
+        </b-list-group>
     </nav>
 </template>
 
