@@ -3,7 +3,7 @@
     <b-navbar toggleable="md" type="dark" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-        <div><button class="toggle-button"><icon name="bars" scale="2" color="black"></icon></button></div>
+        <div><button class="toggle-button"><icon :name="menuIconName" scale="2" color="black"></icon></button></div>
 
         <b-navbar-brand to="/">
 
@@ -89,7 +89,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import ghs, {default as GitHubService} from '../services/GitHubService';
     import Constants from '../utils/constants';
     import * as User from '../store/modules/user';
@@ -103,7 +103,11 @@
     } from 'vuex-class';
     const gitService = new GitHubService();
 
-    @Component
+    @Component({
+        props: {
+            isMenuOpen: Boolean,
+        },
+    })
     export default class NavHeader extends Vue {
 
         @Getter('user') private user!: User.UserType;
@@ -118,6 +122,17 @@
         private dbService!: FireStoreService;
 
         private importUrl: string = '';
+        private menuIconName: string = 'bars';
+
+
+        @Watch('isMenuOpen')
+        private updateMenuIcon(isMenuOpen: boolean, oldValue: boolean) {
+            if (isMenuOpen) {
+                this.menuIconName = 'times';
+            } else {
+                this.menuIconName = 'bars';
+            }
+        }
 
         private importGist() {
 

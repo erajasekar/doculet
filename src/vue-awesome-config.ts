@@ -6,6 +6,8 @@ import 'vue-awesome/icons/trash';
 import 'vue-awesome/icons/bars';
 import 'vue-awesome/icons/link';
 import 'vue-awesome/icons/download';
+import 'vue-awesome/icons/times';
+import 'vue-awesome/icons/window-close';
 import 'vue-awesome/icons/brands/github-square';
 import 'vue-awesome/icons/exclamation-triangle';
 

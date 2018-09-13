@@ -1,9 +1,9 @@
 <template>
 
     <div id="app">
-        <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen">
+        <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen" @on-close="onSideMenuClose">
             <side-nav></side-nav>
-            <nav-header></nav-header>
+            <nav-header :isMenuOpen="isMenuOpen"></nav-header>
             <main id="panel">
                 <router-view/>
             </main>
@@ -26,8 +26,14 @@
         },
     })
     export default class App extends Vue {
+        private isMenuOpen: boolean = false;
         private onSideMenuOpen() {
             // console.log("open event");
+            this.isMenuOpen = true;
+        }
+        private onSideMenuClose() {
+            // console.log("open event");
+            this.isMenuOpen = false;
         }
     }
 </script>
