@@ -11,8 +11,11 @@
                 <router-view/>
             </main>
         </Slideout>
-       <!--  <nav-header></nav-header>
-         <router-view/>-->
+       <!-- <nav-header></nav-header>
+         <main id="panel">
+            
+            <router-view/>
+         </main> -->
     </div>
 </template>
 
@@ -50,7 +53,7 @@
         width :100%;
         border: 5px solid blue;
     }
-    /*    font-family 'Avenir', Helvetica, Arial, sans-serif
+   /*    font-family 'Avenir', Helvetica, Arial, sans-serif
         -webkit-font-smoothing antialiased
         -moz-osx-font-smoothing grayscale
         color #2c3e50*/
