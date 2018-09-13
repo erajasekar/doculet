@@ -1,67 +1,73 @@
 <template>
 
     <div id="app">
-        <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen" >
-            <nav id="menu">
-                <div>Menu</div>
-            </nav>
-           
-            <nav-header></nav-header>
-            <main id="panel">
-                <router-view/>
-            </main>
-        </Slideout>
-       <!-- <nav-header></nav-header>
-         <main id="panel">
-            
-            <router-view/>
-         </main> -->
-    </div>
-</template>
+         <Slideout :touch="true" :toggleSelectors="['.toggle-button']" @on-open="onSideMenuOpen" >
+             <nav id="menu">
+                 <div>Menu</div>
 
-<script lang="ts">
+             </nav>
 
-    import NavHeader from '@/components/NavHeader.vue';
-    import {Component, Vue} from 'vue-property-decorator';
-    import Slideout from 'vue-slideout';
+             <nav-header></nav-header>
+             <main id="panel">
+                 <router-view/>
+             </main>
+         </Slideout>
+        <!-- <div>
+          <nav-header></nav-header>
+           <main id="panel">
 
-    @Component({
-        components: {
-            NavHeader,
-            Slideout,
-        },
-    })
-    export default class App extends Vue {
-        private onSideMenuOpen() {
-            // console.log("open event");
-        }
-    }
-</script>
+              <router-view/>
+           </main>
+         </div> -->
+     </div>
+ </template>
 
-<style lang="scss">
-    @import 'assets/scss/app.scss';
-    @import 'assets/css/slideout.css';
+ <script lang="ts">
 
-  //  @import '~bootstrap/dist/css/bootstrap.css'
-  //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
+     import NavHeader from '@/components/NavHeader.vue';
+     import {Component, Vue} from 'vue-property-decorator';
+     import Slideout from 'vue-slideout';
 
-    #app {
-        height :100%;
-    }
-    #panel {
-        height :100%;
-        width :100%;
-        border: 5px solid blue;
-    }
-   /*    font-family 'Avenir', Helvetica, Arial, sans-serif
-        -webkit-font-smoothing antialiased
-        -moz-osx-font-smoothing grayscale
-        color #2c3e50*/
+     @Component({
+         components: {
+             NavHeader,
+             Slideout,
+         },
+     })
+     export default class App extends Vue {
+         private onSideMenuOpen() {
+             // console.log("open event");
+         }
+     }
+ </script>
+
+ <style lang="scss">
+     @import 'assets/scss/app.scss';
+     @import 'assets/css/slideout.css';
+
+   //  @import '~bootstrap/dist/css/bootstrap.css'
+   //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
+
+     #app {
+         height :100%;
+         > div {
+             height: 100%;
+             width: 100%;
+         }
+     }
+     #panel {
+         height :100%;
+         width :100%;
+     }
+    /*    font-family 'Avenir', Helvetica, Arial, sans-serif
+         -webkit-font-smoothing antialiased
+         -moz-osx-font-smoothing grayscale
+         color #2c3e50*/
 
 
-    html, body {
-        height: 100%;
-        width: 100%;
-    }
+     html, body {
+         height: 100%;
+         width: 100%;
+     }
 
-</style>
+ </style>

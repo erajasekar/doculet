@@ -130,14 +130,13 @@
     #editor 
         height 100%
         width 100%
-        border 5px solid green
 
     .editor-container
         display: flex
         flex-direction: column
         overflow: hidden
         height: 100%
-        border 5px solid black //todo
+        border-right 5px solid black //todo
 
         .editor-header
             border-bottom 1px solid borderColor
@@ -152,14 +151,12 @@
             flex: 1
             width: 100%
             height: 100%
-            border 5px solid red
 
         .editor-pane
             flex: 0 0 auto
             width: 50%
             height: 100%
-            //border-right 3px solid borderColor
-            border 5px solid grey
+            border-right 3px solid borderColor
 
             .ace_content
                 border 5px solid black
