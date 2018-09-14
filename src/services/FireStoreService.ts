@@ -28,6 +28,10 @@ export class FireStoreService {
     public deleteDoc(id: string) {
         return this.doculets.doc(id).delete().then( () => logInfo(`Document : ${id} is deleted` ));
     }
+
+    public getMyDocs() {
+       // this.doculets.
+    }
 }
 
 

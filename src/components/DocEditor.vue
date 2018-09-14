@@ -114,8 +114,10 @@
 
         private saveDocInDB(gistId: string, filename: string) {
             if (this.user) {
-                this.addToMyDocs({docId: gistId, docName: filename});
-                this.dbService.saveDoc(gistId, filename, this.user.email);
+                const existing = this.addToMyDocs({docId: gistId, docName: filename});
+                if (!existing) {
+                    this.dbService.saveDoc(gistId, filename, this.user.email);
+                }
             } else {
                 logWarn('Anonymous user. Saving aciidoc will duplicate gist');
             }

@@ -22,10 +22,11 @@
         @Getter('myDocs') private myDocs!: DoculetFile[];
 
         public mounted() {
-            // TODO
+            console.log('Side nav mounted');
         }
 
         public openDocument(docId: string) {
+            // TODO if we switch doc after saving, it takes some time for content to refresh.
             this.$router.push(`/edit/${docId}`);
         }
     }

@@ -93,13 +93,11 @@ const actions =  {
     },
     addToMyDocs(store: ActionContext<State, any>, doc: DoculetFile): boolean {
 
-        const hasDoc = store.state.myDocs.findIndex( value => value.docId === doc.docId) > 0;
-
-        console.log(hasDoc);
-        if (!hasDoc) {
+        const existing = store.state.myDocs.findIndex( (value) => value.docId === doc.docId) >= 0;
+        if (!existing) {
             store.commit('addToMyDocs', doc);
         }
-        return hasDoc;
+        return existing;
     },
     deleteFromMyDocs(store: ActionContext<State, any>, docId: string) {
         store.commit('deleteFromMyDocs', docId);
