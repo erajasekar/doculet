@@ -21,6 +21,7 @@ Vue.config.productionTip = false;
 // todo move to separate file
 firebase.initializeApp(config.firebase);
 export const db = firebase.firestore();
+
 db.settings({timestampsInSnapshots: true});
 
 new Vue({

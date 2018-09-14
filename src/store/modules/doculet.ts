@@ -20,16 +20,7 @@ const homeDoc = {
 
 export class State {
     public doc: DoculetDoc =  homeDoc;
-    public myDocs: DoculetFile[] = [
-        {
-            docId: '959f28f5590f7f5183e7516038275737',
-            docName: 'Getting Started2.adoc',
-        },
-        {
-            docId: 'e29e9a0e3a3b1ae43e26b7f776522ba2',
-            docName: 'New Document.adoc',
-        },
-    ];
+    public myDocs: DoculetFile[] = [];
 }
 
 const getters =  {

@@ -15,14 +15,27 @@
         Action,
     } from 'vuex-class';
     import {Component, Vue} from 'vue-property-decorator';
-    import {DoculetFile} from '../store/modules/doculet'; // todo format in intellij
+    import {DoculetFile} from '../store/modules/doculet';
+    import {FireStoreService} from '../services/FireStoreService';
+    import {logInfo, logError} from '../utils/logger';
 
     @Component
     export default class SideNav extends Vue {
         @Getter('myDocs') private myDocs!: DoculetFile[];
+        @Action('addToMyDocs') private addToMyDocs: any;
+
+        private dbService!: FireStoreService;
 
         public mounted() {
-            console.log('Side nav mounted');
+            // todo think about moving this to doculet store.
+            this.dbService = new FireStoreService();
+            this.dbService.getMyDocs().then((querySnapshot) => {
+                logInfo(`Added ${querySnapshot.size} docs`);
+                querySnapshot.forEach((doc) => {
+                    this.addToMyDocs({docId: doc.id, docName: doc.data().name});
+                });
+            });
+
         }
 
         public openDocument(docId: string) {

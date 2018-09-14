@@ -1,6 +1,7 @@
 import {db} from '../main';
 import Constants from '../utils/constants';
 import {logInfo} from '../utils/logger';
+import firebase from 'firebase/app';
 
 export class FireStoreService {
     private doculets: firebase.firestore.CollectionReference;
@@ -20,8 +21,10 @@ export class FireStoreService {
     }
 
     public async saveDoc(id: string, docName: string, userId: string) {
-        return this.doculets.doc(id).set({name: docName, userId}).then( (docRef) => {
-            logInfo(`Saved gist in FireStore : ${id}`);
+        return this.doculets.doc(id)
+            .set({name: docName, userId, created: firebase.firestore.FieldValue.serverTimestamp()})
+            .then( (docRef) => {
+                logInfo(`Saved gist in FireStore : ${id}`);
         });
     }
 
@@ -29,8 +32,8 @@ export class FireStoreService {
         return this.doculets.doc(id).delete().then( () => logInfo(`Document : ${id} is deleted` ));
     }
 
-    public getMyDocs() {
-       // this.doculets.
+    public async getMyDocs(): Promise<firebase.firestore.QuerySnapshot> {
+       return this.doculets.orderBy('created', 'asc').get();
     }
 }
 
