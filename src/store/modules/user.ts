@@ -76,6 +76,7 @@ const actions =  {
 
         firebase.auth().signOut().then(() => {
             store.commit('setUser', null);
+            store.commit('deleteAllMyDocs');
         });
     },
 } as ActionTree<State, any>;

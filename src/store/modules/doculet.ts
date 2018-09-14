@@ -1,5 +1,9 @@
 import {GetterTree, MutationTree, ActionTree, ActionContext} from 'vuex';
 import Constants from '../../utils/constants';
+import firebase from 'firebase';
+import {FireStoreService} from '../../services/FireStoreService';
+import {logInfo} from '../../utils/logger';
+
 
 export interface DoculetDoc { // TODO make it extend DoculentFile
     docName: string;
@@ -62,6 +66,10 @@ const mutations =  {
         state.myDocs.unshift(doc);
     },
 
+    deleteAllMyDocs(state: State) {
+        state.myDocs = [];
+    },
+
     deleteFromMyDocs(state: State, docId: string) {
         state.myDocs.forEach( (doc, index) => {
             if (doc.docId === docId) {
@@ -92,6 +100,20 @@ const actions =  {
     },
     deleteFromMyDocs(store: ActionContext<State, any>, docId: string) {
         store.commit('deleteFromMyDocs', docId);
+    },
+
+    loadMyDocs(store: ActionContext<State, firebase.User>, payload: firebase.User) {
+
+        const dbService = new FireStoreService();
+
+        if (payload.email) {
+            dbService.getMyDocs(payload.email).then((querySnapshot) => {
+                logInfo(`Added ${querySnapshot.size} docs`);
+                querySnapshot.forEach((doc) => {
+                    store.commit('addToMyDocs', {docId: doc.id, docName: doc.data().name});
+                });
+            });
+        }
     },
 
 } as ActionTree<State, any>;

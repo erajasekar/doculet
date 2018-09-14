@@ -60,7 +60,7 @@
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
 
-                <div v-if="userIsAuthenticated">
+                <div v-if="isUserAuthenticated">
                     <b-nav-item-dropdown right>
                         <!-- Using button-content slot -->
                         <template slot="button-content">
@@ -96,6 +96,7 @@
 
     import {FireStoreService} from '../services/FireStoreService';
     import {logInfo, logError} from '../utils/logger';
+    import * as auth from '../utils/auth';
 
     import {
         Getter,
@@ -223,15 +224,12 @@
                 });
         }
 
-        get userIsAuthenticated() {
-            // TODO Should also check for expiration of FB accessToken
-            return this.user != null &&
-                this.user !== undefined &&
-                localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+        get isUserAuthenticated() {
+            return auth.isAuthenticated(this.user);
         }
 
         get isDocActionsDisabled() {
-            return !this.userIsAuthenticated || this.docName === null;
+            return !this.isUserAuthenticated || this.docName === null;
         }
 
     }

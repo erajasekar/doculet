@@ -15,14 +15,16 @@ Vue.use(BootstrapVue);
 Vue.directive('highlightjs', VueHighlightJsDirective);
 
 import {config} from './config/config';
+import Constants from './utils/constants';
 
 Vue.config.productionTip = false;
 
 // todo move to separate file
 firebase.initializeApp(config.firebase);
-export const db = firebase.firestore();
-
+const db = firebase.firestore();
 db.settings({timestampsInSnapshots: true});
+
+export const doculetsCollection = db.collection(Constants.DB_COLLECTION_DOCULENTS);
 
 new Vue({
   router,
@@ -32,6 +34,7 @@ new Vue({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
           this.$store.dispatch('autoSignIn', user);
+          this.$store.dispatch('loadMyDocs', user);
       }
     });
   },
