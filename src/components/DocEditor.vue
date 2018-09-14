@@ -57,9 +57,13 @@
         @Action('updateDocContent') private updateDocContent: any;
 
         private dbService!: FireStoreService;
+        private gistId: string = this.gistId;
 
         private mounted() {
             this.dbService = new FireStoreService();
+            if (this.gistId) {
+                this.importGist(this.gistId, '');
+            }
         }
 
         get compiledMarkdown() {
