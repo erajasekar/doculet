@@ -48,6 +48,10 @@ const getters =  {
     content(state: State): string {
         return state.doc.content;
     },
+
+    myDocs(state: State): DoculetFile[] {
+        return state.myDocs;
+    },
 } as GetterTree<State, any>;
 
 const mutations =  {

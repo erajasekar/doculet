@@ -4,17 +4,31 @@
             <h4>Documents</h4>
         </div>
         <ul>
-            <li><a href="#" class="active">Getting Started.adoc</a></li>
-            <li><a href="#">Getting Started2.adoc</a></li>
-            <li><a href="#">Getting Started3.adoc</a></li>
+            <li v-for="doc in myDocs" :key="doc.docId"><a @click="openDocument(doc.docId)" >{{doc.docName}}</a></li>
         </ul>
     </nav>
 </template>
 
-<script>
-    export default {
-        name: 'SideNav',
-    };
+<script lang="ts">
+    import {
+        Getter,
+        Action,
+    } from 'vuex-class';
+    import {Component, Vue} from 'vue-property-decorator';
+    import {DoculetFile} from '../store/modules/doculet'; // todo format in intellij
+    
+    @Component
+    export default class SideNav extends Vue {
+       @Getter('myDocs') private myDocs!: DoculetFile[];
+
+       public mounted() {
+           console.log(this.myDocs);
+       }
+
+       public openDocument(docId: string) {
+           this.$router.push(`/edit/${docId}`);
+       }
+    }
 </script>
 
 <style scoped lang="stylus">
