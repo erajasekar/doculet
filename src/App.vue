@@ -41,7 +41,7 @@
 <style lang="scss">
 
     @import 'assets/scss/app.scss';
-    @import 'assets/css/slideout.css';
+    @import 'assets/scss/sidenav.scss';
 
     //  @import '~bootstrap/dist/css/bootstrap.css'
     //  @import '~bootstrap-vue/dist/bootstrap-vue.css'
@@ -58,17 +58,6 @@
         height: 100%;
         width: 100%;
     }
-
-    #menu {
-        padding-top: 100px;
-    }
-
-
-
-    /*    font-family 'Avenir', Helvetica, Arial, sans-serif
-         -webkit-font-smoothing antialiased
-         -moz-osx-font-smoothing grayscale
-         color #2c3e50*/
 
     html, body {
         height: 100%;

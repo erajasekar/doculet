@@ -1,0 +1,81 @@
+$backgroundColor: #1d1f20;
+$navBackground: #24A2B7; //TODO
+
+.slideout-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 256px;
+    height: 100vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 0;
+    display: none;
+    background-color: $backgroundColor;
+    color: white;
+  }
+  
+  .slideout-menu-left {
+    left: 0;
+  }
+  
+  .slideout-menu-right {
+    right: 0;
+  }
+  
+  .slideout-panel {
+    color: white;
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    min-height: 100vh;
+  }
+  
+  .slideout-open {
+    overflow: hidden;
+    body, .slideout-panel {
+      overflow: hidden;
+    }
+    .slideout-menu {
+      display: block;
+    }
+  }
+
+#menu {
+   // padding-top: 30px;
+    > ul {
+        list-style: none;
+        margin-left: 0px;
+        > li {
+            //font: 100 20px/1.5 Helvetica, Verdana, sans-serif;
+            border-bottom: 1px solid #aaa;
+            padding-top: 5px;
+            padding-bottom: 5px; 
+          
+            a {
+                text-decoration: none;
+                color: #fff;
+                margin-left: 1.5em;
+            /* -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+                -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+                -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+                -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+                transition: font-size 0.3s ease, background-color 0.3s ease;
+                display: block;
+                width: 200px;*/
+                display: block;
+                &:hover {
+                    //font-size: 30px;
+                // background: #f6f6f6;
+                    color: $navBackground; 
+                }
+                &.active {
+                    color: $navBackground;
+                }
+            }
+            
+          }
+          
+    }
+    
+}
