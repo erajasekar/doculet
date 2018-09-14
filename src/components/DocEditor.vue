@@ -55,8 +55,10 @@
 
         @Action('updateDocName') private updateDocName: any;
         @Action('updateDocContent') private updateDocContent: any;
+        @Action('addToMyDocs') private addToMyDocs: any;
 
         private dbService!: FireStoreService;
+
         private gistId: string = this.gistId;
 
         private mounted() {
@@ -112,6 +114,7 @@
 
         private saveDocInDB(gistId: string, filename: string) {
             if (this.user) {
+                this.addToMyDocs({docId: gistId, docName: filename});
                 this.dbService.saveDoc(gistId, filename, this.user.email);
             } else {
                 logWarn('Anonymous user. Saving aciidoc will duplicate gist');

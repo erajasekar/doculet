@@ -66,6 +66,18 @@ const mutations =  {
     updateDocContent(state: State, content: string) {
        state.doc.content = content;
     },
+
+    addToMyDocs(state: State, doc: DoculetFile) {
+        state.myDocs.unshift(doc);
+    },
+
+    deleteFromMyDocs(state: State, docId: string) {
+        state.myDocs.forEach( (doc, index) => {
+            if (doc.docId === docId) {
+                state.myDocs.splice(index, 1);
+            }
+        });
+    },
 } as MutationTree<State>;
 
 const actions =  {
@@ -79,12 +91,20 @@ const actions =  {
     updateDocContent(store: ActionContext<State, any>, content: string) {
         store.commit('updateDocContent', content);
     },
-    /* TODO remove if not used
-    loadHomeDoc(store: ActionContext<State, any>) {
-        store.commit('updateDocName', "new name");
-        store.commit('updateDocContent', "`new content`");
-        store.commit('updateDocId', homeDoc.docId);
-    },*/
+    addToMyDocs(store: ActionContext<State, any>, doc: DoculetFile): boolean {
+
+        const hasDoc = store.state.myDocs.findIndex( value => value.docId === doc.docId) > 0;
+
+        console.log(hasDoc);
+        if (!hasDoc) {
+            store.commit('addToMyDocs', doc);
+        }
+        return hasDoc;
+    },
+    deleteFromMyDocs(store: ActionContext<State, any>, docId: string) {
+        store.commit('deleteFromMyDocs', docId);
+    },
+
 } as ActionTree<State, any>;
 
 export const docStore = {

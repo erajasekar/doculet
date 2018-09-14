@@ -116,6 +116,8 @@
         @Getter('docId') private docId!: string;
         @Getter('content') private content!: string;
         @Action('updateDocId') private updateDocId: any;
+        @Action('addToMyDocs') private addToMyDocs: any;
+        @Action('deleteFromMyDocs') private deleteFromMyDocs: any;
         @Action('signUserInGithub') private signUserInGithub: any;
         @Action('logout') private logout: any;
 
@@ -196,6 +198,7 @@
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {
+            this.deleteFromMyDocs(docId);
             this.dbService.deleteDoc(docId);
             gitService.deleteGist(token, docId);
 
@@ -215,6 +218,7 @@
             gitService.saveGist(token, this.docName, this.content)
                 .then((newGist: any) => {
                     const gistId = newGist.id;
+                    this.addToMyDocs({docId: gistId, docName: this.docName});
                     this.dbService.saveDoc(gistId, this.docName, this.user!!.email);
                 });
         }
