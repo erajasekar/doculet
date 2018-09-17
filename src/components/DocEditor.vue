@@ -54,6 +54,7 @@
         @Getter('content') private content!: string;
 
         @Action('updateDocName') private updateDocName: any;
+        @Action('updateDocId') private updateDocId: any;
         @Action('updateDocContent') private updateDocContent: any;
         @Action('addToMyDocs') private addToMyDocs: any;
 
@@ -106,6 +107,7 @@
                 }
                 this.updateDocName(filename);
                 this.update(content);
+                this.updateDocId(gistId);
            }).catch((error) => {
                 this.updateDocName('Not Found.adoc');
                 this.update(this.createErrorMessage(gistId, error.message));
