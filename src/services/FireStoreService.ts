@@ -1,6 +1,7 @@
-import {doculetsCollection} from '../shared-modules';
+import {doculetsCollection} from '../firestore';
 import {logInfo} from '../utils/logger';
 import firebase from 'firebase/app';
+import '@firebase/firestore';
 
 export class FireStoreService {
 

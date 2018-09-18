@@ -3,10 +3,10 @@ import App from './App.vue';
 import router from './router';
 import {VueHighlightJsDirective} from './directives/VueHighlightJsDirective';
 import BootstrapVue from 'bootstrap-vue';
-import firebase from 'firebase/app';
-import '@firebase/firestore';
 import store from './store/index';
+import firebase from 'firebase/app';
 import './vue-awesome-config';
+import {isViewPage} from './utils/auth';
 
 export const startTime = new Date().getTime();
 
@@ -23,10 +23,12 @@ new Vue({
   store,
   render: (h) => h(App),
   created() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-          this.$store.dispatch('autoSignIn', user);
-      }
-    });
+    if (!isViewPage(this.$route.path)) {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.$store.dispatch('autoSignIn', user);
+            }
+        });
+    }
   },
 }).$mount('#app');

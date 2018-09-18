@@ -9,7 +9,7 @@
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import ghs from '../services/GitHubService';
     import {logInfo} from '../utils/logger';
-    import Constants from '@/utils/constants';
+    import Constants from '../utils/constants';
     import {startTime} from '../main';
     import {asciiDoc} from '../asciidoc';
 
@@ -21,10 +21,14 @@
     export default class DocView extends Vue {
 
         private gistId: string = this.gistId;
+
         private content: string = '';
 
         private mounted() {
             this.loadGist(this.gistId, '');
+
+            /* Can't read from firestore unauthenticated */
+
         }
 
         private updated() {

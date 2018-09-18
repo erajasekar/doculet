@@ -21,6 +21,7 @@
     import SideNav from '@/components/SideNav.vue';
     import {Component, Vue} from 'vue-property-decorator';
     import Slideout from 'vue-slideout';
+    import {isViewPage} from './utils/auth';
 
     @Component({
         components: {
@@ -39,7 +40,7 @@
         }
 
         get isViewPage() {
-            return this.$route.path.includes('/view/');
+            return isViewPage(this.$route.path);
         }
     }
 </script>

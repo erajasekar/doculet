@@ -7,3 +7,7 @@ export function isAuthenticated(user: UserType) {
         user !== undefined &&
         localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
 }
+
+export function isViewPage(path: string) {
+    return path.includes(Constants.VIEW_URL_PATTERN);
+}
