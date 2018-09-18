@@ -3,6 +3,7 @@ import 'vue-awesome/icons/file-alt';
 import 'vue-awesome/icons/folder-open';
 import 'vue-awesome/icons/save';
 import 'vue-awesome/icons/trash';
+import 'vue-awesome/icons/eye';
 import 'vue-awesome/icons/bars';
 import 'vue-awesome/icons/link';
 import 'vue-awesome/icons/download';

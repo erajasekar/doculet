@@ -11,7 +11,7 @@
             <!-- TODO load home on delete works greate with textarea but not with editor -->
             <!-- TODO remove <textarea class="editor-pane" :value="content" @input="update" width="50%"></textarea> -->
 
-            <div class="preview-pane" v-highlightjs="compiledMarkdown"/>
+            <div class="preview-pane" v-highlightjs="compiledHtml"/>
         </div>
 
 
@@ -69,7 +69,7 @@
             }
         }
 
-        get compiledMarkdown() {
+        get compiledHtml() {
             const result = asciidoc.convert(this.content);
             return result;
         }

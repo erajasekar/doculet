@@ -55,6 +55,11 @@
                     <icon name="trash"></icon>
                 </b-btn>
 
+                <b-btn @click="viewDocument" variant="info" v-b-tooltip.hover
+                       title="PreView Document">
+                    <icon name="eye"></icon>
+                </b-btn>
+
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -196,6 +201,10 @@
 
         private openNewDocument() {
             this.openDocument(Constants.NEW_DOC_GIST_ID);
+        }
+
+        private viewDocument() {
+            this.$router.push(`/view/${Constants.GETTING_STARTED_DOC_GIST_ID}`);
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {
