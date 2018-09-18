@@ -204,7 +204,11 @@
         }
 
         private viewDocument() {
-            this.$router.push(`/view/${Constants.GETTING_STARTED_DOC_GIST_ID}`);
+            const routeData = this.$router.resolve({
+                name: 'doc-view',
+                params: {gistId: Constants.GETTING_STARTED_DOC_GIST_ID},
+            });
+            window.open(routeData.href, '_blank');
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {

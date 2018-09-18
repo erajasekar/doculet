@@ -71,6 +71,7 @@ const actions =  {
             email: payload.email,
             photoUrl: payload.photoURL,
         });
+        store.dispatch('loadMyDocs', payload);
     },
     logout(store: ActionContext<State, any>) {
 
