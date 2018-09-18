@@ -1,4 +1,4 @@
-import {doculetsCollection} from '../main';
+import {doculetsCollection} from '../shared-modules';
 import {logInfo} from '../utils/logger';
 import firebase from 'firebase/app';
 

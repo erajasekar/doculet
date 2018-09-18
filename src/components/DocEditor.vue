@@ -22,7 +22,7 @@
     // TODO clean up unused dependencies
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
-    import {asciiDoc} from '../main';
+    import {asciiDoc} from '../asciidoc';
     import editor from 'vue2-ace-editor';
     import ghs from '../services/GitHubService';
     import {

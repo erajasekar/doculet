@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <div class="view-pane" v-highlightjs="compiledHtml"/>
     </div>
 </template>
@@ -7,18 +7,11 @@
 <script lang="ts">
     // TODO clean up unused dependencies
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
-    import {AsciiDoc} from '../asciidoc';
     import ghs from '../services/GitHubService';
-    import {
-        Getter,
-        Action,
-    } from 'vuex-class';
-    import {DoculetDoc} from '../store/modules/doculet';
-    import {FireStoreService} from '../services/FireStoreService';
-    import * as User from '../store/modules/user';
-    import {logWarn, logInfo} from '../utils/logger';
+    import {logInfo} from '../utils/logger';
     import Constants from '@/utils/constants';
-    import {asciiDoc} from '../main';
+    import {startTime} from '../main';
+    import {asciiDoc} from '../asciidoc';
 
     @Component({
         props: {
@@ -28,10 +21,15 @@
     export default class DocView extends Vue {
 
         private gistId: string = this.gistId;
-        private content: string = 'Loading...';
+        private content: string = '';
 
         private mounted() {
             this.loadGist(this.gistId, '');
+        }
+
+        private updated() {
+            const endTime = new Date().getTime();
+            logInfo((endTime - startTime).toLocaleString());
         }
 
         @Watch('gistId')
@@ -39,37 +37,57 @@
 
             logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
 
-            ghs.importGist(gistId).then((gistFile) => {
-                this.content = gistFile.content;
-            });
-            // TODO: content doesn't refresh if we import same gist again.
-          /*  ghs.importGist(gistId).then((gistFile) => {
-                const language = gistFile.language.toLowerCase();
-                let content;
-                let filename;
-                if (ghs.isAsciiDoc(language)) {
-                    content = gistFile.content;
-                    filename = gistFile.filename;
-
-                    if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
-                        this.saveDocInDB(gistId, filename);
-                    }
-                } else {
-                    content = ghs.enrichSourceType(gistFile.content, language);
-                    filename = ghs.updateExtenstionToAsciiDoc(gistFile.filename);
-                }
-                this.updateDocName(filename);
-                this.update(content);
-                this.updateDocId(gistId);
-            }).catch((error) => {
-                this.updateDocName('Not Found.adoc');
-                this.update(this.createErrorMessage(gistId, error.message));
-            });*/
+            if (gistId === Constants.GETTING_STARTED_DOC_GIST_ID) {
+                this.content = Constants.ON_LOAD_DOC_CONTENT;
+            } else {
+                ghs.importGist(gistId).then((gistFile) => {
+                    this.content = gistFile.content;
+                });
+            }
         }
+
 
         get compiledHtml() {
             // TODO add file name as title
-            return asciiDoc.convert(this.content);
+            if (this.content === '') {
+                return 'Loading...'; // TODO CONSTANT
+            } else {
+                return asciiDoc.convert(this.content);
+                /*return "<div class=\"sect1\">\n" +
+                    "<h2 id=\"_welcome_to_asciidoclive\">Welcome to AsciiDocLIVE!</h2>\n" +
+                    "<div class=\"sectionbody\">\n" +
+                    "<div class=\"paragraph\">\n" +
+                    "<p>AsciiDocLIVE is a <strong>free online <a href=\"http://www.methods.co.nz/asciidoc/\"
+                        target=\"_blank\" rel=\"noopener\">AsciiDoc</a>\n" +
+                    "editor</strong>.</p>\n" +
+                    "</div>\n" +
+                    "<div class=\"ulist\">\n" +
+                    "<ul>\n" +
+                    "<li>\n" +
+                    "<p>Just type AsciiDoc source text into the <strong>left</strong> pane,</p>\n" +
+                    "</li>\n" +
+                    "<li>\n" +
+                    "<p>&#8230;&#8203;and the live preview appears in the <strong>right</strong> pane!</p>\n" +
+                    "</li>\n" +
+                    "</ul>\n" +
+                    "</div>\n" +
+                    "<div class=\"sect2\">\n" +
+                    "<h3 id=\"_whats_asciidoc\">What&#8217;s AsciiDoc?</h3>\n" +
+                    "<div class=\"listingblock\">\n" +
+                    "<div class=\"title\">app.rb</div>\n" +
+                    "<div class=\"content\">\n" +
+                    "<pre class=\"highlightjs highlight\"><code class=\"language-ruby hljs\"
+                        data-lang=\"ruby\">require 'sinatra'\n" +
+                    "get '/hi' do\n" +
+                    " \"Hello World!\"\n" +
+                    "end</code></pre>\n" +
+                    "</div>\n" +
+                    "</div>\n" +
+                    "</div>\n" +
+                    "</div>\n" +
+                    "</div>";*/
+            }
+
         }
 
     }
@@ -80,9 +98,9 @@
 
     @import "../assets/css/highlightjs/idea.css"
     @import "../assets/css/colony.css"
-   
+
     .view-pane
         height 100%
         width 100%
-        
+
 </style>

@@ -1,8 +1,15 @@
 export class AsciiDoc {
+
+    private asciidoctor: any;
+
+    constructor() {
+        this.asciidoctor = require('asciidoctor.js')();
+    }
     public convert(input: string) {
-        const asciidoctor = require('asciidoctor.js')();
-        return asciidoctor.convert(input,
+        return this.asciidoctor.convert(input,
             {attributes: {'source-highlighter': 'highlightjs', 'showtitle': true, 'icons': 'font'}},
             );
     }
 }
+
+export const asciiDoc = new AsciiDoc();
