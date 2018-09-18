@@ -3,13 +3,46 @@ import {logInfo} from '../utils/logger';
 
 import GistClient from 'gist-client';
 
+export interface GistFile {
+    fileName: string;
+    content: string;
+    isAsciiDoc: boolean;
+}
+
 export default class GitHubService {
-    public static async  importGist(gistId: string) {
+    public static async  importGistAsync(gistId: string) {
         const resp: AxiosResponse = await axios.get('https://api.github.com/gists/' + gistId);
         const firstFileKey = Object.keys(resp.data.files)[0];
         return resp.data.files[firstFileKey]; // TODO should extrat only required properties to an interface
     }
 
+    public static async importGist(gistId: string): Promise<GistFile> {
+        let content: string;
+        let fileName: string;
+        let isAsciiDoc: boolean;
+        return this.importGistAsync(gistId).then((gistFile) => {
+            const language = gistFile.language.toLowerCase();
+
+            if (this.isAsciiDoc(language)) {
+                content = gistFile.content;
+                fileName = gistFile.filename;
+                isAsciiDoc = true;
+            } else {
+                content = this.enrichSourceType(gistFile.content, language);
+                fileName = this.updateExtenstionToAsciiDoc(gistFile.filename);
+                isAsciiDoc = false;
+            }
+            return { content, fileName, isAsciiDoc};
+        }).catch((error) => {
+
+            return {
+                fileName: 'Not Found.adoc',
+                isAsciiDoc: true,
+                content: `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${error.message}`,
+
+            };
+        });
+    }
     public static parseUrl(url: string) {
         // TODO handle other format of gist ids like raw url, github url etc
 

@@ -22,7 +22,7 @@
     // TODO clean up unused dependencies
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {debounce} from 'typescript-debounce-decorator';
-    import {AsciiDoc} from '../asciidoc';
+    import {asciiDoc} from '../main';
     import editor from 'vue2-ace-editor';
     import ghs from '../services/GitHubService';
     import {
@@ -34,8 +34,6 @@
     import * as User from '../store/modules/user';
     import {logWarn, logInfo} from '../utils/logger';
     import Constants from '@/utils/constants';
-
-    const asciidoc = new AsciiDoc();
 
     @Component({
         components: {
@@ -70,7 +68,7 @@
         }
 
         get compiledHtml() {
-            const result = asciidoc.convert(this.content);
+            const result = asciiDoc.convert(this.content);
             return result;
         }
 
@@ -90,7 +88,7 @@
 
             logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
             // TODO: content doesn't refresh if we import same gist again.
-            ghs.importGist(gistId).then((gistFile) => {
+            ghs.importGistAsync(gistId).then((gistFile) => {
                 const language = gistFile.language.toLowerCase();
                 let content;
                 let filename;
@@ -126,7 +124,7 @@
         }
 
         private createErrorMessage(gistId: string, errorMessage: string) {
-            return `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${errorMessage}`;
+            return `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${errorMessage}`; // TODO REMOVE
         }
     }
 </script>

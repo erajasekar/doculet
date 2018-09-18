@@ -204,9 +204,10 @@
         }
 
         private viewDocument() {
+            const gistId = this.docId ? this.docId : Constants.GETTING_STARTED_DOC_GIST_ID;
             const routeData = this.$router.resolve({
                 name: 'doc-view',
-                params: {gistId: Constants.GETTING_STARTED_DOC_GIST_ID},
+                params: {gistId},
             });
             window.open(routeData.href, '_blank');
         }
