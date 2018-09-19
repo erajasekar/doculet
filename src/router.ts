@@ -21,7 +21,7 @@ export default new Router({
             props: true,
         },
         {
-            path: '/view/:gistId',
+            path: '/doc/:gistId',
             name: 'doc-view',
             component: DocView ,
             props: true,
