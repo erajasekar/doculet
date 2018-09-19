@@ -7,7 +7,7 @@
 
         <b-navbar-brand to="/">
 
-            <b>DOCULET</b>
+            <b-img  width="200" height="50" src="../assets/logo.png" fluid alt="Doculet logo"></b-img>
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
