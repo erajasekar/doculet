@@ -5,6 +5,11 @@ $activeTextColor: #FFCC6B;
 $errorTextColor: #FE454E;
 $navBackground: #65F1E9;
 
+@mixin decorateSelection {
+  background: $backgroundColorLighter;
+  border-left: $navBackground 5px solid;
+  color: $activeTextColor;
+}
 
 .slideout-menu {
   position: fixed;
@@ -69,27 +74,20 @@ $navBackground: #65F1E9;
       padding-bottom: 5px;
 
       a {
-        width: 100%;
-        height: 100%;
         text-decoration: none;
         color: $textColor;
         padding: 5px;
         display: block;
-        //TODO USE mixin
         &:hover {
-          background: $backgroundColorLighter;
-          border-left: $navBackground 5px solid;
-          color: $activeTextColor;
+          @include decorateSelection;
         }
         &.active {
-          background: $backgroundColorLighter;
-          border-left: $navBackground 5px solid;
-          color: $activeTextColor;
+          @include decorateSelection;
         }
       }
 
     }
 
   }
-
 }
+
