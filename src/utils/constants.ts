@@ -26,4 +26,5 @@ export default class Constants {
     public static readonly GETTING_STARTED_DOC_GIST_ID = '15d05096e7076183d74469ed32ba234f';
     public static readonly VIEW_URL_PATTERN = '/doc/';
     public static readonly MENU_ICON_COLOR = '#1E2C40';
+    public static readonly GITHUB_API_URL = 'https://api.github.com/gists/';
 }

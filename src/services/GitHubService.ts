@@ -13,80 +13,7 @@ export interface GistFile {
 export default class GitHubService {
     private gistClient = new GistClient();
 
-    public async importGistAsync(gistId: string) {
 
-        const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-
-        //Use token if present to avoid rate limiting.
-        if (token){
-            return this.gistClient.setToken(token).getOneById(gistId).then( (data : any) => {
-                return this.getFirstFile(data)
-            });
-        }else {
-            const resp: AxiosResponse = await axios.get('https://api.github.com/gists/' + gistId); //TODO CONST
-            return this.getFirstFile(resp.data);
-        }
-
-    }
-
-    private getFirstFile(data: any){
-        // TODO should extrat only required properties to an interface
-        const firstFileKey = Object.keys(data.files)[0];
-        return data.files[firstFileKey];
-    }
-
-    public async importGist(gistId: string): Promise<GistFile> {
-        let content: string;
-        let fileName: string;
-        let isAsciiDoc: boolean;
-        return this.importGistAsync(gistId).then((gistFile) => {
-            const language = gistFile.language.toLowerCase();
-
-            if (this.isAsciiDoc(language)) {
-                content = gistFile.content;
-                fileName = gistFile.filename;
-                isAsciiDoc = true;
-            } else {
-                content = this.enrichSourceType(gistFile.content, language);
-                fileName = this.updateExtenstionToAsciiDoc(gistFile.filename);
-                isAsciiDoc = false;
-            }
-            return { content, fileName, isAsciiDoc};
-        }).catch((error) => {
-            console.log(error);
-
-            return {
-                fileName: 'Not Found.adoc',
-                isAsciiDoc: true,
-                content: `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${error.message}`,
-
-            };
-        });
-    }
-    public parseUrl(url: string) {
-        // TODO handle other format of gist ids like raw url, github url etc
-
-        const index = url.lastIndexOf('/');
-        if (index > 0) {
-            return url.substr( index + 1);
-        } else {
-            // Assuming URL to be a valid gistId
-            return url;
-        }
-
-    }
-
-    public enrichSourceType(content: string, language: string) {
-        // TODO use template interpolation.
-        return '[source,' + language + ']\n' +
-            '----\n' + content +
-            '\n----\n';
-    }
-
-    public updateExtenstionToAsciiDoc(filename: string) {
-        const pos = filename.lastIndexOf('.');
-        return filename.substr(0, pos < 0 ? filename.length : pos) + '.adoc';
-    }
     public isAsciiDoc(language: string) {
         return language === 'asciidoc';
     }
@@ -102,7 +29,7 @@ export default class GitHubService {
                 },
                 description: 'Created from doculet',
                 public: false,
-                });
+            });
     }
 
     public updateGist(token: string, gistId: string, fileName: string, content: string) {
@@ -125,6 +52,80 @@ export default class GitHubService {
         const result = this.gistClient.setToken(token)
             .delete(gistId);
         logInfo(`Gist : ${gistId} is deleted`);
+    }
+
+    public enrichSourceType(content: string, language: string) {
+        // TODO use template interpolation.
+        return '[source,' + language + ']\n' +
+            '----\n' + content +
+            '\n----\n';
+    }
+
+    public updateExtenstionToAsciiDoc(filename: string) {
+        const pos = filename.lastIndexOf('.');
+        return filename.substr(0, pos < 0 ? filename.length : pos) + '.adoc';
+    }
+
+    public async importGistAsync(gistId: string) {
+
+        const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+
+        // Use token if present to avoid rate limiting.
+        if (token) {
+            return this.gistClient.setToken(token).getOneById(gistId).then( (data: any) => {
+                return this.getFirstFile(data);
+            });
+        } else {
+            const resp: AxiosResponse = await axios.get(Constants.GITHUB_API_URL + gistId);
+            return this.getFirstFile(resp.data);
+        }
+
+    }
+
+    public parseUrl(url: string) {
+        // TODO handle other format of gist ids like raw url, github url etc
+
+        const index = url.lastIndexOf('/');
+        if (index > 0) {
+            return url.substr( index + 1);
+        } else {
+            // Assuming URL to be a valid gistId
+            return url;
+        }
+
+    }
+
+    public async importGist(gistId: string): Promise<GistFile> {
+        let content: string;
+        let fileName: string;
+        let isAsciiDoc: boolean;
+        return this.importGistAsync(gistId).then((gistFile) => {
+            const language = gistFile.language.toLowerCase();
+
+            if (this.isAsciiDoc(language)) {
+                content = gistFile.content;
+                fileName = gistFile.filename;
+                isAsciiDoc = true;
+            } else {
+                content = this.enrichSourceType(gistFile.content, language);
+                fileName = this.updateExtenstionToAsciiDoc(gistFile.filename);
+                isAsciiDoc = false;
+            }
+            return { content, fileName, isAsciiDoc};
+        }).catch((error) => {
+            return {
+                fileName: 'Not Found.adoc',
+                isAsciiDoc: true,
+                content: `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${error.message}`,
+
+            };
+        });
+    }
+
+    private getFirstFile(data: any) {
+        // TODO should extrat only required properties to an interface
+        const firstFileKey = Object.keys(data.files)[0];
+        return data.files[firstFileKey];
     }
 }
 

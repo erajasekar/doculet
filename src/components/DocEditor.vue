@@ -29,7 +29,6 @@
         Getter,
         Action,
     } from 'vuex-class';
-    import {DoculetDoc} from '../store/modules/doculet';
     import {FireStoreService} from '../services/FireStoreService';
     import * as User from '../store/modules/user';
     import {logWarn, logInfo} from '../utils/logger';
@@ -89,6 +88,8 @@
 
             logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
             // TODO: content doesn't refresh if we import same gist again.
+
+            // TODO: REFACTOR to use other version
             gitHubService.importGistAsync(gistId).then((gistFile) => {
                 const language = gistFile.language.toLowerCase();
                 let content;
