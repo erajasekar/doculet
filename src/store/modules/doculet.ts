@@ -9,6 +9,7 @@ export interface DoculetDoc { // TODO make it extend DoculentFile
     docName: string;
     content: string;
     docId: string | null;
+    docSaved: boolean;
 }
 
 export interface DoculetFile {
@@ -20,6 +21,7 @@ const homeDoc = {
     docName: Constants.ON_LOAD_DOC_NAME,
     content: Constants.ON_LOAD_DOC_CONTENT,
     docId: null,
+    docSaved: false,
 };
 
 export class State {
@@ -44,6 +46,10 @@ const getters =  {
         return state.doc.content;
     },
 
+    docSaved(state: State): boolean {
+        return state.doc.docSaved;
+    },
+
     myDocs(state: State): DoculetFile[] {
         return state.myDocs;
     },
@@ -60,6 +66,10 @@ const mutations =  {
 
     updateDocContent(state: State, content: string) {
        state.doc.content = content;
+    },
+
+    updateDocSaved(state: State, docSaved: boolean) {
+        state.doc.docSaved = docSaved;
     },
 
     addToMyDocs(state: State, doc: DoculetFile) {
@@ -82,7 +92,7 @@ const mutations =  {
 const actions =  {
     updateDocName(store: ActionContext<State, any>, docName: string) {
         store.commit('updateDocName', docName);
-        store.commit('updateDocId', null); // Whenever docName changes, reset docId.
+        store.commit('updateDocSaved', false); // Whenever docName changes, reset docSaved.
     },
     updateDocId(store: ActionContext<State, any>, docId: string) {
         store.commit('updateDocId', docId);

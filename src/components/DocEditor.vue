@@ -24,7 +24,7 @@
     import {debounce} from 'typescript-debounce-decorator';
     import {asciiDoc} from '../asciidoc';
     import editor from 'vue2-ace-editor';
-    import ghs from '../services/GitHubService';
+    import {gitHubService} from '../services/GitHubService';
     import {
         Getter,
         Action,
@@ -53,6 +53,7 @@
 
         @Action('updateDocName') private updateDocName: any;
         @Action('updateDocId') private updateDocId: any;
+        @Action('updateDocSaved') private updateDocSaved: any;
         @Action('updateDocContent') private updateDocContent: any;
         @Action('addToMyDocs') private addToMyDocs: any;
 
@@ -88,24 +89,28 @@
 
             logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
             // TODO: content doesn't refresh if we import same gist again.
-            ghs.importGistAsync(gistId).then((gistFile) => {
+            gitHubService.importGistAsync(gistId).then((gistFile) => {
                 const language = gistFile.language.toLowerCase();
                 let content;
                 let filename;
-                if (ghs.isAsciiDoc(language)) {
+                if (gitHubService.isAsciiDoc(language)) {
                     content = gistFile.content;
                     filename = gistFile.filename;
 
                     if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
                         this.saveDocInDB(gistId, filename);
+                    } else {
+                        this.updateDocSaved(false);
                     }
                 } else {
-                    content = ghs.enrichSourceType(gistFile.content, language);
-                    filename = ghs.updateExtenstionToAsciiDoc(gistFile.filename);
+                    content = gitHubService.enrichSourceType(gistFile.content, language);
+                    filename = gitHubService.updateExtenstionToAsciiDoc(gistFile.filename);
+                    this.updateDocSaved(false);
                 }
                 this.updateDocName(filename);
                 this.update(content);
                 this.updateDocId(gistId);
+
            }).catch((error) => {
                 this.updateDocName('Not Found.adoc');
                 this.update(this.createErrorMessage(gistId, error.message));
@@ -116,6 +121,7 @@
             if (this.user) {
                 const existing = this.addToMyDocs({docId: gistId, docName: filename});
                 if (!existing) {
+                    this.updateDocSaved(true);
                     this.dbService.saveDoc(gistId, filename, this.user.email);
                 }
             } else {

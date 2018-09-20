@@ -2,6 +2,7 @@ import axios, {AxiosPromise, AxiosResponse} from 'axios';
 import {logInfo} from '../utils/logger';
 
 import GistClient from 'gist-client';
+import Constants from '../utils/constants';
 
 export interface GistFile {
     fileName: string;
@@ -10,13 +11,31 @@ export interface GistFile {
 }
 
 export default class GitHubService {
-    public static async  importGistAsync(gistId: string) {
-        const resp: AxiosResponse = await axios.get('https://api.github.com/gists/' + gistId);
-        const firstFileKey = Object.keys(resp.data.files)[0];
-        return resp.data.files[firstFileKey]; // TODO should extrat only required properties to an interface
+    private gistClient = new GistClient();
+
+    public async importGistAsync(gistId: string) {
+
+        const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+
+        //Use token if present to avoid rate limiting.
+        if (token){
+            return this.gistClient.setToken(token).getOneById(gistId).then( (data : any) => {
+                return this.getFirstFile(data)
+            });
+        }else {
+            const resp: AxiosResponse = await axios.get('https://api.github.com/gists/' + gistId); //TODO CONST
+            return this.getFirstFile(resp.data);
+        }
+
     }
 
-    public static async importGist(gistId: string): Promise<GistFile> {
+    private getFirstFile(data: any){
+        // TODO should extrat only required properties to an interface
+        const firstFileKey = Object.keys(data.files)[0];
+        return data.files[firstFileKey];
+    }
+
+    public async importGist(gistId: string): Promise<GistFile> {
         let content: string;
         let fileName: string;
         let isAsciiDoc: boolean;
@@ -34,6 +53,7 @@ export default class GitHubService {
             }
             return { content, fileName, isAsciiDoc};
         }).catch((error) => {
+            console.log(error);
 
             return {
                 fileName: 'Not Found.adoc',
@@ -43,7 +63,7 @@ export default class GitHubService {
             };
         });
     }
-    public static parseUrl(url: string) {
+    public parseUrl(url: string) {
         // TODO handle other format of gist ids like raw url, github url etc
 
         const index = url.lastIndexOf('/');
@@ -56,22 +76,20 @@ export default class GitHubService {
 
     }
 
-    public static enrichSourceType(content: string, language: string) {
+    public enrichSourceType(content: string, language: string) {
         // TODO use template interpolation.
         return '[source,' + language + ']\n' +
             '----\n' + content +
             '\n----\n';
     }
 
-    public static updateExtenstionToAsciiDoc(filename: string) {
+    public updateExtenstionToAsciiDoc(filename: string) {
         const pos = filename.lastIndexOf('.');
         return filename.substr(0, pos < 0 ? filename.length : pos) + '.adoc';
     }
-    public static isAsciiDoc(language: string) {
+    public isAsciiDoc(language: string) {
         return language === 'asciidoc';
     }
-
-    private gistClient = new GistClient();
 
     public async saveGist(token: string, fileName: string, content: string) {
 
@@ -109,4 +127,6 @@ export default class GitHubService {
         logInfo(`Gist : ${gistId} is deleted`);
     }
 }
+
+export const gitHubService = new GitHubService();
 

@@ -7,7 +7,7 @@
 <script lang="ts">
     // TODO clean up unused dependencies
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
-    import ghs from '../services/GitHubService';
+    import {gitHubService} from '../services/GitHubService';
     import {logInfo} from '../utils/logger';
     import Constants from '../utils/constants';
     import {startTime} from '../main';
@@ -44,7 +44,7 @@
             if (gistId === Constants.GETTING_STARTED_DOC_GIST_ID) {
                 this.content = Constants.ON_LOAD_DOC_CONTENT;
             } else {
-                ghs.importGist(gistId).then((gistFile) => {
+                gitHubService.importGist(gistId).then((gistFile) => {
                     this.content = gistFile.content;
                 });
             }

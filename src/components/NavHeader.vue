@@ -98,7 +98,7 @@
 
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
-    import ghs, {default as GitHubService} from '../services/GitHubService';
+    import {gitHubService} from '../services/GitHubService';
     import Constants from '../utils/constants';
     import * as User from '../store/modules/user';
 
@@ -110,7 +110,6 @@
         Getter,
         Action,
     } from 'vuex-class';
-    const gitService = new GitHubService();
 
     @Component({
         props: {
@@ -123,8 +122,10 @@
 
         @Getter('docName') private docName!: string;
         @Getter('docId') private docId!: string;
+        @Getter('docSaved') private docSaved!: boolean;
         @Getter('content') private content!: string;
         @Action('updateDocId') private updateDocId: any;
+        @Action('updateDocSaved') private updateDocSaved: any;
         @Action('addToMyDocs') private addToMyDocs: any;
         @Action('deleteFromMyDocs') private deleteFromMyDocs: any;
         @Action('signUserInGithub') private signUserInGithub: any;
@@ -147,7 +148,7 @@
 
         private importGist() {
 
-            const gistId = ghs.parseUrl(this.importUrl);
+            const gistId = gitHubService.parseUrl(this.importUrl);
             // TODO if doc is adoc, we should automatically save it to firestore.
             if (gistId != null) {
                 this.openDocument(gistId);
@@ -165,7 +166,7 @@
         private saveDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
-                if (!this.docId) {
+                if (!this.docSaved) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
                             if (querySnapshot.size > 0) {
@@ -175,7 +176,7 @@
                             }
                         });
                 } else {
-                    gitService.updateGist(token, this.docId, this.docName, this.content);
+                    gitHubService.updateGist(token, this.docId, this.docName, this.content);
                 }
             } else {
                 logError('User or docName or token is null');
@@ -186,7 +187,7 @@
 
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
-                if (!this.docId) {
+                if (!this.docSaved) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
                             querySnapshot.forEach((doc) => {
@@ -222,26 +223,28 @@
         private deleteGistAndFromDB(docId: string, token: string) {
             this.deleteFromMyDocs(docId);
             this.dbService.deleteDoc(docId);
-            gitService.deleteGist(token, docId);
+            gitHubService.deleteGist(token, docId);
 
         }
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
             querySnapshot.forEach((doc) => {
                 const gistId = doc.id;
+                logInfo(`Found gist in FireStore : ${gistId} ; Current docId: ${this.docId}` );
                 this.updateDocId(gistId);
-                logInfo(`Found gist in FireStore : ${gistId}`);
-                gitService.updateGist(token, gistId, this.docName, this.content);
+                this.updateDocSaved(true);
+                gitHubService.updateGist(token, gistId, this.docName, this.content);
             });
         }
 
         private createGistAndAddToDB(token: string) {
             // Create gist and save in firestore.
-            gitService.saveGist(token, this.docName, this.content)
+            gitHubService.saveGist(token, this.docName, this.content)
                 .then((newGist: any) => {
                     const gistId = newGist.id;
                     this.addToMyDocs({docId: gistId, docName: this.docName});
                     this.dbService.saveDoc(gistId, this.docName, this.user!!.email);
+                    this.updateDocSaved(true);
                 });
         }
 
