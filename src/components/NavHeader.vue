@@ -7,7 +7,8 @@
 
         <b-navbar-brand to="/">
 
-            <b-img  width="200" height="50" src="../assets/logo.png" fluid alt="Doculet logo"></b-img>
+            <b-img  width="200" height="50" src="https://www.dropbox.com/s/xbm4go0lfyxv1o2/doculet-logo1.png?raw=1" fluid alt="Doculet logo"></b-img> 
+         <!--    <b-img  width="200" height="50" src="https://www.dropbox.com/s/883xwlp4gvqums4/doculet-logo2.png?raw=1" fluid alt="Doculet logo"></b-img>  -->
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
