@@ -2,79 +2,94 @@ $backgroundColor: #1E2C40;
 $backgroundColorLighter: #4A596F;
 $textColor: #fffbf3;
 $activeTextColor: #FFCC6B;
-$navBackground: #65F1E9; //TODO rename
+$errorTextColor: #FE454E;
+$navBackground: #65F1E9;
+
 
 .slideout-menu {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 256px;
-    height: 100vh;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    z-index: 0;
-    display: none;
-    background-color: $backgroundColor;
-    color: white;
-  }
-  
-  .slideout-menu-left {
-    left: 0;
-  }
-  
-  .slideout-menu-right {
-    right: 0;
-  }
-  
-  .slideout-panel {
-    color: white;
-    position: relative;
-    z-index: 1;
-    will-change: transform;
-    min-height: 100vh;
-  }
-  
-  .slideout-open {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 256px;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: 0;
+  display: none;
+  background-color: $backgroundColor;
+  color: white;
+}
+
+.slideout-menu-left {
+  left: 0;
+}
+
+.slideout-menu-right {
+  right: 0;
+}
+
+.slideout-panel {
+  color: white;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  min-height: 100vh;
+}
+
+.slideout-open {
+  overflow: hidden;
+  body, .slideout-panel {
     overflow: hidden;
-    body, .slideout-panel {
-      overflow: hidden;
-    }
-    .slideout-menu {
-      display: block;
-    }
   }
+  .slideout-menu {
+    display: block;
+  }
+}
 
 #menu {
-    padding-top: 80px;
-    > ul {
-        list-style: none;
-        margin-left: 0px;
-        > li {
-            padding-top: 5px;
-            padding-bottom: 5px;
-          
-            a {
-                width: 100%;
-                height: 100%;
-                text-decoration: none;
-                color: $textColor;
-                padding: 5px;
-                display: block;
-                //TODO USE mixin
-                &:hover {
-                    background: $backgroundColorLighter;
-                    border-left: $navBackground 5px solid;
-                    color: $activeTextColor;
-                }
-                &.active {
-                  background: $backgroundColorLighter;
-                  border-left: $navBackground 5px solid;
-                  color: $activeTextColor;
-                }
-            }
-            
-          }
-          
+  padding-top: 80px;
+
+  > div {
+    padding: 20px;
+    color: $errorTextColor;
+  }
+
+  > ul {
+    list-style: none;
+    margin-left: 0px;
+
+    > h3 {
+      padding: 5px;
+      color: $activeTextColor;
+      border-bottom: 1px solid $textColor;
     }
-    
+
+    > li {
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: $textColor;
+        padding: 5px;
+        display: block;
+        //TODO USE mixin
+        &:hover {
+          background: $backgroundColorLighter;
+          border-left: $navBackground 5px solid;
+          color: $activeTextColor;
+        }
+        &.active {
+          background: $backgroundColorLighter;
+          border-left: $navBackground 5px solid;
+          color: $activeTextColor;
+        }
+      }
+
+    }
+
+  }
+
 }

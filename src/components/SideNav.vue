@@ -1,9 +1,8 @@
 <template>
     <nav id="menu">
-        <div>
-            <h4>Documents</h4>
-        </div>
+
         <ul v-if="isUserAuthenticated">
+            <h3>Documents</h3>
             <li v-for="doc in myDocs" :key="doc.docId">
                 <a @click="openDocument(doc.docId)" :class="{ active: isSelected(doc.docId) }">{{doc.docName}}</a>
             </li>
