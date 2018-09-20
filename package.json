@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "deploy": "vue-cli-service s3-deploy",
     "utest": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -48,6 +49,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-jest": "^22.4.6",
+    "vue-cli-plugin-s3-deploy": "^2.1.1",
     "vue-template-compiler": "^2.5.16",
     "vue2-ace-editor": "0.0.11"
   },
