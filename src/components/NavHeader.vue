@@ -1,13 +1,13 @@
 <template>
 
-    <b-navbar toggleable="md" type="dark" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
+    <b-navbar toggleable="md" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-        <div><button class="toggle-button"><icon :name="menuIconName" scale="2" color="black"></icon></button></div>
+        <div><button class="toggle-button"><icon :name="menuIconName" scale="2" color="#1E2C40"></icon></button></div>
 
         <b-navbar-brand to="/">
 
-            <b-img  width="200" height="50" src="https://www.dropbox.com/s/xbm4go0lfyxv1o2/doculet-logo1.png?raw=1" fluid alt="Doculet logo"></b-img> 
+            <b-img  width="200" height="30" src="https://www.dropbox.com/s/xbm4go0lfyxv1o2/doculet-logo1.png?raw=1" fluid alt="Doculet logo"></b-img> 
          <!--    <b-img  width="200" height="50" src="https://www.dropbox.com/s/883xwlp4gvqums4/doculet-logo2.png?raw=1" fluid alt="Doculet logo"></b-img>  -->
         </b-navbar-brand>
 
