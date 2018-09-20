@@ -3,7 +3,7 @@
     <b-navbar toggleable="md" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-        <div><button class="toggle-button"><icon :name="menuIconName" scale="2" color="#1E2C40"></icon></button></div>
+        <div><button class="toggle-button"><icon :name="menuIconName" scale="2" :color="iconColor"></icon></button></div>
 
         <b-navbar-brand to="/">
 
@@ -40,25 +40,27 @@
 
                 <b-btn @click="openNewDocument" variant="info" v-b-tooltip.hover
                        title="New Document">
-                    <icon name="file-alt"></icon>
+                    <icon name="file-alt" color="iconColor"></icon>
                 </b-btn>
 
                 <b-btn @click="saveDoculet" variant="info" v-b-tooltip.hover
                         :disabled="isDocActionsDisabled"
                         title="Save to Github">
-                    <icon name="save"></icon>
+                    <icon name="save" color="iconColor"></icon>
                 </b-btn>
 
                 <!-- TODO add confirmation before delete -->
                 <b-btn @click="deleteDoculet" variant="info" v-b-tooltip.hover
                         :disabled="isDocActionsDisabled"
                         title="Delete Document">
-                    <icon name="trash"></icon>
+                    <icon name="trash" color="iconColor"></icon>
                 </b-btn>
+
+                <!-- TODO CHANGE TO SHARE -->
 
                 <b-btn @click="viewDocument" variant="info" v-b-tooltip.hover
                        title="PreView Document">
-                    <icon name="eye"></icon>
+                    <icon name="eye" color="iconColor"></icon>
                 </b-btn>
 
             </b-navbar-nav>
@@ -154,6 +156,10 @@
 
         private mounted() {
             this.dbService = new FireStoreService();
+        }
+
+        get iconColor(){
+            return Constants.MENU_ICON_COLOR;
         }
 
         private saveDoculet() {

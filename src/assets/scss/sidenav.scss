@@ -1,5 +1,8 @@
 $backgroundColor: #1E2C40;
-$navBackground: #FFCC6B; //TODO rename
+$backgroundColorLighter: #4A596F;
+$textColor: #fffbf3;
+$activeTextColor: #FFCC6B;
+$navBackground: #65F1E9; //TODO rename
 
 .slideout-menu {
     position: fixed;
@@ -47,30 +50,26 @@ $navBackground: #FFCC6B; //TODO rename
         list-style: none;
         margin-left: 0px;
         > li {
-            //font: 100 20px/1.5 Helvetica, Verdana, sans-serif;
-            border-bottom: 1px solid #aaa;
             padding-top: 5px;
-            padding-bottom: 5px; 
+            padding-bottom: 5px;
           
             a {
+                width: 100%;
+                height: 100%;
                 text-decoration: none;
-                color: #fff;
-                margin-left: 1.5em;
-            /* -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
-                -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
-                -o-transition: font-size 0.3s ease, background-color 0.3s ease;
-                -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
-                transition: font-size 0.3s ease, background-color 0.3s ease;
+                color: $textColor;
+                padding: 5px;
                 display: block;
-                width: 200px;*/
-                display: block;
+                //TODO USE mixin
                 &:hover {
-                    //font-size: 30px;
-                // background: #f6f6f6;
-                    color: $navBackground; 
+                    background: $backgroundColorLighter;
+                    border-left: $navBackground 5px solid;
+                    color: $activeTextColor;
                 }
                 &.active {
-                    color: $navBackground;
+                  background: $backgroundColorLighter;
+                  border-left: $navBackground 5px solid;
+                  color: $activeTextColor;
                 }
             }
             
