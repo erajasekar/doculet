@@ -158,7 +158,7 @@
             this.dbService = new FireStoreService();
         }
 
-        get iconColor(){
+        get iconColor() {
             return Constants.MENU_ICON_COLOR;
         }
 
