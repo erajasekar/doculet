@@ -18,10 +18,8 @@ export default class GitHubService {
         return language === 'asciidoc';
     }
 
-    public saveGist(token: string, fileName: string, content: string) {
-
-        // TODO NEED TO FIX THE BUG, NOT RETURN PROMISE VALUE
-        return this.gistClient.setToken(token)
+    public saveGist(token: string, fileName: string, content: string): Promise<any> {
+        const promise = this.gistClient.setToken(token)
             .create({
                 files: {
                     [fileName]: {
@@ -30,14 +28,15 @@ export default class GitHubService {
                 },
                 description: 'Created from doculet',
                 public: false,
-            }).then((newGist: any) => {
-                logDebug('Gist created : ' );
-                logDebug(newGist);
             });
 
+        return promise.then( (gist: any) => {
+            logDebug('Gist created : ' + gist.id);
+            return gist;
+        });
     }
 
-    public  updateGist(token: string, gistId: string, fileName: string, content: string) {
+    public updateGist(token: string, gistId: string, fileName: string, content: string) {
 
         return this.gistClient.setToken(token)
             .update(gistId, {
