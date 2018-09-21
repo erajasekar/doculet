@@ -18,8 +18,9 @@ export default class GitHubService {
         return language === 'asciidoc';
     }
 
-    public async saveGist(token: string, fileName: string, content: string) {
+    public saveGist(token: string, fileName: string, content: string) {
 
+        // TODO NEED TO FIX THE BUG, NOT RETURN PROMISE VALUE
         return this.gistClient.setToken(token)
             .create({
                 files: {
@@ -30,11 +31,13 @@ export default class GitHubService {
                 description: 'Created from doculet',
                 public: false,
             }).then((newGist: any) => {
-                logDebug('Gist created : ' + newGist);
+                logDebug('Gist created : ' );
+                logDebug(newGist);
             });
+
     }
 
-    public async updateGist(token: string, gistId: string, fileName: string, content: string) {
+    public  updateGist(token: string, gistId: string, fileName: string, content: string) {
 
         return this.gistClient.setToken(token)
             .update(gistId, {

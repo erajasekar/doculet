@@ -243,6 +243,7 @@
             // Create gist and save in firestore.
             gitHubService.saveGist(token, this.docName, this.content)
                 .then((newGist: any) => {
+                    console.log(newGist);
                     const gistId = newGist.id;
                     this.dbService.saveDoc(gistId, this.docName, this.user!!.email);
                     this.addToMyDocs({docId: gistId, docName: this.docName});
