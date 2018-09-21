@@ -8,7 +8,7 @@
     // TODO clean up unused dependencies
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {gitHubService} from '../services/GitHubService';
-    import {logInfo} from '../utils/logger';
+    import {logDebug} from '../utils/logger';
     import Constants from '../utils/constants';
     import {startTime} from '../main';
     import {asciiDoc} from '../asciidoc';
@@ -33,13 +33,13 @@
 
         private updated() {
             const endTime = new Date().getTime();
-            logInfo((endTime - startTime).toLocaleString());
+            logDebug((endTime - startTime).toLocaleString());
         }
 
         @Watch('gistId')
         private loadGist(gistId: string, oldValue: string) {
 
-            logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
+            logDebug(`New gistId ${gistId} , Old value : ${oldValue}`);
 
             if (gistId === Constants.GETTING_STARTED_DOC_GIST_ID) {
                 this.content = Constants.ON_LOAD_DOC_CONTENT;

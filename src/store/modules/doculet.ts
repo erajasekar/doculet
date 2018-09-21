@@ -2,7 +2,7 @@ import {GetterTree, MutationTree, ActionTree, ActionContext} from 'vuex';
 import Constants from '../../utils/constants';
 import firebase from 'firebase';
 import {FireStoreService} from '../../services/FireStoreService';
-import {logInfo} from '../../utils/logger';
+import {logDebug} from '../../utils/logger';
 
 
 export interface DoculetDoc { // TODO make it extend DoculentFile
@@ -100,6 +100,9 @@ const actions =  {
     updateDocContent(store: ActionContext<State, any>, content: string) {
         store.commit('updateDocContent', content);
     },
+    updateDocSaved(store: ActionContext<State, any>, docSaved: boolean) {
+        store.commit('updateDocSaved', docSaved);
+    },
     addToMyDocs(store: ActionContext<State, any>, doc: DoculetFile): boolean {
 
         const existing = store.state.myDocs.findIndex( (value) => value.docId === doc.docId) >= 0;
@@ -118,7 +121,7 @@ const actions =  {
 
         if (payload.email) {
             dbService.getMyDocs(payload.email).then((querySnapshot) => {
-                logInfo(`Added ${querySnapshot.size} docs`);
+                logDebug(`Added ${querySnapshot.size} docs`);
                 querySnapshot.forEach((doc) => {
                     store.commit('addToMyDocs', {docId: doc.id, docName: doc.data().name});
                 });

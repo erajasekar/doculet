@@ -31,7 +31,7 @@
     } from 'vuex-class';
     import {FireStoreService} from '../services/FireStoreService';
     import * as User from '../store/modules/user';
-    import {logWarn, logInfo} from '../utils/logger';
+    import {logWarn, logDebug} from '../utils/logger';
     import Constants from '@/utils/constants';
 
     @Component({
@@ -86,10 +86,28 @@
         @Watch('gistId')
         private importGist(gistId: string, oldValue: string) {
 
-            logInfo(`New gistId ${gistId} , Old value : ${oldValue}`);
+            logDebug(`New gistId ${gistId} , Old value : ${oldValue}`);
+
+            if (!gistId) {
+                gistId = Constants.GETTING_STARTED_DOC_GIST_ID;
+            }
             // TODO: content doesn't refresh if we import same gist again.
 
-            // TODO: REFACTOR to use other version
+            gitHubService.importGist(gistId).then((gistFile) => {
+
+                if (gistFile.isAsciiDoc) {
+                    if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
+                        this.saveDocInDB(gistId, gistFile.fileName);
+                    } else {
+                        this.updateDocSaved(false);
+                    }
+                }
+                this.updateDocName(gistFile.fileName);
+                this.update(gistFile.content);
+                this.updateDocId(gistId);
+            });
+
+            /* TODO: REFACTOR to use other version
             gitHubService.importGistAsync(gistId).then((gistFile) => {
                 const language = gistFile.language.toLowerCase();
                 let content;
@@ -113,9 +131,8 @@
                 this.updateDocId(gistId);
 
            }).catch((error) => {
-                this.updateDocName('Not Found.adoc');
-                this.update(this.createErrorMessage(gistId, error.message));
-            });
+               logError(error);
+           });*/
         }
 
         private saveDocInDB(gistId: string, filename: string) {

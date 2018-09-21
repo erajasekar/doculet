@@ -103,7 +103,7 @@
     import * as User from '../store/modules/user';
 
     import {FireStoreService} from '../services/FireStoreService';
-    import {logInfo, logError} from '../utils/logger';
+    import {logDebug, logError} from '../utils/logger';
     import * as auth from '../utils/auth';
 
     import {
@@ -230,7 +230,7 @@
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
             querySnapshot.forEach((doc) => {
                 const gistId = doc.id;
-                logInfo(`Found gist in FireStore : ${gistId} ; Current docId: ${this.docId}` );
+                logDebug(`Found gist in FireStore : ${gistId} ; Current docId: ${this.docId}` );
                 this.updateDocId(gistId);
                 this.updateDocSaved(true);
                 gitHubService.updateGist(token, gistId, this.docName, this.content);

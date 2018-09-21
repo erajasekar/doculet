@@ -1,5 +1,5 @@
 import axios, {AxiosPromise, AxiosResponse} from 'axios';
-import {logInfo} from '../utils/logger';
+import {logDebug, logError} from '../utils/logger';
 
 import GistClient from 'gist-client';
 import Constants from '../utils/constants';
@@ -43,7 +43,7 @@ export default class GitHubService {
                 },
                 description: 'Updated from doculet',
             }).then((newGist: any) => {
-                logInfo('Gist updated : ' + gistId);
+                logDebug('Gist updated : ' + gistId);
             });
     }
 
@@ -51,7 +51,7 @@ export default class GitHubService {
 
         const result = this.gistClient.setToken(token)
             .delete(gistId);
-        logInfo(`Gist : ${gistId} is deleted`);
+        logDebug(`Gist : ${gistId} is deleted`);
     }
 
     public enrichSourceType(content: string, language: string) {
@@ -113,11 +113,11 @@ export default class GitHubService {
             }
             return { content, fileName, isAsciiDoc};
         }).catch((error) => {
+            logError(`Error in importing ${error.message}`);
             return {
                 fileName: 'Not Found.adoc',
                 isAsciiDoc: true,
-                content: `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${error.message}`,
-
+                content: `CAUTION: The GistId '${gistId}' is Not Found.\n\nPlease provide valid GistId.`,
             };
         });
     }

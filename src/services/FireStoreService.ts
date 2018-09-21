@@ -1,5 +1,5 @@
 import {doculetsCollection} from '../firestore';
-import {logInfo} from '../utils/logger';
+import {logDebug} from '../utils/logger';
 import firebase from 'firebase/app';
 import '@firebase/firestore';
 
@@ -18,12 +18,12 @@ export class FireStoreService {
         return doculetsCollection.doc(id)
             .set({name: docName, userId, created: firebase.firestore.FieldValue.serverTimestamp()})
             .then( (docRef) => {
-                logInfo(`Saved gist in FireStore : ${id}`);
+                logDebug(`Saved gist in FireStore : ${id}`);
         });
     }
 
     public deleteDoc(id: string) {
-        return doculetsCollection.doc(id).delete().then( () => logInfo(`Document : ${id} is deleted` ));
+        return doculetsCollection.doc(id).delete().then( () => logDebug(`Document : ${id} is deleted` ));
     }
 
     public async getMyDocs(userId: string): Promise<firebase.firestore.QuerySnapshot> {
