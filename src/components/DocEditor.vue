@@ -91,48 +91,21 @@
             if (!gistId) {
                 gistId = Constants.GETTING_STARTED_DOC_GIST_ID;
             }
-            // TODO: content doesn't refresh if we import same gist again.
+            // TODO: content doesn't refresh if we import same gist again. because doesn't trigger.
 
             gitHubService.importGist(gistId).then((gistFile) => {
 
-                if (gistFile.isAsciiDoc) {
+                /* if (gistFile.isAsciiDoc) {
                     if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
                         this.saveDocInDB(gistId, gistFile.fileName);
                     } else {
                         this.updateDocSaved(false);
                     }
-                }
+                }*/
                 this.updateDocName(gistFile.fileName);
                 this.update(gistFile.content);
                 this.updateDocId(gistId);
             });
-
-            /* TODO: REFACTOR to use other version
-            gitHubService.importGistAsync(gistId).then((gistFile) => {
-                const language = gistFile.language.toLowerCase();
-                let content;
-                let filename;
-                if (gitHubService.isAsciiDoc(language)) {
-                    content = gistFile.content;
-                    filename = gistFile.filename;
-
-                    if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
-                        this.saveDocInDB(gistId, filename);
-                    } else {
-                        this.updateDocSaved(false);
-                    }
-                } else {
-                    content = gitHubService.enrichSourceType(gistFile.content, language);
-                    filename = gitHubService.updateExtenstionToAsciiDoc(gistFile.filename);
-                    this.updateDocSaved(false);
-                }
-                this.updateDocName(filename);
-                this.update(content);
-                this.updateDocId(gistId);
-
-           }).catch((error) => {
-               logError(error);
-           });*/
         }
 
         private saveDocInDB(gistId: string, filename: string) {
@@ -142,8 +115,6 @@
                     this.updateDocSaved(true);
                     this.dbService.saveDoc(gistId, filename, this.user.email);
                 }
-            } else {
-                logWarn('Anonymous user. Saving aciidoc will duplicate gist');
             }
         }
 
