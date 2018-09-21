@@ -29,10 +29,12 @@ export default class GitHubService {
                 },
                 description: 'Created from doculet',
                 public: false,
+            }).then((newGist: any) => {
+                logDebug('Gist created : ' + newGist);
             });
     }
 
-    public updateGist(token: string, gistId: string, fileName: string, content: string) {
+    public async updateGist(token: string, gistId: string, fileName: string, content: string) {
 
         return this.gistClient.setToken(token)
             .update(gistId, {

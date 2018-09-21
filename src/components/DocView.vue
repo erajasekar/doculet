@@ -8,7 +8,7 @@
     // TODO clean up unused dependencies
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {gitHubService} from '../services/GitHubService';
-    import {logDebug} from '../utils/logger';
+    import {logDebug, logInfo} from '../utils/logger';
     import Constants from '../utils/constants';
     import {startTime} from '../main';
     import {asciiDoc} from '../asciidoc';
@@ -33,7 +33,7 @@
 
         private updated() {
             const endTime = new Date().getTime();
-            logDebug((endTime - startTime).toLocaleString());
+            logInfo((endTime - startTime).toLocaleString());
         }
 
         @Watch('gistId')

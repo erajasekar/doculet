@@ -78,7 +78,7 @@
             require('brace/theme/chrome');
         }
 
-        @debounce(100, {leading: true})
+        @debounce(10, {leading: true})
         private update(e: string) {
             this.updateDocContent(e);
         }
@@ -95,13 +95,6 @@
 
             gitHubService.importGist(gistId).then((gistFile) => {
 
-                /* if (gistFile.isAsciiDoc) {
-                    if (gistId !== Constants.NEW_DOC_GIST_ID && gistId !== Constants.GETTING_STARTED_DOC_GIST_ID) {
-                        this.saveDocInDB(gistId, gistFile.fileName);
-                    } else {
-                        this.updateDocSaved(false);
-                    }
-                }*/
                 this.updateDocName(gistFile.fileName);
                 this.update(gistFile.content);
                 this.updateDocId(gistId);

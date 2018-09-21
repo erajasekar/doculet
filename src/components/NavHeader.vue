@@ -228,13 +228,15 @@
         }
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
-            querySnapshot.forEach((doc) => {
-                const gistId = doc.id;
-                logDebug(`Found gist in FireStore : ${gistId} ; Current docId: ${this.docId}` );
-                this.updateDocId(gistId);
+
+            const gistId = querySnapshot.docs[0].id; // We limit result to 1.
+            logDebug(`Found gist in FireStore : ${gistId} ; Current docId: ${this.docId}` );
+
+            gitHubService.updateGist(token, gistId, this.docName, this.content).then( (newGist: any) => {
                 this.updateDocSaved(true);
-                gitHubService.updateGist(token, gistId, this.docName, this.content);
+                this.openDocument(gistId);
             });
+
         }
 
         private createGistAndAddToDB(token: string) {
@@ -242,9 +244,10 @@
             gitHubService.saveGist(token, this.docName, this.content)
                 .then((newGist: any) => {
                     const gistId = newGist.id;
-                    this.addToMyDocs({docId: gistId, docName: this.docName});
                     this.dbService.saveDoc(gistId, this.docName, this.user!!.email);
+                    this.addToMyDocs({docId: gistId, docName: this.docName});
                     this.updateDocSaved(true);
+                    this.openDocument(gistId);
                 });
         }
 
