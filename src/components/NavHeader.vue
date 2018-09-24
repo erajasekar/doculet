@@ -165,6 +165,7 @@
 
         private saveDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+            console.log(this.docSaved);
             if (this.user && this.docName && token) {
                 if (!this.docSaved) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
@@ -230,7 +231,8 @@
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
 
             const gistId = querySnapshot.docs[0].id; // We limit result to 1.
-            logDebug(`Found gist in FireStore : ${gistId} ; Current docId: ${this.docId}` );
+            const ownerId = querySnapshot.docs[0].data().ownerId;
+            logDebug(`Found gist in FireStore : ${gistId} with ownerId : ${ownerId} ; Imported gist ownerId: ${this.docOwnerId}` );
 
             gitHubService.updateGist(token, gistId, this.docName, this.content).then( (newGist: any) => {
                 this.updateDocSaved(true);

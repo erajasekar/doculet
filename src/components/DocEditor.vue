@@ -117,10 +117,6 @@
                 }
             }
         }
-
-        private createErrorMessage(gistId: string, errorMessage: string) {
-            return `CAUTION: The gistId '${gistId}' is Not Found.\n\nError: ${errorMessage}`; // TODO REMOVE
-        }
     }
 </script>
 
