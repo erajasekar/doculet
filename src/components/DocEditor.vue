@@ -103,7 +103,7 @@
             });
         }
 
-        private saveDocInDB(gistId: string, filename: string) {
+       /* TODO REMOVE private saveDocInDB(gistId: string, filename: string) {
             if (this.user) {
                 const existing = this.addToMyDocs({docId: gistId, docName: filename});
                 if (!existing) {
@@ -116,7 +116,7 @@
                         });
                 }
             }
-        }
+        }*/
     }
 </script>
 
