@@ -2,6 +2,7 @@ import {doculetsCollection} from '../firestore';
 import {logDebug} from '../utils/logger';
 import firebase from 'firebase/app';
 import '@firebase/firestore';
+import {DoculetDocBase} from '../store/modules/doculet';
 
 export class FireStoreService {
 
@@ -14,11 +15,16 @@ export class FireStoreService {
 
     }
 
-    public async saveDoc(id: string, docName: string, userId: string) {
-        return doculetsCollection.doc(id)
-            .set({name: docName, userId, created: firebase.firestore.FieldValue.serverTimestamp()})
+    public async saveDoc(userId: string, doc: DoculetDocBase) {
+        return doculetsCollection.doc(doc.docId)
+            .set({
+                name: doc.docName,
+                userId,
+                ownerId: doc.docOwnerId,
+                created: firebase.firestore.FieldValue.serverTimestamp(),
+            })
             .then( (docRef) => {
-                logDebug(`Saved gist in FireStore : ${id}`);
+                logDebug(`Saved gist in FireStore : ${doc.docId}`);
         });
     }
 

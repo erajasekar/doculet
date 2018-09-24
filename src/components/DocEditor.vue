@@ -33,6 +33,7 @@
     import * as User from '../store/modules/user';
     import {logWarn, logDebug} from '../utils/logger';
     import Constants from '@/utils/constants';
+    import {DoculetDocBase} from '../store/modules/doculet';
 
     @Component({
         components: {
@@ -47,10 +48,12 @@
         @Getter('user') private user!: User.UserType;
 
         @Getter('docName') private docName!: string;
+        @Getter('docOwnerId') private docOwnerId!: string;
 
         @Getter('content') private content!: string;
 
         @Action('updateDocName') private updateDocName: any;
+        @Action('updateDoc') private updateDoc: any;
         @Action('updateDocId') private updateDocId: any;
         @Action('updateDocSaved') private updateDocSaved: any;
         @Action('updateDocContent') private updateDocContent: any;
@@ -95,10 +98,8 @@
 
             gitHubService.importGist(gistId).then((gistFile) => {
 
-                this.updateDocName(gistFile.fileName);
+                this.updateDoc({docName: gistFile.fileName, docId: gistId, docOwnerId: gistFile.ownerId});
                 this.update(gistFile.content);
-                this.updateDocId(gistId);
-                console.log(gistFile);
             });
         }
 
@@ -107,7 +108,12 @@
                 const existing = this.addToMyDocs({docId: gistId, docName: filename});
                 if (!existing) {
                     this.updateDocSaved(true);
-                    this.dbService.saveDoc(gistId, filename, this.user.email);
+                    this.dbService.saveDoc(this.user.email,
+                        {
+                            docId: gistId,
+                            docName: filename,
+                            docOwnerId: this.docOwnerId,
+                        });
                 }
             }
         }

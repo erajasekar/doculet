@@ -11,7 +11,7 @@ export interface GistFile {
     ownerId: string;
 }
 
-export default class GitHubService {
+class GitHubService {
     private gistClient = new GistClient();
 
 
@@ -77,21 +77,7 @@ export default class GitHubService {
         return filename.substr(0, pos < 0 ? filename.length : pos) + '.adoc';
     }
 
-    public async importGistAsync(gistId: string) {
 
-        const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
-
-        // Use token if present to avoid rate limiting.
-        if (token) {
-            return this.gistClient.setToken(token).getOneById(gistId).then( (data: any) => {
-                return this.getFirstFile(data);
-            });
-        } else {
-            const resp: AxiosResponse = await axios.get(Constants.GITHUB_API_URL + gistId);
-            return this.getFirstFile(resp.data);
-        }
-
-    }
 
     public parseUrl(url: string) {
         // TODO handle other format of gist ids like raw url, github url etc
@@ -110,11 +96,10 @@ export default class GitHubService {
         let content: string;
         let fileName: string;
         let isAsciiDoc: boolean;
-        let ownerId: string;
-        return this.importGistAsync(gistId).then((gistFile) => {
+        return this.importGistData(gistId).then((gistData) => {
+            const gistFile = this.getFirstFile(gistData);
             const language = gistFile.language.toLowerCase();
-            console.log(gistFile);
-            ownerId = gistFile.owner.id;
+            const ownerId = String(gistData.owner.id);
             if (this.isAsciiDoc(language)) {
                 content = gistFile.content;
                 fileName = gistFile.filename;
@@ -129,6 +114,22 @@ export default class GitHubService {
             const message = `CAUTION: The GistId '${gistId}' is Not Found.\n\nPlease provide valid GistId.`;
             return this.handleError(error, 'importing', message);
         });
+    }
+
+    private async importGistData(gistId: string) {
+
+        const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
+
+        // Use token if present to avoid rate limiting.
+        if (token) {
+            return this.gistClient.setToken(token).getOneById(gistId).then( (data: any) => {
+                return data;
+            });
+        } else {
+            const resp: AxiosResponse = await axios.get(Constants.GITHUB_API_URL + gistId);
+            return resp.data;
+        }
+
     }
 
     private handleError(error: any, operation: string, message: string): GistFile {

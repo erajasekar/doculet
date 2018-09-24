@@ -121,10 +121,10 @@
         @Getter('user') private user!: User.UserType;
 
         @Getter('docName') private docName!: string;
+        @Getter('docOwnerId') private docOwnerId!: string;
         @Getter('docId') private docId!: string;
         @Getter('docSaved') private docSaved!: boolean;
         @Getter('content') private content!: string;
-        @Action('updateDocId') private updateDocId: any;
         @Action('updateDocSaved') private updateDocSaved: any;
         @Action('addToMyDocs') private addToMyDocs: any;
         @Action('deleteFromMyDocs') private deleteFromMyDocs: any;
@@ -244,7 +244,11 @@
             // Create gist and save in firestore.
             gitHubService.saveGist(token, this.docName, this.content).then((newGist: any) => {
                     const gistId = newGist.id;
-                    this.dbService.saveDoc(gistId, this.docName, this.user!!.email);
+                    this.dbService.saveDoc(this.user!!.email, {
+                        docId: gistId,
+                        docName: this.docName,
+                        docOwnerId: String(newGist.owner.id),
+                    });
                     this.addToMyDocs({docId: gistId, docName: this.docName});
                     this.updateDocSaved(true);
                     this.openDocument(gistId);
