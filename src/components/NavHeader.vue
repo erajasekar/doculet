@@ -8,7 +8,7 @@
         <b-navbar-brand to="/">
 
           <!--  <b-img  width="200" height="30" src="https://www.dropbox.com/s/63hwbzo196p0vlh/Screen%20Shot%202018-09-19%20at%2010.50.47%20PM.png?raw=1" fluid alt="Doculet logo"></b-img> -->
-            <b-img  width="200" height="50" src="https://www.dropbox.com/s/yz5ojblzgd5sc89/Screen%20Shot%202018-09-19%20at%2010.51.39%20PM.png?raw=1" fluid alt="Doculet logo"></b-img>  
+            <b-img  width="200" height="50" class="logo" src="https://www.dropbox.com/s/yz5ojblzgd5sc89/Screen%20Shot%202018-09-19%20at%2010.51.39%20PM.png?raw=1" fluid alt="Doculet logo"></b-img>  
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
@@ -262,6 +262,7 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped scoped lang="stylus">
+    .logo
+        padding-left 30px;
 </style>

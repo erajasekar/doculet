@@ -33,6 +33,9 @@ export default class GitHubService {
         return promise.then( (gist: any) => {
             logDebug('Gist created : ' + gist.id);
             return gist;
+        }).catch((error: any) => { // TODO use popup for error msg
+            const message = `CAUTION: The Gist doesn't exist or not owned by you`;
+            return this.handleError(error, 'creating', message);
         });
     }
 
@@ -48,6 +51,9 @@ export default class GitHubService {
                 description: 'Updated from doculet',
             }).then((newGist: any) => {
                 logDebug('Gist updated : ' + gistId);
+            }).catch((error: any) => { // TODO use popup for error msg
+                const message = `CAUTION: The GistId '${gistId}' doesn't exist or not owned by you`;
+                return this.handleError(error, 'saving', message);
             });
     }
 
@@ -117,13 +123,18 @@ export default class GitHubService {
             }
             return { content, fileName, isAsciiDoc};
         }).catch((error) => {
-            logError(`Error in importing ${error.message}`);
-            return {
-                fileName: 'Not Found.adoc',
-                isAsciiDoc: true,
-                content: `CAUTION: The GistId '${gistId}' is Not Found.\n\nPlease provide valid GistId.`,
-            };
+            const message = `CAUTION: The GistId '${gistId}' is Not Found.\n\nPlease provide valid GistId.`;
+            return this.handleError(error, 'importing', message);
         });
+    }
+
+    private handleError(error: any, operation: string, message: string): GistFile {
+        logError(`Error in ${operation} : ${error.message}`);
+        return {
+            fileName: 'Not Found.adoc',
+            isAsciiDoc: true,
+            content: `CAUTION: ${message}`,
+        };
     }
 
     private getFirstFile(data: any) {
