@@ -64,7 +64,6 @@ const actions =  {
 
     },
     autoSignIn(store: ActionContext<State, firebase.User>, payload: firebase.User) {
-
         store.commit('setUser', {
             id: payload.uid,
             name: payload.displayName,

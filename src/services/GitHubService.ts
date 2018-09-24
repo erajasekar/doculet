@@ -8,6 +8,7 @@ export interface GistFile {
     fileName: string;
     content: string;
     isAsciiDoc: boolean;
+    ownerId: string;
 }
 
 export default class GitHubService {
@@ -109,9 +110,11 @@ export default class GitHubService {
         let content: string;
         let fileName: string;
         let isAsciiDoc: boolean;
+        let ownerId: string;
         return this.importGistAsync(gistId).then((gistFile) => {
             const language = gistFile.language.toLowerCase();
-
+            console.log(gistFile);
+            ownerId = gistFile.owner.id;
             if (this.isAsciiDoc(language)) {
                 content = gistFile.content;
                 fileName = gistFile.filename;
@@ -121,7 +124,7 @@ export default class GitHubService {
                 fileName = this.updateExtenstionToAsciiDoc(gistFile.filename);
                 isAsciiDoc = false;
             }
-            return { content, fileName, isAsciiDoc};
+            return { content, fileName, isAsciiDoc, ownerId};
         }).catch((error) => {
             const message = `CAUTION: The GistId '${gistId}' is Not Found.\n\nPlease provide valid GistId.`;
             return this.handleError(error, 'importing', message);
@@ -134,6 +137,7 @@ export default class GitHubService {
             fileName: 'Not Found.adoc',
             isAsciiDoc: true,
             content: `CAUTION: ${message}`,
+            ownerId: 'Not Found',
         };
     }
 

@@ -98,6 +98,7 @@
                 this.updateDocName(gistFile.fileName);
                 this.update(gistFile.content);
                 this.updateDocId(gistId);
+                console.log(gistFile);
             });
         }
 
