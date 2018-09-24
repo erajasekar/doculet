@@ -12,11 +12,11 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: DocEditor,
+            component: Home,
         },
         {
             path: '/edit/:gistId',
-            name: 'home-gist-import',
+            name: 'editor',
             component: DocEditor ,
             props: true,
         },

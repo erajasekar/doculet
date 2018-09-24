@@ -1,0 +1,16 @@
+//@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+@import "bootstrap-variable-override";
+
+.home {
+  height: 100%;
+  width: 100%;
+}
+
+.display-3{
+  color: black;
+}
+
+.lead {
+  color:black
+}

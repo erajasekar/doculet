@@ -1,6 +1,18 @@
 <template>
     <div class="home" >
-        <doc-editor/>
+        <b-jumbotron header="DOCULET" fluid lead="Easily share beautiful code snippets in your blog, medium articles or in any website" bg-variant="light">
+
+            <b-btn @click="openGettingStarted" variant="success" v-b-tooltip.hover
+                   title="Get Started">Get Started</b-btn>
+        </b-jumbotron>
+
+        <b-jumbotron header="DOCULET" fluid lead="Easily share beautiful code snippets in your blog, medium articles or in any website" bg-variant="warning">
+
+            <b-btn @click="openGettingStarted" variant="success" v-b-tooltip.hover
+                   title="Get Started">Get Started</b-btn>
+        </b-jumbotron>
+
+
     </div>
 
 
@@ -9,19 +21,18 @@
 <script lang="ts">
     // TODO remove this if not needed
     import {Component, Vue} from 'vue-property-decorator';
-    import DocEditor from '@/components/DocEditor.vue'; // @ is an alias to /src
+    import Constants from '../utils/constants';
 
-    @Component({
-        components: {
-            DocEditor,
-        },
-    })
+    @Component
     export default class Home extends Vue {
+        private openGettingStarted() {
+            this.$router.push(`/edit/${Constants.GETTING_STARTED_DOC_GIST_ID}`);
+        }
     }
 </script>
 
-<style scoped lang="stylus">
-    .home
-        height: 100%
-        width: 100%
+<style scoped lang="scss">
+
+    @import '../assets/scss/home.scss';
+
 </style>

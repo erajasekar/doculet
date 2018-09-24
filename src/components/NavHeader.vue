@@ -86,9 +86,9 @@
                     </b-nav-item>
                 </div>
 
-                <b-nav-item right>
+              <!-- TODO MOVE TO FOOTER  <b-nav-item right>
                     <router-link to="/about">About</router-link>
-                </b-nav-item>
+                </b-nav-item> -->
             </b-navbar-nav>
 
         </b-collapse>
@@ -267,7 +267,7 @@
     }
 </script>
 
-<style scoped scoped lang="stylus">
+<style scoped lang="stylus">
     .logo
         padding-left 30px;
 </style>

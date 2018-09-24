@@ -1,3 +1,5 @@
+$navBackground: #65F1E9;
+
 .nav-link a {
   color: white;
   font-weight: normal;
@@ -13,7 +15,7 @@
   //background-color: #47B784;
  // background-color: #328F94;
   //background-color: #24656B;
- // background-color: #65F1E9;
+ // background-color: $navBackground;
 
   .btn-light{
     border-color: $gray-500;
@@ -21,7 +23,7 @@
 }
 
 .toggle-button {
-  background-color: #65F1E9;
+  background-color: $navBackground;
   border-width: 0px;
   margin-right: 10px;
 }
