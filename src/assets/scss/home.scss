@@ -6,8 +6,9 @@
 $textColor: black;
 
 .home {
-  height: 100%;
   width: 100%;
+  overflow: scroll;
+  height: 100%
 }
 
 h1, p{
@@ -25,7 +26,7 @@ h1, p{
 
 #home-block1 {
   background-color: #FDE7A2;
-  height: 700px;
+ // height: 700px;
   padding-top: 5px; 
   margin-bottom: 1px;
 }

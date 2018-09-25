@@ -33,7 +33,7 @@
 
         </b-jumbotron>
 
-        <b-jumbotron ref="what-is-doculet" id="home-block2" header="What is Doculet?" fluid>
+       <b-jumbotron ref="what-is-doculet" id="home-block2" header="What is Doculet?" fluid>
 
             <p>
                 Doculet is a free open source project to easily create, share and embed code examples in your blog,
@@ -48,7 +48,7 @@
             </b-btn>
         </b-jumbotron>
 
-        <b-jumbotron id="home-block3" header="How to Use?" fluid>
+        <!-- <b-jumbotron id="home-block3" header="How to Use?" fluid>
 
             <ul>
                 <li>
@@ -119,7 +119,7 @@
                 <li>Search in document list.
                 </li>
             </ul>
-        </b-jumbotron>
+        </b-jumbotron>-->
 
 
     </div>
