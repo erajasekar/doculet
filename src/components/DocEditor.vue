@@ -13,7 +13,7 @@
 
             <div class="preview-pane" v-highlightjs="compiledHtml"/>
         </div>
-
+        <bottom-footer></bottom-footer>
 
     </div>
 </template>
@@ -34,10 +34,12 @@
     import {logWarn, logDebug} from '../utils/logger';
     import Constants from '@/utils/constants';
     import {DoculetDocBase} from '../store/modules/doculet';
+    import BottomFooter from '@/components/BottomFooter';
 
     @Component({
         components: {
             editor,
+            BottomFooter,
         },
         props: {
             gistId: String,

@@ -139,6 +139,8 @@
             </ul>
         </b-jumbotron>
 
+        <bottom-footer></bottom-footer>
+
 
     </div>
 
@@ -148,8 +150,13 @@
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
     import Constants from '../utils/constants';
+    import BottomFooter from '@/components/BottomFooter';
 
-    @Component
+    @Component({
+        components: {
+            BottomFooter,
+        },
+    })
     export default class Home extends Vue {
         private openGettingStarted() {
             this.$router.push(`/edit/${Constants.GETTING_STARTED_DOC_GIST_ID}`);

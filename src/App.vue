@@ -7,7 +7,7 @@
             <main id="panel">
                 <router-view/>
             </main>
-            <footer class="footer">My footer</footer>
+
         </Slideout>
         <div v-else>
             <main id="panel">
@@ -72,12 +72,6 @@
         width: 100%;
     }
 
-    footer {
-        height: 30px;
-        width: 100%;
-        background-color: #0A2A66;
-        color:white;
-        display: block;
-    }
+
 </style>
 
