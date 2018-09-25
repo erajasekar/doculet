@@ -1,50 +1,67 @@
 //@import '~bootstrap/dist/css/bootstrap.css';
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 @import "bootstrap-variable-override";
-@import url('https://fonts.googleapis.com/css?family=Arvo');
+// @import url('https://fonts.googleapis.com/css?family=Arvo');
+@import url('https://fonts.googleapis.com/css?family=Graduate');
 
 $textColor: black;
 
 .home {
   width: 100%;
-  overflow: scroll;
+  overflow: visible; //FIX FOOTER'
+  font-size: x-large;
   height: 100%;
 }
 
 h1, p{
   color: $white;
+
+//  font-size: xx-large;
   border-bottom:0px;
 }
 
 .lead {
   padding-top: 30px;
-  padding-left: 10px;
-  color: red;
-  font-family: 'Arvo', serif; // TODO
+  padding-left: 5px;
+  color: white;
+  font-size: xx-large;
+  font-style: italic;
+ // font-family: 'Arvo', serif; // TODO
 
 }
 
 #home-block1 {
-  background-color: #129D73;
+  h1 {
+    text-align: center;
+    font-family: 'Graduate', cursive;
+  }
+  background-color: #3D8C93;
   background-image: url('https://www.dropbox.com/s/umvy4j4gx54f7c9/background5.jpg?raw=1');
+ // background-image: url('https://www.dropbox.com/s/jtxvxdbsnhfc29s/background1.jpg?raw=1');
  // height: 700px;
-  padding-top: 5px; 
   margin-bottom: 1px;
 }
+
+// todo refactor to remove dups
 
 #home-block2 {
   h1, p {
     color: $textColor;
   }
 //  background-color: #00e676;
-  background-color: white;
+//  background-color: white;
   color: $textColor;
  // height: 600px;
   margin-bottom: 1px;
 }
 
 #home-block3 {
+  h1, p , ul, li{
+    color: $textColor;
+  }
 //  background-color: #9effff;
   // height: 600px;
   margin-bottom: 1px;
+ // background-color: white;
 }
+

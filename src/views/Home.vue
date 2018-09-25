@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <b-jumbotron id="home-block1" fluid
-                     lead="Easily share and embed code examples in your blog, medium articles or any website.">
+                     lead="Easily share and embed code examples in your blog, medium articles or in any website.">
 
             <template slot="header">
                 <h1> DOCULET </h1>
@@ -23,7 +23,7 @@
                             to stay tuned.
                         </p>
                         <p>
-                            <b-btn @click="scrollTo('what-is-doculet')" variant="success"
+                            <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
                                    title="Learn more" size="lg">Learn more
                             </b-btn>
                         </p>
@@ -44,6 +44,27 @@
                 It’s beautiful alternative to using GitHub Gist to embed code in your website.
             </p>
 
+            <h2>
+                Comment your code with callouts
+            </h2>
+
+           <p>
+               Doculet uses human readable and easy to use Asciidoc document markup.
+               Asciidoc provides builtin support for code callouts.
+           </p>
+
+           <p>
+               <b-img width="600" height="400" class="logo"
+                      src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
+                      alt="Code Example"></b-img>
+           <p>
+               Github gists are automatically convert to Asciidoc format during import.
+           </p>
+
+           <p>
+               To learn more see <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc
+               Syntax Quick Reference</a>.
+           </p>
             <b-btn @click="openGettingStarted" variant="success" v-b-tooltip.hover
                    title="Get Started">Get Started
             </b-btn>
@@ -65,7 +86,7 @@
 
         </b-jumbotron>
 
-        <b-jumbotron id="home-block4" header="Comment your code with callouts" fluid>
+        <b-jumbotron id="home-block3" header="Comment your code with callouts" fluid>
             <p>
                 Doculet uses human readable and easy to use Asciidoc document markup.
                 Asciidoc provides builtin support for code callouts.
@@ -83,9 +104,9 @@
                 To learn more see <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc
                 Syntax Quick Reference</a>.
             </p>
-        </b-jumbotron>
+        </b-jumbotron>-->
 
-        <b-jumbotron id="home-block5" header="Features Roadmap" fluid>
+        <b-jumbotron id="home-block3" header="Features and Roadmap" fluid>
             <h3>Prerelease (Current)</h3>
             <br>
             <ul>
@@ -120,7 +141,7 @@
                 <li>Search in document list.
                 </li>
             </ul>
-        </b-jumbotron>-->
+        </b-jumbotron>
 
 
     </div>
