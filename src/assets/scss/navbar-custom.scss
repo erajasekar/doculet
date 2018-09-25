@@ -1,4 +1,5 @@
 $navBackground: #65F1E9;
+$borderColor: #4A596F;
 
 .nav-link a {
   color: white;
@@ -16,6 +17,7 @@ $navBackground: #65F1E9;
  // background-color: #328F94;
   //background-color: #24656B;
  // background-color: $navBackground;
+  border-bottom: $borderColor solid 2px;
 
   .btn-light{
     border-color: $gray-500;

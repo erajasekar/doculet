@@ -1,15 +1,23 @@
 <template>
     <div class="home" >
-        <b-jumbotron header="DOCULET" fluid lead="Easily share beautiful code snippets in your blog, medium articles or in any website" bg-variant="light">
+        <b-jumbotron id="home-block1" fluid lead=" Easily share and embed code examples in your blog, medium articles or any website.">
+
+            <template slot="header">
+                <b-img  width="300" height="100" class="logo" src="https://www.dropbox.com/s/ynub19s42d400a9/Screen%20Shot%202018-09-24%20at%2011.05.46%20PM.png?raw=1" fluid alt="Doculet logo"></b-img>
+            </template>
 
             <b-btn @click="openGettingStarted" variant="success" v-b-tooltip.hover
                    title="Get Started">Get Started</b-btn>
         </b-jumbotron>
 
-        <b-jumbotron header="DOCULET" fluid lead="Easily share beautiful code snippets in your blog, medium articles or in any website" bg-variant="warning">
+        <b-jumbotron id="home-block2" header="What is Doculet?" fluid>
 
-            <b-btn @click="openGettingStarted" variant="success" v-b-tooltip.hover
-                   title="Get Started">Get Started</b-btn>
+            <p>
+                Doculet is a free open source project to easily create, share and embed code examples in your blog, medium articles or any of your website.
+            </p>
+            <p>
+                It’s beautiful  alternative to GitHub Gist to embed code in any website.
+            </p>
         </b-jumbotron>
 
 

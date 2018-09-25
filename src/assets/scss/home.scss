@@ -1,16 +1,36 @@
 //@import '~bootstrap/dist/css/bootstrap.css';
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 @import "bootstrap-variable-override";
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+$textColor: black;
 
 .home {
   height: 100%;
   width: 100%;
 }
 
-.display-3{
-  color: black;
+h1, p{
+  color: $textColor;
+  border-bottom:0px;
 }
 
 .lead {
-  color:black
+  padding-top: 30px;
+  padding-left: 10px;
+  color:$textColor;
+  font-family: 'Arvo', serif; // TODO
+
+}
+
+#home-block1 {
+  background-color: #FDE7A2;
+  height: 700px;
+  margin-bottom: 1px;
+}
+
+#home-block2 {
+  background-color: #00e676;
+ // height: 600px;
+  margin-bottom: 0px;
 }
