@@ -44,9 +44,9 @@
                 It’s beautiful alternative to using GitHub Gist to embed code in your website.
             </p>
 
-            <h2>
+            <h3>
                 Comment your code with callouts
-            </h2>
+            </h3>
 
            <p>
                Doculet uses human readable and easy to use Asciidoc document markup.
