@@ -1,5 +1,20 @@
 <template>
-    <footer class="footer">My footer</footer>
+    <footer class="footer">
+
+        <b-jumbotron id="footer" fluid bg-variant="primary" text-variant="white">
+
+            <b-container fluid class="bv-example-row">
+                <b-row>
+                    <b-col>&copy; DOCULET by <a href="https://twitter.com/erajasekar">Rajasekar Elango</a>
+                    </b-col>
+                    <b-col>
+                        <b-link to="/about">About</b-link>
+                    </b-col>
+                </b-row>
+            </b-container>
+
+        </b-jumbotron>
+    </footer>
 </template>
 
 <script lang="ts">
@@ -11,13 +26,6 @@
     }
 </script>
 
-<style scoped lang="stylus">
-
-    footer
-        height 30px
-        width 100%
-        background-color #0A2A66
-        color white
-        display block
-
+<style scoped lang="scss">
+    @import '../assets/scss/footer.scss';
 </style>

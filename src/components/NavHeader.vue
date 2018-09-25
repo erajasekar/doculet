@@ -86,9 +86,7 @@
                     </b-nav-item>
                 </div>
 
-              <!-- TODO MOVE TO FOOTER  <b-nav-item right>
-                    <router-link to="/about">About</router-link>
-                </b-nav-item> -->
+
             </b-navbar-nav>
 
         </b-collapse>

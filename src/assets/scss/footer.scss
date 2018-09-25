@@ -1,0 +1,13 @@
+$linkColor: white;
+
+#footer {
+  width: 100%;
+  margin-bottom: 0px;
+  color :black;
+  a {
+    color: $linkColor;
+    &:hover {
+      color: $linkColor;
+    }
+  }
+}
