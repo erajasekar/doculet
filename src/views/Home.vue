@@ -20,6 +20,22 @@
             </p>
         </b-jumbotron>
 
+        <b-jumbotron id="home-block3" header="How to Use?" fluid>
+
+            <ul>
+                <li>
+                    You can create import a existing gist or directly edit in doculet editor.
+                </li>
+                <li>
+                    You can save your work by clicking save button.
+                </li>
+                <li>
+                    Once your are done, hit publish to share. Click on share button to copy link to share.
+                </li>
+            </ul>
+
+        </b-jumbotron>
+
 
     </div>
 
