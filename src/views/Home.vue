@@ -41,22 +41,22 @@
                 medium articles or any of your website.
             </p>
             <p>
-                It’s beautiful alternative to using GitHub Gist to embed code in your website.
+                It’s beautiful alternative to embedding code using GitHub Gists.
             </p>
 
-            <h3>
-                Comment your code with callouts
-            </h3>
-
-           <p>
+        <!--   <p>
                Doculet uses human readable and easy to use Asciidoc document markup.
                Asciidoc provides builtin support for code callouts.
            </p>
 
-           <p>
-               <b-img width="600" height="400" class="logo"
-                      src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
-                      alt="Code Example"></b-img>
+           <h3>
+                Comment your code with callouts
+            </h3>
+
+           <b-img width="600" height="400" class="logo"
+                  src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
+                  alt="Code Example"></b-img>
+
            <p>
                Github gists are automatically convert to Asciidoc format during import.
            </p>
@@ -64,9 +64,9 @@
            <p>
                To learn more see <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc
                Syntax Quick Reference</a>.
-           </p>
-            <b-btn @click="openGettingStarted" variant="success" v-b-tooltip.hover
-                   title="Get Started">Get Started
+           </p> -->
+            <b-btn @click="openGettingStarted" variant="primary" size="lg" title="Get Started">
+                Get Started
             </b-btn>
         </b-jumbotron>
 
@@ -84,12 +84,12 @@
                 </li>
             </ul>
 
-        </b-jumbotron>
+        </b-jumbotron> -->
 
         <b-jumbotron id="home-block3" header="Comment your code with callouts" fluid>
             <p>
-                Doculet uses human readable and easy to use Asciidoc document markup.
-                Asciidoc provides builtin support for code callouts.
+                Doculet uses human readable and easy to use <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc</a>
+                document markup which provides builtin support for code callouts.
             </p>
 
             <p>
@@ -100,36 +100,32 @@
                 Github gists are automatically convert to Asciidoc format during import.
             </p>
 
-            <p>
-                To learn more see <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc
-                Syntax Quick Reference</a>.
-            </p>
-        </b-jumbotron>-->
+        </b-jumbotron>
 
-        <b-jumbotron id="home-block3" header="Features and Roadmap" fluid>
-            <h3>Prerelease (Current)</h3>
+        <b-jumbotron id="home-block4" header="Features and Roadmap" fluid>
+            <h3>Prerelease Version 0.1 (Currently available)</h3>
             <br>
             <ul>
+                <li>Login using Github.
+                </li>
                 <li>Import Github Gist.
                 </li>
-                <li>Create documents in editor with preview
+                <li>Edit documents in editor with preview.
                 </li>
-                <li>Save documents
+                <li>Save documents.
                 </li>
-                <li>See list of your documents
+                <li>See list of your documents.
                 </li>
             </ul>
             <br>
-            <h3>Version 1</h3>
+            <h3>Version 1.0</h3>
             <br>
             <ul>
-                <li>Publish documents for share
+                <li>Publish documents for sharing.
                 </li>
                 <li>Share and embed documents in any website.
                 </li>
-                <li>Save code snippets as png image.
-                </li>
-                <li>Better user interface.
+                <li>Better user experience.
                 </li>
             </ul>
             <br>
@@ -138,7 +134,7 @@
             <ul>
                 <li>More themes and ability switch between themes.
                 </li>
-                <li>Search in document list.
+                <li>Search your document list.
                 </li>
             </ul>
         </b-jumbotron>
