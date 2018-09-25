@@ -4,9 +4,10 @@
                      lead="Easily share and embed code examples in your blog, medium articles or any website.">
 
             <template slot="header">
-                <b-img width="300" height="100" class="logo"
+                <h1> DOCULET </h1>
+               <!-- <b-img width="300" height="100" class="logo"
                        src="https://www.dropbox.com/s/ynub19s42d400a9/Screen%20Shot%202018-09-24%20at%2011.05.46%20PM.png?raw=1"
-                       fluid alt="Doculet logo"></b-img>
+                       fluid alt="Doculet logo"></b-img> -->
             </template>
 
             <b-container fluid class="bv-example-row">

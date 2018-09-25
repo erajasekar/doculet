@@ -75,7 +75,7 @@
     footer {
         height: 30px;
         width: 100%;
-        background-color: #1E2C40;
+        background-color: #0A2A66;
         color:white;
         display: block;
     }

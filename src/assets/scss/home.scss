@@ -8,37 +8,43 @@ $textColor: black;
 .home {
   width: 100%;
   overflow: scroll;
-  height: 100%
+  height: 100%;
 }
 
 h1, p{
-  color: $textColor;
+  color: $white;
   border-bottom:0px;
 }
 
 .lead {
   padding-top: 30px;
   padding-left: 10px;
-  color:$textColor;
+  color: red;
   font-family: 'Arvo', serif; // TODO
 
 }
 
 #home-block1 {
-  background-color: #FDE7A2;
+  background-color: #129D73;
+  background-image: url('https://www.dropbox.com/s/umvy4j4gx54f7c9/background5.jpg?raw=1');
  // height: 700px;
   padding-top: 5px; 
   margin-bottom: 1px;
 }
 
 #home-block2 {
-  background-color: #00e676;
+  h1, p {
+    color: $textColor;
+  }
+//  background-color: #00e676;
+  background-color: white;
+  color: $textColor;
  // height: 600px;
   margin-bottom: 1px;
 }
 
 #home-block3 {
-  background-color: #9effff;
+//  background-color: #9effff;
   // height: 600px;
   margin-bottom: 1px;
 }
