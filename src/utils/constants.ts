@@ -28,4 +28,9 @@ export default class Constants {
     public static readonly MENU_ICON_COLOR = '#1E2C40';
     public static readonly GITHUB_API_URL = 'https://api.github.com/gists/';
     public static readonly GITHUB_DOCULET_OWNER_ID = '629276';
+    public static readonly DOCULET_TITLE = 'Doculet - Easily share and embed code examples in any website';
+    public static readonly DOCULET_DESCRIPTION = 'Doculet is a free open source project to easily create, ' +
+        'share and embed code examples in your blog,' +
+        'medium articles or any of your website.';
+    public static readonly DOCULET_SEO_KEYWORDS='code, share, embed, blog, website, comments, programming, computer science'
 }
