@@ -1,0 +1,54 @@
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+@import "bootstrap-variable-override";
+
+// TODO refactor css variables and share mixins between home and about
+
+$textColor: black;
+$linkColor: #FFCC6B;
+$backgroundColor1: #3D8C93;
+$backgroundColor2: #67ffa6;
+
+.about {
+  width: 100%;
+  overflow: visible; //FIX FOOTER'
+  font-size: x-large;
+  height: 100%;
+}
+
+h1, p, ul, li, h4{
+  color: $textColor;
+  font-family: 'Titillium Web', sans-serif;
+
+  border-bottom:0px;
+}
+
+h2, h3{
+  color: $textColor;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.lead {
+  padding-top: 20px;
+  padding-left: 5px;
+  color: $textColor;
+  font-family: 'Roboto', sans-serif;
+  font-size: x-large;
+}
+
+#about-block1 {
+  background-color: white;
+  h1 {
+    text-align: center;
+  }
+  p {
+    color: $textColor;
+    a {
+      color: $linkColor;
+      &:hover {
+        color: $linkColor;
+      }
+    }
+  }
+
+  margin-bottom: 1px;
+}
