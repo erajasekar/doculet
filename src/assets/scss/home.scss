@@ -25,12 +25,15 @@ h1, p, ul, li{
   border-bottom:0px;
 }
 
-ul {
-  list-style: none;
+ul.features-done {
+    list-style: none;
+    li:before {
+      content: ' ✓  ';
+    }
 }
 
-ul li:before {
-  content: '✓';
+ul {
+  list-style: square;
 }
 
 h3 {
@@ -87,6 +90,7 @@ h3 {
     color: $textColor;
   }
   background-color: $backgroundColor2;
+  background-image: url('https://www.dropbox.com/s/g07fwh73aq9oout/background6.jpg?raw=1');
 }
 
 #home-block4 {

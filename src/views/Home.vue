@@ -103,16 +103,17 @@
                 <b-img width="600" height="400" class="logo"
                        src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
                        alt="Code Example"></b-img>
-            <p>
-                Github gists are automatically convert to Asciidoc format during import.
             </p>
+          <!-- TODO  <p>
+                Github gists are automatically convert to Asciidoc format during import.
+            </p> -->
 
         </b-jumbotron>
 
         <b-jumbotron id="home-block4" header="Features and Roadmap" fluid>
             <h3>Prerelease Version 0.1 (Currently available)</h3>
             <br>
-            <ul>
+            <ul class="features-done">
                 <li>Login using Github.
                 </li>
                 <li>Import Github Gist.

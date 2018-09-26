@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
 
-        <b-jumbotron id="footer" fluid bg-variant="primary" text-variant="white">
+        <b-jumbotron id="footer" fluid text-variant="white">
 
             <b-container fluid class="bv-example-row">
                 <b-row>
