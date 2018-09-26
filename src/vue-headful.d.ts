@@ -1,1 +1,1 @@
-declare module 'vue-slideout';
+declare module 'vue-headful';

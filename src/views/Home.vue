@@ -1,5 +1,12 @@
 <template>
     <div class="home">
+
+        <vue-headful
+                :title="title"
+                :description="description"
+                :keywords="keywords"
+        />
+
         <b-jumbotron id="home-block1" fluid
                      lead="Easily share and embed code examples in your blog, medium articles or in any website.">
 
@@ -158,6 +165,11 @@
         },
     })
     export default class Home extends Vue {
+
+        private title = Constants.DOCULET_TITLE;
+        private description = Constants.DOCULET_DESCRIPTION;
+        private keywords = Constants.DOCULET_SEO_KEYWORDS;
+
         private openGettingStarted() {
             this.$router.push(`/edit/${Constants.GETTING_STARTED_DOC_GIST_ID}`);
         }

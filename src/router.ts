@@ -14,43 +14,6 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home,
-            meta: {
-                title: Constants.DOCULET_TITLE,
-                metaTags: [
-                    {
-                        name: 'description',
-                        content: Constants.DOCULET_TITLE,
-                    },
-                    {
-                        property: 'og:description',
-                        content: Constants.DOCULET_DESCRIPTION,
-                    },
-                    {
-                        name: 'keywords',
-                        content: Constants.DOCULET_SEO_KEYWORDS,
-                    },
-                    {
-                        property: 'og:description',
-                        content: Constants.DOCULET_DESCRIPTION,
-                    },
-                    {
-                        property: 'og:title',
-                        content: Constants.DOCULET_TITLE,
-                    },
-                    {
-                        itemprop: 'name',
-                        content: Constants.DOCULET_TITLE,
-                    },
-                    {
-                        itemprop: 'description',
-                        content: Constants.DOCULET_TITLE,
-                    },
-                    {
-                        property: 'twitter:card',
-                        content: Constants.DOCULET_DESCRIPTION,
-                    },
-                ],
-            },
         },
         {
             path: '/edit/:gistId',
