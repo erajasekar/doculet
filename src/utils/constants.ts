@@ -32,5 +32,6 @@ export default class Constants {
     public static readonly DOCULET_DESCRIPTION = 'Doculet is a free open source project to easily create, ' +
         'share and embed code examples in your blog,' +
         'medium articles or any of your website.';
-    public static readonly DOCULET_SEO_KEYWORDS='code, share, embed, blog, website, comments, programming, computer science'
+    public static readonly DOCULET_SEO_KEYWORDS = 'code, share, embed, blog, website, ' +
+        'comments, programming, computer science';
 }
