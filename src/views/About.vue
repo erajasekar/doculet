@@ -15,8 +15,17 @@
             </h2>
 
             <p>
-                When I was writing technical in articles in Medium, I couldn't a good tool embed code examples other than Github gists.
-                Gists works fine, there is no way to customize code highlight theme.
+                When I was writing technical in articles in Medium, I couldn't find good solution to embed code examples other than Github gists.
+                Gists work fine, we can't customize syntax highlight theme. Also, I wasn't happy with using standard code comments to explain the code examples.
+                I was searching for something better and I found that AsciiDoc supports annotating code with callouts
+
+                I abolutely loved it. In fact, I used a screen shot of AsciiDoc output in one of
+                <a href="https://medium.freecodecamp.org/better-exception-handling-in-java-8-streams-using-vavr-6eda31285ce9"> my blog post</a>.
+            </p>
+            <p>
+
+                Meanwhile, I wanted to develop my front-end programming skills and got excited about <a href="https://vuejs.org/">VueJs</a>.
+                So this idea of creating a VueJs App to easily embed code is born!
             </p>
             <h2>
                 Github Integration
@@ -61,7 +70,7 @@
     })
     export default class About extends Vue {
 
-        private title = "About Doculet";
+        private title = 'About Doculet';
         private description = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
     }
