@@ -34,7 +34,7 @@
     import {logWarn, logDebug} from '../utils/logger';
     import Constants from '@/utils/constants';
     import {DoculetDocBase} from '../store/modules/doculet';
-    import BottomFooter from './BottomFooter';
+    import BottomFooter from '@/components/BottomFooter.vue';
 
     @Component({
         components: {

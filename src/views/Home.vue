@@ -150,7 +150,7 @@
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
     import Constants from '../utils/constants';
-    import BottomFooter from '../components/BottomFooter';
+    import BottomFooter from '@/components/BottomFooter.vue';
 
     @Component({
         components: {
