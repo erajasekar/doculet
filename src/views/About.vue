@@ -14,6 +14,10 @@
                 Why am I building this project?
             </h2>
 
+            <p>
+                When I was writing technical in articles in Medium, I couldn't a good tool embed code examples other than Github gists.
+                Gists works fine, there is no way to customize code highlight theme.
+            </p>
             <h2>
                 Github Integration
             </h2>
