@@ -1,6 +1,7 @@
 //@import '~bootstrap/dist/css/bootstrap.css';
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 @import "bootstrap-variable-override";
+@import "custom-variables";
 // @import url('https://fonts.googleapis.com/css?family=Arvo');
 @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');    
 @import url('https://fonts.googleapis.com/css?family=Graduate&text=DOCULET');
@@ -8,9 +9,7 @@
 
 $header23TextColor: #FD1F2A;
 $header4TextColor: #3D8C93;
-$primaryTextColor: black;
-$secondayTextColor: white;
-$linkColor: #FFCC6B;
+$linkColor: $sideNavTextColor;
 $backgroundColor1: #3D8C93;
 $backgroundColor2: #48CEC9;
 $backgroundColor3: white;
@@ -33,7 +32,6 @@ $primaryFont: 'Titillium Web', sans-serif;
     content: $content;
   }
 }
-
 
 h1, ul, li{
   color: $primaryTextColor;
