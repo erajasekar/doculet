@@ -35,7 +35,10 @@ ul.features-done {
 }
 
 ul {
-  list-style: square;
+  list-style: none;
+  li:before {
+    content: ' ❏  ';
+  }
 }
 
 h3 {

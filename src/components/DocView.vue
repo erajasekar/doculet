@@ -50,14 +50,11 @@
 
             logDebug(`New gistId ${gistId} , Old value : ${oldValue}`);
 
-            if (gistId === Constants.GETTING_STARTED_DOC_GIST_ID) {
-                this.content = Constants.ON_LOAD_DOC_CONTENT;
-            } else {
-                gitHubService.importGist(gistId).then((gistFile) => {
-                    this.title = `Doculet - ${gistFile.fileName}`;
-                    this.content = gistFile.content;
-                });
-            }
+            gitHubService.importGist(gistId).then((gistFile) => {
+                this.title = `Doculet - ${gistFile.fileName}`;
+                this.content = gistFile.content;
+            });
+
         }
 
 

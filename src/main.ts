@@ -10,6 +10,7 @@ import {isViewPage} from './utils/auth';
 import vueHeadful from 'vue-headful';
 import {isProd} from './utils/logger';
 import VueAnalytics from 'vue-analytics';
+import {analyticsConfig} from './config/analytics-config';
 
 export const startTime = new Date().getTime();
 
@@ -21,19 +22,7 @@ Vue.directive('highlightjs', VueHighlightJsDirective);
 
 Vue.config.productionTip = false;
 
-Vue.use(VueAnalytics, {
-    id: 'UA-53694809-1', // TODO UPDATE,
-    router,
-    ignoreRoutes: ['/doc'],
-    autoTracking: { // Be aware that if you need to add your own Vue.config.errorHandler
-        // you need to do it before you install the plugin or you will overwrite the plugin handler.
-        exception: true,
-    },
-    debug: {
-        enabled: !isProd,
-        sendHitTask: isProd,
-    },
-  });
+Vue.use(VueAnalytics, analyticsConfig);
 
 new Vue({
   router,
