@@ -62,11 +62,13 @@ $navBackground: #65F1E9;
   > ul {
     list-style: none;
     margin-left: 0px;
-
+    
     > h3 {
       padding: 5px;
       color: $activeTextColor;
       border-bottom: 1px solid $textColor;
+      font-family: 'Share Tech Mono', monospace;
+      //font-size: large;
     }
 
     > li {
