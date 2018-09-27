@@ -22,6 +22,9 @@ $borderColor: #4A596F;
   .btn-light{
     border-color: $gray-500;
   }
+  .login-btn{
+    background-color: $borderColor;
+  }
 }
 
 .toggle-button {

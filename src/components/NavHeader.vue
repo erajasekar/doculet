@@ -82,11 +82,11 @@
                 </div>
 
                 <div v-else>
-                    <b-nav-item active @click="signUserInGithub" v-b-tooltip.hover title="Login using Github">Login
-                    </b-nav-item>
+                    <b-btn @click="signUserInGithub" v-b-tooltip.hover
+                        title="Login using Github" size="lg" class="login-btn">
+                        <icon name="brands/github-square"></icon> Login
+                    </b-btn>
                 </div>
-
-
             </b-navbar-nav>
 
         </b-collapse>
