@@ -1,6 +1,12 @@
 <template>
     <div class="editor-container" id="editor">
 
+        <vue-headful
+                :title="htmlTitle"
+                :description="htmlDescription"
+                :keywords="keywords"
+        />
+
         <div class="editor-header">
            <b-form-input size="lg" id="doc-name-input"
                           type="text" :value="docName" @change="updateDocName">
@@ -47,6 +53,9 @@
     })
     export default class DocEditor extends Vue {
 
+        private htmlDescription = Constants.DOCULET_DESCRIPTION;
+        private keywords = Constants.DOCULET_SEO_KEYWORDS;
+
         @Getter('user') private user!: User.UserType;
 
         @Getter('docName') private docName!: string;
@@ -75,6 +84,10 @@
         get compiledHtml() {
             const result = asciiDoc.convert(this.content);
             return result;
+        }
+
+        get htmlTitle() {
+            return `Doculet Editor - ${this.docName}`;
         }
 
         private editorInit() {
@@ -127,7 +140,6 @@
 
     @import "../assets/css/highlightjs/idea.css"
     @import "../assets/css/colony.css"
-    @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
     borderColor = #e9ecef
 
     #editor 

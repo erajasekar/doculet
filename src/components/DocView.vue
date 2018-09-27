@@ -1,5 +1,10 @@
 <template>
     <div>
+        <vue-headful
+                :title="htmlTitle"
+                :description="htmlDescription"
+                :keywords="keywords"
+        />
         <div class="view-pane" v-highlightjs="compiledHtml"/>
     </div>
 </template>
@@ -20,6 +25,9 @@
     })
     export default class DocView extends Vue {
 
+        private title: string = 'Doculet';
+        private htmlDescription = Constants.DOCULET_DESCRIPTION;
+        private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private gistId: string = this.gistId;
 
         private content: string = '';
@@ -29,6 +37,10 @@
 
             /* Can't read from firestore unauthenticated */
 
+        }
+
+        get htmlTitle() {
+            return this.title;
         }
 
         private updated() {
@@ -45,6 +57,7 @@
                 this.content = Constants.ON_LOAD_DOC_CONTENT;
             } else {
                 gitHubService.importGist(gistId).then((gistFile) => {
+                    this.title = `Doculet - ${gistFile.fileName}`;
                     this.content = gistFile.content;
                 });
             }
