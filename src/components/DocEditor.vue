@@ -2,7 +2,7 @@
     <div class="editor-container" id="editor">
 
         <div class="editor-header">
-           <b-form-input id="doc-name-input"
+           <b-form-input size="lg" id="doc-name-input"
                           type="text" :value="docName" @change="updateDocName">
            </b-form-input>
         </div>
@@ -127,6 +127,7 @@
 
     @import "../assets/css/highlightjs/idea.css"
     @import "../assets/css/colony.css"
+    @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
     borderColor = #e9ecef
 
     #editor 
@@ -145,7 +146,8 @@
 
             input
                 border none
-                font-family Consolas, "Liberation Mono", Courier, monospace
+                font-family: 'Share Tech Mono', monospace;
+                font-size: x-large 
 
         .editor-main
             display flex
