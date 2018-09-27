@@ -8,23 +8,36 @@
 
 $header23TextColor: #FD1F2A;
 $header4TextColor: #3D8C93;
-$textColor: black;
+$primaryTextColor: black;
+$secondayTextColor: white;
 $linkColor: #FFCC6B;
 $backgroundColor1: #3D8C93;
 $backgroundColor2: #48CEC9;
+$backgroundColor3: white;
+$logoFont: 'Graduate', cursive;
+$leadFont: 'Roboto', sans-serif;
+$primaryFont: 'Titillium Web', sans-serif;
 
 @mixin styleLead($leadTextColor) {
   padding-top: 30px;
   padding-left: 5px;
   color: $leadTextColor;
-  font-family: 'Roboto', sans-serif;
+  font-family: $leadFont;
   font-size: xx-large;
   font-style: italic;
 }
 
+@mixin styleList($content) {
+  list-style: none;
+  li:before {
+    content: $content;
+  }
+}
+
+
 h1, ul, li{
-  color: $textColor;
-  font-family: 'Titillium Web', sans-serif;
+  color: $primaryTextColor;
+  font-family: $primaryFont;
   font-size: x-large;
   border-bottom:0px;
 }
@@ -40,7 +53,7 @@ h2, h3{
   margin-top: 2em;
   color: $header23TextColor;
   border-bottom:0px;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: $primaryFont;
 }
 
 .lead {
@@ -48,10 +61,10 @@ h2, h3{
 }
 
 p {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: $primaryFont;
   font-size: x-large;
   margin-top: 1em;
-  color: $textColor;
+  color: $primaryTextColor;
   a {
     color: $linkColor;
     &:hover {
@@ -61,30 +74,24 @@ p {
 }
 
 ul.features-done {
-    list-style: none;
-    li:before {
-      content: ' ✓  ';
-    }
+    @include styleList(' ✓  ');
 }
 
 ul {
-  list-style: none;
-  li:before {
-    content: ' ❏  ';
-  }
+  @include styleList(' ❏  ');
 }
 
 #home-container1 {
   h1 {
     text-align: center;
-    font-family: 'Graduate', cursive;
+    font-family: $logoFont;
     font-size: xx-large;
-    color: white;
+    color: $secondayTextColor;
   }
   background-color: $backgroundColor1;
   background-image: url('https://www.dropbox.com/s/umvy4j4gx54f7c9/background5.jpg?raw=1');
   p {
-    color: white;
+    color: $secondayTextColor;
   }
   margin-bottom: 1px;
 }
@@ -95,5 +102,5 @@ ul {
 }
 
 #home-container4, #home-container2, #about-container {
-  background-color: white;
+  background-color: $backgroundColor3;
 }
