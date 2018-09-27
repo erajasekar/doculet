@@ -65,11 +65,14 @@ class GitHubService {
         logDebug(`Gist : ${gistId} is deleted`);
     }
 
-    public enrichSourceType(content: string, language: string) {
+    public enrichSourceType(filename: string, content: string, language: string) {
         // TODO use template interpolation.
-        return '[source,' + language + ']\n' +
-            '----\n' + content +
-            '\n----\n';
+        return `.${filename}
+[source, ${language} ]
+----
+${content}
+----
+`;
     }
 
     public updateExtenstionToAsciiDoc(filename: string) {
@@ -105,7 +108,7 @@ class GitHubService {
                 fileName = gistFile.filename;
                 isAsciiDoc = true;
             } else {
-                content = this.enrichSourceType(gistFile.content, language);
+                content = this.enrichSourceType(gistFile.filename, gistFile.content, language);
                 fileName = this.updateExtenstionToAsciiDoc(gistFile.filename);
                 isAsciiDoc = false;
             }

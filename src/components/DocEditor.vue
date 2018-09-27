@@ -148,14 +148,14 @@
                 border none
                 font-family: 'Share Tech Mono', monospace;
                 font-size: x-large 
-
+         
         .editor-main
             display flex
             flex-direction : row
             flex: 1
             width: 100%
             height: 100%
-
+     
         .editor-pane
             flex: 0 0 auto
             width: 50%
