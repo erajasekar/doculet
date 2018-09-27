@@ -7,7 +7,7 @@
                 :keywords="keywords"
         />
 
-        <b-jumbotron id="about-block1" header="About Doculet" fluid
+        <b-jumbotron id="about-container" header="About Doculet" fluid
                      lead="I am working on Doculet as side project and my goal to make it easier share and embed code examples for any website.">
 
             <h2>
@@ -103,5 +103,5 @@
 </script>
 
 <style scoped lang="scss">
-    @import '../assets/scss/about.scss';
+    @import '../assets/scss/view';
 </style>

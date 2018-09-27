@@ -6,25 +6,58 @@
 @import url('https://fonts.googleapis.com/css?family=Graduate&text=DOCULET');
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Roboto|Titillium+Web'); // TODO REMOVE UNUSED
 
-$headerTextColorRed: #FD1F2A;
+$header23TextColor: #FD1F2A;
+$header4TextColor: #3D8C93;
 $textColor: black;
 $linkColor: #FFCC6B;
 $backgroundColor1: #3D8C93;
-$backgroundColor2: #67ffa6;
+$backgroundColor2: #48CEC9;
 
-.home {
-  width: 100%;
-  overflow: visible; //FIX FOOTER'
-  font-size: x-large;
-  height: 100%;
+@mixin styleLead($leadTextColor) {
+  padding-top: 30px;
+  padding-left: 5px;
+  color: $leadTextColor;
+  font-family: 'Roboto', sans-serif;
+  font-size: xx-large;
+  font-style: italic;
 }
 
-h1, p, ul, li{
-  color: $headerTextColorRed;
+h1, ul, li{
+  color: $textColor;
   font-family: 'Titillium Web', sans-serif;
-
-//  font-size: xx-large;
+  font-size: x-large;
   border-bottom:0px;
+}
+
+h4{
+  color: $header4TextColor;
+  font-style: italic;
+  border-bottom:0px;
+  margin-top: 2em;
+}
+
+h2, h3{
+  margin-top: 2em;
+  color: $header23TextColor;
+  border-bottom:0px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.lead {
+  @include styleLead(black);
+}
+
+p {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: x-large;
+  margin-top: 1em;
+  color: $textColor;
+  a {
+    color: $linkColor;
+    &:hover {
+      color: $linkColor;
+    }
+  }
 }
 
 ul.features-done {
@@ -41,63 +74,26 @@ ul {
   }
 }
 
-h3 {
-  color: $textColor;
-  font-family: 'Lato', sans-serif;
-}
-
-
-.lead {
-  padding-top: 30px;
-  padding-left: 5px;
-  color: white;
-  font-family: 'Roboto', sans-serif;
-  font-size: xx-large;
-  font-style: italic;
-}
-
-#home-block1 {
+#home-container1 {
   h1 {
     text-align: center;
     font-family: 'Graduate', cursive;
+    font-size: xx-large;
     color: white;
   }
   background-color: $backgroundColor1;
   background-image: url('https://www.dropbox.com/s/umvy4j4gx54f7c9/background5.jpg?raw=1');
   p {
     color: white;
-    a {
-      color: $linkColor;
-      &:hover {
-        color: $linkColor;
-      }
-    }
   }
-
   margin-bottom: 1px;
 }
 
-// todo refactor to remove dups
-
-#home-block2 {
-  h1, p {
-    color: $textColor;
-  }
-  background-color: white;
-  color: $textColor;
-}
-
-#home-block3 {
-  h1, p{
-    color: $textColor;
-  }
+#home-container3 {
   background-color: $backgroundColor2;
   background-image: url('https://www.dropbox.com/s/g07fwh73aq9oout/background6.jpg?raw=1');
 }
 
-#home-block4 {
-  h1, p , ul, li{
-    color: $textColor;
-  }
+#home-container4, #home-container2, #about-container {
   background-color: white;
 }

@@ -7,14 +7,11 @@
                 :keywords="keywords"
         />
 
-        <b-jumbotron id="home-block1" fluid
+        <b-jumbotron id="home-container1" fluid
                      lead="Easily share and embed code examples in your blog, medium articles or in any website.">
 
             <template slot="header">
                 <h1> DOCULET </h1>
-               <!-- <b-img width="300" height="100" class="logo"
-                       src="https://www.dropbox.com/s/ynub19s42d400a9/Screen%20Shot%202018-09-24%20at%2011.05.46%20PM.png?raw=1"
-                       fluid alt="Doculet logo"></b-img> -->
             </template>
 
             <b-container fluid class="bv-example-row">
@@ -41,7 +38,7 @@
 
         </b-jumbotron>
 
-       <b-jumbotron ref="what-is-doculet" id="home-block2" header="What is Doculet?" fluid>
+       <b-jumbotron ref="what-is-doculet" id="home-container2" header="What is Doculet?" fluid>
 
             <p>
                 Doculet is a free open source project to easily create, share and embed code examples in your blog,
@@ -51,49 +48,12 @@
                 It’s beautiful alternative to embedding code using GitHub Gists.
             </p>
 
-        <!--   <p>
-               Doculet uses human readable and easy to use Asciidoc document markup.
-               Asciidoc provides builtin support for code callouts.
-           </p>
-
-           <h3>
-                Comment your code with callouts
-            </h3>
-
-           <b-img width="600" height="400" class="logo"
-                  src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
-                  alt="Code Example"></b-img>
-
-           <p>
-               Github gists are automatically convert to Asciidoc format during import.
-           </p>
-
-           <p>
-               To learn more see <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc
-               Syntax Quick Reference</a>.
-           </p> -->
             <b-btn @click="openGettingStarted" variant="primary" size="lg" title="Get Started">
                 Get Started
             </b-btn>
         </b-jumbotron>
 
-        <!-- <b-jumbotron id="home-block3" header="How to Use?" fluid>
-
-            <ul>
-                <li>
-                    You can create import a existing gist or directly edit in doculet editor.
-                </li>
-                <li>
-                    You can save your work by clicking save button.
-                </li>
-                <li>
-                    Once your are done, hit publish to share. Click on share button to copy link to share.
-                </li>
-            </ul>
-
-        </b-jumbotron> -->
-
-        <b-jumbotron id="home-block3" header="Comment your code with callouts" fluid>
+        <b-jumbotron id="home-container3" header="Comment your code with callouts" fluid>
             <p>
                 Doculet uses human readable and easy to use <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc</a>
                 document markup which provides builtin support for code callouts.
@@ -104,13 +64,10 @@
                        src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
                        alt="Code Example"></b-img>
             </p>
-          <!-- TODO  <p>
-                Github gists are automatically convert to Asciidoc format during import.
-            </p> -->
 
         </b-jumbotron>
 
-        <b-jumbotron id="home-block4" header="Features and Roadmap" fluid>
+        <b-jumbotron id="home-container4" header="Features and Roadmap" fluid>
             <h3>Prerelease Version 0.1 (Currently available)</h3>
             <br>
             <ul class="features-done">
@@ -185,6 +142,6 @@
 
 <style scoped lang="scss">
 
-    @import '../assets/scss/home.scss';
+    @import '../assets/scss/view';
 
 </style>
