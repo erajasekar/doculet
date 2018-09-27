@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css?family=Graduate&text=DOCULET');
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Roboto|Titillium+Web'); // TODO REMOVE UNUSED
 
+$headerTextColorRed: #FD1F2A;
 $textColor: black;
 $linkColor: #FFCC6B;
 $backgroundColor1: #3D8C93;
@@ -18,7 +19,7 @@ $backgroundColor2: #67ffa6;
 }
 
 h1, p, ul, li{
-  color: $textColor;
+  color: $headerTextColorRed;
   font-family: 'Titillium Web', sans-serif;
 
 //  font-size: xx-large;

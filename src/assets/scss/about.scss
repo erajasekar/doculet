@@ -5,8 +5,8 @@
 
 $textColor: black;
 $linkColor: #FFCC6B;
-$backgroundColor1: #3D8C93;
-$backgroundColor2: #67ffa6;
+$headerTextColorRed: #FD1F2A;
+$header3TextColor: #3D8C93;
 
 .about {
   width: 100%;
@@ -15,16 +15,24 @@ $backgroundColor2: #67ffa6;
   height: 100%;
 }
 
-h1, p, h4{
+h1{
   margin-top: 1em;
-  color: $textColor;
+  color : $textColor;
   font-family: 'Titillium Web', sans-serif;
   border-bottom:0px;
 }
 
+h4{
+  color: $header3TextColor;
+  font-style: italic;
+  border-bottom:0px;
+  margin-top: 2em;
+}
+
 h2, h3{
   margin-top: 2em;
-  color: $textColor;
+  color: $headerTextColorRed;
+  border-bottom:0px;
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -43,7 +51,7 @@ h2, h3{
   }
 
 p {
-  margin-top: 2em;
+  margin-top: 1em;
   color: $textColor;
   a {
     color: $linkColor;

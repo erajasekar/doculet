@@ -23,35 +23,61 @@
                 <a href="https://medium.freecodecamp.org/better-exception-handling-in-java-8-streams-using-vavr-6eda31285ce9"> my blog post</a>.
             </p>
             <p>
-
                 Meanwhile, I wanted to develop my front-end programming skills and got excited about <a href="https://vuejs.org/">VueJs</a>.
                 So this idea of creating a VueJs App to easily embed code is born!
             </p>
             <h2>
                 Github Integration
             </h2>
-
+            <p>
+                As most people currently use Gist to embed code, I am making it work easily with Github. 
+                Gists can be imported and are automatically converted AsciiDoc format. 
+                When you save they are also saved as new gist in AsciiDoc format. The original imported Gist will be untouched.
+            </p>
+            <hr/>
             <h2>
                 FAQ
             </h2>
             <h4>
                 Is Doculet free to Use?
             </h4>
+            <p> 
+                Yes. Doculet is free to use and also code is <a href="https://github.com/erajasekar/doculet">open sourced</a>. Contributions are welcome. 
+            </p>
             <h4>
-                Where are my documents saved?
+                Why documents are saved again Gist?
             </h4>
+            <p>
+                Since It's free I want to reduce the hosting cost. So I am just using Github's free Gist support. 
+            </p>
             <h4>
-                Why do I need to grant write Gist permission?
+                Why do I need to grant write access to Gist?
             </h4>
+            <p>
+                Because, application has to write documents as Gists during save. 
+            </p>
             <h4>
-                I don't have Github account. What should I do?
+                I don't have Github account. Can I still use Doculet?
             </h4>
+            <p>
+                No, currently Doculet works only with Github. So signup for free Github account to use Doculet. 
+                If you really need support for other cloud sources like Dropbox or Google drive, contact me. 
+                I can think about adding support if there is enough interest.
+            </p>
             <h4>
-                Why not use standard markdown instead of AsciiDoc ?
+                Why not use standard Markdown instead of AsciiDoc ?
             </h4>
+            <p>
+                AsciiDoc support's comment callouts and syntax is very similar to Markdown. 
+                So if you are already familar with Markdown, it's really easy to use AsciiDoc.
+            </p>
             <h4>
                 When will it be ready for use?
             </h4>
+            <p>
+                I am just working on this on side. So I don't have a specific date. 
+                If you are curious, please join mailing list and I will keep you updated.
+            </p>
         </b-jumbotron>
 
         <bottom-footer></bottom-footer>
