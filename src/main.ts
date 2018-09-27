@@ -8,6 +8,8 @@ import firebase from 'firebase/app';
 import './vue-awesome-config';
 import {isViewPage} from './utils/auth';
 import vueHeadful from 'vue-headful';
+import {isProd} from './utils/logger';
+import VueAnalytics from 'vue-analytics';
 
 export const startTime = new Date().getTime();
 
@@ -18,6 +20,20 @@ Vue.component('vue-headful', vueHeadful);
 Vue.directive('highlightjs', VueHighlightJsDirective);
 
 Vue.config.productionTip = false;
+
+Vue.use(VueAnalytics, {
+    id: 'UA-53694809-1', // TODO UPDATE,
+    router,
+    ignoreRoutes: ['/doc'],
+    autoTracking: { // Be aware that if you need to add your own Vue.config.errorHandler
+        // you need to do it before you install the plugin or you will overwrite the plugin handler.
+        exception: true,
+    },
+    debug: {
+        enabled: !isProd,
+        sendHitTask: isProd,
+    },
+  });
 
 new Vue({
   router,

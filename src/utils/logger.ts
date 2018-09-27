@@ -1,5 +1,5 @@
 
-const debug = process.env.NODE_ENV !== 'production';
+export const isProd = process.env.NODE_ENV === 'production';
 
 export function logInfo(message: string) {
     /* tslint:disable: no-console */
@@ -8,7 +8,7 @@ export function logInfo(message: string) {
 }
 
 export function logDebug(message: string) {
-    if (debug) {
+    if (!isProd) {
         /* tslint:disable: no-console */
         console.info(message);
         /* tslint:enable: no-console */
@@ -22,7 +22,7 @@ export function logError(message: string) {
 }
 
 export function logWarn(message: string) {
-    if (debug) {
+    if (!isProd) {
         /* tslint:disable: no-console */
         console.warn(message);
         /* tslint:enable: no-console */

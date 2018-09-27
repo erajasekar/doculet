@@ -34,9 +34,6 @@
 
         private mounted() {
             this.loadGist(this.gistId, '');
-
-            /* Can't read from firestore unauthenticated */
-
         }
 
         get htmlTitle() {

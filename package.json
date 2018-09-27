@@ -25,6 +25,7 @@
     "requirejs": "^2.3.5",
     "typescript-debounce-decorator": "0.0.17",
     "vue": "^2.5.16",
+    "vue-analytics": "^5.16.0",
     "vue-awesome": "^3.0.3",
     "vue-class-component": "^6.0.0",
     "vue-headful": "^2.0.1",
