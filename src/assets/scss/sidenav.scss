@@ -51,6 +51,8 @@
   padding-top: 80px;
 
   > div {
+    font-family: $monospaceFont;
+    font-size: large;
     padding: 20px;
     color: $errorTextColor;
   }
@@ -63,14 +65,14 @@
       padding: 5px;
       color: $sideNavTextColor;
       border-bottom: 1px solid $sideNavTextColor;
-      font-family: 'Share Tech Mono', monospace;
+      font-family: $monospaceFont;
       //font-size: large;
     }
 
     > li {
       padding-top: 5px;
       padding-bottom: 5px;
-      font-family: 'Share Tech Mono', monospace;
+      font-family: $monospaceFont;
       font-size: large;
 
       a {
