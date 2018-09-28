@@ -69,7 +69,6 @@
 
         <b-jumbotron id="home-container4" header="Features and Roadmap" fluid>
             <h3>Prerelease Version 0.1 (Currently available)</h3>
-            <br>
             <ul class="features-done">
                 <li>Login using Github.
                 </li>
@@ -82,9 +81,8 @@
                 <li>See list of your documents.
                 </li>
             </ul>
-            <br>
+            <hr>
             <h3>Version 1.0</h3>
-            <br>
             <ul>
                 <li>Publish documents for sharing.
                 </li>
@@ -93,7 +91,7 @@
                 <li>Better user experience.
                 </li>
             </ul>
-            <br>
+            <hr>
             <h3>Version 1.1</h3>
             <br>
             <ul>
