@@ -5,15 +5,18 @@
 // @import url('https://fonts.googleapis.com/css?family=Arvo');
 @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');    
 @import url('https://fonts.googleapis.com/css?family=Graduate&text=DOCULET');
-@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Roboto|Titillium+Web'); // TODO REMOVE UNUSED
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Roboto|Titillium+Web');
+ // TODO REMOVE UNUSED
+ @import url('https://fonts.googleapis.com/css?family=KoHo|PT+Sans+Caption|PT+Sans+Narrow|Roboto+Slab|Slabo+27px');
 
 $header23TextColor: #FD1F2A;
 $header4TextColor: #2E68DA;// #3D8C93;
 $backgroundColor1: #3D8C93;
 $backgroundColor2: #48CEC9;
 $backgroundColor3: white;
+$backgroundColor4: #FEFDD9;
 $logoFont: 'Graduate', cursive;
-$leadFont: 'Roboto', sans-serif;
+$leadFont: 'KoHo', sans-serif;
 $primaryFont: 'Titillium Web', sans-serif;
 
 @mixin styleLead($leadTextColor) {
@@ -23,6 +26,7 @@ $primaryFont: 'Titillium Web', sans-serif;
   font-family: $leadFont;
   font-size: xx-large;
   font-style: italic;
+  font-weight: 600;
 }
 
 @mixin styleList($content) {
@@ -110,7 +114,7 @@ ul {
 }
 
 #home-container4, #about-container {
-  background-color: $sideNavTextColor;
+  background-color: $backgroundColor4;
   background-image: url('https://www.dropbox.com/s/ju0cahdvdivi63l/background12.png?raw=1');
   margin-bottom: 2px;
 }

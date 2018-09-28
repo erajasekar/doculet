@@ -8,7 +8,7 @@
         />
 
         <b-jumbotron id="home-container1" fluid
-                     lead="Easily share and embed code examples in your blog, medium articles or in any website.">
+                     lead="Easily share and embed code examples in your blog, medium articles or on any website.">
 
             <template slot="header">
                 <h1> DOCULET </h1>
