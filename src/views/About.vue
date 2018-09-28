@@ -8,7 +8,7 @@
         />
 
         <b-jumbotron id="about-container" header="About Doculet" fluid
-                     lead="I am working on Doculet as side project and my goal to create a app to easily share and embed code examples on any website.">
+                     lead="Doculet is my side project and my goal to create an app to easily share and embed code examples on any website.">
 
             <h2>
                 Why am I building this project?
