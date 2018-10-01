@@ -63,7 +63,9 @@
             if (this.content === '') {
                 return 'Loading...'; // TODO CONSTANT
             } else {
-                return asciiDoc.convert(this.content);
+                const compiled = asciiDoc.convert(this.content);
+                console.log(compiled);
+                return compiled;
                 /*return "<div class=\"sect1\">\n" +
                     "<h2 id=\"_welcome_to_asciidoclive\">Welcome to AsciiDocLIVE!</h2>\n" +
                     "<div class=\"sectionbody\">\n" +
