@@ -141,6 +141,7 @@
     @import "../assets/css/highlightjs/idea.css"
     @import "../assets/css/colony.css"
     borderColor = #e9ecef
+    monospaceFont = 'Share Tech Mono', monospace;
 
     #editor 
         height 100%
@@ -158,7 +159,7 @@
 
             input
                 border none
-                font-family: 'Share Tech Mono', monospace;
+                font-family: monospaceFont;
                 font-size: x-large 
          
         .editor-main

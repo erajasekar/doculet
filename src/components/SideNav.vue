@@ -7,9 +7,9 @@
                 <a @click="openDocument(doc.docId)" :class="{ active: isSelected(doc.docId) }">{{doc.docName}}</a>
             </li>
         </ul>
-        <div v-else>
-            Login to save and see your documents
-        </div>
+      <!--  <div v-else> -->
+            <b-alert  v-else variant="warning" show>Login to see save and share your documents.</b-alert>
+       <!-- </div> -->
     </nav>
 </template>
 
