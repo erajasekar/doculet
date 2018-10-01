@@ -11,7 +11,7 @@ export const analyticsConfig = {
         // screenview: true, //Adding screen view removes pageView
     },
     debug: {
-        enabled: !isProd,
+        enabled: false,
         sendHitTask: isProd,
     },
 };
