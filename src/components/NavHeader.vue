@@ -103,7 +103,7 @@
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {gitHubService} from '../services/GitHubService';
-    import {s3Service} from "../services/AwsS3Service";
+    import {s3Service} from '../services/AwsS3Service';
     import {asciiDoc} from '../asciidoc';
     import Constants from '../utils/constants';
     import * as User from '../store/modules/user';
@@ -230,13 +230,13 @@
 
             console.log('RAJA ' + this.docId);
 
-            //TODO call save first
+            // TODO call save first
 
-            //TODO SAVE CONTENT IN store instead of reading it from gist again. also unsaved content will not be published
+            // TODO SAVE CONTENT IN store instead of reading it from gist again. also unsaved content will not be published
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                s3Service.publishDoc(html);
+                s3Service.publishDoc(this.docId, html);
             });
 
             console.log(`publish ${this.docSaved} -> ${this.docId}`);
