@@ -28,8 +28,19 @@ export class FireStoreService {
         });
     }
 
+    public async updateDoc(docId: string, html: string) {
+        return doculetsCollection.doc(docId)
+            .set({
+                html,
+            })
+            .then( (docRef) => {
+                logDebug(`Published gist : ${docId} in FireStore `);
+        });
+    }
+
     public deleteDoc(id: string) {
-        return doculetsCollection.doc(id).delete().then( () => logDebug(`Document : ${id} is deleted` ));
+        return doculetsCollection.doc(id).delete()
+            .then( () => logDebug(`Document : ${id} is deleted` ));
     }
 
     public async getMyDocs(userId: string): Promise<firebase.firestore.QuerySnapshot> {

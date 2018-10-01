@@ -60,8 +60,13 @@
                 <!-- TODO CHANGE TO SHARE -->
 
                 <b-btn @click="viewDocument" variant="info" v-b-tooltip.hover
-                       title="PreView Document">
+                       title="PreView Document" :disabled="isDocActionsDisabled">
                     <icon name="eye" color="iconColor"></icon>
+                </b-btn>
+
+                <b-btn @click="publishDocument" variant="info" v-b-tooltip.hover
+                       title="Publish Document" :disabled="isDocActionsDisabled">
+                    <icon name="upload" color="iconColor"></icon>
                 </b-btn>
 
             </b-navbar-nav>
@@ -98,6 +103,8 @@
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {gitHubService} from '../services/GitHubService';
+    import {s3Service} from "../services/AwsS3Service";
+    import {asciiDoc} from '../asciidoc';
     import Constants from '../utils/constants';
     import * as User from '../store/modules/user';
 
@@ -183,9 +190,9 @@
         }
 
         private deleteDoculet() {
-
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
+                // TODO can remove the check
                 if (!this.docSaved) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
@@ -217,6 +224,22 @@
                 params: {gistId},
             });
             window.open(routeData.href, '_blank');
+        }
+
+        private publishDocument() {
+
+            console.log('RAJA ' + this.docId);
+
+            //TODO call save first
+
+            //TODO SAVE CONTENT IN store instead of reading it from gist again. also unsaved content will not be published
+            gitHubService.importGist(this.docId).then((gistFile) => {
+
+                const html = asciiDoc.convert(gistFile.content);
+                s3Service.publishDoc(html);
+            });
+
+            console.log(`publish ${this.docSaved} -> ${this.docId}`);
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {
@@ -261,9 +284,8 @@
         }
 
         get isDocActionsDisabled() {
-            return !this.isUserAuthenticated || this.docName === null;
+            return !this.isUserAuthenticated || this.docName === null || this.docName === Constants.ON_LOAD_DOC_CONTENT;
         }
-
     }
 </script>
 

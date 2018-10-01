@@ -20,11 +20,11 @@ export interface DoculetFile {
 }
 
 const homeDoc = {
-    docName: Constants.ON_LOAD_DOC_NAME,
+    docName: Constants.ON_LOAD_DOC_CONTENT,
     content: Constants.ON_LOAD_DOC_CONTENT,
-    docId: Constants.GETTING_STARTED_DOC_GIST_ID,
+    docId: Constants.ON_LOAD_DOC_CONTENT,
     docSaved: false,
-    docOwnerId: Constants.GITHUB_DOCULET_OWNER_ID,
+    docOwnerId: Constants.ON_LOAD_DOC_CONTENT,
 };
 
 export class State {
