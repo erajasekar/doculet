@@ -38,9 +38,30 @@ export class FireStoreService {
         });
     }
 
+    public async getPublishLocation(docId: string): Promise<string>{
+        return doculetsCollection.doc(docId).get().then(docRef => {
+            const data = docRef.data();
+            let publishLocation = null;
+            if (data){
+                publishLocation = data.publishLocation;
+            }
+            return publishLocation;
+        });
+    }
+
     public deleteDoc(id: string) {
-        return doculetsCollection.doc(id).delete()
-            .then( () => logDebug(`Document : ${id} is deleted` ));
+
+        doculetsCollection.doc(id).delete()
+            .then( () => logDebug(`Document : ${id} is deleted from Firestore` ));
+
+    }
+
+    public updatePublishLocation(docId: string, location: string) {
+        return doculetsCollection.doc(docId)
+            .update({
+                publishLocation : location,
+            })
+            .then( () => logDebug(`Publish location updated for : ${docId}` ));
     }
 
     public async getMyDocs(userId: string): Promise<firebase.firestore.QuerySnapshot> {

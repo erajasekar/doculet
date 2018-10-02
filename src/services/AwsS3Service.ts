@@ -1,7 +1,7 @@
 import {config} from '../config/config';
 import AWS, {S3} from 'aws-sdk';
 import {ManagedUpload} from 'aws-sdk/lib/s3/managed_upload';
-import {logError, logInfo} from '../utils/logger';
+import {logDebug, logError, logInfo} from '../utils/logger';
 
 AWS.config.update({
     accessKeyId: config.aws.accessKey,
@@ -17,10 +17,12 @@ export class AwsS3Service {
 
     public publishDoc(docId: string, html: string) {
 
+        const location = `doc/${docId}/index.html`;
+
         const params = {
             Bucket: this.bucketName,
             Body : html,
-            Key : `doc/${docId}/index.html`,
+            Key : location,
             ContentType: this.contentType,
         };
 
@@ -30,24 +32,26 @@ export class AwsS3Service {
             }
 
             if (data) {
-                logInfo(`Published at ${data.Location}`);
+                logDebug(`Published at ${data.Location}`);
             }
         });
+
+        return location;
     }
 
-    public deleteDoc(docId: string) {
+    public deleteDoc(docLocation: string) {
 
         const params = {
             Bucket: this.bucketName,
-            Key : `doc/${docId}/index.html`,
+            Key : docLocation,
         };
 
         this.s3.deleteObject(params,  (err: Error, data: S3.Types.DeleteObjectOutput) => {
             if (err) {
-                logError(`Error in deleting doc : ${docId} from S3 ${err.message}`);
+                logError(`Error in deleting doc : ${docLocation} from S3 ${err.message}`);
             }
             if (data) {
-                logInfo(`Deleted doc : ${docId}`);
+                logDebug(`Deleted doc : ${docLocation} from S3`);
             }
         });
     }

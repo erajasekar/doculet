@@ -206,7 +206,7 @@
             } else {
                 logError('User or docName or token is null');
             }
-            this.openDocument(Constants.GETTING_STARTED_DOC_GIST_ID);
+
         }
 
         private openDocument(gistId: string) {
@@ -228,19 +228,26 @@
 
         private publishDocument() {
 
-            this.saveDoculet();
+            // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                s3Service.publishDoc(this.docId, html);
+                const location = s3Service.publishDoc(this.docId, html);
+                this.dbService.updatePublishLocation(this.docId, location);
             });
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {
             this.deleteFromMyDocs(docId);
-            this.dbService.deleteDoc(docId);
             gitHubService.deleteGist(token, docId);
-
+            this.dbService.getPublishLocation(this.docId).then( location => {
+                this.dbService.deleteDoc(docId)
+                if (location){
+                    logDebug(`Deleting published doc: ${location}`)
+                    s3Service.deleteDoc(location);
+                }
+                this.openDocument(Constants.GETTING_STARTED_DOC_GIST_ID);
+            })
         }
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {
