@@ -228,19 +228,12 @@
 
         private publishDocument() {
 
-            console.log('RAJA ' + this.docId);
-
-            // TODO call save first
-
-            // TODO SAVE CONTENT IN store instead of reading it from gist again. also unsaved content will not be published
+            this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                //s3Service.publishDoc(this.docId, html);
-                s3Service.deleteDoc(this.docId);
+                s3Service.publishDoc(this.docId, html);
             });
-
-            console.log(`publish ${this.docSaved} -> ${this.docId}`);
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {

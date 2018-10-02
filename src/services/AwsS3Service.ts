@@ -1,9 +1,7 @@
 import {config} from '../config/config';
-import AWS, {S3} from 'aws-sdk'
-import strStream from 'string-to-stream';
-import {ManagedUpload} from "aws-sdk/lib/s3/managed_upload";
-import {ContentEncoding} from "aws-sdk/clients/s3";
-import {logError, logInfo} from "@/utils/logger";
+import AWS, {S3} from 'aws-sdk';
+import {ManagedUpload} from 'aws-sdk/lib/s3/managed_upload';
+import {logError, logInfo} from '../utils/logger';
 
 AWS.config.update({
     accessKeyId: config.aws.accessKey,
@@ -15,19 +13,7 @@ export class AwsS3Service {
 
     private s3 = new AWS.S3();
     private bucketName = config.aws.s3BucketName || 'Bucket name not found in config';
-    private contentType = "text/html";
-
-    private listObjects(){ // TODO REMOVE
-        const params = {
-            Bucket: this.bucketName ,
-            Delimiter: '/doc/',
-        };
-
-        this.s3.listObjects(params, function(err: Error, data: S3.Types.ListObjectsOutput) {
-            logInfo(JSON.stringify(data));
-        });
-
-    }
+    private contentType = 'text/html';
 
     public publishDoc(docId: string, html: string) {
 
@@ -39,12 +25,10 @@ export class AwsS3Service {
         };
 
         this.s3.upload(params,  (err: Error, data: ManagedUpload.SendData) => {
-            //handle error
             if (err) {
                 logError(`Error in publishing doc : ${docId} to S3 ${err.message}`);
             }
 
-            //success
             if (data) {
                 logInfo(`Published at ${data.Location}`);
             }
@@ -58,16 +42,12 @@ export class AwsS3Service {
             Key : `doc/${docId}/index.html`,
         };
 
-        this.s3.deleteObject(params, function (err: Error, data: S3.Types.DeleteObjectOutput) {
-            //handle error
+        this.s3.deleteObject(params,  (err: Error, data: S3.Types.DeleteObjectOutput) => {
             if (err) {
                 logError(`Error in deleting doc : ${docId} from S3 ${err.message}`);
             }
-
-            //success
             if (data) {
-                console.log(data);
-                logInfo(`Deleted doc : ${docId} at ${data}`);
+                logInfo(`Deleted doc : ${docId}`);
             }
         });
     }
