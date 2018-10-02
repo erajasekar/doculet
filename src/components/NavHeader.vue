@@ -236,7 +236,8 @@
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                s3Service.publishDoc(this.docId, html);
+                //s3Service.publishDoc(this.docId, html);
+                s3Service.deleteDoc(this.docId);
             });
 
             console.log(`publish ${this.docSaved} -> ${this.docId}`);
