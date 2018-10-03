@@ -1,5 +1,5 @@
 import {VNodeDirective} from 'vue';
-import {applyHighlightJs} from '../utils/CodeHightlight';
+import {applyHighlightJs} from '../utils/HtmlEnricher';
 
 export const VueHighlightJsDirective = {
     bind(el: Element, binding: VNodeDirective) {

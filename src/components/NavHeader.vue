@@ -111,7 +111,7 @@
     import {FireStoreService} from '../services/FireStoreService';
     import {logDebug, logError} from '../utils/logger';
     import * as auth from '../utils/auth';
-    import {applyHighlightJs} from '../utils/CodeHightlight';
+    import {applyHighlightJs, enrichHtml} from '../utils/HtmlEnricher';
 
     import {
         Getter,
@@ -237,10 +237,8 @@
 
                 const html = asciiDoc.convert(gistFile.content);
 
-                const el = document.createElement('div');
-                el.innerHTML = html;
-                applyHighlightJs(el);
-                console.log(el.innerHTML);
+                const enriched = enrichHtml(html);
+                console.log(enriched);
                // const location = s3Service.publishDoc(this.docId, html);
                // this.dbService.updatePublishLocation(this.docId, location);
             });
