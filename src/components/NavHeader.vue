@@ -240,14 +240,14 @@
         private deleteGistAndFromDB(docId: string, token: string) {
             this.deleteFromMyDocs(docId);
             gitHubService.deleteGist(token, docId);
-            this.dbService.getPublishLocation(this.docId).then( location => {
-                this.dbService.deleteDoc(docId)
-                if (location){
-                    logDebug(`Deleting published doc: ${location}`)
+            this.dbService.getPublishLocation(this.docId).then( (location) => {
+                this.dbService.deleteDoc(docId);
+                if (location) {
+                    logDebug(`Deleting published doc: ${location}`);
                     s3Service.deleteDoc(location);
                 }
                 this.openDocument(Constants.GETTING_STARTED_DOC_GIST_ID);
-            })
+            });
         }
 
         private updateExistingGistInDB(querySnapshot: firebase.firestore.QuerySnapshot, token: string) {

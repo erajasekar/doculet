@@ -38,11 +38,11 @@ export class FireStoreService {
         });
     }
 
-    public async getPublishLocation(docId: string): Promise<string>{
-        return doculetsCollection.doc(docId).get().then(docRef => {
+    public async getPublishLocation(docId: string): Promise<string> {
+        return doculetsCollection.doc(docId).get().then((docRef) => {
             const data = docRef.data();
             let publishLocation = null;
-            if (data){
+            if (data) {
                 publishLocation = data.publishLocation;
             }
             return publishLocation;
