@@ -2,7 +2,7 @@ import {isProd} from '../utils/logger';
 import router from '../router';
 
 export const analyticsConfig = {
-    id: 'UA-53694809-1', // TODO UPDATE,
+    id: 'UA-53694809-3',
     router,
     ignoreRoutes: ['doc-view'],
     autoTracking: { // Be aware that if you need to add your own Vue.config.errorHandler
