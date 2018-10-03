@@ -5,7 +5,7 @@
 
             <b-container fluid class="bv-example-row">
                 <b-row>
-                    <b-col>&copy; DOCULET by <a href="https://twitter.com/erajasekar">Rajasekar Elango</a>
+                    <b-col>&copy; DOCULET by <a href="https://twitter.com/erajasekar">@erajasekar</a>
                     </b-col>
                     <b-col>
                         <b-link to="/about">About</b-link>
