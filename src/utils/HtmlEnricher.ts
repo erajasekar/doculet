@@ -28,8 +28,8 @@ export function enrichHtml(html: string) {
 
 
 function appendStylesheets(el: Element) {
-    el.appendChild(createStyleSheet('css/colony.css'));
-    el.appendChild(createStyleSheet('css/idea.css'));
+    el.appendChild(createStyleSheet('/css/asciidoc/colony.min.css'));
+    el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
 }
 function createStyleSheet(location: string) {
     const link  = document.createElement('link');
