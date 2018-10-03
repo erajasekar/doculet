@@ -66,7 +66,7 @@
 
                 <b-btn @click="publishDocument" variant="info" v-b-tooltip.hover
                        title="Publish Document" :disabled="isDocActionsDisabled">
-                    <icon name="upload" color="iconColor"></icon>
+                    <icon name="share-square" color="iconColor"></icon>
                 </b-btn>
 
             </b-navbar-nav>
@@ -111,11 +111,13 @@
     import {FireStoreService} from '../services/FireStoreService';
     import {logDebug, logError} from '../utils/logger';
     import * as auth from '../utils/auth';
+    import {applyHighlightJs} from '../utils/CodeHightlight';
 
     import {
         Getter,
         Action,
     } from 'vuex-class';
+
 
     @Component({
         props: {
@@ -228,12 +230,19 @@
 
         private publishDocument() {
 
+
+
             // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                const location = s3Service.publishDoc(this.docId, html);
-                this.dbService.updatePublishLocation(this.docId, location);
+
+                const el = document.createElement('div');
+                el.innerHTML = html;
+                applyHighlightJs(el);
+                console.log(el.innerHTML);
+               // const location = s3Service.publishDoc(this.docId, html);
+               // this.dbService.updatePublishLocation(this.docId, location);
             });
         }
 
