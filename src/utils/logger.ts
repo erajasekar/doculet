@@ -1,4 +1,4 @@
-import {isProd} from "../config/config";
+import {isProd} from '../config/config';
 
 
 export function logInfo(message: string) {

@@ -1,8 +1,8 @@
 import hljs from 'highlight.js';
-import {staticHostingUrl} from "../config/config";
-import Constants from "@/utils/constants";
+import {staticHostingUrl} from '../config/config';
+import Constants from '../utils/constants';
 
-export interface EnrichParams{
+export interface EnrichParams {
     docLocation: string;
 }
 
@@ -21,7 +21,7 @@ export function enrichHtml(html: string, params: EnrichParams) {
 
     const head = document.createElement('head');
     appendStylesheets(head);
-    appendOmbedLink(head, params.docLocation)
+    appendOmbedLink(head, params.docLocation);
 
 
     const body = document.createElement('body');
@@ -39,7 +39,7 @@ function appendStylesheets(el: Element) {
     el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
 }
 
-function appendOmbedLink(el: Element, docLocation: string){
+function appendOmbedLink(el: Element, docLocation: string) {
     const link  = document.createElement('link');
     link.rel  = 'alternate';
     link.type = 'application/json+oembed';

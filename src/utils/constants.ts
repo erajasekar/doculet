@@ -18,6 +18,6 @@ export default class Constants {
     public static readonly DOCULET_SEO_KEYWORDS = 'code, share, embed, blog, website, ' +
         'comments, programming, computer science';
 
-    public static readonly DOCULET_S3_DEV_URL ='https://doculet3.s3-website.us-east-2.amazonaws.com/'
+    public static readonly DOCULET_S3_DEV_URL = 'https://doculet3.s3-website.us-east-2.amazonaws.com/';
     public static readonly DOCULET_OEMBED_URL = `${Constants.DOCULET_URL}ombed?`;
 }
