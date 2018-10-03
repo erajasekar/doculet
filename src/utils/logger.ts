@@ -1,5 +1,5 @@
+import {isProd} from "../config/config";
 
-export const isProd = process.env.NODE_ENV === 'production';
 
 export function logInfo(message: string) {
     /* tslint:disable: no-console */

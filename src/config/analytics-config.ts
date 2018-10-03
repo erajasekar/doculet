@@ -1,4 +1,4 @@
-import {isProd} from '../utils/logger';
+import {isProd} from './config';
 import router from '../router';
 
 export const analyticsConfig = {

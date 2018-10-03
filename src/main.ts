@@ -8,7 +8,6 @@ import firebase from 'firebase/app';
 import './vue-awesome-config';
 import {isViewPage} from './utils/auth';
 import vueHeadful from 'vue-headful';
-import {isProd} from './utils/logger';
 import VueAnalytics from 'vue-analytics';
 import {analyticsConfig} from './config/analytics-config';
 

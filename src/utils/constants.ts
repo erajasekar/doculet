@@ -1,4 +1,6 @@
 export default class Constants {
+
+    public static readonly DOCULET_URL = 'https://doculet.net/';
     public static readonly ACCESS_TOKEN_PROPERTY = 'accessToken';
     public static readonly DB_COLLECTION_DOCULENTS = 'doculets';
     public static readonly ON_LOAD_DOC_NAME = 'User Guide.adoc';
@@ -15,4 +17,7 @@ export default class Constants {
         'medium articles or any of your website.';
     public static readonly DOCULET_SEO_KEYWORDS = 'code, share, embed, blog, website, ' +
         'comments, programming, computer science';
+
+    public static readonly DOCULET_S3_DEV_URL ='https://doculet3.s3-website.us-east-2.amazonaws.com/'
+    public static readonly DOCULET_OEMBED_URL = `${Constants.DOCULET_URL}ombed?`;
 }

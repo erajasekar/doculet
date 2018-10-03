@@ -15,20 +15,18 @@ export class AwsS3Service {
     private bucketName = config.aws.s3BucketName || 'Bucket name not found in config';
     private contentType = 'text/html';
 
-    public publishDoc(docId: string, html: string) {
-
-        const location = `doc/${docId}/index.html`;
+    public publishDoc(docLocation: string, html: string) {
 
         const params = {
             Bucket: this.bucketName,
             Body : html,
-            Key : location,
+            Key : docLocation,
             ContentType: this.contentType,
         };
 
         this.s3.upload(params,  (err: Error, data: ManagedUpload.SendData) => {
             if (err) {
-                logError(`Error in publishing doc : ${docId} to S3 ${err.message}`);
+                logError(`Error in publishing doc : ${docLocation} to S3 ${err.message}`);
             }
 
             if (data) {
@@ -36,7 +34,6 @@ export class AwsS3Service {
             }
         });
 
-        return location;
     }
 
     public deleteDoc(docLocation: string) {

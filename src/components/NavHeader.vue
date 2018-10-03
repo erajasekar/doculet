@@ -230,17 +230,17 @@
 
         private publishDocument() {
 
-
+            const docLocation = `doc/${this.docId}/index.html`;
 
             // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
 
-                const enriched = enrichHtml(html);
+                const enriched = enrichHtml(html, {docLocation});
                 console.log(enriched);
-               // const location = s3Service.publishDoc(this.docId, html);
-               // this.dbService.updatePublishLocation(this.docId, location);
+                const location = s3Service.publishDoc(docLocation, enriched);
+               // this.dbService.updatePublishLocation(this.docId, docLocation);
             });
         }
 
