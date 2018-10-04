@@ -79,8 +79,8 @@
                 When will it be ready for use?
             </h4>
             <p>
-                I am just working on this on free time. So I don't have a specific date. 
-                If you are curious, please subscribe to email list and I will keep you updated.
+                I am just working on this during free time. So I don't have a specific date.
+                If you are curious, please subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a> and I will keep you updated.
             </p>
         </b-jumbotron>
 

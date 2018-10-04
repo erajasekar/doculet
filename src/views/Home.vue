@@ -23,7 +23,7 @@
                     </b-col>
                     <b-col>
                         <p>
-                            The project is currently in development. You can subscribe to <a href="4"> email list </a>
+                            The project is currently in development. You can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a>
                             to stay tuned.
                         </p>
                         <p>

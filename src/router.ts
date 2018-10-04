@@ -22,7 +22,7 @@ export default new Router({
             props: true,
         },
         {
-            path: '/doc/:gistId',
+            path: '/view/:gistId',
             name: 'doc-view',
             component: DocView ,
             props: true,

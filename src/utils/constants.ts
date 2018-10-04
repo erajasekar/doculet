@@ -4,8 +4,8 @@ export default class Constants {
     public static readonly ON_LOAD_DOC_NAME = 'User Guide.adoc';
     public static readonly ON_LOAD_DOC_CONTENT = 'Loading';
     public static readonly NEW_DOC_GIST_ID = '8d03c78d367928f569d9e3dbad8644fa';
-    public static readonly GETTING_STARTED_DOC_GIST_ID = '1f3465ad9f26a24c52e9b61f64aa7670';
-    public static readonly VIEW_URL_PATTERN = '/doc/';
+    public static readonly GETTING_STARTED_DOC_GIST_ID = 'bf75e8cc021e8d39d17a09f3a592844a';
+    public static readonly VIEW_URL_PATTERN = '/view/';
     public static readonly MENU_ICON_COLOR = '#1E2C40';
     public static readonly GITHUB_API_URL = 'https://api.github.com/gists/';
     public static readonly GITHUB_DOCULET_OWNER_ID = '629276';

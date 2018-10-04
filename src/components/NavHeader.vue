@@ -9,7 +9,7 @@
 
           <!--  <b-img  width="200" height="30" src="https://www.dropbox.com/s/63hwbzo196p0vlh/Screen%20Shot%202018-09-19%20at%2010.50.47%20PM.png?raw=1" fluid alt="Doculet logo"></b-img> -->
           <!--  <b-img  width="200" height="50" class="logo" src="https://www.dropbox.com/s/6wwkngdis574sss/doculet-logo-transparent.png?raw=1" fluid alt="Doculet logo"></b-img> -->
-            <b-img  width="200" height="50" class="logo" src="static/doculet-logo1.png" fluid alt="Doculet logo"></b-img>
+            <b-img  width="200" height="50" class="logo" src="/static/doculet-logo1.png" fluid alt="Doculet logo"></b-img>
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
@@ -230,7 +230,8 @@
 
             const gistId = querySnapshot.docs[0].id; // We limit result to 1.
             const ownerId = querySnapshot.docs[0].data().ownerId;
-            logDebug(`Found gist in FireStore : ${gistId} with ownerId : ${ownerId}; Imported gist ownerId: ${this.docOwnerId}` );
+            logDebug(`Found gist in FireStore : ${gistId} with ownerId : ${ownerId};
+            Imported gist ownerId: ${this.docOwnerId}` );
 
             gitHubService.updateGist(token, gistId, this.docName, this.content).then( (newGist: any) => {
                 this.updateDocSaved(true);
