@@ -19,5 +19,5 @@ export default class Constants {
         'comments, programming, computer science';
 
     public static readonly DOCULET_S3_DEV_URL = 'https://doculet3.s3-website.us-east-2.amazonaws.com/';
-    public static readonly DOCULET_OEMBED_URL = `${Constants.DOCULET_URL}ombed?`;
+    public static readonly DOCULET_OEMBED_URL = `${Constants.DOCULET_URL}oembed?`;
 }
