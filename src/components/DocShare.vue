@@ -5,12 +5,22 @@
                 :description="htmlDescription"
                 :keywords="keywords"
         />
-        <h2>Share links</h2>
+        <h2>Share Options</h2>
         <div>
-            {{shareUrl}}
+            <b-input-group prepend="URL ">
+                <b-form-input type="url" :value="shareUrl" readonly></b-form-input>
+                <b-input-group-append>
+                    <b-btn variant="info">Copy</b-btn>
+                </b-input-group-append>
+            </b-input-group>
         </div>
         <div>
-            {{iframeHtml}}
+            <b-input-group prepend="Embed ">
+                <b-form-input type="url" :value="iframeHtml" readonly></b-form-input>
+                <b-input-group-append>
+                    <b-btn variant="info">Copy</b-btn>
+                </b-input-group-append>
+            </b-input-group>
         </div>
         <h2>Preview of your embed</h2>
         <div v-html="iframeHtml"></div>
@@ -23,7 +33,7 @@
     import {logDebug, logInfo} from '../utils/logger';
     import Constants from '../utils/constants';
     import {dbService} from '../services/FireStoreService';
-    import {createIframeHtml} from '../utils/SharePreview'
+    import {createIframeHtml} from '../utils/SharePreview';
 
     @Component({
         props: {
@@ -52,11 +62,12 @@
 
             logDebug(`DocId to share ${docId}`);
 
-            dbService.getPublishLocation(docId).then( (location: string) => {
+            /*dbService.getPublishLocation(docId).then( (location: string) => {
                 console.log(location);
                 this.publishLocation = location;
-            });
-
+            });*/
+            // TODO
+            this.publishLocation = 'http://localhost:8080/embed/index.html';
         }
 
         get shareUrl() {
