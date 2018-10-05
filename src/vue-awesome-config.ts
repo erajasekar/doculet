@@ -10,6 +10,7 @@ import 'vue-awesome/icons/download';
 import 'vue-awesome/icons/times';
 import 'vue-awesome/icons/upload';
 import 'vue-awesome/icons/share-square';
+import 'vue-awesome/icons/share-alt';
 import 'vue-awesome/icons/undo';
 import 'vue-awesome/icons/cloud-upload-alt';
 import 'vue-awesome/icons/window-close';

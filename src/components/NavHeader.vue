@@ -64,9 +64,14 @@
                     <icon name="eye" color="iconColor"></icon>
                 </b-btn>
 
-                <b-btn @click="publishDocument" variant="info" v-b-tooltip.hover
+                <b-btn @click="publishDoculet" variant="info" v-b-tooltip.hover
                        title="Publish Document" :disabled="isDocActionsDisabled">
                     <icon name="share-square" color="iconColor"></icon>
+                </b-btn>
+
+                <b-btn @click="shareDoculet" variant="info" v-b-tooltip.hover
+                       title="Share Document" :disabled="isDocActionsDisabled">
+                    <icon name="share-alt" color="iconColor"></icon>
                 </b-btn>
 
             </b-navbar-nav>
@@ -229,7 +234,7 @@
             window.open(routeData.href, '_blank');
         }
 
-        private publishDocument() {
+        private publishDoculet() {
 
             const bucketKey = `doc/${this.docId}/index.html`;
             const docLocation = `${staticHostingUrl}${bucketKey}`;
@@ -239,10 +244,17 @@
 
                 const html = asciiDoc.convert(gistFile.content);
                 const enriched = enrichHtml(html, {docLocation});
-                console.log(enriched);
                 s3Service.publishDoc(bucketKey, enriched);
                 this.dbService.updatePublishLocation(this.docId, docLocation);
             });
+        }
+
+        private shareDoculet() {
+            console.log(this.docId);
+
+            if (this.docId) {
+                this.$router.push(`/share/${this.docId}`);
+            }
         }
 
         private deleteGistAndFromDB(docId: string, token: string) {

@@ -4,7 +4,7 @@ import Home from './views/Home.vue';
 import DocEditor from './components/DocEditor.vue';
 import DocView from './components/DocView.vue';
 import About from './views/About.vue';
-import Constants from './utils/constants';
+import DocShare from './components/DocShare.vue';
 
 Vue.use(Router);
 
@@ -33,6 +33,10 @@ export default new Router({
             props: true,
         },
         {
+            path: '/share/:docId',
+            name: 'doc-share',
+            component: DocShare ,
+            props: true,
             path: '/guide/',
             name: 'guide',
             component: DocView ,

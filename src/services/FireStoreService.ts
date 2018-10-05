@@ -71,4 +71,6 @@ export class FireStoreService {
     }
 }
 
+export const dbService = new FireStoreService();
+
 
