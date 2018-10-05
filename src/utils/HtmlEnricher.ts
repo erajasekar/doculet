@@ -43,7 +43,7 @@ function appendOmbedLink(el: Element, docLocation: string) {
     const link  = document.createElement('link');
     link.rel  = 'alternate';
     link.type = 'application/json+oembed';
-    link.href = Constants.DOCULET_OEMBED_URL + `url=${staticHostingUrl}${docLocation}`;
+    link.href = Constants.DOCULET_OEMBED_URL + `url=${docLocation}`;
     el.appendChild(link);
 }
 

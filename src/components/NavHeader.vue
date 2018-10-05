@@ -117,6 +117,7 @@
         Getter,
         Action,
     } from 'vuex-class';
+    import {staticHostingUrl} from '../config/config';
 
 
     @Component({
@@ -230,17 +231,17 @@
 
         private publishDocument() {
 
-            const docLocation = `doc/${this.docId}/index.html`;
+            const bucketKey = `doc/${this.docId}/index.html`;
+            const docLocation = `${staticHostingUrl}${bucketKey}`;
 
             // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-
                 const enriched = enrichHtml(html, {docLocation});
                 console.log(enriched);
-                const location = s3Service.publishDoc(docLocation, enriched);
-               // this.dbService.updatePublishLocation(this.docId, docLocation);
+                s3Service.publishDoc(bucketKey, enriched);
+                this.dbService.updatePublishLocation(this.docId, docLocation);
             });
         }
 
