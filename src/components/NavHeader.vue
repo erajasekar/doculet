@@ -293,6 +293,7 @@
                         docId: gistId,
                         docName: this.docName,
                         docOwnerId: String(newGist.owner.id),
+                        publishLocation: null,
                     });
                     this.addToMyDocs({docId: gistId, docName: this.docName});
                     this.updateDocSaved(true);

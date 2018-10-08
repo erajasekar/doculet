@@ -4,7 +4,7 @@
         <ul v-if="isUserAuthenticated">
             <h3>Documents</h3>
             <li v-for="doc in myDocs" :key="doc.docId">
-                <a @click="openDocument(doc.docId)" :class="{ active: isSelected(doc.docId) }">{{doc.docName}}</a>
+                <a @click="openDocument(doc)" :class="{ active: isSelected(doc.docId) }">{{doc.docName}}</a>
             </li>
         </ul>
       <!--  <div v-else> -->
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-    import {Getter} from 'vuex-class';
+    import {Getter, Action} from 'vuex-class';
     import {Component, Vue} from 'vue-property-decorator';
     import {DoculetFile} from '../store/modules/doculet';
     import * as User from '../store/modules/user';
@@ -26,10 +26,16 @@
         @Getter('user') private user!: User.UserType;
         @Getter('docId') private docId!: string;
         @Getter('myDocs') private myDocs!: DoculetFile[];
+        @Action('updatePublishLocation') private updatePublishLocation: any;
 
-        public openDocument(docId: string) {
+        public openDocument(doc: DoculetFile) {
             // TODO test in office if we switch doc after saving, it takes some time for content to refresh.
-            this.$router.push(`/edit/${docId}`);
+            if (doc.publishLocation){
+                this.updatePublishLocation(doc.publishLocation);
+                this.$router.push(`/share/$${doc.docId}`);
+            } else{
+                this.$router.push(`/edit/${doc.docId}`);
+            }
         }
 
         get isUserAuthenticated() {

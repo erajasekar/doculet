@@ -1,9 +1,8 @@
 import {GetterTree, MutationTree, ActionTree, ActionContext} from 'vuex';
 import Constants from '../../utils/constants';
 import firebase from 'firebase';
-import {FireStoreService} from '../../services/FireStoreService';
+import {FireStoreService, dbService} from '../../services/FireStoreService';
 import {logDebug} from '../../utils/logger';
-
 
 export interface DoculetDoc extends DoculetDocBase {
     content: string;
@@ -17,6 +16,7 @@ export interface DoculetDocBase extends DoculetFile {
 export interface DoculetFile {
     docName: string;
     docId: string;
+    publishLocation: string | null;
 }
 
 const homeDoc = {
@@ -25,6 +25,7 @@ const homeDoc = {
     docId: Constants.ON_LOAD_DOC_CONTENT,
     docSaved: false,
     docOwnerId: Constants.ON_LOAD_DOC_CONTENT,
+    publishLocation: null,
 };
 
 export class State {
@@ -57,6 +58,10 @@ const getters =  {
         return state.doc.docSaved;
     },
 
+    publishLocation(state: State): string | null {
+        return state.doc.publishLocation;
+    },
+
     myDocs(state: State): DoculetFile[] {
         return state.myDocs;
     },
@@ -78,6 +83,10 @@ const mutations =  {
     updateDocContent(state: State, content: string) {
        state.doc.content = content;
     },
+
+    updatePublishLocation(state: State, location: string | null) {
+        state.doc.publishLocation = location;
+     },
 
     updateDocSaved(state: State, docSaved: boolean) {
         state.doc.docSaved = docSaved;
@@ -125,6 +134,10 @@ const actions =  {
         store.commit('updateDocSaved', docSaved);
     },
 
+    updatePublishLocation(store: ActionContext<State, any>, location: string | null) {
+        store.commit('updatePublishLocation', location);
+    },
+
     addToMyDocs(store: ActionContext<State, any>, doc: DoculetFile): boolean {
 
         const existing = store.state.myDocs.findIndex( (value) => value.docId === doc.docId) >= 0;
@@ -140,13 +153,16 @@ const actions =  {
 
     loadMyDocs(store: ActionContext<State, firebase.User>, payload: firebase.User) {
 
-        const dbService = new FireStoreService();
-
         if (payload.email) {
             dbService.getMyDocs(payload.email).then((querySnapshot) => {
                 logDebug(`Added ${querySnapshot.size} docs`);
                 querySnapshot.forEach((doc) => {
-                    store.commit('addToMyDocs', {docId: doc.id, docName: doc.data().name});
+                    const data = doc.data();
+                    store.commit('addToMyDocs', {
+                        docId: doc.id,
+                        docName: data.name,
+                        publishLocation: data.publishLocation,
+                    });
                 });
             });
         }

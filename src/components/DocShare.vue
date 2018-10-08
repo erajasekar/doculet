@@ -57,6 +57,7 @@
     import Constants from '../utils/constants';
     import {dbService} from '../services/FireStoreService';
     import {createIframeHtml} from '../utils/SharePreview';
+    import { Getter, Action } from 'vuex-class';
 
     @Component({
         props: {
@@ -65,12 +66,11 @@
     })
     export default class DocShare extends Vue {
 
+        @Getter('publishLocation') private publishLocation = '';
         private title: string = 'Doculet';
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private docId: string = this.docId;
-
-        private publishLocation: string = '';
 
         private mounted() {
             this.loadDoc(this.docId, '');
@@ -85,12 +85,14 @@
 
             logDebug(`DocId to share ${docId}`);
 
-            /*dbService.getPublishLocation(docId).then( (location: string) => {
-                console.log(location);
-                this.publishLocation = location;
-            });*/
-            // TODO
-            this.publishLocation = 'http://localhost:8080/embed/index.html';
+            if (!this.publishLocation){
+                dbService.getPublishLocation(docId).then( (location: string) => {
+                    console.log(location);
+                    this.publishLocation = location;
+                });
+                // TODO
+                //this.publishLocation = 'http://localhost:8080/embed/index.html';
+            }
         }
 
         get shareUrl() {
