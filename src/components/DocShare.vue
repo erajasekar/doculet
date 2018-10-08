@@ -5,25 +5,32 @@
                 :description="htmlDescription"
                 :keywords="keywords"
         />
-        <h2>Share Options</h2>
-        <div>
-            <b-input-group prepend="URL ">
-                <b-form-input type="url" :value="shareUrl" readonly></b-form-input>
-                <b-input-group-append>
-                    <b-btn variant="info">Copy</b-btn>
-                </b-input-group-append>
-            </b-input-group>
-        </div>
-        <div>
-            <b-input-group prepend="Embed ">
-                <b-form-input type="url" :value="iframeHtml" readonly></b-form-input>
-                <b-input-group-append>
-                    <b-btn variant="info">Copy</b-btn>
-                </b-input-group-append>
-            </b-input-group>
-        </div>
-        <h2>Preview of your embed</h2>
-        <div v-html="iframeHtml"></div>
+
+        <b-jumbotron id="share-container" header="Share Options" >
+
+            <b-container fluid class="bv-example-row">
+                <b-row><b-col>
+                        <b-input-group prepend="URL ">
+                            <b-form-input type="url" :value="shareUrl" readonly></b-form-input>
+                            <b-input-group-append>
+                                <b-btn variant="info">Copy</b-btn>
+                            </b-input-group-append>
+                        </b-input-group>
+                </b-col></b-row>
+                <b-row><b-col>
+                    <b-input-group prepend="Embed ">
+                        <b-form-input type="url" :value="iframeHtml" readonly></b-form-input>
+                        <b-input-group-append>
+                            <b-btn variant="info">Copy</b-btn>
+                        </b-input-group-append>
+                    </b-input-group>
+                </b-col></b-row>
+            </b-container>
+        </b-jumbotron>
+        <b-jumbotron id="preview-container" header="Preview" >
+            <div v-html="iframeHtml"></div>
+        </b-jumbotron>
+        
     </div>
 </template>
 

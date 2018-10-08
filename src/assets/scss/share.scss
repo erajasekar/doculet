@@ -1,13 +1,28 @@
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 @import "custom-variables";
 
+$containerBackground: white;
+
 .share-pane{
   height: 100%;
   width: 100%;
   color: $primaryTextColor;
 }
 
-h2{
+#share-container, #preview-container{
+  background-color: $containerBackground;
+  padding-top: 1%;
+  border-bottom: solid 1px $sideNavBackgroundColorLighter;
+}
+
+input[readonly]{
+  background-color:transparent;
+  font-family: $monospaceFont;
+  font-size: large;
+}
+
+h1{
   font-family: $primaryFont;
   color: $sideNavBackgroundColor;
+  font-size: 2.75em;
 }
