@@ -10,6 +10,7 @@ import {isViewPage} from './utils/auth';
 import vueHeadful from 'vue-headful';
 import VueAnalytics from 'vue-analytics';
 import {analyticsConfig} from './config/analytics-config';
+import VueClipboard from 'vue-clipboard2';
 
 export const startTime = new Date().getTime();
 
@@ -22,6 +23,7 @@ Vue.directive('highlightjs', VueHighlightJsDirective);
 Vue.config.productionTip = false;
 
 Vue.use(VueAnalytics, analyticsConfig);
+Vue.use(VueClipboard);
 
 new Vue({
   router,

@@ -17,7 +17,9 @@
                         <b-form-input id="urlText" type="url" :value="shareUrl" readonly></b-form-input>
                         <b-input-group-append>
                             <b-btn v-b-tooltip.hover 
-                                    title="Copy to clipboard"><icon name="clone"></icon></b-btn>
+                                    title="Copy to clipboard" v-clipboard:copy="shareUrl">
+                                    <icon name="clone"></icon>
+                            </b-btn>
                         </b-input-group-append>
                     </b-input-group>
                 </b-form-group>
@@ -32,7 +34,9 @@
                         <b-form-input id="embedText" type="url" :value="iframeHtml" readonly></b-form-input>
                         <b-input-group-append>
                             <b-btn v-b-tooltip.hover 
-                                    title="Copy to clipboard"><icon name="clone"></icon></b-btn>
+                                    title="Copy to clipboard" v-clipboard:copy="iframeHtml">
+                                    <icon name="clone"></icon>
+                            </b-btn>
                         </b-input-group-append>
                     </b-input-group>
                 </b-form-group>
