@@ -8,24 +8,34 @@
 
         <b-jumbotron id="share-container" header="Share Options" >
 
-            <b-container fluid class="bv-example-row">
-                <b-row><b-col>
-                        <b-input-group prepend="URL ">
-                            <b-form-input type="url" :value="shareUrl" readonly></b-form-input>
-                            <b-input-group-append>
-                                <b-btn variant="info">Copy</b-btn>
-                            </b-input-group-append>
-                        </b-input-group>
-                </b-col></b-row>
-                <b-row><b-col>
-                    <b-input-group prepend="Embed ">
-                        <b-form-input type="url" :value="iframeHtml" readonly></b-form-input>
+            <div>
+                <b-form-group horizontal :label-cols="1" breakpoint="md" label="URL" label-for="urlText">
+                    <b-input-group>
+                        <b-input-group-prepend>
+                             <b-btn><icon name="link"></icon></b-btn>
+                         </b-input-group-prepend>
+                        <b-form-input id="urlText" type="url" :value="shareUrl" readonly></b-form-input>
                         <b-input-group-append>
-                            <b-btn variant="info">Copy</b-btn>
+                            <b-btn>Copy</b-btn>
                         </b-input-group-append>
                     </b-input-group>
-                </b-col></b-row>
-            </b-container>
+                </b-form-group>
+                
+            </div>
+            <div>
+                <b-form-group horizontal :label-cols="1" breakpoint="md" label="Embed" label-for="embedText">
+                    <b-input-group>
+                        <b-input-group-prepend>
+                                <b-btn><icon name="code"></icon></b-btn>
+                            </b-input-group-prepend>
+                        <b-form-input id="embedText" type="url" :value="iframeHtml" readonly></b-form-input>
+                        <b-input-group-append>
+                            <b-btn >Copy</b-btn>
+                        </b-input-group-append>
+                    </b-input-group>
+                </b-form-group>
+                
+            </div>
         </b-jumbotron>
         <b-jumbotron id="preview-container" header="Preview" >
             <div v-html="iframeHtml"></div>

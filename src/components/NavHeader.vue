@@ -19,7 +19,7 @@
                 <div>
                     <b-input-group>
                          <b-input-group-prepend>
-                             <b-btn  variant="light"><icon name="link"></icon></b-btn>
+                             <b-btn variant="light"><icon name="link"></icon></b-btn>
                          </b-input-group-prepend>
 
                         <b-form-input type="url" placeholder="GitHub Gist Id or URL" v-model="importUrl"
