@@ -67,6 +67,7 @@
     export default class DocShare extends Vue {
 
         @Getter('publishLocation') private publishLocation = '';
+        @Action('updateDocId') private updateDocId: any;
         private title: string = 'Doculet';
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
@@ -84,6 +85,7 @@
         private loadDoc(docId: string, oldValue: string) {
 
             logDebug(`DocId to share ${docId}`);
+            this.updateDocId(docId);
 
             if (!this.publishLocation){
                 dbService.getPublishLocation(docId).then( (location: string) => {

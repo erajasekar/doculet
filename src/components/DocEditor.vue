@@ -65,7 +65,6 @@
 
         @Action('updateDocName') private updateDocName: any;
         @Action('updateDoc') private updateDoc: any;
-        @Action('updateDocId') private updateDocId: any;
         @Action('updateDocSaved') private updateDocSaved: any;
         @Action('updateDocContent') private updateDocContent: any;
         @Action('addToMyDocs') private addToMyDocs: any;
