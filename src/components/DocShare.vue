@@ -14,10 +14,10 @@
                         <b-input-group-prepend>
                              <b-btn><icon name="link"></icon></b-btn>
                          </b-input-group-prepend>
-                        <b-form-input id="urlText" type="url" :value="shareUrl" readonly></b-form-input>
+                        <b-form-input id="urlText" type="url" :value="publishLocation" readonly></b-form-input>
                         <b-input-group-append>
                             <b-btn v-b-tooltip.hover 
-                                    title="Copy to clipboard" v-clipboard:copy="shareUrl">
+                                    title="Copy to clipboard" v-clipboard:copy="publishLocation">
                                     <icon name="clone"></icon>
                             </b-btn>
                         </b-input-group-append>
@@ -66,8 +66,9 @@
     })
     export default class DocShare extends Vue {
 
-        @Getter('publishLocation') private publishLocation = '';
+        @Getter('publishLocation') private publishLocation!: string;
         @Action('updateDocId') private updateDocId: any;
+        @Action('updatePublishLocation') private updatePublishLocation: any;
         private title: string = 'Doculet';
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
@@ -84,22 +85,19 @@
         @Watch('docId')
         private loadDoc(docId: string, oldValue: string) {
 
-            logDebug(`DocId to share ${docId}`);
+            logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
 
-            if (!this.publishLocation){
+            if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
-                    console.log(location);
-                    this.publishLocation = location;
+                    console.log('raja ', location);
+                    this.updatePublishLocation(location);
                 });
                 // TODO
-                //this.publishLocation = 'http://localhost:8080/embed/index.html';
+                // this.publishLocation = 'http://localhost:8080/embed/index.html';
             }
         }
 
-        get shareUrl() {
-            return this.publishLocation;
-        }
         get iframeHtml() {
             return createIframeHtml(this.publishLocation);
         }
