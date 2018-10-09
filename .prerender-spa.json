@@ -1,1 +1,1 @@
-{"renderRoutes":["/","/about"],"useRenderEvent":true,"headless":true,"onlyProduction":true}
+{"renderRoutes":["/","/about", "/home"],"useRenderEvent":true,"headless":true,"onlyProduction":true}
