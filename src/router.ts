@@ -16,6 +16,11 @@ export default new Router({
             component: Home,
         },
         {
+            path: '/home',
+            name: 'home-static',
+            component: Home,
+        },
+        {
             path: '/edit/:gistId',
             name: 'editor',
             component: DocEditor ,
