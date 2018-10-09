@@ -32,7 +32,7 @@
             // TODO test in office if we switch doc after saving, it takes some time for content to refresh.
             if (doc.publishLocation){
                 this.updatePublishLocation(doc.publishLocation);
-                this.$router.push(`/share/$${doc.docId}`);
+                this.$router.push(`/share/${doc.docId}`);
             } else{
                 this.$router.push(`/edit/${doc.docId}`);
             }
