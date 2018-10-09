@@ -101,9 +101,6 @@
         get iframeHtml() {
             return createIframeHtml(this.publishLocation);
         }
-
-
-
     }
 </script>
 
