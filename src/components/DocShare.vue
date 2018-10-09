@@ -87,6 +87,7 @@
 
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
+            console.log(this.publishLocation);
 
             if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {

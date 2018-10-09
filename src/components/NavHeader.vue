@@ -140,6 +140,7 @@
         @Getter('docSaved') private docSaved!: boolean;
         @Getter('content') private content!: string;
         @Action('updateDocSaved') private updateDocSaved: any;
+        @Action('updatePublishLocation') private updatePublishLocation: any;
         @Action('addToMyDocs') private addToMyDocs: any;
         @Action('deleteFromMyDocs') private deleteFromMyDocs: any;
         @Action('signUserInGithub') private signUserInGithub: any;
@@ -246,6 +247,8 @@
                 const enriched = enrichHtml(html, {docLocation});
                 s3Service.publishDoc(bucketKey, enriched);
                 this.dbService.updatePublishLocation(this.docId, docLocation);
+                this.updatePublishLocation(docLocation);
+                this.shareDoculet();
             });
         }
 

@@ -23,4 +23,6 @@ const configAll = {
 export const config = configAll.default;
 export const isProd = process.env.NODE_ENV === 'production';
 
-export const staticHostingUrl = isProd ? Constants.DOCULET_URL : Constants.DOCULET_S3_DEV_URL;
+// export const staticHostingUrl = isProd ? Constants.DOCULET_URL : Constants.DOCULET_S3_DEV_URL;
+
+export const staticHostingUrl = Constants.DOCULET_URL;
