@@ -33,6 +33,12 @@ export default new Router({
             props: true,
         },
         {
+            path: '/guide/',
+            name: 'guide',
+            component: DocView ,
+            props: {gistId: Constants.GETTING_STARTED_DOC_GIST_ID},
+        },
+        {
             path: '/about',
             name: 'about',
             component: About,

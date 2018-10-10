@@ -5,6 +5,7 @@
                 :title="title"
                 :description="description"
                 :keywords="keywords"
+                url="https://doculet.net/home"
         />
 
         <b-jumbotron id="home-container1" fluid

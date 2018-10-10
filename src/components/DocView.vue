@@ -4,6 +4,7 @@
                 :title="htmlTitle"
                 :description="htmlDescription"
                 :keywords="keywords"
+                url="https://doculet.net/guide"
         />
         <div class="view-pane" v-highlightjs="compiledHtml"/>
     </div>
@@ -113,5 +114,6 @@
     .view-pane
         height 100%
         width 100%
+        color: black;
 
 </style>

@@ -5,6 +5,7 @@
                 :title="title"
                 :description="description"
                 :keywords="keywords"
+                url="https://doculet.net/about"
         />
 
         <b-jumbotron id="about-container" header="About Doculet" fluid
