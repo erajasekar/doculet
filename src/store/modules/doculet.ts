@@ -135,7 +135,6 @@ const actions =  {
         store.commit('updateDocId', doc.docId);
         store.commit('updateDocName', doc.docName);
         store.commit('updateOwnerId', doc.docOwnerId);
-        store.commit('updatePublishLocation', doc.publishLocation);
         store.commit('updateDocSaved', false); // TODO if it creates problems, make it parameterize.
     },
 
