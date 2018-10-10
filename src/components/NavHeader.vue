@@ -141,6 +141,7 @@
         @Getter('content') private content!: string;
         @Action('updateDocSaved') private updateDocSaved: any;
         @Action('updatePublishLocation') private updatePublishLocation: any;
+        @Action('updatePublishLocationInMyDocs') private updatePublishLocationInMyDocs: any;
         @Action('addToMyDocs') private addToMyDocs: any;
         @Action('deleteFromMyDocs') private deleteFromMyDocs: any;
         @Action('signUserInGithub') private signUserInGithub: any;
@@ -243,11 +244,17 @@
             // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
+                //TODO recfactor to smaller methods or move to store actions
                 const html = asciiDoc.convert(gistFile.content);
                 const enriched = enrichHtml(html, {docLocation});
                 s3Service.publishDoc(bucketKey, enriched);
                 this.dbService.updatePublishLocation(this.docId, docLocation);
                 this.updatePublishLocation(docLocation);
+                this.updatePublishLocationInMyDocs({
+                    docId: this.docId,
+                    docName: this.docName,
+                    publishLocation: docLocation,
+                });
                 this.shareDoculet();
             });
         }
