@@ -70,7 +70,7 @@
                 </b-btn>
 
                 <b-btn @click="shareDoculet" variant="info" v-b-tooltip.hover
-                       title="Share Document" :disabled="isDocActionsDisabled">
+                       title="Share Document" :disabled="isShareActionDisabled">
                     <icon name="share-alt" color="iconColor"></icon>
                 </b-btn>
 
@@ -138,6 +138,7 @@
         @Getter('docOwnerId') private docOwnerId!: string;
         @Getter('docId') private docId!: string;
         @Getter('docSaved') private docSaved!: boolean;
+        @Getter('publishLocation') private publishLocation!: string;
         @Getter('content') private content!: string;
         @Action('updateDocSaved') private updateDocSaved: any;
         @Action('updatePublishLocation') private updatePublishLocation: any;
@@ -314,7 +315,11 @@
         }
 
         get isDocActionsDisabled() {
-            return !this.isUserAuthenticated || this.docName === null || this.docName === Constants.ON_LOAD_DOC_CONTENT;
+            return !this.isUserAuthenticated || this.docName === null || this.docId === Constants.ON_LOAD_DOC_CONTENT;
+        }
+
+        get isShareActionDisabled() {
+            return this.isDocActionsDisabled || !this.publishLocation;
         }
     }
 </script>

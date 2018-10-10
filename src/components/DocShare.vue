@@ -87,14 +87,13 @@
 
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
+            this.updatePublishLocation('http://localhost:8080/embed/index.html');
            
-            if (!this.publishLocation) {
+           /* TODO if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-                // TODO
-                // this.publishLocation = 'http://localhost:8080/embed/index.html';
-            }
+            }*/
         }
 
         get iframeHtml() {

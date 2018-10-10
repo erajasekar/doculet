@@ -112,7 +112,12 @@
 
             gitHubService.importGist(gistId).then((gistFile) => {
 
-                this.updateDoc({docName: gistFile.fileName, docId: gistId, docOwnerId: gistFile.ownerId});
+                this.updateDoc({
+                    docName: gistFile.fileName, 
+                    docId: gistId, 
+                    docOwnerId: gistFile.ownerId,
+                    publishLocation: null,
+                    });
                 this.update(gistFile.content);
             });
         }
