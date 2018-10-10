@@ -107,6 +107,14 @@ const mutations =  {
             }
         });
     },
+
+    updatePublishLocationInMyDocs(state: State, newDoc: DoculetFile) {
+        state.myDocs.forEach( (doc, index) => {
+            if (doc.docId === newDoc.docId) {
+                doc.publishLocation = newDoc.publishLocation;
+            }
+        });
+    },
 } as MutationTree<State>;
 
 const actions =  {
@@ -149,6 +157,10 @@ const actions =  {
 
     deleteFromMyDocs(store: ActionContext<State, any>, docId: string) {
         store.commit('deleteFromMyDocs', docId);
+    },
+
+    updatePublishLocationInMyDocs(store: ActionContext<State, any>, doc: DoculetFile) {
+        store.commit('updatePublishLocationInMyDocs', doc);
     },
 
     loadMyDocs(store: ActionContext<State, firebase.User>, payload: firebase.User) {

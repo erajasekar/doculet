@@ -244,10 +244,10 @@
             // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
-                //TODO recfactor to smaller methods or move to store actions
+                // TODO recfactor to smaller methods or move to store actions
                 const html = asciiDoc.convert(gistFile.content);
                 const enriched = enrichHtml(html, {docLocation});
-                s3Service.publishDoc(bucketKey, enriched);
+           // TODO     s3Service.publishDoc(bucketKey, enriched);
                 this.dbService.updatePublishLocation(this.docId, docLocation);
                 this.updatePublishLocation(docLocation);
                 this.updatePublishLocationInMyDocs({
@@ -260,8 +260,6 @@
         }
 
         private shareDoculet() {
-            console.log(this.docId);
-
             if (this.docId) {
                 this.$router.push(`/share/${this.docId}`);
             }
