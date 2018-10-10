@@ -9,5 +9,17 @@ export function isAuthenticated(user: UserType) {
 }
 
 export function isViewPage(path: string) {
-    return path.includes(Constants.VIEW_URL_PATTERN);
+    return checkForPagePattern(Constants.VIEW_URL_PATTERN, path);
+}
+
+export function isEditPage(path: string) {
+    return checkForPagePattern(Constants.EDIT_URL_PATTERN, path);
+}
+
+export function isSharePage(path: string) {
+    return checkForPagePattern(Constants.SHARE_URL_PATTERN, path);
+}
+
+function checkForPagePattern(pattern: string, path: string) {
+    return  path.includes(pattern);
 }

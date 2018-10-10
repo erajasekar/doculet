@@ -50,18 +50,9 @@
                     <icon name="save" color="iconColor"></icon>
                 </b-btn>
 
-                <!-- TODO add confirmation before delete -->
-                <b-btn @click="deleteDoculet" variant="info" v-b-tooltip.hover
-                        :disabled="isDocActionsDisabled"
-                        title="Delete Document">
-                    <icon name="trash" color="iconColor"></icon>
-                </b-btn>
-
-                <!-- TODO CHANGE TO SHARE -->
-
-                <b-btn @click="viewDocument" variant="info" v-b-tooltip.hover
-                       title="PreView Document" :disabled="isDocActionsDisabled">
-                    <icon name="eye" color="iconColor"></icon>
+                <b-btn @click="editDoculet" variant="info" v-b-tooltip.hover
+                       title="Edit Document" :disabled="isEditActionDisabled">
+                    <icon name="pencil-alt" color="iconColor"></icon>
                 </b-btn>
 
                 <b-btn @click="publishDoculet" variant="info" v-b-tooltip.hover
@@ -72,6 +63,13 @@
                 <b-btn @click="shareDoculet" variant="info" v-b-tooltip.hover
                        title="Share Document" :disabled="isShareActionDisabled">
                     <icon name="share-alt" color="iconColor"></icon>
+                </b-btn>
+
+                <!-- TODO add confirmation before delete -->
+                <b-btn @click="deleteDoculet" variant="info" v-b-tooltip.hover
+                        :disabled="isDocActionsDisabled"
+                        title="Delete Document">
+                    <icon name="trash" color="iconColor"></icon>
                 </b-btn>
 
             </b-navbar-nav>
@@ -200,6 +198,12 @@
             }
         }
 
+        private editDoculet() {
+            if (this.docId) {
+                this.openDocument(this.docId);
+            }
+        }
+
         private deleteDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
@@ -228,14 +232,14 @@
             this.openDocument(Constants.NEW_DOC_GIST_ID);
         }
 
-        private viewDocument() {
+        /*private viewDocument() {
             const gistId = this.docId ? this.docId : Constants.GETTING_STARTED_DOC_GIST_ID;
             const routeData = this.$router.resolve({
                 name: 'doc-view',
                 params: {gistId},
             });
             window.open(routeData.href, '_blank');
-        }
+        }*/
 
         private publishDoculet() {
 
@@ -319,7 +323,11 @@
         }
 
         get isShareActionDisabled() {
-            return this.isDocActionsDisabled || !this.publishLocation;
+            return this.isDocActionsDisabled || !this.publishLocation || auth.isSharePage(this.$route.path);
+        }
+
+        get isEditActionDisabled() {
+            return this.isDocActionsDisabled || auth.isEditPage(this.$route.path);
         }
     }
 </script>
