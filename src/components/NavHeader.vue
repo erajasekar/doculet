@@ -39,6 +39,7 @@
                      
                     <b-button-group size="sm" class="mx-1"> 
                         <b-btn @click="openNewDocument" variant="secondary" v-b-tooltip.hover
+                               :disabled="isNewActionDisabled"
                             title="New Document" size="sm">
                             <icon name="file-alt" color="iconColor"></icon> New
                         </b-btn>
@@ -321,6 +322,10 @@
 
         get isPublishActionDisabled() {
             return this.isDocActionsDisabled || this.isDocEdited;
+        }
+
+        get isNewActionDisabled() {
+            return !this.isUserAuthenticated || this.isDocEdited;
         }
     }
 </script>
