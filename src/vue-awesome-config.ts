@@ -10,6 +10,8 @@ import 'vue-awesome/icons/code';
 import 'vue-awesome/icons/copy';
 import 'vue-awesome/icons/edit';
 import 'vue-awesome/icons/pencil-alt';
+import 'vue-awesome/icons/question';
+import 'vue-awesome/icons/question-circle';
 import 'vue-awesome/icons/clone';
 import 'vue-awesome/icons/download';
 import 'vue-awesome/icons/times';

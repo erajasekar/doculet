@@ -46,7 +46,7 @@
         <b-jumbotron id="preview-container" header="Preview" >
             <div v-html="iframeHtml"></div>
         </b-jumbotron>
-        
+        <bottom-footer></bottom-footer>
     </div>
 </template>
 
@@ -58,8 +58,12 @@
     import {dbService} from '../services/FireStoreService';
     import {createIframeHtml} from '../utils/SharePreview';
     import { Getter, Action } from 'vuex-class';
+    import BottomFooter from '@/components/BottomFooter.vue';
 
     @Component({
+        components: {
+            BottomFooter,
+        },
         props: {
             docId: String,
         },
@@ -88,14 +92,13 @@
 
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
-          //  this.updatePublishLocation(this.docId);
             this.updateDocEdited(false);
-           // this.updatePublishLocation('http://localhost:8080/embed/index.html');
-            if (!this.publishLocation) {
+            this.updatePublishLocation('http://localhost:8080/embed/index.html');
+          /*  if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }
+            }*/
         }
 
         get iframeHtml() {

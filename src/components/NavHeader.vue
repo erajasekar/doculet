@@ -80,24 +80,28 @@
             <b-navbar-nav class="ml-auto">
 
                 <div v-if="isUserAuthenticated">
-                    <b-nav-item-dropdown right>
+                    <b-nav-item-dropdown  right>
                         <!-- Using button-content slot -->
                         <template slot="button-content">
                             <b-img rounded="circle" width="30" height="30" :src="user.photoUrl" fluid
                                    alt="Profile pic"></b-img>
                         </template>
-                        <b-dropdown-header>{{ user.name }}</b-dropdown-header>
-                        <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+                        <b-dropdown-header size="sm">{{ user.name }}</b-dropdown-header>
+                        <b-dropdown-item @click="logout" size="sm">Logout</b-dropdown-item>
                     </b-nav-item-dropdown>
 
                 </div>
 
                 <div v-else>
                     <b-btn @click="signUserInGithub" v-b-tooltip.hover
-                        title="Login using Github" size="sm"  class="login-btn">
+                        title="Login using Github"  variant="secondary">
                         <icon name="brands/github-square"></icon> Login
                     </b-btn>
                 </div>
+                <b-nav-item to="/guide" v-b-tooltip.hover
+                            title="User guide">
+                    <icon name="question-circle"></icon> Help
+                </b-nav-item>
             </b-navbar-nav>
 
         </b-collapse>
