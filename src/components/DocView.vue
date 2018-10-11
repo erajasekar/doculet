@@ -55,7 +55,6 @@
                 this.title = `Doculet - ${gistFile.fileName}`;
                 this.content = gistFile.content;
             });
-
         }
 
 

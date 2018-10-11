@@ -10,6 +10,7 @@ export default class Constants {
     public static readonly VIEW_URL_PATTERN = '/view/';
     public static readonly EDIT_URL_PATTERN = '/edit/';
     public static readonly SHARE_URL_PATTERN = '/share/';
+    public static readonly GUIDE_URL_PATTERN = '/guide';
     public static readonly MENU_ICON_COLOR = '#1E2C40';
     public static readonly GITHUB_API_URL = 'https://api.github.com/gists/';
     public static readonly GITHUB_DOCULET_OWNER_ID = '629276';

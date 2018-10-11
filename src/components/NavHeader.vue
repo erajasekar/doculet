@@ -301,7 +301,10 @@
         }
 
         get isDocActionsDisabled() {
-            return !this.isUserAuthenticated || this.docName === null || this.docId === Constants.ON_LOAD_DOC_CONTENT;
+            return !this.isUserAuthenticated ||
+                this.docName === null ||
+                this.docId === Constants.ON_LOAD_DOC_CONTENT ||
+                auth.isGuidePage(this.$route.path);
         }
 
         get isShareActionDisabled() {

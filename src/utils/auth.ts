@@ -20,6 +20,10 @@ export function isSharePage(path: string) {
     return checkForPagePattern(Constants.SHARE_URL_PATTERN, path);
 }
 
+export function isGuidePage(path: string) {
+    return checkForPagePattern(Constants.GUIDE_URL_PATTERN, path);
+}
+
 function checkForPagePattern(pattern: string, path: string) {
     return  path.includes(pattern);
 }
