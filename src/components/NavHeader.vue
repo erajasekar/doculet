@@ -137,7 +137,7 @@
         @Getter('docName') private docName!: string;
         @Getter('docOwnerId') private docOwnerId!: string;
         @Getter('docId') private docId!: string;
-        @Getter('docSaved') private docSaved!: boolean;
+        @Getter('isDocSaved') private isDocSaved!: boolean;
         @Getter('isDocEdited') private isDocEdited!: boolean;
         @Getter('publishLocation') private publishLocation!: string;
         @Getter('content') private content!: string;
@@ -184,7 +184,7 @@
         private saveDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
-                if (!this.docSaved) {
+                if (!this.isDocSaved) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
                             if (querySnapshot.size > 0) {
@@ -211,7 +211,7 @@
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
                 // TODO can remove the check
-                if (!this.docSaved) {
+                if (!this.isDocSaved) {
                     this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
                         .then((querySnapshot) => {
                             querySnapshot.forEach((doc) => {
