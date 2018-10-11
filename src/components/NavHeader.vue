@@ -210,21 +210,10 @@
         private deleteDoculet() {
             const token = localStorage.getItem(Constants.ACCESS_TOKEN_PROPERTY);
             if (this.user && this.docName && token) {
-                // TODO can remove the check
-                if (!this.isDocSaved) {
-                    this.dbService.findDocIdByUserAndName(this.user.email, this.docName)
-                        .then((querySnapshot) => {
-                            querySnapshot.forEach((doc) => {
-                                this.deleteGistAndFromDB(doc.id, token);
-                            });
-                        });
-                } else {
-                    this.deleteGistAndFromDB(this.docId, token);
-                }
+                this.deleteGistAndFromDB(this.docId, token);
             } else {
                 logError('User or docName or token is null');
             }
-
         }
 
         private openDocument(gistId: string) {
