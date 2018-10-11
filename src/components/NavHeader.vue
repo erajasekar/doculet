@@ -1,8 +1,7 @@
 <template>
 
     <b-navbar toggleable="md" variant="info" class="navbar-custom"> <!--TODO navbar-custom not used -->
-
-        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+ 
         <div><button class="toggle-button"><icon :name="menuIconName" scale="2" :color="iconColor"></icon></button></div>
 
         <b-navbar-brand to="/">
@@ -12,67 +11,70 @@
             <b-img  width="200" height="50" class="logo" src="/static/doculet-logo1.png" fluid alt="Doculet logo"></b-img>
         </b-navbar-brand>
 
+        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
         <b-collapse is-nav id="nav_collapse">
+            <b-button-toolbar aria-label="Toolbar with button groups and input groups">
+                <b-navbar-nav>
+                    <div>
+                        <b-input-group>
+                            <b-input-group-prepend>
+                                <b-btn variant="light" size="sm"><icon name="link"></icon></b-btn>
+                            </b-input-group-prepend>
 
-            <b-navbar-nav>
+                            <b-form-input size="sm" type="url" placeholder="GitHub Gist Id or URL" v-model="importUrl"
+                                        @keyup.enter.native="importGist"></b-form-input>
 
-                <div>
-                    <b-input-group>
-                         <b-input-group-prepend>
-                             <b-btn variant="light"><icon name="link"></icon></b-btn>
-                         </b-input-group-prepend>
+                            <b-input-group-append>
+                                <b-btn size="sm" @click="importGist" v-b-tooltip.hover 
+                                        title="Import from GitHub">
+                                    <icon name="folder-open"></icon>
+                                </b-btn>
+                            </b-input-group-append>
 
-                        <b-form-input type="url" placeholder="GitHub Gist Id or URL" v-model="importUrl"
-                                      @keyup.enter.native="importGist"></b-form-input>
+                        </b-input-group>
+                    </div>
+                </b-navbar-nav>
+                <b-navbar-nav>
+                     
+                    <b-button-group size="sm" class="mx-1"> 
+                        <b-btn @click="openNewDocument" variant="secondary" v-b-tooltip.hover
+                            title="New Document" size="sm">
+                            <icon name="file-alt" color="iconColor"></icon> New
+                        </b-btn>
+                        <b-btn @click="saveDoculet" variant="secondary" v-b-tooltip.hover
+                                :disabled="isDocActionsDisabled"
+                                title="Save to Github" size="sm">
+                            <icon name="save" color="iconColor"></icon> Save
+                        </b-btn>
 
-                        <b-input-group-append>
-                            <b-btn @click="importGist" v-b-tooltip.hover 
-                                    title="Import from GitHub">
-                                <icon name="folder-open"></icon>
-                            </b-btn>
-                        </b-input-group-append>
+                        <b-btn @click="editDoculet" variant="secondary" v-b-tooltip.hover
+                            title="Edit Document" :disabled="isEditActionDisabled" size="sm"> 
+                            <icon name="pencil-alt" color="iconColor"></icon> Edit
+                        </b-btn>
+                    </b-button-group>
 
-                    </b-input-group>
-                </div>
+                    <b-button-group size="sm" class="mx-1">
+                        <b-btn @click="publishDoculet" variant="secondary" v-b-tooltip.hover
+                            title="Publish Document" :disabled="isDocActionsDisabled" size="sm"> 
+                            <icon name="share-square" color="iconColor"></icon> Publish
+                        </b-btn>
 
-            </b-navbar-nav>
+                        <b-btn @click="shareDoculet" variant="secondary" v-b-tooltip.hover
+                            title="Share Document" :disabled="isShareActionDisabled" size="sm">
+                            <icon name="share-alt" color="iconColor"></icon> Share
+                        </b-btn>
+                    </b-button-group>
 
-            <b-navbar-nav>
+                    <!-- TODO add confirmation before delete -->
+                    <b-btn @click="deleteDoculet" variant="danger" v-b-tooltip.hover
+                            :disabled="isDocActionsDisabled"
+                            title="Delete Document" size="sm">
+                        <icon name="trash" color="iconColor"></icon> Delete
+                    </b-btn>
 
-                <b-btn @click="openNewDocument" variant="info" v-b-tooltip.hover
-                       title="New Document">
-                    <icon name="file-alt" color="iconColor"></icon>
-                </b-btn>
-
-                <b-btn @click="saveDoculet" variant="info" v-b-tooltip.hover
-                        :disabled="isDocActionsDisabled"
-                        title="Save to Github">
-                    <icon name="save" color="iconColor"></icon>
-                </b-btn>
-
-                <b-btn @click="editDoculet" variant="info" v-b-tooltip.hover
-                       title="Edit Document" :disabled="isEditActionDisabled">
-                    <icon name="pencil-alt" color="iconColor"></icon>
-                </b-btn>
-
-                <b-btn @click="publishDoculet" variant="info" v-b-tooltip.hover
-                       title="Publish Document" :disabled="isDocActionsDisabled">
-                    <icon name="share-square" color="iconColor"></icon>
-                </b-btn>
-
-                <b-btn @click="shareDoculet" variant="info" v-b-tooltip.hover
-                       title="Share Document" :disabled="isShareActionDisabled">
-                    <icon name="share-alt" color="iconColor"></icon>
-                </b-btn>
-
-                <!-- TODO add confirmation before delete -->
-                <b-btn @click="deleteDoculet" variant="info" v-b-tooltip.hover
-                        :disabled="isDocActionsDisabled"
-                        title="Delete Document">
-                    <icon name="trash" color="iconColor"></icon>
-                </b-btn>
-
-            </b-navbar-nav>
+                </b-navbar-nav>
+            </b-button-toolbar>
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
