@@ -69,6 +69,7 @@
         @Getter('publishLocation') private publishLocation!: string;
         @Action('updateDocId') private updateDocId: any;
         @Action('updatePublishLocation') private updatePublishLocation: any;
+        @Action('updateDocEdited') private updateDocEdited: any;
         private title: string = 'Doculet';
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
@@ -88,6 +89,7 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updatePublishLocation(this.docId);
+            this.updateDocEdited(false);
            // this.updatePublishLocation('http://localhost:8080/embed/index.html');
            
            /* TODO if (!this.publishLocation) {

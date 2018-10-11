@@ -7,6 +7,7 @@ import {logDebug} from '../../utils/logger';
 export interface DoculetDoc extends DoculetDocBase {
     content: string;
     docSaved: boolean;
+    docEdited: boolean;
 }
 
 export interface DoculetDocBase extends DoculetFile {
@@ -24,6 +25,7 @@ const homeDoc = {
     content: Constants.ON_LOAD_DOC_CONTENT,
     docId: Constants.ON_LOAD_DOC_CONTENT,
     docSaved: false,
+    docEdited: false,
     docOwnerId: Constants.ON_LOAD_DOC_CONTENT,
     publishLocation: null,
 };
@@ -58,6 +60,10 @@ const getters =  {
         return state.doc.docSaved;
     },
 
+    isDocEdited(state: State): boolean {
+        return state.doc.docEdited;
+    },
+
     publishLocation(state: State): string | null {
         return state.doc.publishLocation;
     },
@@ -90,6 +96,10 @@ const mutations =  {
 
     updateDocSaved(state: State, docSaved: boolean) {
         state.doc.docSaved = docSaved;
+    },
+
+    updateDocEdited(state: State, docEdited: boolean) {
+        state.doc.docEdited = docEdited;
     },
 
     addToMyDocs(state: State, doc: DoculetFile) {
@@ -129,17 +139,24 @@ const actions =  {
 
     updateDocContent(store: ActionContext<State, any>, content: string) {
         store.commit('updateDocContent', content);
+        store.commit('updateDocEdited', true); // Whenever content changed, updateDocEdited to true.
     },
 
-    updateDoc(store: ActionContext<State, any>, doc: DoculetDocBase) {
+    importDoc(store: ActionContext<State, any>, doc: DoculetDocBase) {
         store.commit('updateDocId', doc.docId);
         store.commit('updateDocName', doc.docName);
         store.commit('updateOwnerId', doc.docOwnerId);
         store.commit('updateDocSaved', false); // TODO if it creates problems, make it parameterize.
+        store.commit('updateDocEdited', false); // this method is called during import, so set docEdited to false
     },
 
     updateDocSaved(store: ActionContext<State, any>, docSaved: boolean) {
         store.commit('updateDocSaved', docSaved);
+        store.commit('updateDocEdited', !docSaved); // Whenever docSaved updated to true, update docEdited to false.
+    },
+
+    updateDocEdited(store: ActionContext<State, any>, docEdited: boolean) {
+        store.commit('updateDocEdited', docEdited);
     },
 
     updatePublishLocation(store: ActionContext<State, any>, location: string | null) {

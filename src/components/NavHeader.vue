@@ -43,7 +43,7 @@
                             <icon name="file-alt" color="iconColor"></icon> New
                         </b-btn>
                         <b-btn @click="saveDoculet" variant="secondary" v-b-tooltip.hover
-                                :disabled="isDocActionsDisabled"
+                                :disabled="isSaveActionDisabled"
                                 title="Save to Github" size="sm">
                             <icon name="save" color="iconColor"></icon> Save
                         </b-btn>
@@ -56,7 +56,7 @@
 
                     <b-button-group size="sm" class="mx-1">
                         <b-btn @click="publishDoculet" variant="secondary" v-b-tooltip.hover
-                            title="Publish Document" :disabled="isDocActionsDisabled" size="sm"> 
+                            title="Publish Document" :disabled="isPublishActionDisabled" size="sm"> 
                             <icon name="share-square" color="iconColor"></icon> Publish
                         </b-btn>
 
@@ -138,6 +138,7 @@
         @Getter('docOwnerId') private docOwnerId!: string;
         @Getter('docId') private docId!: string;
         @Getter('docSaved') private docSaved!: boolean;
+        @Getter('isDocEdited') private isDocEdited!: boolean;
         @Getter('publishLocation') private publishLocation!: string;
         @Getter('content') private content!: string;
         @Action('updateDocSaved') private updateDocSaved: any;
@@ -248,7 +249,6 @@
             const bucketKey = `doc/${this.docId}/index.html`;
             const docLocation = `${staticHostingUrl}${bucketKey}`;
 
-            // TODO UNCOMMENT this.saveDoculet();
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 // TODO recfactor to smaller methods or move to store actions
@@ -330,6 +330,14 @@
 
         get isEditActionDisabled() {
             return this.isDocActionsDisabled || auth.isEditPage(this.$route.path);
+        }
+
+        get isSaveActionDisabled() {
+            return this.isDocActionsDisabled || !this.isDocEdited;
+        }
+
+        get isPublishActionDisabled() {
+            return this.isDocActionsDisabled || this.isDocEdited;
         }
     }
 </script>

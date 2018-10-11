@@ -64,7 +64,7 @@
         @Getter('content') private content!: string;
 
         @Action('updateDocName') private updateDocName: any;
-        @Action('updateDoc') private updateDoc: any;
+        @Action('importDoc') private importDoc: any;
         @Action('updateDocSaved') private updateDocSaved: any;
         @Action('updateDocContent') private updateDocContent: any;
         @Action('addToMyDocs') private addToMyDocs: any;
@@ -111,13 +111,14 @@
             // TODO: content doesn't refresh if we import same gist again. because doesn't trigger.
 
             gitHubService.importGist(gistId).then((gistFile) => {
-
-                this.updateDoc({
+                // Content has to be updated before imported to correctly set docEdited flag
+                this.update(gistFile.content);
+                this.importDoc({
                     docName: gistFile.fileName, 
                     docId: gistId, 
                     docOwnerId: gistFile.ownerId,
                     });
-                this.update(gistFile.content);
+                
             });
         }
 
