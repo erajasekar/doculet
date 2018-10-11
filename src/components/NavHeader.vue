@@ -94,7 +94,7 @@
 
                 <div v-else>
                     <b-btn @click="signUserInGithub" v-b-tooltip.hover
-                        title="Login using Github" size="lg" class="login-btn">
+                        title="Login using Github" size="sm"  class="login-btn">
                         <icon name="brands/github-square"></icon> Login
                     </b-btn>
                 </div>
