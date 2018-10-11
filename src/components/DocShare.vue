@@ -91,7 +91,6 @@
             this.updatePublishLocation(this.docId);
             this.updateDocEdited(false);
            // this.updatePublishLocation('http://localhost:8080/embed/index.html');
-           
            /* TODO if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);

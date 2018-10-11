@@ -114,28 +114,12 @@
                 // Content has to be updated before imported to correctly set docEdited flag
                 this.update(gistFile.content);
                 this.importDoc({
-                    docName: gistFile.fileName, 
-                    docId: gistId, 
+                    docName: gistFile.fileName,
+                    docId: gistId,
                     docOwnerId: gistFile.ownerId,
                     });
-                
             });
         }
-
-       /* TODO REMOVE private saveDocInDB(gistId: string, filename: string) {
-            if (this.user) {
-                const existing = this.addToMyDocs({docId: gistId, docName: filename});
-                if (!existing) {
-                    this.updateDocSaved(true);
-                    this.dbService.saveDoc(this.user.email,
-                        {
-                            docId: gistId,
-                            docName: filename,
-                            docOwnerId: this.docOwnerId,
-                        });
-                }
-            }
-        }*/
     }
 </script>
 
