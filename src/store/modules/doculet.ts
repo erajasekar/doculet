@@ -56,7 +56,7 @@ const getters =  {
         return state.doc.content;
     },
 
-    docSaved(state: State): boolean {
+    isDocSaved(state: State): boolean {
         return state.doc.docSaved;
     },
 
@@ -176,8 +176,14 @@ const actions =  {
         store.commit('deleteFromMyDocs', docId);
     },
 
-    updatePublishLocationInMyDocs(store: ActionContext<State, any>, doc: DoculetFile) {
-        store.commit('updatePublishLocationInMyDocs', doc);
+    publishDoc(store: ActionContext<State, any>, doc: DoculetFile) {
+        const docLocation = doc.publishLocation;
+        const docId = doc.docId;
+        if (docLocation) {
+            dbService.updatePublishLocation(docId, docLocation);
+            store.commit('updatePublishLocation', docLocation);
+            store.commit('updatePublishLocationInMyDocs', doc);
+        }
     },
 
     loadMyDocs(store: ActionContext<State, firebase.User>, payload: firebase.User) {

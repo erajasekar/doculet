@@ -142,8 +142,7 @@
         @Getter('publishLocation') private publishLocation!: string;
         @Getter('content') private content!: string;
         @Action('updateDocSaved') private updateDocSaved: any;
-        @Action('updatePublishLocation') private updatePublishLocation: any;
-        @Action('updatePublishLocationInMyDocs') private updatePublishLocationInMyDocs: any;
+        @Action('publishDoc') private publishDoc: any;
         @Action('addToMyDocs') private addToMyDocs: any;
         @Action('deleteFromMyDocs') private deleteFromMyDocs: any;
         @Action('signUserInGithub') private signUserInGithub: any;
@@ -231,13 +230,10 @@
 
             gitHubService.importGist(this.docId).then((gistFile) => {
 
-                // TODO recfactor to smaller methods or move to store actions
                 const html = asciiDoc.convert(gistFile.content);
                 const enriched = enrichHtml(html, {docLocation});
-           // TODO     s3Service.publishDoc(bucketKey, enriched);
-                this.dbService.updatePublishLocation(this.docId, docLocation);
-                this.updatePublishLocation(docLocation);
-                this.updatePublishLocationInMyDocs({
+                s3Service.publishDoc(bucketKey, enriched);
+                this.publishDoc({
                     docId: this.docId,
                     docName: this.docName,
                     publishLocation: docLocation,
