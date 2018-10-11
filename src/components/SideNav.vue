@@ -34,6 +34,7 @@
                 this.updatePublishLocation(doc.publishLocation);
                 this.$router.push(`/share/${doc.docId}`);
             } else {
+                this.updatePublishLocation(null);
                 this.$router.push(`/edit/${doc.docId}`);
             }
         }
