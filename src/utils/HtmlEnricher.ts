@@ -21,6 +21,7 @@ export function enrichHtml(html: string, params: EnrichParams) {
 
     const head = document.createElement('head');
     appendStylesheets(head);
+    appendGoogleSiteVerification(head);
     appendOmbedLink(head, params.docLocation);
 
 
@@ -37,6 +38,15 @@ export function enrichHtml(html: string, params: EnrichParams) {
 function appendStylesheets(el: Element) {
     el.appendChild(createStyleSheet('/css/asciidoc/colony.min.css'));
     el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
+}
+
+function appendGoogleSiteVerification(el: Element){
+    const meta  = document.createElement('meta');
+    meta.name = Constants.GOOGLE_SITE_VERIFICATION_NAME;
+    meta.content = Constants.GOOGLE_SITE_VERIFICATION_VALUE;
+
+    el.appendChild(meta);
+
 }
 
 function appendOmbedLink(el: Element, docLocation: string) {
