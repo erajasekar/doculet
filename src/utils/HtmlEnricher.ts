@@ -40,7 +40,7 @@ function appendStylesheets(el: Element) {
     el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
 }
 
-function appendGoogleSiteVerification(el: Element){
+function appendGoogleSiteVerification(el: Element) {
     const meta  = document.createElement('meta');
     meta.name = Constants.GOOGLE_SITE_VERIFICATION_NAME;
     meta.content = Constants.GOOGLE_SITE_VERIFICATION_VALUE;

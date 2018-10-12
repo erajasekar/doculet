@@ -3,6 +3,7 @@ export default class Constants {
     public static readonly DOCULET_URL = 'https://doculet.net/';
     public static readonly ACCESS_TOKEN_PROPERTY = 'accessToken';
     public static readonly DB_COLLECTION_DOCULENTS = 'doculets';
+
     public static readonly ON_LOAD_DOC_NAME = 'User Guide.adoc';
     public static readonly ON_LOAD_DOC_CONTENT = 'Loading';
     public static readonly NEW_DOC_GIST_ID = '8d03c78d367928f569d9e3dbad8644fa';
@@ -15,7 +16,7 @@ export default class Constants {
     public static readonly GITHUB_API_URL = 'https://api.github.com/gists/';
     public static readonly GITHUB_DOCULET_OWNER_ID = '629276';
 
-    //SEO Related
+    // SEO Related
     public static readonly DOCULET_TITLE = 'Doculet - Easily share and embed code examples in your website';
     public static readonly DOCULET_DESCRIPTION = 'Doculet is a free open source project to easily create, ' +
         'share and embed code examples on your blog, ' +
@@ -25,7 +26,7 @@ export default class Constants {
     public static readonly GOOGLE_SITE_VERIFICATION_NAME = 'google-site-verification';
     public static readonly GOOGLE_SITE_VERIFICATION_VALUE = 'vHh-krBq1bBdzJKjqoJs5Bev0qLwE-b5-jII1kfy7no';
 
-    //Embed related
+    // Embed related
     public static readonly DOCULET_S3_DEV_URL = 'https://s3.us-east-2.amazonaws.com/doculet3/';
     public static readonly DOCULET_OEMBED_URL = `${Constants.DOCULET_URL}oembed?`;
     public static readonly IFRAME_WIDTH = 960;

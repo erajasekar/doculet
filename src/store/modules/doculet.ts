@@ -131,6 +131,7 @@ const actions =  {
     updateDocName(store: ActionContext<State, any>, docName: string) {
         store.commit('updateDocName', docName);
         store.commit('updateDocSaved', false); // Whenever docName changes, reset docSaved.
+        store.commit('updateDocEdited', true); // Whenever docName changed, updateDocEdited to true.
     },
 
     updateDocId(store: ActionContext<State, any>, docId: string) {
