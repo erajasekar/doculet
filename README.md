@@ -18,9 +18,9 @@ It is buit using [VueJs](https://vuejs.org/) framework.
 
 Doculet uses firebase firestore database for backend.  So follows these setup steps:
 
-* You should create a firebase project 
+* create a firebase project.
 
-* Then, add firestore database to it.
+* Add firestore database to it.
 
 * Setup following rules in database to provide access to any signed in user
 
@@ -80,4 +80,3 @@ Run `npm run serve` to start the application in dev mode.
   * Create a Clould front distribution with origin as S3 bucket
   * Got error pages tab.
   * Redirect HTTP Error code "404 Not Found" to response page path "/index.html" and update HTTP Response code to 200.
-
