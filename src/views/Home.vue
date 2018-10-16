@@ -24,8 +24,8 @@
                     </b-col>
                     <b-col>
                         <p>
-                            The project is currently in development. You can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a>
-                            to stay tuned.
+                            The app is currently in beta. You can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a>
+                            to get notified when it is GA.
                         </p>
                         <p>
                             <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
@@ -69,7 +69,7 @@
         </b-jumbotron>
 
         <b-jumbotron id="home-container4" header="Features and Roadmap" fluid>
-            <h3>Prerelease Version 0.1 (Currently available)</h3>
+            <h3>Beta Version 0.2</h3>
             <ul class="features-done">
                 <li>Login using Github.
                 </li>
@@ -79,17 +79,18 @@
                 </li>
                 <li>Save documents.
                 </li>
-                <li>See list of your documents.
+                <li>Publish documents.
+                </li>
+                <li>Share in any website using iframe.</li>
+                <li>Delete documents.
+                </li>
+                <li>See list of your documents and navigate between them.
                 </li>
             </ul>
             <hr>
-            <h3>Version 1.0</h3>
+            <h3>GA Version 1.0</h3>
             <ul>
-                <li>Publish documents for sharing.
-                </li>
-                <li>Share and embed documents in any website.
-                </li>
-                <li>Better user experience.
+                <li>Share in Medium articles. (Currently working on adding <a href="https://embed.ly/">Embed.ly</a> support to be able to embed in Medium)
                 </li>
             </ul>
             <hr>
@@ -97,6 +98,8 @@
             <br>
             <ul>
                 <li>More themes and ability switch between themes.
+                </li>
+                <li>Better user experience.
                 </li>
                 <li>Search your document list.
                 </li>
