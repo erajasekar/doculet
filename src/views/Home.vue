@@ -24,8 +24,8 @@
                     </b-col>
                     <b-col>
                         <p>
-                            The app is currently in beta. You can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a>
-                            to get notified when it is GA.
+                            The app is currently in beta. If you would like to be notified when it is GA, 
+                            you can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list. </a>
                         </p>
                         <p>
                             <b-btn @click="scrollTo('what-is-doculet')" variant="warning"

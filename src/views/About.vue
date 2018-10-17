@@ -80,8 +80,14 @@
                 When will it be ready for use?
             </h4>
             <p>
-                I am just working on this during free time. So I don't have a specific date.
-                If you are curious, please subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a> and I will keep you updated.
+                You can use it today, if you are able to use iframes in your website or blog. I am currently working to make 
+                it embedable in Medium. I will also make it easily work with other popular blogging platforms. 
+                Please subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a> to stay tuned.
+            </p>
+            <p>
+                Also, the app is currently in beta, so if you find any bugs, please submit issue in 
+                <a href="https://github.com/erajasekar/doculet/issues"> Github. </a>
+
             </p>
         </b-jumbotron>
 
