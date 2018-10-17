@@ -7,7 +7,7 @@ export default class Constants {
     public static readonly ON_LOAD_DOC_NAME = 'User Guide.adoc';
     public static readonly ON_LOAD_DOC_CONTENT = 'Loading';
     public static readonly NEW_DOC_GIST_ID = '8d03c78d367928f569d9e3dbad8644fa';
-    public static readonly GETTING_STARTED_DOC_GIST_ID = 'bf75e8cc021e8d39d17a09f3a592844a';
+    public static readonly GETTING_STARTED_DOC_GIST_ID = '9dbb0ce6393c355eebb1cf012a70fc5e';
     public static readonly VIEW_URL_PATTERN = '/view/';
     public static readonly EDIT_URL_PATTERN = '/edit/';
     public static readonly SHARE_URL_PATTERN = '/share/';
