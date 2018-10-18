@@ -16,7 +16,7 @@
             <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
             <!-- TODO load home on delete works greate with textarea but not with editor -->
             <!-- TODO remove <textarea class="editor-pane" :value="content" @input="update" width="50%"></textarea> -->
-
+            
             <div class="preview-pane" v-highlightjs="compiledHtml"/>
         </div>
         <bottom-footer></bottom-footer>
