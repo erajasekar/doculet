@@ -692,4 +692,4 @@ p.tableblock.header { color: #6d6e71; }
 
 .literalblock pre, .listingblock pre { background: #eeeeee; }
 
-.listingblock > .title { font-weight: bold; font-family: monospace; font-size: larger; border-bottom: 1px solid lightgray; line-height: 30px}
+.listingblock > .title { font-weight: bold; font-family: monospace; font-size: larger; border-bottom: 1px solid lightgray; color:#0366d6; line-height: 30px}
