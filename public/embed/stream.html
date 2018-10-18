@@ -1,0 +1,47 @@
+<head><link rel="stylesheet" type="text/css" href="/css/asciidoc/colony.css" media="all"><link rel="stylesheet" type="text/css" href="/css/asciidoc/highlightjs/idea.min.css" media="all"> <link rel="stylesheet" type="text/css" href="/css/embed.css" media="all"><meta name="google-site-verification" content="vHh-krBq1bBdzJKjqoJs5Bev0qLwE-b5-jII1kfy7no"><link rel="alternate" type="application/json+oembed" href="https://doculet.net/oembed?url=https://doculet.net/doc/b4b1eb80c7cbb76d0174e6f06e4b67a2/index.html"></head><body>
+<div id="embed-container">
+        <div class="embed-header">
+            <a class="open-in" href="http://localhost:8080/edit/8d03c78d367928f569d9e3dbad8644fa" target="_blank">Open in <img src="/static/doculet-logo1.png" width="100px" height="50px" alt="DOCULET"></img></a>
+        </div>
+        <div class="embed-body">
+      <div class="listingblock">
+<div class="title">StreamExceptionHandling.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>{
+    Stream.of(<span class="hljs-string">"12/31/2014"</span>,
+            <span class="hljs-string">"01-01-2015"</span>,
+            <span class="hljs-string">"12/31/2015"</span>,
+            <span class="hljs-string">"not a date"</span>,
+            <span class="hljs-string">"01/01/2016"</span>)
+            .map(StreamExceptionHandling::parseDate)  <i class="conum" data-value="1"></i><b>(<span class="hljs-number">1</span>)</b>
+            .filter(Optional::isPresent)  <i class="conum" data-value="2"></i><b>(<span class="hljs-number">2</span>)</b>
+            .map(Optional::get)  <i class="conum" data-value="3"></i><b>(<span class="hljs-number">3</span>)</b>
+            .map(DayOfWeek::from)  <i class="conum" data-value="4"></i><b>(<span class="hljs-number">4</span>)</b>
+            .forEach(System.out::println);  <i class="conum" data-value="5"></i><b>(<span class="hljs-number">5</span>)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Parse String to LocalDate</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Filter valid ones</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Get wrapped LocalDate</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Map to day of week</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Print</td>
+</tr>
+</tbody></table>
+</div></div></div></body>
