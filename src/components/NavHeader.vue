@@ -236,13 +236,14 @@
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                const enriched = enrichHtml(html, {docLocation});
-                s3Service.publishDoc(bucketKey, enriched);
+                const enriched = enrichHtml(html, {docLocation, docId: this.docId});
+                console.log(enriched);
+               /* s3Service.publishDoc(bucketKey, enriched);
                 this.publishDoc({
                     docId: this.docId,
                     docName: this.docName,
                     publishLocation: docLocation,
-                });
+                }); */
                 this.shareDoculet();
             });
         }

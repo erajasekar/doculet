@@ -4,6 +4,7 @@ import Constants from '../utils/constants';
 
 export interface EnrichParams {
     docLocation: string;
+    docId: string;
 }
 
 export function applyHighlightJs(el: Element) {
@@ -26,9 +27,16 @@ export function enrichHtml(html: string, params: EnrichParams) {
 
 
     const body = document.createElement('body');
-    body.innerHTML = html;
-    applyHighlightJs(body);
+   // body.innerHTML = html;
 
+    const embedContainer = createEmbedContainer();
+    const embedHeader = createEmbedHeader(params.docId);
+    const embedBody = createEmbedBody(html);
+    applyHighlightJs(embedBody);
+
+    embedContainer.appendChild(embedHeader);
+    embedContainer.appendChild(embedBody);
+    body.appendChild(embedContainer);
     root.appendChild(head);
     root.appendChild(body);
     return root.innerHTML;
@@ -38,6 +46,7 @@ export function enrichHtml(html: string, params: EnrichParams) {
 function appendStylesheets(el: Element) {
     el.appendChild(createStyleSheet('/css/asciidoc/colony.min.css'));
     el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
+    el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/embed.css')); // TODO CHANGE TO MIN
 }
 
 function appendGoogleSiteVerification(el: Element) {
@@ -55,6 +64,39 @@ function appendOmbedLink(el: Element, docLocation: string) {
     link.type = 'application/json+oembed';
     link.href = Constants.DOCULET_OEMBED_URL + `url=${docLocation}`;
     el.appendChild(link);
+}
+
+function createEmbedBody(html: string) {
+    const div = document.createElement('div');
+    div.className = 'embed-body';
+    div.innerHTML = html;
+    return div;
+}
+
+function createEmbedContainer() {
+    const div = document.createElement('div');
+    div.id = 'embed-container';
+    return div;
+}
+
+function createEmbedHeader(docId: string) {
+    const div = document.createElement('div');
+    const anchor = document.createElement('a');
+    anchor.className = 'open-in';
+    anchor.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
+    anchor.target = '_blank';
+    anchor.textContent = 'Open in';
+
+    const img = document.createElement('img');
+    img.src = Constants.DOCULET_LOGO;
+    img.width = Constants.EMBED_LOGO_WIDTH;
+    img.height = Constants.EMBED_LOGO_HEIGHT;
+    img.alt = Constants.DOCULET;
+
+    div.className = 'embed-header';
+    anchor.appendChild(img);
+    div.appendChild(anchor);
+    return div;
 }
 
 function createStyleSheet(location: string) {

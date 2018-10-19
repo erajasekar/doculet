@@ -1,5 +1,7 @@
 export default class Constants {
 
+    public static readonly DOCULET = 'DOCULET';
+    public static readonly DOCULET_LOGO = '/static/doculet-logo1.png';
     public static readonly DOCULET_URL = 'https://doculet.net/';
     public static readonly ACCESS_TOKEN_PROPERTY = 'accessToken';
     public static readonly DB_COLLECTION_DOCULENTS = 'doculets';
@@ -29,6 +31,9 @@ export default class Constants {
     // Embed related
     public static readonly DOCULET_S3_DEV_URL = 'https://s3.us-east-2.amazonaws.com/doculet3/';
     public static readonly DOCULET_OEMBED_URL = `${Constants.DOCULET_URL}oembed?`;
+    public static readonly DOCULET_EDIT_URL = `${Constants.DOCULET_URL}edit/`;
     public static readonly IFRAME_WIDTH = 960;
     public static readonly IFRAME_HEIGHT = 600;
+    public static readonly EMBED_LOGO_WIDTH = 100;
+    public static readonly EMBED_LOGO_HEIGHT = 50;
 }
