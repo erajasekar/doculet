@@ -25,18 +25,10 @@ export function enrichHtml(html: string, params: EnrichParams) {
     appendGoogleSiteVerification(head);
     appendOmbedLink(head, params.docLocation);
 
-
     const body = document.createElement('body');
-   // body.innerHTML = html;
-
-    const embedContainer = createEmbedContainer();
-    const embedHeader = createEmbedHeader(params.docId);
-    const embedBody = createEmbedBody(html);
-    applyHighlightJs(embedBody);
-
-    embedContainer.appendChild(embedHeader);
-    embedContainer.appendChild(embedBody);
+    const embedContainer = createEmbedContainer(html, params.docId);
     body.appendChild(embedContainer);
+
     root.appendChild(head);
     root.appendChild(body);
     return root.innerHTML;
@@ -44,9 +36,9 @@ export function enrichHtml(html: string, params: EnrichParams) {
 
 
 function appendStylesheets(el: Element) {
-    el.appendChild(createStyleSheet('/css/asciidoc/colony.min.css'));
+    el.appendChild(createStyleSheet('/css/asciidoc/colony.css'));  // TODO CHANGE TO MIN
     el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
-    el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/embed.css')); // TODO CHANGE TO MIN
+    el.appendChild(createStyleSheet('/css/embed.css')); // TODO CHANGE TO MIN
 }
 
 function appendGoogleSiteVerification(el: Element) {
@@ -73,9 +65,17 @@ function createEmbedBody(html: string) {
     return div;
 }
 
-function createEmbedContainer() {
+function createEmbedContainer(html: string, docId: string) {
     const div = document.createElement('div');
     div.id = 'embed-container';
+
+    const embedHeader = createEmbedHeader(docId);
+    const embedBody = createEmbedBody(html);
+    applyHighlightJs(embedBody);
+
+    div.appendChild(embedHeader);
+    div.appendChild(embedBody);
+
     return div;
 }
 
