@@ -36,4 +36,6 @@ export default class Constants {
     public static readonly IFRAME_HEIGHT = 600;
     public static readonly EMBED_LOGO_WIDTH = 100;
     public static readonly EMBED_LOGO_HEIGHT = 50;
+    public static readonly STATIC_CSS_VERSION = 'v0.3.0';
+    public static readonly EMBED_CSS_PATH = `/css/embed/${Constants.STATIC_CSS_VERSION}/`;
 }

@@ -1,6 +1,7 @@
 import hljs from 'highlight.js';
 import {staticHostingUrl} from '../config/config';
 import Constants from '../utils/constants';
+import { constants } from 'fs';
 
 export interface EnrichParams {
     docLocation: string;
@@ -36,9 +37,9 @@ export function enrichHtml(html: string, params: EnrichParams) {
 
 
 function appendStylesheets(el: Element) {
-    el.appendChild(createStyleSheet('/css/asciidoc/colony.css'));  // TODO CHANGE TO MIN
-    el.appendChild(createStyleSheet('/css/asciidoc/highlightjs/idea.min.css'));
-    el.appendChild(createStyleSheet('/css/embed.css')); // TODO CHANGE TO MIN
+    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}asciidoc/colony.min.css`));
+    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}highlightjs/idea.min.css`));
+    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}embed.min.css`));
 }
 
 function appendGoogleSiteVerification(el: Element) {
