@@ -129,6 +129,7 @@
     @import "../assets/css/colony.css"
     borderColor = #e9ecef
     monospaceFont = 'Share Tech Mono', monospace;
+    previewBackgroundColor = #F7F7F7;
 
     #editor 
         height 100%
@@ -173,6 +174,7 @@
             overflow-y: auto
             word-break: break-word
             color :black
+            background-color :previewBackgroundColor 
 
     div.ace_content
         padding-top  50px
