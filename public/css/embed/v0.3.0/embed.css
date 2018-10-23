@@ -22,7 +22,7 @@
     background: #F7F7F7;
 }
 
-.controls {
+.controls, .copy-btn {
     text-align: right;
     float: right;
     padding-right: 10px;
