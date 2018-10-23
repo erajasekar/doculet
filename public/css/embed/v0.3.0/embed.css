@@ -49,7 +49,6 @@ a.open-in {
     text-decoration: none;
 }
 [tooltip]{
-   /* margin:20px 60px;*/
     position:relative;
     display:inline-block;
   }
@@ -61,7 +60,7 @@ a.open-in {
     transform: translateX(-50%);
     border-width: 4px 6px 0 6px;
     border-style: solid;
-    border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
+    border-color: #1E2C40 transparent transparent transparent;
     z-index: 99;
     opacity:0;
 }
@@ -79,11 +78,9 @@ a.open-in {
     left:50%;
     top:-6px;
     transform: translateX(-50%)   translateY(-100%);
-    background: rgba(0,0,0,0.7);
+    background: #1E2C40;
     text-align: center;
     color: #fff;
-  /*  padding:4px 2px;*/
-    font-size: 12px;
     min-width: 80px;
     border-radius: 3px;
     pointer-events: none;

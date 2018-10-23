@@ -73,10 +73,23 @@
       });
  
       clip.on('success', function(event) {
-          event.clearSelection();
+          clearSelection(event);
           event.trigger.attributes['tooltip'].value = "Copied";
           window.setTimeout(function() {
             event.trigger.attributes['tooltip'].value = "Copy";
           }, 2000);
       });
+
+      function clearSelection(event) {
+          event.clearSelection();
+          var sel = window.getSelection ? window.getSelection() : document.selection;
+          console.log(event);
+          if (sel) {
+              if (sel.removeAllRanges) {
+                  sel.removeAllRanges();
+              } else if (sel.empty) {
+                  sel.empty();
+              }
+          }
+      }
 </script>
