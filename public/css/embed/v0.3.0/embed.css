@@ -29,12 +29,12 @@
 }
 
 button {
-    height: 40px;
+    height: 30px;
     border: 0px;
-    border-bottom: 1px ridge lightgray;
+  /*  border-bottom: 1px ridge lightgray;*/
    /* margin-top: 5px;
     margin-bottom: 5px; */
-    background : #EFEFEF;
+   /* background : #EFEFEF;*/
 }
 
 button:hover {
@@ -42,7 +42,7 @@ button:hover {
 }
 
 .fa {
-    line-height: 40px;
+    line-height: 30px;
 }
 a.open-in {
     text-decoration: none;
