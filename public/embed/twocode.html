@@ -7,7 +7,7 @@
   <div class="embed-body">
     <div class="listingblock">
   <div class="title">JavaOptional.java
-          <button class="copy-btn">
+          <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
                   <span class="icon">
                           <i class="fa fa-copy"></i>
                   </span>
@@ -39,7 +39,7 @@
   </div>
   <div class="listingblock">
   <div class="title">KotlinOptiona.kt
-          <button class="copy-btn">
+          <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
                   <span class="icon">
                           <i class="fa fa-copy"></i> 
                   </span>
@@ -71,14 +71,12 @@
           return trigger.parentNode.nextElementSibling;
         }
       });
-     /* clip.on('success', function(event) {
-          event.clearSelection();
-      });
+ 
       clip.on('success', function(event) {
-        event.clearSelection();
-        event.trigger.textContent = 'Copied';
-        window.setTimeout(function() {
-            event.trigger.textContent = 'Copy';
-        }, 2000);
-});*/
+          event.clearSelection();
+          event.trigger.attributes['tooltip'].value = "Copied";
+          window.setTimeout(function() {
+            event.trigger.attributes['tooltip'].value = "Copy";
+          }, 2000);
+      });
 </script>
