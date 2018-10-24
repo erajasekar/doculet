@@ -16,14 +16,10 @@
                          </b-input-group-prepend>
                         <b-form-input id="urlText" type="url" :value="publishLocation" readonly></b-form-input>
                         <b-input-group-append>
-                            <b-btn id="urlCopyBtn" v-b-tooltip.hover 
-                                    v-clipboard:copy="publishLocation"
-                                    v-clipboard:success="onCopy"
-                                    >
+                            <b-btn v-b-tooltip.hover 
+                                    title="Copy to clipboard" v-clipboard:copy="publishLocation">
                                     <icon name="clone"></icon>
                             </b-btn>
-                            <b-tooltip :show.sync="showTooltip" :title="urlCopyTooltip" target="urlCopyBtn">
-                            </b-tooltip>
                         </b-input-group-append>
                     </b-input-group>
                 </b-form-group>
@@ -82,8 +78,6 @@
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private docId: string = this.docId;
-        private urlCopyTooltip = 'Copy';
-        private showTooltip = true;
 
         private mounted() {
             this.loadDoc(this.docId, '');
@@ -109,23 +103,6 @@
 
         get iframeHtml() {
             return createIframeHtml(this.publishLocation);
-        }
-
-        private onCopy(event: any){
-            console.log(event.trigger);
-            this.showTooltip = false;
-         //   (this.$refs.tooltip as any).$emit('close');
-           // this.$root.$emit('bv::hide::tooltip', '#urlCopyBtn');
-            this.urlCopyTooltip = 'Copied';
-            this.showTooltip = true;
-          //  (this.$refs.tooltip as any).$emit('open');
-           // this.$root.$emit('bv::show::tooltip', '#urlCopyBtn');
-            const self = this;
-           // event.trigger.attributes['data-original-title'].value = "Copied"
-            window.setTimeout(function() {
-                self.urlCopyTooltip = 'Copy';
-                self.showTooltip = true;
-            }, 2000);
         }
     }
 </script>
