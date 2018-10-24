@@ -237,13 +237,14 @@
 
                 const html = asciiDoc.convert(gistFile.content);
                 const enriched = enrichHtml(html, {docLocation, docId: this.docId});
-                s3Service.publishDoc(bucketKey, enriched);
+                console.log(enriched);
+                /* s3Service.publishDoc(bucketKey, enriched);
                 this.publishDoc({
                     docId: this.docId,
                     docName: this.docName,
                     publishLocation: docLocation,
                 });
-                this.shareDoculet();
+                this.shareDoculet();*/
             });
         }
 

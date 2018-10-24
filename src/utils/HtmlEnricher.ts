@@ -3,6 +3,12 @@ import {staticHostingUrl} from '../config/config';
 import Constants from '../utils/constants';
 import { constants } from 'fs';
 
+const COPY_BUTTON_HTML = ` <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
+<span class="icon">
+        <i class="fa fa-copy"></i>
+</span>
+</button>`;
+
 export interface EnrichParams {
     docLocation: string;
     docId: string;
@@ -27,14 +33,41 @@ export function enrichHtml(html: string, params: EnrichParams) {
     appendOmbedLink(head, params.docLocation);
 
     const body = document.createElement('body');
-    const embedContainer = createEmbedContainer(html, params.docId);
+    const embedContainer = createEmbedContainer(head, html, params.docId);
     body.appendChild(embedContainer);
 
     root.appendChild(head);
     root.appendChild(body);
+    root.appendChild(createScript(`${Constants.EMBED_JS_PATH}embed.min.js`));
     return root.innerHTML;
 }
 
+function addCopyFeature(head: Element, embedBody: Element) {
+    head.appendChild(createScript(Constants.COPYBOARD_JS));
+    const listings = embedBody.querySelectorAll('.listingblock');
+    listings.forEach((listing: Element) => {
+        const listingTitle = findOrCreateListingTitle(listing);
+        if (listingTitle) {
+            const titleHtml = listingTitle.innerHTML || '&nbsp;';
+            listingTitle.innerHTML = titleHtml + COPY_BUTTON_HTML;
+        }
+    });
+}
+
+function findOrCreateListingTitle(listing: Element) {
+    const firstChild = listing.firstElementChild;
+    let listingTitle = null;
+    if (firstChild) {
+        if (firstChild.getAttribute('class') === 'title') {
+            listingTitle = firstChild;
+        } else {
+            listingTitle = document.createElement('div');
+            listingTitle.className = 'title';
+            listing.insertBefore(listingTitle, firstChild);
+        }
+    }
+    return listingTitle;
+}
 
 function appendStylesheets(el: Element) {
     el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}asciidoc/colony.min.css`));
@@ -66,12 +99,13 @@ function createEmbedBody(html: string) {
     return div;
 }
 
-function createEmbedContainer(html: string, docId: string) {
+function createEmbedContainer(head: Element, html: string, docId: string) {
     const div = document.createElement('div');
     div.id = 'embed-container';
 
     const embedHeader = createEmbedHeader(docId);
     const embedBody = createEmbedBody(html);
+    addCopyFeature(head, embedBody);
     applyHighlightJs(embedBody);
 
     div.appendChild(embedHeader);
@@ -107,4 +141,11 @@ function createStyleSheet(location: string) {
     link.href = location;
     link.media = 'all';
     return link;
+}
+
+function createScript(src: string) {
+    const script  = document.createElement('script');
+    script.src  = src;
+    script.lang = 'javascript';
+    return script;
 }

@@ -38,4 +38,8 @@ export default class Constants {
     public static readonly EMBED_LOGO_HEIGHT = 50;
     public static readonly STATIC_CSS_VERSION = 'v0.3.0';
     public static readonly EMBED_CSS_PATH = `/css/embed/${Constants.STATIC_CSS_VERSION}/`;
+
+    public static readonly STATIC_JS_VERSION = 'v0.4.0';
+    public static readonly EMBED_JS_PATH = `/js/embed/${Constants.STATIC_JS_VERSION}/`;
+    public static readonly COPYBOARD_JS = 'https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js';
 }
