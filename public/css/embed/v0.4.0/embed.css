@@ -29,13 +29,15 @@
     padding-right: 10px;
 }
 
-button {
+.copy-btn {
     height: 28px;
     border: 0px;
-  /*  border-bottom: 1px ridge lightgray;*/
-   /* margin-top: 5px;
-    margin-bottom: 5px; */
-   /* background : #EFEFEF;*/
+}
+
+.controls {
+    height: 39px;
+    margin-right: 10px;
+    background : lightgray; 
 }
 
 button:hover {
