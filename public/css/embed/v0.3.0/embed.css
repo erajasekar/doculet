@@ -20,6 +20,7 @@
 .embed-body {
     padding: 10px;
     background: #F7F7F7;
+    background-image: url('https://www.dropbox.com/s/xme5x6ngqc8ullv/embed-bg.jpg?raw=1') repeat;
 }
 
 .controls, .copy-btn {
