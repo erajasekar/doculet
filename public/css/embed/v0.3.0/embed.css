@@ -100,3 +100,7 @@ a.open-in {
 [tooltip]:hover::after,[tooltip]:hover::before {
     opacity:1
 }
+
+:focus {
+    outline: none !important;
+}
