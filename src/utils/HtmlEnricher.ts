@@ -118,11 +118,18 @@ function createEmbedContainer(head: Element, html: string, docId: string, theme:
 
 function createEmbedHeader(docId: string, theme: string) {
     const div = document.createElement('div');
-    const anchor = document.createElement('a');
-    anchor.className = 'powered-by';
-    anchor.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
-    anchor.target = '_blank';
-    anchor.textContent = 'Powered by';
+    const openInLink = document.createElement('a');
+    openInLink.className = 'open-in';
+    openInLink.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
+    openInLink.target = '_blank';
+    openInLink.textContent = 'Open Doculet';
+
+    const poweredByLink = document.createElement('a');
+    poweredByLink.className = 'powered-by';
+    poweredByLink.href = Constants.DOCULET_URL;
+   // anchor.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
+    poweredByLink.target = '_blank';
+    poweredByLink.textContent = 'Powered by';
 
     const img = document.createElement('img');
     img.src = Constants.DOCULET_LOGO;
@@ -131,8 +138,9 @@ function createEmbedHeader(docId: string, theme: string) {
     img.alt = Constants.DOCULET;
 
     div.className = 'embed-header';
-    anchor.appendChild(img);
-    div.appendChild(anchor);
+    poweredByLink.appendChild(img);
+    div.appendChild(openInLink);
+    div.appendChild(poweredByLink);
     div.appendChild(createToggleThemeButton(theme));
     return div;
 }
