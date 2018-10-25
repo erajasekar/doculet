@@ -98,7 +98,7 @@ a {
 }
   
  
-[tooltip-position='buttom']::after{
+[tooltip-position='bottom']::after{
     top:100%;
     margin-top:8px;
     transform: translateX(-70%) translateY(0%);
