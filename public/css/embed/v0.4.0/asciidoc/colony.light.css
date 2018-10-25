@@ -694,4 +694,4 @@ p.tableblock.header { color: #6d6e71; }
 
 .listingblock > .title { text-align: center; background:white; font-weight: bold; font-family: monospace; font-size: larger; /* color:#0366d6;*/ line-height: 30px;/* border-bottom: 1px dashed lightgrey */}
 
-.listingblock { box-shadow:/* 0 2px 4px 0 rgba(14,30,37,.12); */ 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12); }
+.listingblock { border-left:5px solid #358ccb; box-shadow:/* 0 2px 4px 0 rgba(14,30,37,.12); */ 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12); }
