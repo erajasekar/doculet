@@ -13,6 +13,15 @@
         }, 5000);
     });
 
+    // To support embedly auto height adjustment https://docs.embed.ly/v1.0/docs/provider-height-resizing
+    window.addEventListener('DOMContentLoaded', function(){
+        window.parent.postMessage(JSON.stringify({
+            src: window.location.toString(),
+            context: 'iframe.resize',
+            height: document.body.scrollHeight // pixels
+        }), '*')
+    })
+
     var toggleThemeBtn = document.getElementById("toggle-theme-btn");
     toggleThemeBtn.addEventListener("click", toggleTheme);
     var primaryTheme = toggleThemeBtn.dataset.theme;
@@ -21,23 +30,34 @@
     var codeStyleElement = document.getElementById("code-theme");
     var codeStylePrimary = codeStyleElement.getAttribute("href");
     var codeStyleSecondary = getSecondaryHref(codeStylePrimary, true);
-    console.log(codeStylePrimary, codeStyleSecondary);
 
-    var asciidocStyleElement = document.getElementById("asciidoc-theme");
-    var asciidocStylePrimary = asciidocStyleElement.getAttribute("href");
-    var asciidocStyleSecondary = getSecondaryHref(asciidocStylePrimary, false);
-    console.log(asciidocStylePrimary, asciidocStyleSecondary);
-  
+    var themeStyleElement = document.getElementById("customize-theme");
+    var themeStylePrimary = themeStyleElement.getAttribute("href");
+    var themeStyleSecondary = getSecondaryHref(themeStylePrimary, false);
+    
     function toggleTheme(){
         // TODO update tooltip text
-        var icon = toggleThemeBtn.querySelector("i");
         var newTheme = toggleThemeBtn.dataset.theme == primaryTheme? secondaryTheme : primaryTheme ;
         toggleThemeBtn.dataset.theme = newTheme;
-        icon.classList.toggle("fa-moon", newTheme == "light");
-        icon.classList.toggle("fa-sun", newTheme == "dark");
+        updateIcon(newTheme);
+        updateStyle(newTheme);
+
+    }
+
+    function updateIcon(newTheme) {
+        var icon = toggleThemeBtn.querySelector("i");
+        var isLight = newTheme == "light";
+        var isDark = newTheme == "dark";
+        icon.classList.toggle("fa-moon", isLight);
+        icon.classList.toggle("fa", isLight);
+        icon.classList.toggle("fa-sun", isDark);
+        icon.classList.toggle("far", isDark);
+    }
+
+    function updateStyle(newTheme) {
         var isPrimary = newTheme == primaryTheme;
         codeStyleElement.href = isPrimary ? codeStylePrimary : codeStyleSecondary;
-        asciidocStyleElement.href = isPrimary ? asciidocStylePrimary : asciidocStyleSecondary ;
+        themeStyleElement.href = isPrimary ? themeStylePrimary : themeStyleSecondary ;
     }
 
     function getSecondaryHref(primaryHref, useDefault){
