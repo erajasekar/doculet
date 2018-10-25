@@ -1,56 +1,85 @@
-<head><link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/asciidoc/colony.min.css" media="all"><link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/highlightjs/idea.light.min.css" media="all"><link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/embed.min.css" media="all"><meta name="google-site-verification" content="vHh-krBq1bBdzJKjqoJs5Bev0qLwE-b5-jII1kfy7no"><link rel="alternate" type="application/json+oembed" href="https://doculet.net/oembed?url=https://doculet.net/doc/2246fdc0327cb03933acd468f63f17b6/index.html"><script src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" lang="javascript"></script></head><body>
-  <div id="embed-container"><div class="embed-header"><a class="open-in" href="https://doculet.net/edit/2246fdc0327cb03933acd468f63f17b6" target="_blank">Open in<img src="/static/doculet-logo1.png" width="100" height="50" alt="DOCULET"></a></div><div class="embed-body"><div class="listingblock">
-  <div class="title">JavaOptional.java <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
-  <span class="icon">
-          <i class="fa fa-copy"></i>
-  </span>
-  </button></div>
-  <div class="content">
-  <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"> <span class="hljs-comment">//Creating Optionals</span>
-  Optional&lt;String&gt; name = Optional.of(<span class="hljs-string">"Hello"</span>);
-  
-  <span class="hljs-comment">//Transforming</span>
-  name.map(String::toUpperCase);
-  
-  <span class="hljs-comment">//Filter non empty from list of Optionals</span>
-  Stream.of(name, Optional.empty())
-    .filter(Optional::isPresent)
-    .map(Optional::get)
-    .forEach(System.out::println); <span class="hljs-comment">//Prints Hello</span>
-  
-  <span class="hljs-comment">//Do something only if not null</span>
-  name.ifPresent(System.out::println);
-  
-  <span class="hljs-comment">//Default values in case of null</span>
-  <span class="hljs-keyword">int</span> length = name.map(String::length).orElse(<span class="hljs-number">0</span>);
-  
-  <span class="hljs-comment">//Throw exception in case of null</span>
-  length = name.map(String::length)
-    .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"Can't be null"</span>));</code></pre>
-  </div>
-  </div>
-  <div class="listingblock">
-  <div class="title">&nbsp; <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
-  <span class="icon">
-          <i class="fa fa-copy"></i>
-  </span>
-  </button></div><div class="content">
-  <pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin"><span class="hljs-comment">//Creating Optionals</span>
-  <span class="hljs-keyword">val</span> name : String? = <span class="hljs-string">"Hello"</span>
-  
-  <span class="hljs-comment">//Transforming</span>
-  name?.toUpperCase();
-  
-  <span class="hljs-comment">//Filter non empty from list of Optionals</span>
-  println(listOf(name, <span class="hljs-literal">null</span>).filterNotNull()) <span class="hljs-comment">//prints [Hello]</span>
-  
-  <span class="hljs-comment">//Do something only if not null</span>
-  name.let { println(it) }
-  
-  <span class="hljs-comment">//Default values in case of null</span>
-  <span class="hljs-keyword">var</span> length = name?.length ?: <span class="hljs-number">0</span>
-  
-  <span class="hljs-comment">//Throw exception in case of null</span>
-  length = name?.length  ?: <span class="hljs-keyword">throw</span> IllegalArgumentException(<span class="hljs-string">"Can't be null"</span>)</code></pre>
-  </div>
-  </div></div></div></body><script src="/js/embed/v0.4.0/embed.min.js" lang="javascript"></script>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/asciidoc/colony.min.css" media="all">
+    <link id="code-theme" rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/highlightjs/idea.light.min.css"
+          media="all">
+    <link id="theme-selector" rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/theme.light.min.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/embed.min.css" media="all">
+    <meta name="google-site-verification" content="vHh-krBq1bBdzJKjqoJs5Bev0qLwE-b5-jII1kfy7no">
+    <link rel="alternate" type="application/json+oembed"
+          href="https://doculet.net/oembed?url=https://doculet.net/doc/2246fdc0327cb03933acd468f63f17b6/index.html">
+    <script src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" lang="javascript"></script>
+</head>
+<body>
+<div id="embed-container">
+    <div class="embed-header"><a class="open-in" href="https://doculet.net/edit/2246fdc0327cb03933acd468f63f17b6"
+                                 target="_blank">Open Doculet</a><a class="powered-by" href="https://doculet.net/"
+                                                                    target="_blank">Powered by<img
+            src="/static/doculet-logo1.png" width="100" height="50" alt="DOCULET"></a>
+        <button class="controls" id="toggle-theme-btn" data-theme="light" tooltip="Dark code theme"
+                tooltip-position="bottom"><span class="icon"><i class="fa fa-moon"></i></span></button>
+    </div>
+    <div class="embed-body">
+        <div class="listingblock">
+            <div class="title">JavaOptional.java
+                <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
+<span class="icon">
+        <i class="fa fa-copy"></i>
+</span>
+                </button>
+            </div>
+            <div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"> <span class="hljs-comment">//Creating Optionals</span>
+Optional&lt;String&gt; name = Optional.of(<span class="hljs-string">"Hello"</span>);
+
+<span class="hljs-comment">//Transforming</span>
+name.map(String::toUpperCase);
+
+<span class="hljs-comment">//Filter non empty from list of Optionals</span>
+Stream.of(name, Optional.empty())
+  .filter(Optional::isPresent)
+  .map(Optional::get)
+  .forEach(System.out::println); <span class="hljs-comment">//Prints Hello</span>
+
+<span class="hljs-comment">//Do something only if not null</span>
+name.ifPresent(System.out::println);
+
+<span class="hljs-comment">//Default values in case of null</span>
+<span class="hljs-keyword">int</span> length = name.map(String::length).orElse(<span class="hljs-number">0</span>);
+
+<span class="hljs-comment">//Throw exception in case of null</span>
+length = name.map(String::length)
+  .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"Can't be null"</span>));</code></pre>
+            </div>
+        </div>
+        <div class="listingblock">
+            <div class="title">&nbsp;
+                <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
+<span class="icon">
+        <i class="fa fa-copy"></i>
+</span>
+                </button>
+            </div>
+            <div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin"><span class="hljs-comment">//Creating Optionals</span>
+<span class="hljs-keyword">val</span> name : String? = <span class="hljs-string">"Hello"</span>
+
+<span class="hljs-comment">//Transforming</span>
+name?.toUpperCase();
+
+<span class="hljs-comment">//Filter non empty from list of Optionals</span>
+println(listOf(name, <span class="hljs-literal">null</span>).filterNotNull()) <span class="hljs-comment">//prints [Hello]</span>
+
+<span class="hljs-comment">//Do something only if not null</span>
+name.let { println(it) }
+
+<span class="hljs-comment">//Default values in case of null</span>
+<span class="hljs-keyword">var</span> length = name?.length ?: <span class="hljs-number">0</span>
+
+<span class="hljs-comment">//Throw exception in case of null</span>
+length = name?.length  ?: <span class="hljs-keyword">throw</span> IllegalArgumentException(<span class="hljs-string">"Can't be null"</span>)</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/embed/v0.4.0/embed.min.js" lang="javascript"></script>
