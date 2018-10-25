@@ -36,6 +36,7 @@
     var themeStyleSecondary = getSecondaryHref(themeStylePrimary, false);
 
     function toggleTheme(){
+        console.log(toggleThemeBtn);
         // TODO update tooltip text
         var newTheme = toggleThemeBtn.dataset.theme == primaryTheme? secondaryTheme : primaryTheme ;
         toggleThemeBtn.dataset.theme = newTheme;

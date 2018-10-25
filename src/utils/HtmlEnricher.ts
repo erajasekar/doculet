@@ -12,6 +12,7 @@ const COPY_BUTTON_HTML = ` <button class="copy-btn" tooltip="Copy" tooltip-posit
 export interface EnrichParams {
     docLocation: string;
     docId: string;
+    theme: string;
 }
 
 export function applyHighlightJs(el: Element) {
@@ -28,12 +29,12 @@ export function enrichHtml(html: string, params: EnrichParams) {
     const root = document.createElement('html');
 
     const head = document.createElement('head');
-    appendStylesheets(head);
+    appendStylesheets(head, params.theme);
     appendGoogleSiteVerification(head);
     appendOmbedLink(head, params.docLocation);
 
     const body = document.createElement('body');
-    const embedContainer = createEmbedContainer(head, html, params.docId);
+    const embedContainer = createEmbedContainer(head, html, params.docId, params.theme);
     body.appendChild(embedContainer);
 
     root.appendChild(head);
@@ -69,9 +70,10 @@ function findOrCreateListingTitle(listing: Element) {
     return listingTitle;
 }
 
-function appendStylesheets(el: Element) {
+function appendStylesheets(el: Element, theme: string) {
     el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}asciidoc/colony.min.css`));
-    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}highlightjs/idea.min.css`));
+    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}highlightjs/${theme}`, 'code-theme'));
+    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}theme.light.min.css`, 'customize-theme'));
     el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}embed.min.css`));
 }
 
@@ -99,11 +101,11 @@ function createEmbedBody(html: string) {
     return div;
 }
 
-function createEmbedContainer(head: Element, html: string, docId: string) {
+function createEmbedContainer(head: Element, html: string, docId: string, theme: string) {
     const div = document.createElement('div');
     div.id = 'embed-container';
 
-    const embedHeader = createEmbedHeader(docId);
+    const embedHeader = createEmbedHeader(docId, theme);
     const embedBody = createEmbedBody(html);
     addCopyFeature(head, embedBody);
     applyHighlightJs(embedBody);
@@ -114,13 +116,13 @@ function createEmbedContainer(head: Element, html: string, docId: string) {
     return div;
 }
 
-function createEmbedHeader(docId: string) {
+function createEmbedHeader(docId: string, theme: string) {
     const div = document.createElement('div');
     const anchor = document.createElement('a');
     anchor.className = 'open-in';
     anchor.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
     anchor.target = '_blank';
-    anchor.textContent = 'Open in';
+    anchor.textContent = 'Powered by';
 
     const img = document.createElement('img');
     img.src = Constants.DOCULET_LOGO;
@@ -131,11 +133,37 @@ function createEmbedHeader(docId: string) {
     div.className = 'embed-header';
     anchor.appendChild(img);
     div.appendChild(anchor);
+    div.appendChild(createToggleThemeButton(theme));
     return div;
 }
 
-function createStyleSheet(location: string) {
+function createToggleThemeButton(theme: string) {
+    const btn = document.createElement('button');
+    btn.className = 'controls';
+    btn.id = 'toggle-theme-btn';
+    const isLight = theme.includes("light");
+    btn.dataset.theme = isLight ? "light" : "dark";
+    btn.setAttribute('tooltip', isLight ? 'Dark code theme' : 'Light code theme');
+    btn.setAttribute('tooltip-position', 'bottom');
+
+    const span = document.createElement('span');
+    span.className = 'icon';
+    const icon = document.createElement('i');
+    icon.classList.add(isLight ? 'fa' : 'far');
+    icon.classList.add(isLight ? 'fa-moon' : 'fa-sun');
+    span.appendChild(icon);
+
+    btn.appendChild(span);
+
+    return btn;
+
+}
+
+function createStyleSheet(location: string, id?: string) {
     const link  = document.createElement('link');
+    if (id) {
+        link.id = id;
+    }
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = location;

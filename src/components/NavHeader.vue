@@ -236,7 +236,7 @@
             gitHubService.importGist(this.docId).then((gistFile) => {
 
                 const html = asciiDoc.convert(gistFile.content);
-                const enriched = enrichHtml(html, {docLocation, docId: this.docId});
+                const enriched = enrichHtml(html, {docLocation, docId: this.docId, theme: 'idea.light.min.css'});
                 console.log(enriched);
                 /* s3Service.publishDoc(bucketKey, enriched);
                 this.publishDoc({

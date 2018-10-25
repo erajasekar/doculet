@@ -1,75 +1,39 @@
-<head>
-    <link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/asciidoc/colony.min.css" media="all">
-    <link id="customize-theme" rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/theme.dark.min.css" media="all">
-    <link rel="stylesheet" type="text/css" id="code-theme" href="/css/embed/v0.4.0/highlightjs/darcula.dark.min.css"
-          media="all">
-    <link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/embed.min.css" media="all">
-    <meta name="google-site-verification" content="vHh-krBq1bBdzJKjqoJs5Bev0qLwE-b5-jII1kfy7no">
-    <link rel="alternate" type="application/json+oembed"
-          href="https://doculet.net/oembed?url=https://doculet.net/doc/8d03c78d367928f569d9e3dbad8644fa/index.html">
-    <script src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" lang="javascript"></script>
-</head>
-<body>
-<div id="embed-container">
-    <div class="embed-header"><a class="open-in" href="https://doculet.net/edit/8d03c78d367928f569d9e3dbad8644fa"
-                                 target="_blank">Powered by<img src="/static/doculet-logo1.png" width="100" height="50"
-                                                                alt="DOCULET"></a>
-        <button class="controls" id="toggle-theme-btn" data-theme="dark" tooltip="Light code theme"
-                tooltip-position="buttom">
-                <span class="icon">
-                        <i class="far fa-sun"></i>
-                </span>
-        </button>
+<head><link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/asciidoc/colony.min.css" media="all"><link id="code-theme" rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/highlightjs/idea.light.min.css" media="all"><link id="customize-theme" rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/theme.light.min.css" media="all"><link rel="stylesheet" type="text/css" href="/css/embed/v0.4.0/embed.min.css" media="all"><meta name="google-site-verification" content="vHh-krBq1bBdzJKjqoJs5Bev0qLwE-b5-jII1kfy7no"><link rel="alternate" type="application/json+oembed" href="https://doculet.net/oembed?url=https://doculet.net/doc/8d03c78d367928f569d9e3dbad8644fa/index.html"><script src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" lang="javascript"></script></head><body><div id="embed-container"><div class="embed-header"><a class="open-in" href="https://doculet.net/edit/8d03c78d367928f569d9e3dbad8644fa" target="_blank">Powered by<img src="/static/doculet-logo1.png" width="100" height="50" alt="DOCULET"></a><button class="controls" id="toggle-theme-btn" data-theme="light" tooltip="Dark code theme" tooltip-position="bottom"><span class="icon"><i class="fa fa-moon"></i></span></button></div><div class="embed-body"><h1>Your Title</h1>
+    <div class="paragraph">
+        <p>Start writing…​.</p>
     </div>
-    <div class="embed-body"><h1>Your Title</h1>
-        <div class="paragraph">
-            <p>Start writing…​.</p>
-        </div>
-        <div class="paragraph">
-            <p>Here is a code example to get you started.</p>
-        </div>
-        <div class="listingblock">
-            <div class="title">find_max.py
-                <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
-    <span class="icon">
-            <i class="far fa-copy"></i>
-    </span>
-                </button>
-            </div>
-            <div class="content">
-    <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">numbers = [<span
-            class="hljs-number">10</span>,<span class="hljs-number">50</span>,<span class="hljs-number">20</span>,<span
-            class="hljs-number">30</span>,<span class="hljs-number">100</span>,<span class="hljs-number">60</span>]
-    maxValue = <span class="hljs-number">0</span>  <i class="conum" data-value="1"></i><b>(<span
-                class="hljs-number">1</span>)</b>
-    <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> numbers:
-        <span class="hljs-keyword">if</span> n &gt; maxValue: <i class="conum" data-value="2"></i><b>(<span
-                class="hljs-number">2</span>)</b>
-            maxValue = n
-    
-    print(<span class="hljs-string">"Max is : "</span> + str(maxValue)) <i class="conum" data-value="3"></i><b>(<span
-                class="hljs-number">3</span>)</b></code></pre>
-            </div>
-        </div>
-        <div class="colist arabic">
-            <table>
-                <tbody>
-                <tr>
-                    <td><i class="conum" data-value="1"></i><b>1</b></td>
-                    <td>Initialize maxValue to smallest value</td>
-                </tr>
-                <tr>
-                    <td><i class="conum" data-value="2"></i><b>2</b></td>
-                    <td>If current number is greater than maxValue, update maxValut to current.</td>
-                </tr>
-                <tr>
-                    <td><i class="conum" data-value="3"></i><b>3</b></td>
-                    <td>Prints 100.</td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="paragraph">
+        <p>Here is a code example to get you started.</p>
+    </div>
+    <div class="listingblock">
+        <div class="title">find_max.py <button class="copy-btn" tooltip="Copy" tooltip-position="buttom">
+<span class="icon">
+        <i class="fa fa-copy"></i>
+</span>
+        </button></div>
+        <div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">numbers = [<span class="hljs-number">10</span>,<span class="hljs-number">50</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">100</span>,<span class="hljs-number">60</span>]
+maxValue = <span class="hljs-number">0</span>  <i class="conum" data-value="1"></i><b>(<span class="hljs-number">1</span>)</b>
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> numbers:
+    <span class="hljs-keyword">if</span> n &gt; maxValue: <i class="conum" data-value="2"></i><b>(<span class="hljs-number">2</span>)</b>
+        maxValue = n
+
+print(<span class="hljs-string">"Max is : "</span> + str(maxValue)) <i class="conum" data-value="3"></i><b>(<span class="hljs-number">3</span>)</b></code></pre>
         </div>
     </div>
-</div>
-</body>
-<script src="/js/embed/v0.4.0/embed.min.js" lang="javascript"></script>
+    <div class="colist arabic">
+        <table>
+            <tbody><tr>
+                <td><i class="conum" data-value="1"></i><b>1</b></td>
+                <td>Initialize maxValue to smallest value</td>
+            </tr>
+            <tr>
+                <td><i class="conum" data-value="2"></i><b>2</b></td>
+                <td>If current number is greater than maxValue, update maxValut to current.</td>
+            </tr>
+            <tr>
+                <td><i class="conum" data-value="3"></i><b>3</b></td>
+                <td>Prints 100.</td>
+            </tr>
+            </tbody></table>
+    </div></div></div></body><script src="/js/embed/v0.4.0/embed.min.js" lang="javascript"></script>
