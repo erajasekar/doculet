@@ -73,7 +73,7 @@ function findOrCreateListingTitle(listing: Element) {
 function appendStylesheets(el: Element, theme: string) {
     el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}asciidoc/colony.min.css`));
     el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}highlightjs/${theme}`, 'code-theme'));
-    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}theme.light.min.css`, 'customize-theme'));
+    el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}theme.light.min.css`, 'theme-selector'));
     el.appendChild(createStyleSheet(`${Constants.EMBED_CSS_PATH}embed.min.css`));
 }
 
@@ -119,7 +119,7 @@ function createEmbedContainer(head: Element, html: string, docId: string, theme:
 function createEmbedHeader(docId: string, theme: string) {
     const div = document.createElement('div');
     const anchor = document.createElement('a');
-    anchor.className = 'open-in';
+    anchor.className = 'powered-by';
     anchor.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
     anchor.target = '_blank';
     anchor.textContent = 'Powered by';

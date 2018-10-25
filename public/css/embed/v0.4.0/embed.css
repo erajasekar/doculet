@@ -14,7 +14,6 @@
     font-family: monospace;
     font-size: large;
     color: black;
-    font-weight:bolder; 
 }
 
 .embed-body {
@@ -29,6 +28,13 @@
     padding-right: 10px;
 }
 
+.open-in {
+    text-align: left;
+    float: left;
+    padding-left: 10px;
+    color: black;
+}
+
 .copy-btn {
     height: 28px;
 }
@@ -40,15 +46,10 @@
     background : lightgray; 
 }
 
-button:hover {
-   /* background-color: lightgray;*/
-    box-shadow: 0 3px 8px 0 rgba(0,0,0,.2), 0 0 0 1px rgba(0,0,0,.08);
-}
-
 .fa {
     line-height: 28px;
 }
-a.open-in {
+a.open-in, a.powered-by {
     text-decoration: none;
 }
 a {
