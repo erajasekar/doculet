@@ -31,7 +31,6 @@
 
 .copy-btn {
     height: 28px;
-    border: 0px;
 }
 
 .controls {
@@ -52,6 +51,10 @@ button:hover {
 a.open-in {
     text-decoration: none;
 }
+a {
+    color: darkgray;
+}
+
 [tooltip]{
     position:relative;
     display:inline-block;

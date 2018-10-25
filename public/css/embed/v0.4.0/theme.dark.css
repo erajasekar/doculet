@@ -6,3 +6,14 @@
 .conum[data-value] * {
     color: black !important;
 }
+
+.listingblock > .title {
+    background: #282A36;
+    color: white;
+}
+
+.copy-btn {
+    background: #282A36;
+    color: white;
+    border: 1px solid darkgray;
+}

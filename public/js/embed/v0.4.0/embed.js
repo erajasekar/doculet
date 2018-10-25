@@ -34,20 +34,22 @@
     var themeStyleElement = document.getElementById("customize-theme");
     var themeStylePrimary = themeStyleElement.getAttribute("href");
     var themeStyleSecondary = getSecondaryHref(themeStylePrimary, false);
-    
+
     function toggleTheme(){
         // TODO update tooltip text
         var newTheme = toggleThemeBtn.dataset.theme == primaryTheme? secondaryTheme : primaryTheme ;
         toggleThemeBtn.dataset.theme = newTheme;
-        updateIcon(newTheme);
+        var isLight = newTheme == "light";
+        toggleThemeBtn.setAttribute("tooltip", isLight ? "Dark code theme" : "Light code theme");
+
+        updateIcon(isLight);
         updateStyle(newTheme);
 
     }
 
-    function updateIcon(newTheme) {
+    function updateIcon(isLight) {
         var icon = toggleThemeBtn.querySelector("i");
-        var isLight = newTheme == "light";
-        var isDark = newTheme == "dark";
+        var isDark = !isLight;
         icon.classList.toggle("fa-moon", isLight);
         icon.classList.toggle("fa", isLight);
         icon.classList.toggle("fa-sun", isDark);
