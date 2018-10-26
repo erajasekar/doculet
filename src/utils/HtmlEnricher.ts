@@ -149,8 +149,8 @@ function createToggleThemeButton(theme: string) {
     const btn = document.createElement('button');
     btn.className = 'controls';
     btn.id = 'toggle-theme-btn';
-    const isLight = theme.includes("light");
-    btn.dataset.theme = isLight ? "light" : "dark";
+    const isLight = theme.includes('light');
+    btn.dataset.theme = isLight ? 'light' : 'dark';
     btn.setAttribute('tooltip', isLight ? 'Dark code theme' : 'Light code theme');
     btn.setAttribute('tooltip-position', 'bottom');
 
