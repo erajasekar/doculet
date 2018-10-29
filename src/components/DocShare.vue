@@ -93,12 +93,12 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updateDocEdited(false);
-            this.updatePublishLocation('http://localhost:8080/embed/twocode.html');
-           /* if (!this.publishLocation) {
+          //  this.updatePublishLocation('http://localhost:8080/embed/findmax.html');
+            if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }*/
+            }
         }
 
         get iframeHtml() {

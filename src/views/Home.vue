@@ -12,21 +12,35 @@
                      lead="Easily share and embed code examples in your blog, medium articles or on any website.">
 
             <template slot="header">
-                <h1> DOCULET </h1>
+                <h1> DOCULET (Beta) </h1>
             </template>
 
-            <b-container fluid class="bv-example-row">
+            <p align="center">
+                <b-img class="logo"
+                               src="https://www.dropbox.com/s/hd5swk7veg9su6f/CodeExample.png?raw=1" fluid
+                               alt="Code Example">
+                </b-img>
+            </p>
+
+            <p align="center">
+                <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
+                                   title="Learn more" size="lg">Learn more
+                </b-btn> 
+            </p>
+                               
+
+           <!--  <b-container class="bv-example-row">
                 <b-row>
-                    <b-col>
-                        <b-img width="600" height="500" class="logo"
-                               src="https://www.dropbox.com/s/4q4t736idoumpvj/CodeExampleJava.png?raw=1" fluid
+                    <b-col cols="9">
+                        <b-img class="logo"
+                               src="https://www.dropbox.com/s/hd5swk7veg9su6f/CodeExample.png?raw=1" fluid
                                alt="Code Example"></b-img>
                     </b-col>
-                    <b-col>
-                        <p>
-                            The app is currently in beta. If you would like to be notified when it is GA, 
+                   <b-col>
+                       <p>
+                            Doculet is currently in beta. If you would like to be notified when it is GA, 
                             you can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list. </a>
-                        </p>
+                        </p> 
                         <p>
                             <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
                                    title="Learn more" size="lg">Learn more
@@ -35,7 +49,7 @@
 
                     </b-col>
                 </b-row>
-            </b-container>
+            </b-container>-->
 
         </b-jumbotron>
 
@@ -44,6 +58,12 @@
             <p>
                 Doculet is a free open source project to easily create, share and embed code examples in your blog,
                 medium articles or any of your website.
+            </p>
+            <p> To embed in Medium, simply type URL and hit enter.  </p>
+            <p>
+                <b-img 
+                       src="https://www.dropbox.com/s/52kcrh91qrdsuuj/embed-demo.gif?raw=1" fluid
+                       alt="Medium Embed Example"></b-img>
             </p>
             <p>
                 It’s beautiful alternative to embedding code using GitHub Gists.
@@ -61,8 +81,9 @@
             </p>
 
             <p>
-                <b-img width="600" height="400" class="logo"
-                       src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid
+                <!--  src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid -->
+                <b-img class="logo"
+                       src="https://www.dropbox.com/s/blausi7qycv0lh7/CalloutExample2.png?raw=1" fluid
                        alt="Code Example"></b-img>
             </p>
 
