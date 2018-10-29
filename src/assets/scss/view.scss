@@ -15,12 +15,13 @@ $backgroundColor1: #3D8C93;
 $backgroundColor2: #44D6CF;
 $backgroundColor3: white;
 $backgroundColor4: #FEFDD9;
+$backgroundColor5: #BDCAC1;
 $logoFont: 'Graduate', cursive;
 $leadFont: 'KoHo', sans-serif;
 
 
 @mixin styleLead($leadTextColor) {
-  padding-top: 30px;
+  padding-top: 10px;
   padding-left: 5px;
   color: $leadTextColor;
   font-family: $leadFont;
@@ -103,8 +104,19 @@ ul {
 }
 
 #home-container3 {
+  background-color: $backgroundColor5;
+  background-image: url('https://www.dropbox.com/s/8qmlc43kjql7ese/background7.jpg?raw=1');
+  margin-bottom: 2px;
+}
+
+#home-container4 {
+  background-color: $backgroundColor4;
+  background-image: url('https://www.dropbox.com/s/ju0cahdvdivi63l/background12.png?raw=1');
+  margin-bottom: 2px;
+}
+
+#home-container5 {
   background-color: $backgroundColor2;
- // background-image: url('https://www.dropbox.com/s/fgkipvd9gmyybix/background9.png?raw=1');
   margin-bottom: 2px;
 }
 
@@ -113,8 +125,14 @@ ul {
   margin-bottom: 2px;
 }
 
-#home-container4, #about-container {
+#home-container6, #about-container{
+  background: #F7F7F7;
+  background-image: url('https://www.dropbox.com/s/xme5x6ngqc8ullv/embed-bg.jpg?raw=1') repeat;
+  margin-bottom: 2px;
+}
+
+/*#about-container {
   background-color: $backgroundColor4;
   background-image: url('https://www.dropbox.com/s/ju0cahdvdivi63l/background12.png?raw=1');
   margin-bottom: 2px;
-}
+}*/

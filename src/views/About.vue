@@ -80,8 +80,7 @@
                 When will it be ready for use?
             </h4>
             <p>
-                You can use it today, if you are able to use iframes in your website or blog. I am currently working to make 
-                it embedable in Medium. I will also make it easily work with other popular blogging platforms. 
+                You can use it today in Medium articles. If you are able to use iframes, you can use it your website or blog. I will also make it easily work with other popular blogging platforms. 
                 Please subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list </a> to stay tuned.
             </p>
             <p>

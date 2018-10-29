@@ -16,17 +16,18 @@
             </template>
 
             <p align="center">
+                <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
+                                   title="Learn more" size="lg">Learn more
+                </b-btn> 
+            </p>
+            <p align="center">
                 <b-img class="logo"
                                src="https://www.dropbox.com/s/hd5swk7veg9su6f/CodeExample.png?raw=1" fluid
                                alt="Code Example">
                 </b-img>
             </p>
 
-            <p align="center">
-                <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
-                                   title="Learn more" size="lg">Learn more
-                </b-btn> 
-            </p>
+            
                                
 
            <!--  <b-container class="bv-example-row">
@@ -59,12 +60,12 @@
                 Doculet is a free open source project to easily create, share and embed code examples in your blog,
                 medium articles or any of your website.
             </p>
-            <p> To embed in Medium, simply type URL and hit enter.  </p>
+          <!--  <p> To embed in Medium, simply type URL and hit enter.  </p>
             <p>
                 <b-img 
                        src="https://www.dropbox.com/s/52kcrh91qrdsuuj/embed-demo.gif?raw=1" fluid
                        alt="Medium Embed Example"></b-img>
-            </p>
+            </p> -->
             <p>
                 It’s beautiful alternative to embedding code using GitHub Gists.
             </p>
@@ -74,7 +75,31 @@
             </b-btn>
         </b-jumbotron>
 
-        <b-jumbotron id="home-container3" header="Comment your code with callouts" fluid>
+        <b-jumbotron id="home-container3" header="Easily Embed in Medium" fluid>
+
+            <p> To embed in Medium, simply type URL and hit enter. It will automatically expand as embed. </p>
+            <p>
+                <b-img 
+                       src="https://www.dropbox.com/s/52kcrh91qrdsuuj/embed-demo.gif?raw=1" fluid
+                       alt="Medium Embed Example"></b-img>
+            </p>
+        </b-jumbotron>
+
+        <b-jumbotron id="home-container4" header="Quickly copy code or switch themes" fluid>
+
+            <p> Readers can easily copy code by clicking copy 
+                <span class="icon">
+                    <i class="fa fa-copy"></i>
+                </span> button. They can also quickly switch between dark or light theme mode.
+            </p>
+            <p>
+                <b-img 
+                       src="https://www.dropbox.com/s/m39wgvi8dagjl7u/theme-select-demo.gif?raw=1" fluid
+                       alt="Switch theme Example"></b-img>
+            </p>
+        </b-jumbotron>
+
+        <b-jumbotron id="home-container5" header="Comment your code with callouts" fluid>
             <p>
                 Doculet uses human readable and easy to use <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">AsciiDoc</a>
                 document markup which provides builtin support for code callouts.
@@ -84,13 +109,13 @@
                 <!--  src="https://www.dropbox.com/s/yjjjkudul7yo4uc/CodeExampleRuby.png?raw=1" fluid -->
                 <b-img class="logo"
                        src="https://www.dropbox.com/s/blausi7qycv0lh7/CalloutExample2.png?raw=1" fluid
-                       alt="Code Example"></b-img>
+                       alt="Code Callout Example"></b-img>
             </p>
 
         </b-jumbotron>
 
-        <b-jumbotron id="home-container4" header="Features and Roadmap" fluid>
-            <h3>Beta Version 0.2</h3>
+        <b-jumbotron id="home-container6" header="Features and Roadmap" fluid>
+            <h3>Beta Version 0.4.0 </h3>
             <ul class="features-done">
                 <li>Login using Github.
                 </li>
@@ -103,6 +128,7 @@
                 <li>Publish documents.
                 </li>
                 <li>Share in any website using iframe.</li>
+                <li>Embed documents in Medium</li>
                 <li>Delete documents.
                 </li>
                 <li>See list of your documents and navigate between them.
@@ -111,8 +137,7 @@
             <hr>
             <h3>GA Version 1.0</h3>
             <ul>
-                <li>Share in Medium articles. (Currently working on adding <a href="https://embed.ly/">Embed.ly</a> support to be able to embed in Medium)
-                </li>
+                <li>Fix bugs identified in Beta.</li>
             </ul>
             <hr>
             <h3>Version 1.1</h3>
@@ -126,10 +151,7 @@
                 </li>
             </ul>
         </b-jumbotron>
-
         <bottom-footer></bottom-footer>
-
-
     </div>
 
 
