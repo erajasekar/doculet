@@ -74,7 +74,7 @@
 
         <b-jumbotron id="home-container3" header="Easily Embed in Medium" fluid>
 
-            <p> To embed in Medium, simply type URL and hit enter. It will automatically expand into embeded iframe. </p>
+            <p> Simply type URL and hit enter. It will automatically expand into embeded iframe. </p>
             <p align="center">
                 <b-img width="800" height="800"
                        src="https://www.dropbox.com/s/52kcrh91qrdsuuj/embed-demo.gif?raw=1" fluid
@@ -84,10 +84,10 @@
 
         <b-jumbotron id="home-container4" header="Quickly copy code or switch themes" fluid>
 
-            <p> Readers can easily copy code by clicking copy 
+            <p> Readers can quickly copy code by clicking copy 
                 <span class="icon">
                     <i class="fa fa-copy"></i>
-                </span> button. They can also quickly switch between dark or light theme mode.
+                </span> button. They can also switch between dark or light code theme.
             </p>
             <p>
                 <b-img 
