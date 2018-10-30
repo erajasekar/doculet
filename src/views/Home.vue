@@ -5,7 +5,7 @@
                 :title="title"
                 :description="description"
                 :keywords="keywords"
-                url="https://doculet.net/home"
+                url="https://doculet.net"
         />
 
         <b-jumbotron id="home-container1" fluid
@@ -26,9 +26,6 @@
                                alt="Code Example">
                 </b-img>
             </p>
-
-            
-                               
 
            <!--  <b-container class="bv-example-row">
                 <b-row>
@@ -77,9 +74,9 @@
 
         <b-jumbotron id="home-container3" header="Easily Embed in Medium" fluid>
 
-            <p> To embed in Medium, simply type URL and hit enter. It will automatically expand as embed. </p>
-            <p>
-                <b-img 
+            <p> To embed in Medium, simply type URL and hit enter. It will automatically expand into embeded iframe. </p>
+            <p align="center">
+                <b-img width="800" height="800"
                        src="https://www.dropbox.com/s/52kcrh91qrdsuuj/embed-demo.gif?raw=1" fluid
                        alt="Medium Embed Example"></b-img>
             </p>
