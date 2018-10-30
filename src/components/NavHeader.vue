@@ -230,7 +230,7 @@
 
         private publishDoculet() {
 
-            const bucketKey = `doc/${this.docId}/index.html`;
+            const bucketKey = s3Service.constructBucketKey(this.docId);
             const docLocation = `${staticHostingUrl}${bucketKey}`;
 
             gitHubService.importGist(this.docId).then((gistFile) => {
@@ -260,7 +260,7 @@
                 this.dbService.deleteDoc(docId);
                 if (location) {
                     logDebug(`Deleting published doc: ${location}`);
-                    s3Service.deleteDoc(location);
+                    s3Service.deleteDoc(docId);
                 }
                 this.openDocument(Constants.GETTING_STARTED_DOC_GIST_ID);
             });

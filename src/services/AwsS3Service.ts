@@ -36,21 +36,24 @@ export class AwsS3Service {
 
     }
 
-    public deleteDoc(docLocation: string) {
+    public deleteDoc(docId: string) {
 
         const params = {
             Bucket: this.bucketName,
-            Key : docLocation,
+            Key : this.constructBucketKey(docId),
         };
-
         this.s3.deleteObject(params,  (err: Error, data: S3.Types.DeleteObjectOutput) => {
             if (err) {
-                logError(`Error in deleting doc : ${docLocation} from S3 ${err.message}`);
+                logError(`Error in deleting doc : ${params.Key} from S3 ${err.message}`);
             }
             if (data) {
-                logDebug(`Deleted doc : ${docLocation} from S3`);
+                logDebug(`Deleted doc : ${params.Key} from S3`);
             }
         });
+    }
+
+    public constructBucketKey(docId: string) {
+        return `doc/${docId}/index.html`;
     }
 }
 
