@@ -52,8 +52,12 @@ export class AwsS3Service {
         });
     }
 
-    public constructBucketKey(docId: string) {
-        return `doc/${docId}/index.html`;
+    public constructBucketKey(docDir: string) {
+        return `${docDir}index.html`;
+    }
+
+    public constructDocDir(docId: string) {
+        return `doc/${docId}/`;
     }
 }
 

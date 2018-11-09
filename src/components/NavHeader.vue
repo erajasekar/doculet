@@ -230,8 +230,9 @@
 
         private publishDoculet() {
 
-            const bucketKey = s3Service.constructBucketKey(this.docId);
-            const docLocation = `${staticHostingUrl}${bucketKey}`;
+            const docDir = s3Service.constructDocDir(this.docId);
+            const bucketKey = s3Service.constructBucketKey(docDir);
+            const docLocation = `${staticHostingUrl}${docDir}`;
 
             gitHubService.importGist(this.docId).then((gistFile) => {
 
