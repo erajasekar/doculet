@@ -53,11 +53,11 @@ export class AwsS3Service {
     }
 
     public constructBucketKey(docDir: string) {
-        return `${docDir}index.html`;
+        return `${docDir}/index.html`;
     }
 
     public constructDocDir(docId: string) {
-        return `doc/${docId}/`;
+        return `doc/${docId}`;
     }
 }
 

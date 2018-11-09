@@ -2,5 +2,5 @@
 while :
 do
     curl -I $1;
-    sleep 1s;
+    sleep 2s;
 done
