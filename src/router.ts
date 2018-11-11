@@ -42,7 +42,7 @@ export default new Router({
         {
             path: '/guide/',
             name: 'guide',
-            component: DocView ,
+            component: DocEditor ,
             props: {gistId: Constants.GETTING_STARTED_DOC_GIST_ID},
         },
         {

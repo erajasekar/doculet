@@ -27,28 +27,6 @@
                 </b-img>
             </p>
 
-           <!--  <b-container class="bv-example-row">
-                <b-row>
-                    <b-col cols="9">
-                        <b-img class="logo"
-                               src="https://www.dropbox.com/s/hd5swk7veg9su6f/CodeExample.png?raw=1" fluid
-                               alt="Code Example"></b-img>
-                    </b-col>
-                   <b-col>
-                       <p>
-                            Doculet is currently in beta. If you would like to be notified when it is GA, 
-                            you can subscribe to <a href="http://eepurl.com/dI-8Ur" target="_blank"> email list. </a>
-                        </p> 
-                        <p>
-                            <b-btn @click="scrollTo('what-is-doculet')" variant="warning"
-                                   title="Learn more" size="lg">Learn more
-                            </b-btn>
-                        </p>
-
-                    </b-col>
-                </b-row>
-            </b-container>-->
-
         </b-jumbotron>
 
        <b-jumbotron ref="what-is-doculet" id="home-container2" header="What is Doculet?" fluid>
@@ -57,17 +35,11 @@
                 Doculet is a free open source project to easily create, share and embed code examples in your blog,
                 medium articles or any of your website.
             </p>
-          <!--  <p> To embed in Medium, simply type URL and hit enter.  </p>
-            <p>
-                <b-img 
-                       src="https://www.dropbox.com/s/52kcrh91qrdsuuj/embed-demo.gif?raw=1" fluid
-                       alt="Medium Embed Example"></b-img>
-            </p> -->
             <p>
                 It’s beautiful alternative to embedding code using GitHub Gists.
             </p>
 
-            <b-btn @click="openGettingStarted" variant="primary" size="lg" title="Get Started">
+            <b-btn to="/guide" variant="primary" size="lg" title="Get Started">
                 Get Started
             </b-btn>
         </b-jumbotron>
