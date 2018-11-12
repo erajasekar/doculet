@@ -39,7 +39,7 @@
                 It’s beautiful alternative to embedding code using GitHub Gists.
             </p>
 
-            <b-btn to="/guide" variant="primary" size="lg" title="Get Started">
+            <b-btn @click="openGettingStarted" variant="primary" size="lg" title="Get Started">
                 Get Started
             </b-btn>
         </b-jumbotron>

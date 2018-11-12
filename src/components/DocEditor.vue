@@ -41,6 +41,7 @@
     import Constants from '@/utils/constants';
     import {DoculetDocBase} from '../store/modules/doculet';
     import BottomFooter from '@/components/BottomFooter.vue';
+    import * as auth from '../utils/auth';
 
     @Component({
         components: {
@@ -73,8 +74,8 @@
         private gistId: string = this.gistId;
 
         private mounted() {
-            // MAY BE USE ROUTE PATH INSTEAD
-            if (this.gistId != Constants.GETTING_STARTED_DOC_GIST_ID) {
+            // Don't load firebase for guide path to make spa-pre-render plugin to work.
+            if (!auth.isGuidePage(this.$route.path)) {
                 this.dbService = new FireStoreService();
             }
             if (this.gistId) {
