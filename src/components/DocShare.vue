@@ -53,7 +53,7 @@
                     </b-btn>
                 </span>
             </template>
-            <div v-html="iframeHtml"></div>
+            <div class="responsive-iframe" v-html="iframeHtml"></div>
         </b-jumbotron>
         <bottom-footer></bottom-footer>
     </div>
@@ -89,6 +89,7 @@
 
         private mounted() {
             this.loadDoc(this.docId, '');
+            window.addEventListener("message", this.receiveMessage, false);
         }
 
         get htmlTitle() {
@@ -117,6 +118,17 @@
             const iframeElement = document.getElementById(Constants.PREVIEW_IFRAME_ID);
             if (iframeElement) {
                 (iframeElement as HTMLIFrameElement).src += '';
+            }
+        }
+
+        private receiveMessage(event: any) {
+            const data = event.data;
+            if (data && data.include('iframe.resize')) {
+                const jsonData = JSON.parse(data);
+                if (jsonData.context === 'iframe.resize') {
+                    console.log('Received ', jsonData);
+                }
+                
             }
         }
     }
