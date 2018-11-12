@@ -5,6 +5,7 @@
                 :title="htmlTitle"
                 :description="htmlDescription"
                 :keywords="keywords"
+                :url="canonicalUrl"
         />
 
         <div class="editor-header">
@@ -90,6 +91,15 @@
 
         get htmlTitle() {
             return `Doculet Editor - ${this.docName}`;
+        }
+
+        get canonicalUrl() {
+            const path = this.$route.path;
+            if (auth.isGuidePage(path)) {
+                return 'https://doculet.net/guide';
+            } else {
+                return path;
+            }
         }
 
         private editorInit() {

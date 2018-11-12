@@ -74,7 +74,6 @@
         @Action('updateDocId') private updateDocId: any;
         @Action('updatePublishLocation') private updatePublishLocation: any;
         @Action('updateDocEdited') private updateDocEdited: any;
-        private title: string = 'Doculet';
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private docId: string = this.docId;
@@ -84,7 +83,8 @@
         }
 
         get htmlTitle() {
-            return this.title;
+            // TODO if I make docName value to set correctly for share, update title too
+            return 'Doculet Share';
         }
 
         @Watch('docId')
