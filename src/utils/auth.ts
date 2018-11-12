@@ -25,5 +25,5 @@ export function isGuidePage(path: string) {
 }
 
 function checkForPagePattern(pattern: string, path: string) {
-    return  path.includes(pattern);
+    return path.includes(pattern);
 }

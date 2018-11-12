@@ -95,11 +95,8 @@
 
         get canonicalUrl() {
             const path = this.$route.path;
-            if (auth.isGuidePage(path)) {
-                return 'https://doculet.net/guide';
-            } else {
-                return path;
-            }
+            const url = `${Constants.DOCULET_URL}${path.substring(1, path.length)}`;
+            return url;
         }
 
         private editorInit() {
