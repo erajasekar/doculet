@@ -73,7 +73,10 @@
         private gistId: string = this.gistId;
 
         private mounted() {
-            this.dbService = new FireStoreService();
+            // MAY BE USE ROUTE PATH INSTEAD
+            if (this.gistId != Constants.GETTING_STARTED_DOC_GIST_ID) {
+                this.dbService = new FireStoreService();
+            }
             if (this.gistId) {
                 this.importGist(this.gistId, '');
             }
