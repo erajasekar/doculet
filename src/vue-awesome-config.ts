@@ -15,6 +15,7 @@ import 'vue-awesome/icons/question-circle';
 import 'vue-awesome/icons/clone';
 import 'vue-awesome/icons/download';
 import 'vue-awesome/icons/times';
+import 'vue-awesome/icons/redo-alt';
 import 'vue-awesome/icons/upload';
 import 'vue-awesome/icons/share-square';
 import 'vue-awesome/icons/share-alt';

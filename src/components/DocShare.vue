@@ -43,7 +43,16 @@
                 
             </div>
         </b-jumbotron>
-        <b-jumbotron id="preview-container" header="Preview" >
+        <b-jumbotron id="preview-container" >
+            <template slot="header">
+                Preview
+                <span>
+                    <b-btn variant="default" @click="reloadIframe" 
+                            title="Reload iframe">
+                            <icon color="black" name="redo-alt"></icon>
+                    </b-btn>
+                </span>
+            </template>
             <div v-html="iframeHtml"></div>
         </b-jumbotron>
         <bottom-footer></bottom-footer>
@@ -103,6 +112,12 @@
 
         get iframeHtml() {
             return createIframeHtml(this.publishLocation);
+        }
+        private reloadIframe() {
+            const iframeElement = document.getElementById(Constants.PREVIEW_IFRAME_ID);
+            if (iframeElement) {
+                (iframeElement as HTMLIFrameElement).src += '';
+            }
         }
     }
 </script>

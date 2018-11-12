@@ -27,3 +27,9 @@ h1{
   color: $sideNavBackgroundColor;
   font-size: 2.75em;
 }
+
+#preview-container {
+  button {
+    border: lightgray solid 1px;
+  }
+}

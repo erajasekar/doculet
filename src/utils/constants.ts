@@ -34,6 +34,7 @@ export default class Constants {
     public static readonly DOCULET_EDIT_URL = `${Constants.DOCULET_URL}edit/`;
     public static readonly IFRAME_WIDTH = 960;
     public static readonly IFRAME_HEIGHT = 600;
+    public static readonly PREVIEW_IFRAME_ID = 'preview-iframe';
     public static readonly EMBED_LOGO_WIDTH = 100;
     public static readonly EMBED_LOGO_HEIGHT = 50;
     public static readonly STATIC_CSS_VERSION = 'v0.4.0';
