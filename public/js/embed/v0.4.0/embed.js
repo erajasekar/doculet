@@ -15,10 +15,12 @@
 
     // To support embedly auto height adjustment https://docs.embed.ly/v1.0/docs/provider-height-resizing
     window.addEventListener('DOMContentLoaded', function(){
+        var embedContainer = document.getElementById('embed-container');
+        console.log('TODO scroll height ', embedContainer.scrollHeight);
         window.parent.postMessage(JSON.stringify({
             src: window.location.toString(),
             context: 'iframe.resize',
-            height: document.body.scrollHeight // pixels
+            height: embedContainer.scrollHeight // pixels
         }), '*')
     })
 
