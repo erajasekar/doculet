@@ -13,15 +13,19 @@
         }, 5000);
     });
 
+    var embedContainer = document.getElementById('embed-container');
+
     // To support embedly auto height adjustment https://docs.embed.ly/v1.0/docs/provider-height-resizing
     window.addEventListener('DOMContentLoaded', function(){
-        var embedContainer = document.getElementById('embed-container');
-        console.log('TODO scroll height ', embedContainer.scrollHeight);
-        window.parent.postMessage(JSON.stringify({
-            src: window.location.toString(),
-            context: 'iframe.resize',
-            height: embedContainer.scrollHeight // pixels
-        }), '*')
+        //TODO remove logging
+        console.log('DOMContentLoaded: scroll height ', embedContainer.scrollHeight);
+        window.parent.postMessage(getIframeResizeMessage(), '*')
+    })
+
+    window.addEventListener('resize', function(){
+        //TODO remove logging
+        console.log('resize: scroll height ', embedContainer.scrollHeight);
+        window.parent.postMessage(getIframeResizeMessage(), '*')
     })
 
     var toggleThemeBtn = document.getElementById("toggle-theme-btn");
@@ -79,5 +83,13 @@
         }
         var secondaryHref = basePath + replaced;
         return secondaryHref;
+    }
+
+    function getIframeResizeMessage() {
+        return JSON.stringify({
+            src: window.location.toString(),
+            context: 'iframe.resize',
+            height: embedContainer.scrollHeight // pixels
+        });
     }
 })();
