@@ -134,6 +134,7 @@ a {
 [tooltip-position='right']::after{
     left:100%;
     top:50%;
+    min-width: 130px;
     margin-left:8px;
     transform: translateX(0%)   translateY(-50%);
 }

@@ -238,7 +238,8 @@
 
                 const html = asciiDoc.convert(gistFile.content);
                 const enriched = enrichHtml(html, {docLocation, docId: this.docId, theme: 'idea.light.min.css'});
-                s3Service.publishDoc(bucketKey, enriched);
+                console.log(enriched); //TODO
+              //  s3Service.publishDoc(bucketKey, enriched);
                 this.publishDoc({
                     docId: this.docId,
                     docName: this.docName,

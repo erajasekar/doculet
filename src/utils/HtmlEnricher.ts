@@ -122,7 +122,9 @@ function createEmbedHeader(docId: string, theme: string) {
     openInLink.className = 'open-in';
     openInLink.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
     openInLink.target = '_blank';
-    openInLink.textContent = 'Open Doculet';
+    openInLink.setAttribute('tooltip','Open Doculet');
+    openInLink.setAttribute('tooltip-position','right');
+    openInLink.appendChild(createOpenDoculetIcon());
 
     const poweredByLink = document.createElement('a');
     poweredByLink.className = 'powered-by';
@@ -143,6 +145,16 @@ function createEmbedHeader(docId: string, theme: string) {
     div.appendChild(poweredByLink);
     div.appendChild(createToggleThemeButton(theme));
     return div;
+}
+
+function createOpenDoculetIcon() {
+    const span = document.createElement('span');
+    span.className = 'icon';
+    const icon = document.createElement('i');
+    icon.classList.add('fa');
+    icon.classList.add('fa-external-link-alt');
+    span.appendChild(icon);
+    return span;
 }
 
 function createToggleThemeButton(theme: string) {
