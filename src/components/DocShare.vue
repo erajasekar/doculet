@@ -89,7 +89,7 @@
 
         private mounted() {
             this.loadDoc(this.docId, '');
-            window.addEventListener("message", this.receiveMessage, false);
+           // window.addEventListener('message', this.receiveMessage, false);
         }
 
         get htmlTitle() {
@@ -103,12 +103,12 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updateDocEdited(false);
-            this.updatePublishLocation('http://localhost:8080/embed/index.html');
-           /* if (!this.publishLocation) {
+         //   this.updatePublishLocation('http://localhost:8080/embed/index.html');
+            if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }*/
+            }
         }
 
         get iframeHtml() {
@@ -122,14 +122,13 @@
         }
 
         private receiveMessage(event: any) {
-            const data = event.data;
+          /*  const data = event.data;
             if (data && data.include('iframe.resize')) {
                 const jsonData = JSON.parse(data);
                 if (jsonData.context === 'iframe.resize') {
                     console.log('Received ', jsonData);
                 }
-                
-            }
+            }*/
         }
     }
 </script>

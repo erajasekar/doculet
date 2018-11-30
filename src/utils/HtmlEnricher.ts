@@ -122,8 +122,8 @@ function createEmbedHeader(docId: string, theme: string) {
     openInLink.className = 'open-in';
     openInLink.href = `${Constants.DOCULET_EDIT_URL}${docId}`;
     openInLink.target = '_blank';
-    openInLink.setAttribute('tooltip','Open Doculet');
-    openInLink.setAttribute('tooltip-position','right');
+    openInLink.setAttribute('tooltip', 'Open Doculet');
+    openInLink.setAttribute('tooltip-position', 'right');
     openInLink.appendChild(createOpenDoculetIcon());
 
     const poweredByLink = document.createElement('a');
