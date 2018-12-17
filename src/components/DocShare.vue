@@ -86,10 +86,12 @@
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private docId: string = this.docId;
+        private iframeElement: HTMLIFrameElement;
 
         private mounted() {
             this.loadDoc(this.docId, '');
-           // window.addEventListener('message', this.receiveMessage, false);
+            window.addEventListener('message', this.receiveMessage, false);
+            this.iframeElement = document.getElementById(Constants.PREVIEW_IFRAME_ID) as HTMLIFrameElement;
         }
 
         get htmlTitle() {
@@ -103,32 +105,30 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updateDocEdited(false);
-         //   this.updatePublishLocation('http://localhost:8080/embed/index.html');
-            if (!this.publishLocation) {
+            this.updatePublishLocation('http://localhost:8080/embed/stream.html');
+         /*   if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }
+            }*/
         }
 
         get iframeHtml() {
             return createIframeHtml(this.publishLocation);
         }
         private reloadIframe() {
-            const iframeElement = document.getElementById(Constants.PREVIEW_IFRAME_ID);
-            if (iframeElement) {
-                (iframeElement as HTMLIFrameElement).src += '';
-            }
+            this.iframeElement.src += '';
         }
 
         private receiveMessage(event: any) {
-          /*  const data = event.data;
-            if (data && data.include('iframe.resize')) {
+            const data = event.data;
+            if (data && typeof data === 'string' && data.includes('iframe.resize')) {
                 const jsonData = JSON.parse(data);
                 if (jsonData.context === 'iframe.resize') {
-                    console.log('Received ', jsonData);
+                    const iframeElement = document.getElementById(Constants.PREVIEW_IFRAME_ID);
+                    this.iframeElement.height = jsonData.height + 20;
                 }
-            }*/
+            }
         }
     }
 </script>
