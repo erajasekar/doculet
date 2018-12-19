@@ -86,7 +86,7 @@
         private htmlDescription = Constants.DOCULET_DESCRIPTION;
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private docId: string = this.docId;
-        private iframeElement: HTMLIFrameElement;
+        private iframeElement: HTMLIFrameElement | null = null;
 
         private mounted() {
             this.loadDoc(this.docId, '');
@@ -105,28 +105,32 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updateDocEdited(false);
-            this.updatePublishLocation('http://localhost:8080/embed/stream.html');
-         /*   if (!this.publishLocation) {
+           // this.updatePublishLocation('http://localhost:8080/embed/twocode.html');
+            if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }*/
+            }
         }
 
         get iframeHtml() {
             return createIframeHtml(this.publishLocation);
         }
         private reloadIframe() {
-            this.iframeElement.src += '';
+            if (this.iframeElement) {
+                this.iframeElement.src += '';
+            }
         }
 
         private receiveMessage(event: any) {
-            const data = event.data;
-            if (data && typeof data === 'string' && data.includes('iframe.resize')) {
-                const jsonData = JSON.parse(data);
-                if (jsonData.context === 'iframe.resize') {
-                    const iframeElement = document.getElementById(Constants.PREVIEW_IFRAME_ID);
-                    this.iframeElement.height = jsonData.height + 20;
+            if (this.iframeElement) {
+                const data = event.data;
+                if (data && typeof data === 'string' && data.includes('iframe.resize')) {
+                    const jsonData = JSON.parse(data);
+                    if (jsonData.context === 'iframe.resize') {
+                        this.iframeElement.height = jsonData.height + 20;
+                        console.log("Set iframe new ", this.iframeElement.height , this.iframeElement.width);
+                    }
                 }
             }
         }
