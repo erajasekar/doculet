@@ -17,14 +17,10 @@
 
     // To support embedly auto height adjustment https://docs.embed.ly/v1.0/docs/provider-height-resizing
     window.addEventListener('DOMContentLoaded', function(){
-        //TODO remove logging
-        console.log('DOMContentLoaded: scroll height ', embedContainer.scrollHeight);
         window.parent.postMessage(getIframeResizeMessage(), '*')
     })
 
     window.addEventListener('resize', function(){
-        //TODO remove logging
-        console.log('resize: scroll height ', embedContainer.scrollHeight);
         window.parent.postMessage(getIframeResizeMessage(), '*')
     })
 

@@ -40,7 +40,7 @@ export class AwsS3Service {
 
         const params = {
             Bucket: this.bucketName,
-            Key : this.constructBucketKey(docId),
+            Key : this.constructBucketKey(this.constructDocDir(docId)),
         };
         this.s3.deleteObject(params,  (err: Error, data: S3.Types.DeleteObjectOutput) => {
             if (err) {
