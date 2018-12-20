@@ -8,7 +8,7 @@
             </li>
         </ul>
       <!--  <div v-else> -->
-            <b-alert  v-else variant="warning" show>Login to see save and share your documents.</b-alert>
+            <b-alert  v-else variant="warning" show>Login to see save, publish and share your documents.</b-alert>
        <!-- </div> -->
     </nav>
 </template>

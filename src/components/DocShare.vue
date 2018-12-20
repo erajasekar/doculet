@@ -87,6 +87,7 @@
         private keywords = Constants.DOCULET_SEO_KEYWORDS;
         private docId: string = this.docId;
         private iframeElement: HTMLIFrameElement | null = null;
+        private iframeHeight = Constants.IFRAME_HEIGHT;
 
         private mounted() {
             this.loadDoc(this.docId, '');
@@ -105,16 +106,16 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updateDocEdited(false);
-            this.updatePublishLocation('http://localhost:8080/embed/twocode.html');
-        /*    if (!this.publishLocation) {
+         //   this.updatePublishLocation('http://localhost:8080/embed/twocode.html');
+            if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }*/
+            }
         }
 
         get iframeHtml() {
-            return createIframeHtml(this.publishLocation);
+            return createIframeHtml(this.publishLocation, this.iframeHeight);
         }
         private reloadIframe() {
             if (this.iframeElement) {
@@ -128,13 +129,7 @@
                 if (data && typeof data === 'string' && data.includes('iframe.resize')) {
                     const jsonData = JSON.parse(data);
                     if (jsonData.context === 'iframe.resize') {
-                        this.iframeElement.height = jsonData.height + 20;
-                        console.log("Set iframe new ", this.iframeElement.height , this.iframeElement.width);
-                        const parent = document.getElementById('responsive-iframe');
-                        this.iframeElement.style.height = this.iframeElement.height;
-                        const ratio = ((this.iframeElement.height/this.iframeElement.width)*100).toPrecision(4) + '%'
-                        parent.style.height = this.iframeElement.height  + 210;
-                        console.log("parent  ", ratio, parent);
+                        this.iframeHeight = jsonData.height;
                     }
                 }
             }
