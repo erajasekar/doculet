@@ -53,7 +53,7 @@
                     </b-btn>
                 </span>
             </template>
-            <div class="responsive-iframe" v-html="iframeHtml"></div>
+            <div id="responsive-iframe" v-html="iframeHtml"></div>
         </b-jumbotron>
         <bottom-footer></bottom-footer>
     </div>
@@ -105,12 +105,12 @@
             logDebug(`DocId to share ${docId}, oldValue: ${oldValue} , docId in store ${this.docId}`);
             this.updateDocId(docId);
             this.updateDocEdited(false);
-           // this.updatePublishLocation('http://localhost:8080/embed/twocode.html');
-            if (!this.publishLocation) {
+            this.updatePublishLocation('http://localhost:8080/embed/twocode.html');
+        /*    if (!this.publishLocation) {
                 dbService.getPublishLocation(docId).then( (location: string) => {
                     this.updatePublishLocation(location);
                 });
-            }
+            }*/
         }
 
         get iframeHtml() {
@@ -130,6 +130,11 @@
                     if (jsonData.context === 'iframe.resize') {
                         this.iframeElement.height = jsonData.height + 20;
                         console.log("Set iframe new ", this.iframeElement.height , this.iframeElement.width);
+                        const parent = document.getElementById('responsive-iframe');
+                        this.iframeElement.style.height = this.iframeElement.height;
+                        const ratio = ((this.iframeElement.height/this.iframeElement.width)*100).toPrecision(4) + '%'
+                        parent.style.height = this.iframeElement.height  + 210;
+                        console.log("parent  ", ratio, parent);
                     }
                 }
             }
