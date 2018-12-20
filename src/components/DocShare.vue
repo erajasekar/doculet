@@ -56,6 +56,7 @@
             <div id="responsive-iframe" v-html="iframeHtml"></div>
         </b-jumbotron>
         <bottom-footer></bottom-footer>
+
     </div>
 </template>
 
