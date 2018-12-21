@@ -8,12 +8,12 @@
                 :url="canonicalUrl"
         />
 
-        <vue-snotify></vue-snotify>
 
         <div class="editor-header">
            <b-form-input size="lg" id="doc-name-input"
                           type="text" :value="docName" @change="updateDocName">
            </b-form-input>
+            <vue-snotify></vue-snotify>
         </div>
         <div class="editor-main">
             <editor class="editor-pane" :value="content" @input="update" @init="editorInit" lang="asciidoc" theme="chrome" width="50%"></editor>
@@ -86,16 +86,21 @@
                 this.importGist(this.gistId, '');
             }
 
-            Vue.$snotify.simple({
+          /*  Vue.$snotify.simple({
                 body: 'My Notification Body',
                 title: 'Notification Title',
                 config: {}
-            });
+            });*/
 
-            this.$snotify.simple({
-                body: 'My Notification Body',
-                title: 'Notification Title',
-                config: {}
+            this.$snotify.confirm('Example body content', 'Example title', {
+                timeout: 5000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                buttons: [
+                    {text: 'Yes', action: () => console.log('Clicked: Yes'), bold: false},
+                    {text: 'No', action: () => console.log('Clicked: No')},
+                ]
             });
 
             /*SnotifyStyles.simple({
