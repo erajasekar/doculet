@@ -8,6 +8,8 @@
                 :url="canonicalUrl"
         />
 
+        <vue-snotify></vue-snotify>
+
         <div class="editor-header">
            <b-form-input size="lg" id="doc-name-input"
                           type="text" :value="docName" @change="updateDocName">
@@ -43,6 +45,7 @@
     import {DoculetDocBase} from '../store/modules/doculet';
     import BottomFooter from '@/components/BottomFooter.vue';
     import * as auth from '../utils/auth';
+
 
     @Component({
         components: {
@@ -82,6 +85,24 @@
             if (this.gistId) {
                 this.importGist(this.gistId, '');
             }
+
+            Vue.$snotify.simple({
+                body: 'My Notification Body',
+                title: 'Notification Title',
+                config: {}
+            });
+
+            this.$snotify.simple({
+                body: 'My Notification Body',
+                title: 'Notification Title',
+                config: {}
+            });
+
+            /*SnotifyStyles.simple({
+                body: 'My Notification Body',
+                title: 'Notification Title',
+                config: {}
+            });*/
         }
 
         get compiledHtml() {

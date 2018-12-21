@@ -11,6 +11,10 @@ import vueHeadful from 'vue-headful';
 import VueAnalytics from 'vue-analytics';
 import {analyticsConfig} from './config/analytics-config';
 import VueClipboard from 'vue-clipboard2';
+import Snotify from 'vue-snotify';
+// You also need to import the styles. If you're using webpack's css-loader, you can do so here:
+import 'vue-snotify/styles/material.css'; // or dark.css or simple.css
+
 
 export const startTime = new Date().getTime();
 
@@ -24,6 +28,7 @@ Vue.config.productionTip = false;
 
 Vue.use(VueAnalytics, analyticsConfig);
 Vue.use(VueClipboard);
+Vue.use(Snotify);
 
 new Vue({
   router,
