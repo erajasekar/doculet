@@ -1,6 +1,6 @@
 import {GetterTree, MutationTree, ActionTree, ActionContext} from 'vuex';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from '@firebase/app';
+import '@firebase/auth';
 import Constants from '../../utils/constants';
 
 interface IUser {
