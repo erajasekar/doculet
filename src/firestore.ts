@@ -1,6 +1,6 @@
-//import firebase from 'firebase/app';
-import firebase from '@firebase/app';
-import '@firebase/firestore';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 import Constants from './utils/constants';
 import {config} from './config/config';
 
