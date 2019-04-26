@@ -9,5 +9,4 @@ const db = firebase.firestore();
 db.settings({timestampsInSnapshots: true});
 
 export const doculetsCollection = db.collection(Constants.DB_COLLECTION_DOCULENTS);
-export const firebaseAuth =  firebase.auth();
-console.log('raja', firebaseAuth);
+

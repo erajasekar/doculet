@@ -1,7 +1,7 @@
 import {doculetsCollection} from '../firestore';
 import {logDebug} from '../utils/logger';
 import firebase from 'firebase/app';
-import '@firebase/firestore';
+import 'firebase/firestore';
 import {DoculetDocBase} from '../store/modules/doculet';
 
 export class FireStoreService {
