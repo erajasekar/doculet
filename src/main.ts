@@ -15,6 +15,7 @@ import VueClipboard from 'vue-clipboard2';
 
 export const startTime = new Date().getTime();
 
+
 Vue.use(BootstrapVue);
 Vue.component('vue-headful', vueHeadful);
 
